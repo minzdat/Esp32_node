@@ -19,7 +19,8 @@
 #define ESPNOW_WIFI_IF   ESP_IF_WIFI_AP
 #endif
 
-#define DATA_TO_SEND "Get data from Master"
+#define DATA_TO_SEND "Hello from Slave using broadcast"
+#define DATA_TO_SEND_UNICAST "Hello from Slave using unicast"
 #define ESPNOW_QUEUE_SIZE           6
 #define ESPNOW_MAXDELAY             512
 #define CONFIG_ESPNOW_CHANNEL       1

@@ -16,6 +16,6 @@
     "idf.toolsPathWin": "C:\\Users\\tminh\\.espressif",
     "idf.flashType": "UART",
     "files.associations": {
-        "esp_now.h": "c"
+        "esp_mac.h": "c"
     }
 }
