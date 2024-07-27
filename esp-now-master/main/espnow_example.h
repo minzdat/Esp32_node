@@ -19,7 +19,9 @@
 #define ESPNOW_WIFI_IF   ESP_IF_WIFI_AP
 #endif
 
-#define DATA_TO_SEND "Get data from Master"
+#define CONFIG_ESPNOW_PMK "pmk1234567890123"
+#define CONFIG_ESPNOW_LMK "lmk1234567890123"
+#define DATA_TO_SEND "Get data from Master:"
 #define ESPNOW_QUEUE_SIZE           6
 #define ESPNOW_MAXDELAY             512
 #define CONFIG_ESPNOW_CHANNEL       1

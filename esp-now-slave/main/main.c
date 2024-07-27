@@ -15,40 +15,49 @@
 #include "esp_now.h"
 #include "esp_crc.h"
 #include "espnow_example.h"
+#include "esp_timer.h"
 
 // Tag for logging
 static const char *TAG = "ESP-NOW SLAVE";
 
 // Global variables
+static TaskHandle_t xTaskHandle = NULL;
 static QueueHandle_t s_example_espnow_queue;
 static uint8_t s_example_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-static const uint8_t IGNORE_MAC[ESP_NOW_ETH_ALEN] = {0xec, 0xda, 0x3b, 0x54, 0xb5, 0x9c};
-
+static uint8_t IGNORE_MAC[ESP_NOW_ETH_ALEN] = {0xec, 0xda, 0x3b, 0x54, 0xb5, 0x9c};
 static uint8_t peer_list[MAX_PEERS][ESP_NOW_ETH_ALEN];
 static int peer_count = 0;
-// static int successful_send_count = 0;  // Biến đếm số lần gửi thành công
-// static int successful_recv_count = 0;  // Biến đếm số lần nhận dữ liệu thành công
-static TaskHandle_t xTaskHandle = NULL;
+static int successful_send_count = 0; 
+static int successful_recv_count = 0;
 
-// Functions
+int64_t start = 0;
+int64_t stop = 0;
+int64_t time_s = 0;
+
+// Callback function to handle send status
 static void example_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
 {
-    // ESP_LOGI(TAG, "Send callback: " MACSTR ", status: %d", MAC2STR(mac_addr), status);
+    start=esp_timer_get_time();
+    printf("Send Status: %s\n", status == ESP_NOW_SEND_SUCCESS ? "Success" : "Fail");
 }
 
+// Callback function to handle received data
 static void example_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len)
 {
-    if (memcmp(recv_info->src_addr, IGNORE_MAC, ESP_NOW_ETH_ALEN) == 0) {
-        ESP_LOGI(TAG, "Message from ignored MAC address: " MACSTR, MAC2STR(recv_info->src_addr));
-        return;
-    }
+    stop = esp_timer_get_time();
+    time_s = stop - start;
+    ESP_LOGW(TAG, "Transmission Time: %lld us", time_s);  
+
+    int8_t rssi = recv_info->rx_ctrl->rssi;
+    ESP_LOGW(TAG, "RSSI: %d", rssi);
+    
+    // if (memcmp(recv_info->src_addr, IGNORE_MAC, ESP_NOW_ETH_ALEN) == 0) {
+    //     ESP_LOGI(TAG, "Message from ignored MAC address: " MACSTR, MAC2STR(recv_info->src_addr));
+    //     return;
+    // }
 
     ESP_LOGI(TAG, "Receive callback: " MACSTR ", len: %d", MAC2STR(recv_info->src_addr), len);
     ESP_LOGI(TAG, "Data: %.*s", len, data);
-
-     // Tăng biến đếm khi dữ liệu được nhận thành công
-    // successful_recv_count++;
-    // ESP_LOGI(TAG, "Receive successful. Total successful receives: %d", successful_recv_count);
 
     // Save sender MAC address if it's not already in the list
     bool is_new_peer = true;
@@ -74,7 +83,8 @@ static void example_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const u
         memset(peer_info, 0, sizeof(esp_now_peer_info_t));
         peer_info->channel = CONFIG_ESPNOW_CHANNEL;
         peer_info->ifidx = ESPNOW_WIFI_IF;
-        peer_info->encrypt = false;
+        peer_info->encrypt = true;
+        memcpy(peer_info->lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
         memcpy(peer_info->peer_addr, recv_info->src_addr, ESP_NOW_ETH_ALEN);
         ESP_ERROR_CHECK( esp_now_add_peer(peer_info) );
         free(peer_info);
@@ -90,21 +100,30 @@ static void example_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const u
         ESP_LOGW(TAG, "Peer list full. Cannot add new peer.");
     }
 
-    // Delay 2 seconds before sending unicast data
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
-    if (len >= strlen("Get data from Master") && strstr((const char *)data, "Get data from Master") != NULL) {
+    // Delay 1 seconds before sending unicast data
+    vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
+    if (len >= strlen("Get data from Master:") && strstr((const char *)data, "Get data from Master") != NULL) {
+        // Increment the counter variable when data is successfully received
+        successful_recv_count++;
+        ESP_LOGI(TAG, "Receive successful. Total successful receives: %d", successful_recv_count);
         for (int i = 0; i < peer_count; i++) {
             
-            if (memcmp(peer_list[i], IGNORE_MAC, ESP_NOW_ETH_ALEN) == 0) {
-                ESP_LOGI(TAG, "Skipping ignored MAC address: " MACSTR, MAC2STR(peer_list[i]));
-                continue;
-            }
+            // if (memcmp(peer_list[i], IGNORE_MAC, ESP_NOW_ETH_ALEN) == 0) {
+            //     ESP_LOGI(TAG, "Skipping ignored MAC address: " MACSTR, MAC2STR(peer_list[i]));
+            //     continue;
+            // }
 
             ESP_LOGI(TAG, "_______________________________________________");
             ESP_LOGI(TAG, "Sending unicast data to: " MACSTR, MAC2STR(peer_list[i]));
             esp_err_t result = esp_now_send(peer_list[i], data, len);
             if (result != ESP_OK) {
                 ESP_LOGE(TAG, "Send error to peer: " MACSTR ", error: %d", MAC2STR(peer_list[i]), result);
+            }
+            else
+            {
+                // Increment the counter variable when sent successfully
+                successful_send_count++; 
+                ESP_LOGI(TAG, "Send successful. Total successful sends: %d", successful_send_count);
             }
         }
     }
@@ -117,23 +136,9 @@ static void example_espnow_task(void *pvParameter)
 
     while (1) {
         // Send broadcast data
-        // ESP_LOGI(TAG, "_______________________________________________");
+        ESP_LOGI(TAG, "_______________________________________________");
         ESP_LOGI(TAG, "Sending broadcast data: %s", send_param->buffer);
-        if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) == ESP_OK) {
-            // successful_send_count++;  // Tăng biến đếm khi gửi thành công
-            // ESP_LOGI(TAG, "Send successful. Total successful sends: %d", successful_send_count);
-        } else {
-            ESP_LOGE(TAG, "Send error");
-        }
-
-        // Send unicast data to each peer
-        // for (int i = 0; i < peer_count; i++) {
-        //     ESP_LOGI(TAG, "_______________________________________________");
-        //     ESP_LOGI(TAG, "Sending unicast data to: " MACSTR, MAC2STR(peer_list[i].mac_addr));
-        //     if (esp_now_send(peer_list[i].mac_addr, send_param->buffer, send_param->len) != ESP_OK) {
-        //         ESP_LOGE(TAG, "Send error to peer: " MACSTR, MAC2STR(peer_list[i].mac_addr));
-        //     }
-        // }
+        esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len);
 
         if (send_param->delay > 0) {
             vTaskDelay(send_param->delay / portTICK_PERIOD_MS);
@@ -152,15 +157,13 @@ static esp_err_t example_espnow_init(void)
     }
 
     /* Initialize ESPNOW and register sending and receiving callback function. */
-    esp_err_t init_result = esp_now_init();
-    if (init_result != ESP_OK) {
-        ESP_LOGE(TAG, "ESP-NOW init failed: %d", init_result);
-        return init_result;
-    }
-
+    ESP_ERROR_CHECK( esp_now_init() );
     ESP_ERROR_CHECK( esp_now_register_send_cb(example_espnow_send_cb) );
     ESP_ERROR_CHECK( esp_now_register_recv_cb(example_espnow_recv_cb) );
 
+    /* Set primary master key. */
+    ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) );
+    
     /* Add broadcast peer information to peer list. */
     esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
     if (peer == NULL) {
@@ -227,6 +230,15 @@ static void example_wifi_init(void)
 #endif
 }
 
+void set_wifi_max_tx_power(void) {
+    esp_err_t err = esp_wifi_set_max_tx_power(12);
+    ESP_LOGI(TAG, "Esp set power: %s", esp_err_to_name(err));
+    int8_t tx_power;
+    esp_wifi_get_max_tx_power(&tx_power);
+    tx_power=tx_power/4;
+    ESP_LOGI(TAG, "Current max TX power: %d dBm", tx_power);
+}
+
 void app_main(void)
 {
     // Initialize NVS
@@ -238,5 +250,8 @@ void app_main(void)
     ESP_ERROR_CHECK( ret );
 
     example_wifi_init();
+
+    set_wifi_max_tx_power();
+
     example_espnow_init();
 }

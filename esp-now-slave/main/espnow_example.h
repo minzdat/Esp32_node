@@ -19,6 +19,8 @@
 #define ESPNOW_WIFI_IF   ESP_IF_WIFI_AP
 #endif
 
+#define CONFIG_ESPNOW_PMK "pmk1234567890123"
+#define CONFIG_ESPNOW_LMK "lmk1234567890123"
 #define DATA_TO_SEND "Hello from Slave using broadcast"
 #define DATA_TO_SEND_UNICAST "Hello from Slave using unicast"
 #define ESPNOW_QUEUE_SIZE           6
