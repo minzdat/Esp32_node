@@ -27,12 +27,44 @@
 #define ESPNOW_WIFI_IF   ESP_IF_WIFI_AP
 #endif
 
+/* WiFi configuration that you can set via the project configuration menu */
+#if CONFIG_ESP_WPA3_SAE_PWE_HUNT_AND_PECK
+#define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_HUNT_AND_PECK
+#define MASTER_H2E_IDENTIFIER ""
+#elif CONFIG_ESP_WPA3_SAE_PWE_HASH_TO_ELEMENT
+#define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_HASH_TO_ELEMENT
+#define MASTER_H2E_IDENTIFIER CONFIG_ESP_WIFI_PW_ID
+#elif CONFIG_ESP_WPA3_SAE_PWE_BOTH
+#define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_BOTH
+#define MASTER_H2E_IDENTIFIER CONFIG_ESP_WIFI_PW_ID
+#endif
+
+#if CONFIG_ESP_WIFI_AUTH_OPEN
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_OPEN
+#elif CONFIG_ESP_WIFI_AUTH_WEP
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WEP
+#elif CONFIG_ESP_WIFI_AUTH_WPA_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA2_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA2_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA_WPA2_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA_WPA2_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA3_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA3_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA2_WPA3_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA2_WPA3_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WAPI_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WAPI_PSK
+#endif
+
 #define TAG                         "Espnow_master"
 #define RESPONSE_AGREE_CONNECT      "Master agree to connect"
 #define SLAVE_SAVED_MAC_MSG         "Slave saved MAC Master"
 #define CHECK_CONNECTION_MSG        "Master request to check connection"
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_SLAVES              "waiting_slaves"
+#define WIFI_CONNECTED_BIT          BIT0
+#define WIFI_FAIL_BIT               BIT1
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 #define ESPNOW_MAXDELAY             512
 #define ESPNOW_QUEUE_SIZE           6
@@ -87,15 +119,21 @@ typedef struct {
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } master_espnow_send_param_t;
 
-void test_get_allowed_connect_slaves_from_nvs();
-void save_waiting_connect_slaves_to_nvs();
-void load_allowed_connect_slaves_from_nvs();
+// Function to NVS
+void test_get_allowed_connect_slaves_from_nvs(list_slaves_t *allowed_connect_slaves);
+void save_waiting_connect_slaves_to_nvs(list_slaves_t *waiting_connect_slaves);
+void load_allowed_connect_slaves_from_nvs(list_slaves_t *allowed_connect_slaves);
+void erase_key_in_nvs(const char *key);
+void erase_all_in_nvs();
+
+// Function to master espnow
 void add_to_waiting_connect_slaves(const uint8_t *mac_addr);
-void master_wifi_init(void);
-void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
 esp_err_t response_agree_connect(const uint8_t *dest_mac, const char *message);
+void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
 void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void master_espnow_task(void *pvParameter);
+void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
+void master_wifi_init(void);
 esp_err_t master_espnow_init(void);
 void master_espnow_deinit(master_espnow_send_param_t *send_param);
 

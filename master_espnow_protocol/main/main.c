@@ -10,8 +10,6 @@ void app_main(void)
     }
     ESP_ERROR_CHECK( ret );
 
-    test_get_allowed_connect_slaves_from_nvs();
-
     master_wifi_init();
     master_espnow_init();
 }

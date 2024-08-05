@@ -6,157 +6,6 @@ static QueueHandle_t s_master_espnow_queue;
 list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t waiting_connect_slaves[MAX_SLAVES];
 
-// Function to initialize allowed slaves with hard-coded values
-void test_get_allowed_connect_slaves_from_nvs() {
-    // Clear the array
-    memset(allowed_connect_slaves, 0, sizeof(allowed_connect_slaves));
-    
-    // Example hard-coded MAC addresses and statuses
-    uint8_t mac1[ESP_NOW_ETH_ALEN] = {0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F};
-    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0xA4, 0xE0, 0x3A, 0xFF, 0x76, 0xC1};
-    uint8_t mac3[ESP_NOW_ETH_ALEN] = {0x48, 0x27, 0xe2, 0xc7, 0x21, 0x7c};
-    
-    // Add MAC addresses and statuses to the list
-    memcpy(allowed_connect_slaves[0].peer_addr, mac1, ESP_NOW_ETH_ALEN);
-    allowed_connect_slaves[0].status = true;   // Online
-    
-    memcpy(allowed_connect_slaves[1].peer_addr, mac2, ESP_NOW_ETH_ALEN);
-    allowed_connect_slaves[1].status = true;    // Online
-    
-    memcpy(allowed_connect_slaves[2].peer_addr, mac3, ESP_NOW_ETH_ALEN);
-    allowed_connect_slaves[2].status = false;    // Offline
-    
-    // Optionally, log the initialized values
-    for (int i = 0; i < 3; i++) {
-        ESP_LOGI("Init Allowed Slaves", "Slave %d: " MACSTR " Status: %s",
-                 i, MAC2STR(allowed_connect_slaves[i].peer_addr), allowed_connect_slaves[i].status ? "Online" : "Offline");
-    }
-}
-
-// Function to save waiting_connect_slaves to NVS
-void save_waiting_connect_slaves_to_nvs() {
-    esp_err_t err;
-    nvs_handle_t my_handle;
-
-    // Open NVS handle
-    err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to open NVS handle, error code: %s", esp_err_to_name(err));
-        return;
-    }
-
-    // Write the array to NVS
-    err = nvs_set_blob(my_handle, NVS_KEY_SLAVES, waiting_connect_slaves, sizeof(waiting_connect_slaves));
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to write to NVS, error code: %s", esp_err_to_name(err));
-    } else {
-        ESP_LOGI(TAG, "Successfully saved waiting_connect_slaves to NVS");
-    }
-
-    // Commit written value
-    err = nvs_commit(my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to commit to NVS, error code: %s", esp_err_to_name(err));
-    }
-
-    // Close NVS handle
-    nvs_close(my_handle);
-}
-
-// Function to read allowed_connect_slaves from NVS
-void load_allowed_connect_slaves_from_nvs() {
-    esp_err_t err;
-    nvs_handle_t my_handle;
-
-    // Open NVS handle
-    err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to open NVS handle, error code: %s", esp_err_to_name(err));
-        return;
-    }
-
-    // Read the array from NVS
-    size_t required_size = sizeof(allowed_connect_slaves);
-    err = nvs_get_blob(my_handle, NVS_KEY_SLAVES, allowed_connect_slaves, &required_size);
-    if (err == ESP_ERR_NVS_NOT_FOUND) {
-        ESP_LOGI(TAG, "No data found in NVS, initializing with empty values");
-        memset(allowed_connect_slaves, 0, sizeof(allowed_connect_slaves));
-    } else if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to read from NVS, error code: %s", esp_err_to_name(err));
-    } else {
-        ESP_LOGI(TAG, "Successfully loaded allowed_connect_slaves from NVS");
-    }
-
-    // Log the loaded values
-    for (int i = 0; i < MAX_SLAVES; i++) {
-        ESP_LOGI(TAG, "Waiting allow slave %d: " MACSTR ", status: %s",
-                 i, MAC2STR(allowed_connect_slaves[i].peer_addr), allowed_connect_slaves[i].status ? "Online" : "Offline");
-    }
-
-    // Close NVS handle
-    nvs_close(my_handle);
-}
-
-// Function to erase NVS by key
-void erase_key_in_nvs(const char *key) {
-    esp_err_t err;
-    nvs_handle_t my_handle;
-
-    // Open NVS handle
-    err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to open NVS handle, error code: %s", esp_err_to_name(err));
-        return;
-    }
-
-    // Erase ket
-    err = nvs_erase_key(my_handle, key);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to erase key in NVS, error code: %s", esp_err_to_name(err));
-    } else {
-        ESP_LOGI(TAG, "Successfully erased key '%s' in NVS", key);
-    }
-
-    // Commit changes
-    err = nvs_commit(my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to commit in NVS, error code: %s", esp_err_to_name(err));
-    }
-
-    // Close NVS handle
-    nvs_close(my_handle);
-}
-
-// Function to erase all NVS
-void erase_all_in_nvs() {
-    esp_err_t err;
-    nvs_handle_t my_handle;
-
-    // Open NVS handle
-    err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to open NVS handle, error code: %s", esp_err_to_name(err));
-        return;
-    }
-
-    // Erase all nvs
-    err = nvs_erase_all(my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to erase all in NVS, error code: %s", esp_err_to_name(err));
-    } else {
-        ESP_LOGI(TAG, "Successfully erased all in NVS");
-    }
-
-    // Commit changes
-    err = nvs_commit(my_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to commit in NVS, error code: %s", esp_err_to_name(err));
-    }
-
-    // Close NVS handle
-    nvs_close(my_handle);
-}
-
 // Function to save IP MAC Slave waiting to allow
 void add_to_waiting_connect_slaves(const uint8_t *mac_addr) {
     for (int i = 0; i < MAX_SLAVES; i++) {
@@ -174,7 +23,7 @@ void add_to_waiting_connect_slaves(const uint8_t *mac_addr) {
             // Empty location, add new MAC address here
             memcpy(waiting_connect_slaves[i].peer_addr, mac_addr, ESP_NOW_ETH_ALEN);
             ESP_LOGI(TAG, "Added MAC " MACSTR " to waiting allow connect list", MAC2STR(waiting_connect_slaves[i].peer_addr));
-            save_waiting_connect_slaves_to_nvs(); // Save to NVS
+            save_waiting_connect_slaves_to_nvs(waiting_connect_slaves); // Save to NVS
             return;
         }
     }
@@ -187,45 +36,7 @@ void add_to_waiting_connect_slaves(const uint8_t *mac_addr) {
     current_index = (current_index + 1) % MAX_SLAVES;
 
     // Save updated list to NVS
-    save_waiting_connect_slaves_to_nvs();
-}
-
-/* WiFi should start before using ESPNOW */
-void master_wifi_init(void)
-{
-    ESP_ERROR_CHECK(esp_netif_init());
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
-    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-    ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
-    ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
-    ESP_ERROR_CHECK( esp_wifi_set_mode(ESPNOW_WIFI_MODE) );
-    ESP_ERROR_CHECK( esp_wifi_start());
-    ESP_ERROR_CHECK( esp_wifi_set_channel(CONFIG_ESPNOW_CHANNEL, WIFI_SECOND_CHAN_NONE));
-
-#if CONFIG_ESPNOW_ENABLE_LONG_RANGE
-    ESP_ERROR_CHECK( esp_wifi_set_protocol(ESPNOW_WIFI_IF, WIFI_PROTOCOL_11B|WIFI_PROTOCOL_11G|WIFI_PROTOCOL_11N|WIFI_PROTOCOL_LR) );
-#endif
-}
-
-void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
-{
-    master_espnow_event_t evt;
-    master_espnow_event_send_cb_t *send_cb = &evt.info.send_cb;
-
-    if (mac_addr == NULL) {
-        ESP_LOGE(TAG, "Send cb arg error");
-        return;
-    }
-
-    evt.id = MASTER_ESPNOW_SEND_CB;
-    memcpy(send_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
-    send_cb->status = status;
-    // if (xQueueSend(s_master_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
-    //     ESP_LOGW(TAG, "Send send queue fail");
-    // }
-    ESP_LOGI(TAG, "---------------------------------");
-    ESP_LOGI(TAG, "Send callback: MAC Address " MACSTR ", Status: %s",
-             MAC2STR(mac_addr), (status == ESP_NOW_SEND_SUCCESS) ? "Success" : "Fail");
+    save_waiting_connect_slaves_to_nvs(waiting_connect_slaves);
 }
 
 /* Function to send a unicast response "Agree to connect"*/
@@ -288,6 +99,27 @@ esp_err_t response_agree_connect(const uint8_t *dest_mac, const char *message)
     }
 
     return ESP_OK;
+}
+
+void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
+{
+    master_espnow_event_t evt;
+    master_espnow_event_send_cb_t *send_cb = &evt.info.send_cb;
+
+    if (mac_addr == NULL) {
+        ESP_LOGE(TAG, "Send cb arg error");
+        return;
+    }
+
+    evt.id = MASTER_ESPNOW_SEND_CB;
+    memcpy(send_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
+    send_cb->status = status;
+    // if (xQueueSend(s_master_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
+    //     ESP_LOGW(TAG, "Send send queue fail");
+    // }
+    ESP_LOGI(TAG, "---------------------------------");
+    ESP_LOGI(TAG, "Send callback: MAC Address " MACSTR ", Status: %s",
+             MAC2STR(mac_addr), (status == ESP_NOW_SEND_SUCCESS) ? "Success" : "Fail");
 }
 
 void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len)
@@ -373,6 +205,8 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
 
 void master_espnow_task(void *pvParameter)
 {
+    vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 seconds
+
     master_espnow_send_param_t *send_param = (master_espnow_send_param_t *)pvParameter;
     
     send_param->buffer = (uint8_t *)CHECK_CONNECTION_MSG;
@@ -400,8 +234,6 @@ void master_espnow_task(void *pvParameter)
                     allowed_connect_slaves[i].send_errors = 0;
                     ESP_LOGI(TAG, "Sent data to MAC: " MACSTR, MAC2STR(send_param->dest_mac));
                 }
-                
-                vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 seconds
             }
         }
 
@@ -411,6 +243,9 @@ void master_espnow_task(void *pvParameter)
 
 esp_err_t master_espnow_init(void)
 {
+    // Data demo MAC from Slave
+    test_get_allowed_connect_slaves_from_nvs(allowed_connect_slaves);
+
     master_espnow_send_param_t *send_param;
 
     s_master_espnow_queue = xQueueCreate(ESPNOW_QUEUE_SIZE, sizeof(master_espnow_event_t));

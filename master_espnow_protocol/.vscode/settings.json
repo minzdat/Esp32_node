@@ -19,7 +19,8 @@
         "assert.h": "c",
         "stdlib.h": "c",
         "complex": "c",
-        "system_error": "c"
+        "system_error": "c",
+        "nvs_flash.h": "c"
     },
     "idf.flashType": "UART"
 }
