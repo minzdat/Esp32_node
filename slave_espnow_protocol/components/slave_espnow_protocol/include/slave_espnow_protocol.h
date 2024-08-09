@@ -17,6 +17,7 @@
 #include "esp_mac.h"
 #include "esp_now.h"
 #include "esp_crc.h"
+#include "esp_timer.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -31,9 +32,30 @@
 #define REQUEST_CONNECTION_MSG      "Slave request connection"
 #define MASTER_AGREE_CONNECT_MSG    "Master agree to connect"
 #define SLAVE_SAVED_MAC_MSG         "Slave saved MAC Master"
+#define CHECK_CONNECTION_MSG        "Master request to check connection"
+#define STILL_CONNECTED_MSG         "Slave still keeps the connection"
 #define SLAVE_BROADCAST_MAC         { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
+#define EMPTY_MAC_ADDR              { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
 #define ESPNOW_QUEUE_SIZE           6
+#define TIMEOUT_CHECK_CONNECT       150000
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
+
+typedef struct {
+    TickType_t start_time;
+    TickType_t end_time;
+    uint8_t peer_addr[ESP_NOW_ETH_ALEN];
+    bool connected;                            
+} mac_master_t;
+
+typedef enum {
+    SLAVE_ESPNOW_SEND_CB,
+    SLAVE_ESPNOW_RECV_CB,
+} slave_espnow_event_id_t;
+
+typedef struct {
+    uint8_t mac_addr[ESP_NOW_ETH_ALEN];
+    esp_now_send_status_t status;
+} slave_espnow_event_send_cb_t;
 
 typedef struct {
     uint8_t mac_addr[ESP_NOW_ETH_ALEN];
@@ -41,20 +63,10 @@ typedef struct {
     int data_len;
 } slave_espnow_event_recv_cb_t;
 
-typedef struct {
-    uint8_t mac_addr[ESP_NOW_ETH_ALEN];
-    esp_now_send_status_t status;
-} slave_espnow_event_send_cb_t;
-
 typedef union {
     slave_espnow_event_send_cb_t send_cb;
     slave_espnow_event_recv_cb_t recv_cb;
 } slave_espnow_event_info_t;
-
-typedef enum {
-    SLAVE_ESPNOW_SEND_CB,
-    SLAVE_ESPNOW_RECV_CB,
-} slave_espnow_event_id_t;
 
 /* When ESPNOW sending or receiving callback function is called, post event to ESPNOW task. */
 typedef struct {
@@ -75,9 +87,9 @@ typedef struct {
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } slave_espnow_send_param_t;
 
-esp_err_t add_peer(const uint8_t *peer_mac);
+void add_peer(const uint8_t *peer_mac);
 void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
-esp_err_t response_saved_mac_master(const uint8_t *dest_mac, const char *message);
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message);
 void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void slave_wifi_init(void);
 void slave_espnow_task(void *pvParameter);

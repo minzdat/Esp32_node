@@ -17,6 +17,8 @@
 #include "esp_mac.h"
 #include "esp_now.h"
 #include "esp_crc.h"
+#include "esp_timer.h"
+#include "driver/temperature_sensor.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -38,7 +40,6 @@
 #define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_BOTH
 #define MASTER_H2E_IDENTIFIER CONFIG_ESP_WIFI_PW_ID
 #endif
-
 #if CONFIG_ESP_WIFI_AUTH_OPEN
 #define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_OPEN
 #elif CONFIG_ESP_WIFI_AUTH_WEP
@@ -61,11 +62,15 @@
 #define RESPONSE_AGREE_CONNECT      "Master agree to connect"
 #define SLAVE_SAVED_MAC_MSG         "Slave saved MAC Master"
 #define CHECK_CONNECTION_MSG        "Master request to check connection"
+#define STILL_CONNECTED_MSG         "Slave still keeps the connection"
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_SLAVES              "waiting_slaves"
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
+#define TIMEOUT_RESPONSE_CONNECT    5000
+#define TIME_CHECK_CONNECT          10000
+#define NUMBER_RETRY                3
 #define ESPNOW_MAXDELAY             512
 #define ESPNOW_QUEUE_SIZE           6
 #define MAX_SLAVES                  3
@@ -76,7 +81,15 @@
 typedef struct {
     uint8_t peer_addr[ESP_NOW_ETH_ALEN];    // ESPNOW peer MAC address
     bool status;                            // Variable status has two statuses online: 1 and offline: 0
-    int send_errors;                        // value send error
+    int send_errors;                        // Value send error
+    TickType_t start_time;
+    TickType_t end_time;
+    int number_retry;
+    bool check_connect;
+    int check_connect_errors;
+    int count_send;
+    int count_receive;
+    int count_retry;
 } list_slaves_t;
 
 typedef enum {
@@ -126,14 +139,17 @@ void load_allowed_connect_slaves_from_nvs(list_slaves_t *allowed_connect_slaves)
 void erase_key_in_nvs(const char *key);
 void erase_all_in_nvs();
 
+// Function to wifi
+void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
+void master_wifi_init(void);
+
 // Function to master espnow
 void add_to_waiting_connect_slaves(const uint8_t *mac_addr);
-esp_err_t response_agree_connect(const uint8_t *dest_mac, const char *message);
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message);
 void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
 void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void master_espnow_task(void *pvParameter);
-void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
-void master_wifi_init(void);
+void retry_connection_lost_task(void *pvParameter);
 esp_err_t master_espnow_init(void);
 void master_espnow_deinit(master_espnow_send_param_t *send_param);
 

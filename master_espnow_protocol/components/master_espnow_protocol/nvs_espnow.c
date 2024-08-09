@@ -3,19 +3,19 @@
 // Function to initialize allowed slaves with hard-coded values
 void test_get_allowed_connect_slaves_from_nvs(list_slaves_t *allowed_connect_slaves) {
     // Clear the array
-    memset(allowed_connect_slaves, 0, sizeof(allowed_connect_slaves));
+    memset(allowed_connect_slaves, 0, sizeof(list_slaves_t) * MAX_SLAVES);
     
     // MASTER hard-coded MAC addresses and statuses
     uint8_t mac1[ESP_NOW_ETH_ALEN] = {0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F};
-    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0xA4, 0xE0, 0x3A, 0xFF, 0x76, 0xC1};
-    uint8_t mac3[ESP_NOW_ETH_ALEN] = {0x48, 0x27, 0xe2, 0xc7, 0x21, 0x7c};
+    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0x34, 0x85, 0x18, 0x02, 0xea, 0x44};
+    uint8_t mac3[ESP_NOW_ETH_ALEN] = {0x34, 0x85, 0x18, 0x25, 0x2d, 0x94};
     
     // Add MAC addresses and statuses to the list
     memcpy(allowed_connect_slaves[0].peer_addr, mac1, ESP_NOW_ETH_ALEN);
     allowed_connect_slaves[0].status = true;   // Online
     
     memcpy(allowed_connect_slaves[1].peer_addr, mac2, ESP_NOW_ETH_ALEN);
-    allowed_connect_slaves[1].status = true;    // Online
+    allowed_connect_slaves[1].status = false;    // Offline
     
     memcpy(allowed_connect_slaves[2].peer_addr, mac3, ESP_NOW_ETH_ALEN);
     allowed_connect_slaves[2].status = false;    // Offline
@@ -74,7 +74,7 @@ void load_allowed_connect_slaves_from_nvs(list_slaves_t *allowed_connect_slaves)
     err = nvs_get_blob(my_handle, NVS_KEY_SLAVES, allowed_connect_slaves, &required_size);
     if (err == ESP_ERR_NVS_NOT_FOUND) {
         ESP_LOGI(TAG, "No data found in NVS, initializing with empty values");
-        memset(allowed_connect_slaves, 0, sizeof(allowed_connect_slaves));
+        memset(allowed_connect_slaves, 0, sizeof(list_slaves_t) * MAX_SLAVES);
     } else if (err != ESP_OK) {
         ESP_LOGE(TAG, "Failed to read from NVS, error code: %s", esp_err_to_name(err));
     } else {

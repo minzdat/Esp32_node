@@ -1,0 +1,20 @@
+Timestamp,Data
+2024-08-09 13:31:31,[0;33mW (3715894) Espnow_master: Send to CHECK CONNECTION to MA[0;32mI (14619) Espnow_master: _________________________________[0m
+2024-08-09 13:31:31,[0;32mI (14619) Espnow_master: Receive broadcast ESPNOW data[0m
+2024-08-09 13:31:31,"[0;32mI (14619) Espnow_master: Received data from MAC: 34:85:18:02:ea:44, Data Length: 24, Data: Slave request connection[0m"
+2024-08-09 13:31:31,[0;33mW (14629) Espnow_master: ---------------------------------[0m
+2024-08-09 13:31:31,[0;33mW (14639) Espnow_master: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-09 13:31:31,"[0;32mI (14649) Espnow_master: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-09 13:31:31,[0;32mI (14689) Espnow_master: _________________________________[0m
+2024-08-09 13:31:31,[0;32mI (14689) Espnow_master: Receive unicast ESPNOW data[0m
+2024-08-09 13:31:31,[0;32mI (14689) Espnow_master: Updated MAC 34:85:18:02:ea:44 status to online[0m
+2024-08-09 13:31:33,[0;32mI (16889) Espnow_master: _________________________________[0m
+2024-08-09 13:31:33,[0;32mI (16889) Espnow_master: Receive broadcast ESPNOW data[0m
+2024-08-09 13:31:33,"[0;32mI (16889) Espnow_master: Received data from MAC: ec:da:3b:54:b5:9c, Data Length: 13, Data: CONNECT_TO_ME[0m"
+2024-08-09 13:31:33,[0;33mW (16899) Espnow_master: Add MAC ec:da:3b:54:b5:9c to WAITING CONNECT SLAVES LIST[0m
+2024-08-09 13:31:33,[0;32mI (16909) Espnow_master: MAC ec:da:3b:54:b5:9c is already in the waiting list[0m
+2024-08-09 13:31:34,[0;32mI (17899) Espnow_master: _________________________________[0m
+2024-08-09 13:31:34,[0;32mI (17899) Espnow_master: Receive broadcast ESPNOW data[0m
+2024-08-09 13:31:34,"[0;32mI (17899) Espnow_master: Received data from MAC: ec:da:3b:54:b5:9c, Data Length: 13, Data: CONNECT_TO_ME[0m"
+2024-08-09 13:31:34,[0;33mW (17909) Espnow_master: Add MAC ec:da:3b:54:b5:9c to WAITING CONNECT SLAVES LIST[0m
+2024-08-09 13:31:34,[0;32mI (17919) Espnow_master: MAC ec:da:3b:54:b5:9c is already in the waiting list[0m

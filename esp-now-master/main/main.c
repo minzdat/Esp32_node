@@ -16,6 +16,7 @@
 #include "esp_crc.h"
 #include "espnow_example.h"
 #include "esp_timer.h"
+#include "driver/temp_sensor.h" // Include the temperature sensor driver
 
 // Tag for logging
 static const char *TAG = "ESP-NOW MASTER";
@@ -232,6 +233,32 @@ static void example_espnow_task(void *pvParameter)
     }
 }
 
+// Initialize the temperature sensor
+static void init_temp_sensor()
+{
+    temp_sensor_config_t temp_sensor = TSENS_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(temp_sensor_set_config(temp_sensor));
+    ESP_ERROR_CHECK(temp_sensor_start());
+}
+
+// Function to read temperature sensor value
+static float read_temp_sensor()
+{
+    float tsens_out;
+    ESP_ERROR_CHECK(temp_sensor_read_celsius(&tsens_out));
+    return tsens_out;
+}
+
+// Task to log temperature values
+static void log_temp_task(void *pvParameter)
+{
+    while (1) {
+        float temperature = read_temp_sensor();
+        ESP_LOGE(TAG, "Temperature: %.2f C", temperature);
+        vTaskDelay(1000 / portTICK_PERIOD_MS); // 1 second delay
+    }
+}
+
 static esp_err_t example_espnow_init(void)
 {
     example_espnow_send_param_t *send_param;
@@ -302,6 +329,8 @@ static esp_err_t example_espnow_init(void)
     // Create a task to send data to all peers
     xTaskCreate(example_espnow_task, "example_espnow_task", 4096, NULL, 4, NULL);
 
+    xTaskCreate(log_temp_task, "log_temp_task", 2048, NULL, 4, NULL);
+
     return ESP_OK;
 }
 
@@ -342,6 +371,7 @@ void app_main(void)
     ESP_ERROR_CHECK( ret );
 
     example_wifi_init();
+    init_temp_sensor(); // Initialize the temperature sensor
 
     set_wifi_max_tx_power();
 

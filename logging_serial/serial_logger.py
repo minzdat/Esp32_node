@@ -3,12 +3,12 @@ import csv
 import time
 
 # Cấu hình cổng COM
-COM_PORT = 'COM8'  # Thay đổi theo cổng COM của bạn
+COM_PORT = 'COM18'  # Thay đổi theo cổng COM của bạn
 BAUD_RATE = 115200  # Tốc độ baud rate, thay đổi nếu cần
 TIMEOUT = 1  # Thời gian chờ
 
 # Đường dẫn file CSV
-CSV_FILE = 'data_log_udp.csv'
+CSV_FILE = 'data_log_espnow_many_slaves.csv'
 
 def main():
     # Mở cổng COM
