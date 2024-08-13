@@ -58,11 +58,11 @@
 #define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WAPI_PSK
 #endif
 
-#define TAG                         "Espnow_master"
-#define RESPONSE_AGREE_CONNECT      "Master agree to connect"
-#define SLAVE_SAVED_MAC_MSG         "Slave saved MAC Master"
-#define CHECK_CONNECTION_MSG        "Master request to check connection"
-#define STILL_CONNECTED_MSG         "Slave still keeps the connection"
+#define TAG                         "ESPNOW_MASTER"
+#define RESPONSE_AGREE_CONNECT      "master_AGREE_connect"
+#define SLAVE_SAVED_MAC_MSG         "slave_SAVED_mac"
+#define CHECK_CONNECTION_MSG        "master_CHECK_connect"
+#define STILL_CONNECTED_MSG         "slave_KEEP_connect"
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_SLAVES              "waiting_slaves"
 #define WIFI_CONNECTED_BIT          BIT0
@@ -75,6 +75,7 @@
 #define MAX_SLAVES                  3
 #define CURRENT_INDEX               0
 #define MAX_SEND_ERRORS             3
+#define MAX_DATA_LEN                250
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 
 typedef struct {
@@ -102,7 +103,7 @@ typedef struct {
 
 typedef struct {
     uint8_t mac_addr[ESP_NOW_ETH_ALEN];
-    uint8_t *data;
+    uint8_t data[MAX_DATA_LEN];
     int data_len;
 } master_espnow_event_recv_cb_t;
 
@@ -126,7 +127,7 @@ typedef struct {
     uint16_t count;                       //Total count of unicast ESPNOW data to be sent.
     uint16_t delay;                       //Delay between sending two ESPNOW data, unit: ms.
     int len;                              //Length of ESPNOW data to be sent, unit: byte.
-    uint8_t *buffer;                      //Buffer pointing to ESPNOW data.
+    uint8_t buffer[MAX_DATA_LEN];         //Buffer pointing to ESPNOW data.
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } master_espnow_send_param_t;
 

@@ -2,38 +2,48 @@
 
 static QueueHandle_t s_slave_espnow_queue;
 static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;
+static slave_espnow_send_param_t send_param;
 mac_master_t s_master_unicast_mac;
-slave_espnow_send_param_t *send_param; 
+
+// Hàm xóa peer của thiết bị khác
+void erase_peer(const uint8_t *peer_mac) 
+{
+    if (esp_now_is_peer_exist(peer_mac)) 
+    {
+        esp_err_t del_err = esp_now_del_peer(peer_mac);
+        if (del_err != ESP_OK) 
+        {
+            ESP_LOGE(TAG, "Failed to delete peer " MACSTR ": %s",
+                     MAC2STR(peer_mac), esp_err_to_name(del_err));
+        } 
+        else 
+        {
+            ESP_LOGI(TAG, "Deleted peer " MACSTR,
+                     MAC2STR(peer_mac));
+        }
+    }
+}
 
 void add_peer(const uint8_t *peer_mac, bool encrypt) 
-{
-    esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
-    if (peer == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc peer information fail");
-        vSemaphoreDelete(s_slave_espnow_queue);
-        esp_now_deinit();
-        return;
-    }
+{   
+    esp_now_peer_info_t peer; 
 
-    memset(peer, 0, sizeof(esp_now_peer_info_t));
-    peer->channel = CONFIG_ESPNOW_CHANNEL;
-    peer->ifidx = ESPNOW_WIFI_IF;
-    peer->encrypt = encrypt;
-    memcpy(peer->lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
-    memcpy(peer->peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
+    memset(&peer, 0, sizeof(esp_now_peer_info_t));
+    peer.channel = CONFIG_ESPNOW_CHANNEL;
+    peer.ifidx = ESPNOW_WIFI_IF;
+    peer.encrypt = encrypt;
+    memcpy(peer.lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
+    memcpy(peer.peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
 
     if (!esp_now_is_peer_exist(peer_mac)) 
     {
-        ESP_ERROR_CHECK(esp_now_add_peer(peer));
+        ESP_ERROR_CHECK(esp_now_add_peer(&peer));
     } 
     else 
     {
         ESP_LOGI(TAG, "Peer already exists, modifying peer settings.");
-        ESP_ERROR_CHECK(esp_now_mod_peer(peer));
+        ESP_ERROR_CHECK(esp_now_mod_peer(&peer));
     }
-    free(peer); // Free the peer structure after use
-
 }
 
 /* Function to send a unicast response*/
@@ -41,39 +51,28 @@ esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, b
 {
     add_peer(dest_mac, encrypt);
 
-    slave_espnow_send_param_t *send_param_agree = malloc(sizeof(slave_espnow_send_param_t));
-    if (send_param_agree == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc send parameter fail");
-        vSemaphoreDelete(s_slave_espnow_queue);
-        esp_now_deinit();
-        return ESP_FAIL;
-    }
-    memset(send_param_agree, 0, sizeof(slave_espnow_send_param_t));
+    slave_espnow_send_param_t send_param_agree;
+    memset(&send_param_agree, 0, sizeof(slave_espnow_send_param_t));
 
-    send_param_agree->len = strlen(message);
-    send_param_agree->buffer = malloc(send_param_agree->len);
-    if (send_param_agree->buffer == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc send buffer fail");
-        free(send_param_agree);
+    send_param_agree.len = strlen(message);
+    
+    if (send_param_agree.len > sizeof(send_param_agree.buffer)) {
+        ESP_LOGE(TAG, "Message too long to fit in the buffer");
         vSemaphoreDelete(s_slave_espnow_queue);
         esp_now_deinit();
         return ESP_FAIL;
     }
-    memcpy(send_param_agree->dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
-    memcpy(send_param_agree->buffer, message, send_param_agree->len);
+
+    memcpy(send_param_agree.dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
+    memcpy(send_param_agree.buffer, message, send_param_agree.len);
 
     // Send the unicast response
-    if (esp_now_send(send_param_agree->dest_mac, send_param_agree->buffer, send_param_agree->len) != ESP_OK) 
+    if (esp_now_send(send_param_agree.dest_mac, send_param_agree.buffer, send_param_agree.len) != ESP_OK) 
     {
         ESP_LOGE(TAG, "Send error");
-        slave_espnow_deinit(send_param_agree);
+        slave_espnow_deinit(&send_param_agree);
         vTaskDelete(NULL);
     }
-
-    free(send_param_agree->buffer);
-    free(send_param_agree);
 
     return ESP_OK;
 }
@@ -114,14 +113,16 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
 
     evt.id = SLAVE_ESPNOW_RECV_CB;
     memcpy(recv_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
-    recv_cb->data = malloc(len);
-    if (recv_cb->data == NULL) 
+
+    if (len > MAX_DATA_LEN)
     {
-        ESP_LOGE(TAG, "Malloc receive data fail");
+        ESP_LOGE(TAG, "Received data length exceeds the maximum allowed");
         return;
     }
-    memcpy(recv_cb->data, data, len);
+
     recv_cb->data_len = len;
+    memcpy(recv_cb->data, data, recv_cb->data_len);
+
     // if (xQueueSend(s_slave_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
     //     ESP_LOGW(TAG, "Send receive queue fail");
     //     free(recv_cb->data);
@@ -156,9 +157,19 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 // Check if the received data is CHECK_CONNECTION_MSG
                 if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && memcmp(recv_cb->data, CHECK_CONNECTION_MSG, recv_cb->data_len) == 0) 
                 {
+                    float temperature = read_internal_temperature_sensor();
+
+                    char response_message[250];
+                    int message_len = snprintf(response_message, sizeof(response_message), "%s: %.2f C", STILL_CONNECTED_MSG, temperature);
+
+                    if (message_len >= sizeof(response_message)) {
+                        ESP_LOGE(TAG, "Response message is too long");
+                        return;
+                    }
+
                     s_master_unicast_mac.start_time = esp_timer_get_time();;
-                    ESP_LOGW(TAG, "Response to MAC " MACSTR " CHECK CONNECT", MAC2STR(s_master_unicast_mac.peer_addr));
-                    response_specified_mac(s_master_unicast_mac.peer_addr, STILL_CONNECTED_MSG, true);
+                    ESP_LOGW(TAG, "Response to MAC " MACSTR " CHECK CONNECT with temperature %.2f C", MAC2STR(s_master_unicast_mac.peer_addr), temperature);
+                    response_specified_mac(s_master_unicast_mac.peer_addr, response_message, true);
                 }
                 break;
         }
@@ -170,14 +181,16 @@ void slave_espnow_task(void *pvParameter)
     slave_espnow_send_param_t *send_param = (slave_espnow_send_param_t *)pvParameter;
     
     send_param->len = strlen(REQUEST_CONNECTION_MSG);
-    send_param->buffer = malloc(send_param->len);
-    if (send_param->buffer == NULL) 
+
+    if (send_param->len > MAX_DATA_LEN) 
     {
-        ESP_LOGE(TAG, "Malloc send buffer fail");
+        ESP_LOGE(TAG, "Message length exceeds buffer size");
         free(send_param);
         vSemaphoreDelete(s_slave_espnow_queue);
         esp_now_deinit();
+        return;
     }
+
     memcpy(send_param->dest_mac, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN);
     memcpy(send_param->buffer, REQUEST_CONNECTION_MSG, send_param->len);
 
@@ -186,6 +199,9 @@ void slave_espnow_task(void *pvParameter)
         switch (s_master_unicast_mac.connected) 
         {
             case false:
+
+                erase_peer(s_master_unicast_mac.peer_addr);  
+
                 /* Start sending broadcast ESPNOW data. */
                 ESP_LOGW(TAG, "---------------------------------");
                 ESP_LOGW(TAG, "Start sending broadcast data");
@@ -239,15 +255,7 @@ esp_err_t slave_espnow_init(void)
     add_peer(s_slave_broadcast_mac, false);
 
     /* Initialize sending parameters. */
-    send_param = malloc(sizeof(slave_espnow_send_param_t));
-    if (send_param == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc send parameter fail");
-        vSemaphoreDelete(s_slave_espnow_queue);
-        esp_now_deinit();
-        return ESP_FAIL;
-    }
-    memset(send_param, 0, sizeof(slave_espnow_send_param_t));
+    memset(&send_param, 0, sizeof(slave_espnow_send_param_t));
 
     return ESP_OK;
 }
@@ -273,7 +281,9 @@ void slave_espnow_protocol()
 
     slave_wifi_init();
 
+    init_temperature_sensor();
+
     slave_espnow_init();
 
-    xTaskCreate(slave_espnow_task, "slave_espnow_task", 4096, send_param, 4, NULL);
+    xTaskCreate(slave_espnow_task, "slave_espnow_task", 4096, &send_param, 4, NULL);
 }

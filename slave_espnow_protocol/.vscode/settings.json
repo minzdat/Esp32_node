@@ -19,6 +19,7 @@
         "freertos.h": "c",
         "esp_mac.h": "c",
         "nvs_flash.h": "c",
-        "slave_espnow_protocol.h": "c"
+        "slave_espnow_protocol.h": "c",
+        "temperature_sensor.h": "c"
     }
 }

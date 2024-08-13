@@ -3,40 +3,33 @@
 static int current_index = CURRENT_INDEX;
 static const uint8_t s_master_broadcast_mac[ESP_NOW_ETH_ALEN] = MASTER_BROADCAST_MAC;
 static QueueHandle_t s_master_espnow_queue;
+static master_espnow_send_param_t send_param;
 list_slaves_t test_allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t waiting_connect_slaves[MAX_SLAVES];
-master_espnow_send_param_t *send_param;
 
 void add_peer(const uint8_t *peer_mac, bool encrypt) 
 {   
-    esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
-    if (peer == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc peer information fail");
-        vSemaphoreDelete(s_master_espnow_queue);
-        esp_now_deinit();
-        return;
-    }
+    esp_now_peer_info_t peer; 
 
-    memset(peer, 0, sizeof(esp_now_peer_info_t));
-    peer->channel = CONFIG_ESPNOW_CHANNEL;
-    peer->ifidx = ESPNOW_WIFI_IF;
-    peer->encrypt = encrypt;
-    memcpy(peer->lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
-    memcpy(peer->peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
+    memset(&peer, 0, sizeof(esp_now_peer_info_t));
+    peer.channel = CONFIG_ESPNOW_CHANNEL;
+    peer.ifidx = ESPNOW_WIFI_IF;
+    peer.encrypt = encrypt;
+    memcpy(peer.lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
+    memcpy(peer.peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
 
     if (!esp_now_is_peer_exist(peer_mac)) 
     {
-        ESP_ERROR_CHECK(esp_now_add_peer(peer));
+        ESP_ERROR_CHECK(esp_now_add_peer(&peer));
     } 
     else 
     {
         ESP_LOGI(TAG, "Peer already exists, modifying peer settings.");
-        ESP_ERROR_CHECK(esp_now_mod_peer(peer));
+        ESP_ERROR_CHECK(esp_now_mod_peer(&peer));
     }
-    free(peer); // Free the peer structure after use
 }
+
 
 // Function to save IP MAC Slave waiting to allow
 void add_waiting_connect_slaves(const uint8_t *mac_addr) 
@@ -82,39 +75,28 @@ esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, b
 {
     add_peer(dest_mac, encrypt);
   
-    master_espnow_send_param_t *send_param_agree = malloc(sizeof(master_espnow_send_param_t));
-    if (send_param_agree == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc send parameter fail");
-        vSemaphoreDelete(s_master_espnow_queue);
-        esp_now_deinit();
-        return ESP_FAIL;
-    }
-    memset(send_param_agree, 0, sizeof(master_espnow_send_param_t));
+    master_espnow_send_param_t send_param_agree;
+    memset(&send_param_agree, 0, sizeof(master_espnow_send_param_t));
 
-    send_param_agree->len = strlen(message);
-    send_param_agree->buffer = malloc(send_param_agree->len);
-    if (send_param_agree->buffer == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc send buffer fail");
-        free(send_param_agree);
+    send_param_agree.len = strlen(message);
+    
+    if (send_param_agree.len > sizeof(send_param_agree.buffer)) {
+        ESP_LOGE(TAG, "Message too long to fit in the buffer");
         vSemaphoreDelete(s_master_espnow_queue);
         esp_now_deinit();
         return ESP_FAIL;
     }
-    memcpy(send_param_agree->dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
-    memcpy(send_param_agree->buffer, message, send_param_agree->len);
+
+    memcpy(send_param_agree.dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
+    memcpy(send_param_agree.buffer, message, send_param_agree.len);
 
     // Send the unicast response
-    if (esp_now_send(send_param_agree->dest_mac, send_param_agree->buffer, send_param_agree->len) != ESP_OK) 
+    if (esp_now_send(send_param_agree.dest_mac, send_param_agree.buffer, send_param_agree.len) != ESP_OK) 
     {
         ESP_LOGE(TAG, "Send error");
-        master_espnow_deinit(send_param_agree);
+        master_espnow_deinit(&send_param_agree);
         vTaskDelete(NULL);
     }
-
-    free(send_param_agree->buffer);
-    free(send_param_agree);
 
     return ESP_OK;
 }
@@ -155,14 +137,16 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
 
     evt.id = MASTER_ESPNOW_RECV_CB;
     memcpy(recv_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
-    recv_cb->data = malloc(len);
-    if (recv_cb->data == NULL) 
+
+    if (len > MAX_DATA_LEN)
     {
-        ESP_LOGE(TAG, "Malloc receive data fail");
+        ESP_LOGE(TAG, "Received data length exceeds the maximum allowed");
         return;
     }
-    memcpy(recv_cb->data, data, len);
+
     recv_cb->data_len = len;
+    memcpy(recv_cb->data, data, recv_cb->data_len);
+
     // if (xQueueSend(s_master_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
     //     ESP_LOGW(TAG, "Send receive queue fail");
     //     free(recv_cb->data);
@@ -219,12 +203,13 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                     allowed_connect_slaves[i].number_retry = 0;
                     break;
                 }
-                else if (recv_cb->data_len >= strlen(STILL_CONNECTED_MSG) && memcmp(recv_cb->data, STILL_CONNECTED_MSG, recv_cb->data_len) == 0)
+                else if (recv_cb->data_len >= strlen(STILL_CONNECTED_MSG) && strstr((char *)recv_cb->data, STILL_CONNECTED_MSG) != NULL)
                 {
                     allowed_connect_slaves[i].start_time = 0;
                     allowed_connect_slaves[i].check_connect_errors = 0;
                     allowed_connect_slaves[i].count_receive++;
-                    ESP_LOGI(TAG, "MAC " MACSTR " STILL keeps CONNECTION", MAC2STR(recv_cb->mac_addr));
+
+                    ESP_LOGI(TAG, "MAC " MACSTR " (length: %d): %.*s",MAC2STR(recv_cb->mac_addr), recv_cb->data_len, recv_cb->data_len, (char *)recv_cb->data);
                     ESP_LOGW(TAG, "Receive from " MACSTR " - Counting: %d", MAC2STR(allowed_connect_slaves[i].peer_addr), allowed_connect_slaves[i].count_receive);
                     break;
                 }
@@ -238,15 +223,16 @@ void master_espnow_task(void *pvParameter)
     master_espnow_send_param_t *send_param = (master_espnow_send_param_t *)pvParameter;
 
     send_param->len = strlen(CHECK_CONNECTION_MSG);
-    send_param->buffer = malloc(send_param->len);
-    if (send_param->buffer == NULL) 
+
+    if (send_param->len > MAX_DATA_LEN) 
     {
-        ESP_LOGE(TAG, "Malloc send buffer fail");
+        ESP_LOGE(TAG, "Message length exceeds buffer size");
         free(send_param);
         vSemaphoreDelete(s_master_espnow_queue);
         esp_now_deinit();
         return;
     }
+
     memcpy(send_param->buffer, CHECK_CONNECTION_MSG, send_param->len);
 
     while (true) 
@@ -381,15 +367,7 @@ esp_err_t master_espnow_init(void)
     ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) ); 
     
     /* Initialize sending parameters. */
-    send_param = malloc(sizeof(master_espnow_send_param_t));
-    if (send_param == NULL) 
-    {
-        ESP_LOGE(TAG, "Malloc send parameter fail");
-        vSemaphoreDelete(s_master_espnow_queue);
-        esp_now_deinit();
-        return ESP_FAIL;
-    }
-    memset(send_param, 0, sizeof(master_espnow_send_param_t));
+    memset(&send_param, 0, sizeof(master_espnow_send_param_t));
 
     return ESP_OK;
 }
@@ -429,7 +407,7 @@ void master_espnow_protocol()
 
     master_espnow_init();
 
-    xTaskCreate(master_espnow_task, "master_espnow_task", 4096, send_param, 4, NULL);
+    xTaskCreate(master_espnow_task, "master_espnow_task", 4096, &send_param, 4, NULL);
 
     xTaskCreate(retry_connect_lost_task, "retry_connect_lost_task", 4096, NULL, 5, NULL);
 }
