@@ -11,12 +11,14 @@
     "idf.openOcdConfigs": [
         "board/esp32c3-builtin.cfg"
     ],
-    "idf.portWin": "COM24",
+    "idf.portWin": "COM18",
     "idf.pythonBinPathWin": "C:\\Users\\tminh\\.espressif\\python_env\\idf5.2_py3.11_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "C:\\Users\\tminh\\.espressif",
     "idf.flashType": "UART",
     "files.associations": {
         "freertos.h": "c",
-        "esp_mac.h": "c"
+        "esp_mac.h": "c",
+        "nvs_flash.h": "c",
+        "slave_espnow_protocol.h": "c"
     }
 }

@@ -28,16 +28,46 @@
 #define ESPNOW_WIFI_IF   ESP_IF_WIFI_AP
 #endif
 
+/* WiFi configuration that you can set via the project configuration menu */
+#if CONFIG_ESP_WPA3_SAE_PWE_HUNT_AND_PECK
+#define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_HUNT_AND_PECK
+#define MASTER_H2E_IDENTIFIER ""
+#elif CONFIG_ESP_WPA3_SAE_PWE_HASH_TO_ELEMENT
+#define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_HASH_TO_ELEMENT
+#define MASTER_H2E_IDENTIFIER CONFIG_ESP_WIFI_PW_ID
+#elif CONFIG_ESP_WPA3_SAE_PWE_BOTH
+#define ESP_WIFI_SAE_MODE WPA3_SAE_PWE_BOTH
+#define MASTER_H2E_IDENTIFIER CONFIG_ESP_WIFI_PW_ID
+#endif
+#if CONFIG_ESP_WIFI_AUTH_OPEN
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_OPEN
+#elif CONFIG_ESP_WIFI_AUTH_WEP
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WEP
+#elif CONFIG_ESP_WIFI_AUTH_WPA_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA2_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA2_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA_WPA2_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA_WPA2_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA3_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA3_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WPA2_WPA3_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA2_WPA3_PSK
+#elif CONFIG_ESP_WIFI_AUTH_WAPI_PSK
+#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WAPI_PSK
+#endif
+
 #define TAG                         "Espnow_slave"
 #define REQUEST_CONNECTION_MSG      "Slave request connection"
 #define MASTER_AGREE_CONNECT_MSG    "Master agree to connect"
 #define SLAVE_SAVED_MAC_MSG         "Slave saved MAC Master"
 #define CHECK_CONNECTION_MSG        "Master request to check connection"
 #define STILL_CONNECTED_MSG         "Slave still keeps the connection"
+#define WIFI_CONNECTED_BIT          BIT0
+#define WIFI_FAIL_BIT               BIT1
 #define SLAVE_BROADCAST_MAC         { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
-#define EMPTY_MAC_ADDR              { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
 #define ESPNOW_QUEUE_SIZE           6
-#define TIMEOUT_CHECK_CONNECT       150000
+#define CURRENT_INDEX               0
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 
 typedef struct {
@@ -87,13 +117,16 @@ typedef struct {
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } slave_espnow_send_param_t;
 
-void add_peer(const uint8_t *peer_mac);
-void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
-esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message);
-void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
+void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 void slave_wifi_init(void);
+
+void add_peer(const uint8_t *peer_mac, bool encrypt); 
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt);
+void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
+void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void slave_espnow_task(void *pvParameter);
 esp_err_t slave_espnow_init(void);
 void slave_espnow_deinit(slave_espnow_send_param_t *send_param);
+void slave_espnow_protocol();
 
 #endif //SLAVE_ESPNOW_PROTOCOL_H

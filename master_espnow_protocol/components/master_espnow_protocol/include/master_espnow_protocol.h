@@ -68,10 +68,9 @@
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
-#define TIMEOUT_RESPONSE_CONNECT    5000
+#define ESPNOW_MAXDELAY             512
 #define TIME_CHECK_CONNECT          10000
 #define NUMBER_RETRY                3
-#define ESPNOW_MAXDELAY             512
 #define ESPNOW_QUEUE_SIZE           6
 #define MAX_SLAVES                  3
 #define CURRENT_INDEX               0
@@ -85,7 +84,6 @@ typedef struct {
     TickType_t start_time;
     TickType_t end_time;
     int number_retry;
-    bool check_connect;
     int check_connect_errors;
     int count_send;
     int count_receive;
@@ -132,10 +130,15 @@ typedef struct {
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } master_espnow_send_param_t;
 
+// Function to read temperature internal esp
+void init_temperature_sensor();
+void read_internal_temperature_sensor(void);
+
 // Function to NVS
-void test_get_allowed_connect_slaves_from_nvs(list_slaves_t *allowed_connect_slaves);
-void save_waiting_connect_slaves_to_nvs(list_slaves_t *waiting_connect_slaves);
-void load_allowed_connect_slaves_from_nvs(list_slaves_t *allowed_connect_slaves);
+void test_allowed_connect_slaves_to_nvs(list_slaves_t *allowed_connect_slaves);
+void print_info_slaves(list_slaves_t *info_slaves);
+void save_info_slaves_to_nvs(const char *key, list_slaves_t *info_slaves);
+void load_info_slaves_from_nvs(const char *key, list_slaves_t *info_slaves);
 void erase_key_in_nvs(const char *key);
 void erase_all_in_nvs();
 
@@ -144,13 +147,15 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void);
 
 // Function to master espnow
-void add_to_waiting_connect_slaves(const uint8_t *mac_addr);
-esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message);
+void add_peer(const uint8_t *peer_mac, bool encrypt); 
+void add_waiting_connect_slaves(const uint8_t *mac_addr);
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt);
 void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
 void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void master_espnow_task(void *pvParameter);
-void retry_connection_lost_task(void *pvParameter);
+void retry_connect_lost_task(void *pvParameter);
 esp_err_t master_espnow_init(void);
 void master_espnow_deinit(master_espnow_send_param_t *send_param);
+void master_espnow_protocol();
 
 #endif //MASTER_ESPNOW_PROTOCOL_H
