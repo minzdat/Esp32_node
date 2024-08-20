@@ -106,6 +106,19 @@ typedef struct {
     slave_espnow_event_info_t info;
 } slave_espnow_event_t;
 
+enum {
+    ESPNOW_DATA_BROADCAST,
+    ESPNOW_DATA_UNICAST,
+    ESPNOW_DATA_MAX,
+};
+
+typedef struct {
+    uint8_t type;                         //[1 bytes] Broadcast or unicast ESPNOW data.
+    uint16_t seq_num;                     //[2 bytes] Sequence number of ESPNOW data.
+    uint16_t crc;                         //[2 bytes] CRC16 value of ESPNOW data.
+    uint8_t payload[0];                   //Real payload of ESPNOW data.
+} __attribute__((packed)) espnow_data_t;
+
 /* Parameters of sending ESPNOW data. */
 typedef struct {
     bool unicast;                         //Send unicast ESPNOW data.
@@ -115,7 +128,7 @@ typedef struct {
     uint16_t count;                       //Total count of unicast ESPNOW data to be sent.
     uint16_t delay;                       //Delay between sending two ESPNOW data, unit: ms.
     int len;                              //Length of ESPNOW data to be sent, unit: byte.
-    uint8_t buffer[MAX_DATA_LEN];                      //Buffer pointing to ESPNOW data.
+    uint8_t buffer[MAX_DATA_LEN];         //Buffer pointing to ESPNOW data.
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } slave_espnow_send_param_t;
 

@@ -1,0 +1,933 @@
+Timestamp,Data
+2024-08-16 13:45:34,[0;31mE (151394) ESPNOW_MASTER: Internal temperature value: 58.[0;33mW (246954) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:34,[0;33mW (246954) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 10[0m
+2024-08-16 13:45:34,"[0;32mI (246954) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:34,"[0;32mI (246974) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:45:35,[0;33mW (247964) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:35,[0;33mW (247964) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 11[0m
+2024-08-16 13:45:35,"[0;32mI (247964) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:35,"[0;32mI (247984) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:45:36,[0;33mW (248974) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:36,[0;33mW (248974) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 12[0m
+2024-08-16 13:45:36,"[0;32mI (248974) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:36,[0;33mW (248984) ESPNOW_MASTER: Change 34:85:18:02:ea:44 has been marked offline[0m
+2024-08-16 13:45:36,"[0;32mI (248994) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:45:39,[0;31mE (251954) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:45:39,"[0;32mI (251954) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:39,[0;33mW (251954) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:39,[0;33mW (251954) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:45:39,[0;33mW (251964) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 25[0m
+2024-08-16 13:45:39,"[0;32mI (251974) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:45:39,[0;32mI (252014) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:45:39,[0;32mI (252014) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:45:39,[0;32mI (252014) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:45:39,[0;33mW (252024) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 24[0m
+2024-08-16 13:45:49,[0;31mE (261974) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:45:49,"[0;32mI (261974) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:49,[0;33mW (261974) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:49,[0;33mW (261974) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:45:49,[0;33mW (261984) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 26[0m
+2024-08-16 13:45:49,"[0;32mI (261994) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:45:49,[0;32mI (262034) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:45:49,[0;32mI (262034) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:45:49,[0;32mI (262034) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:45:49,[0;33mW (262044) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 25[0m
+2024-08-16 13:45:51,[0;32mI (263804) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:45:51,[0;32mI (263804) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:45:51,"[0;32mI (263804) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:45:51,[0;33mW (263814) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:51,[0;33mW (263814) ESPNOW_MASTER: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-16 13:45:51,"[0;32mI (263824) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:51,"[0;32mI (263854) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:45:51,[0;32mI (263874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:45:51,[0;32mI (263874) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:45:51,[0;32mI (263874) ESPNOW_MASTER: Updated MAC 34:85:18:02:ea:44 status to online[0m
+2024-08-16 13:45:59,[0;31mE (271994) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:45:59,"[0;32mI (271994) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:59,[0;33mW (271994) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:59,[0;33mW (271994) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:45:59,[0;33mW (272004) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 20[0m
+2024-08-16 13:45:59,"[0;32mI (272014) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:45:59,[0;33mW (272024) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:45:59,[0;33mW (272024) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:45:59,"[0;32mI (272034) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:45:59,[0;33mW (272044) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 27[0m
+2024-08-16 13:45:59,"[0;32mI (272054) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:45:59,[0;32mI (272064) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:45:59,[0;32mI (272064) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:45:59,[0;32mI (272074) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:45:59,[0;33mW (272084) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 18[0m
+2024-08-16 13:45:59,[0;32mI (272084) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:45:59,[0;32mI (272094) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:45:59,[0;32mI (272094) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:45:59,[0;33mW (272104) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 26[0m
+2024-08-16 13:46:09,[0;31mE (282054) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:46:09,"[0;32mI (282054) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:09,[0;33mW (282054) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:09,[0;33mW (282054) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:46:09,[0;33mW (282064) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 21[0m
+2024-08-16 13:46:09,"[0;32mI (282074) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:09,[0;33mW (282084) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:09,[0;33mW (282084) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:46:09,"[0;32mI (282094) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:46:09,[0;33mW (282104) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 28[0m
+2024-08-16 13:46:09,"[0;32mI (282114) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:46:09,[0;32mI (282114) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:09,[0;32mI (282124) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:09,[0;32mI (282134) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:46:09,[0;33mW (282144) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 19[0m
+2024-08-16 13:46:09,[0;32mI (282154) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:09,[0;32mI (282154) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:09,[0;32mI (282154) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:46:09,[0;33mW (282164) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 27[0m
+2024-08-16 13:46:19,[0;31mE (292114) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:46:19,"[0;32mI (292114) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:19,[0;33mW (292114) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:19,[0;33mW (292114) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:46:19,[0;33mW (292124) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 22[0m
+2024-08-16 13:46:19,"[0;32mI (292134) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:19,[0;33mW (292144) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:19,[0;33mW (292144) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:46:19,[0;33mW (292154) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 29[0m
+2024-08-16 13:46:19,"[0;32mI (292154) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:46:19,"[0;32mI (292174) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:46:19,[0;32mI (292174) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:19,[0;32mI (292184) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:19,[0;32mI (292194) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:46:19,[0;33mW (292204) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 20[0m
+2024-08-16 13:46:19,[0;32mI (292204) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:19,[0;32mI (292214) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:19,[0;32mI (292214) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:46:19,[0;33mW (292224) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 28[0m
+2024-08-16 13:46:29,[0;31mE (302174) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:46:29,"[0;32mI (302174) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:29,[0;33mW (302174) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:29,[0;33mW (302174) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:46:29,[0;33mW (302184) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 23[0m
+2024-08-16 13:46:29,"[0;32mI (302194) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:29,[0;33mW (302204) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:29,[0;33mW (302204) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:46:29,"[0;32mI (302214) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:46:29,[0;33mW (302224) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 30[0m
+2024-08-16 13:46:29,"[0;32mI (302234) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:46:29,[0;32mI (302244) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:29,[0;32mI (302244) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:29,[0;32mI (302254) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:46:29,[0;33mW (302264) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 21[0m
+2024-08-16 13:46:29,[0;32mI (302264) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:29,[0;32mI (302274) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:29,[0;32mI (302274) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:46:29,[0;33mW (302284) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 29[0m
+2024-08-16 13:46:39,[0;31mE (312234) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:46:39,"[0;32mI (312234) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:39,[0;33mW (312234) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:39,[0;33mW (312234) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:46:39,[0;33mW (312244) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 24[0m
+2024-08-16 13:46:39,"[0;32mI (312254) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:39,[0;33mW (312264) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:39,[0;33mW (312264) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:46:39,"[0;32mI (312274) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:46:39,[0;33mW (312284) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 31[0m
+2024-08-16 13:46:39,"[0;32mI (312294) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:46:39,[0;32mI (312304) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:39,[0;32mI (312304) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:39,[0;32mI (312314) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:46:39,[0;33mW (312324) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 22[0m
+2024-08-16 13:46:39,[0;32mI (312324) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:39,[0;32mI (312334) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:39,[0;32mI (312334) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:46:39,[0;33mW (312344) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 30[0m
+2024-08-16 13:46:49,[0;31mE (322294) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:46:49,"[0;32mI (322294) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:49,[0;33mW (322294) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:49,[0;33mW (322294) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:46:49,[0;33mW (322304) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 25[0m
+2024-08-16 13:46:49,"[0;32mI (322314) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:49,[0;33mW (322324) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:49,[0;33mW (322324) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:46:49,"[0;32mI (322334) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:46:49,[0;33mW (322344) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 32[0m
+2024-08-16 13:46:49,"[0;32mI (322354) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:46:49,[0;32mI (322374) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:49,[0;32mI (322374) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:49,[0;32mI (322374) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:46:49,[0;33mW (322384) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 23[0m
+2024-08-16 13:46:49,[0;32mI (322394) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:49,[0;32mI (322404) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:49,[0;32mI (322404) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:46:49,[0;33mW (322414) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 31[0m
+2024-08-16 13:46:59,[0;31mE (332354) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:46:59,"[0;32mI (332354) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:59,[0;33mW (332354) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:59,[0;33mW (332354) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:46:59,[0;33mW (332364) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 26[0m
+2024-08-16 13:46:59,"[0;32mI (332374) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:46:59,[0;33mW (332384) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:46:59,[0;33mW (332384) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:46:59,"[0;32mI (332394) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:46:59,[0;33mW (332404) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 33[0m
+2024-08-16 13:46:59,"[0;32mI (332414) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:46:59,[0;32mI (332454) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:46:59,[0;32mI (332454) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:46:59,[0;32mI (332454) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:46:59,[0;33mW (332464) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 32[0m
+2024-08-16 13:47:05,[0;33mW (337984) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:05,[0;33mW (337984) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 13[0m
+2024-08-16 13:47:05,"[0;32mI (337984) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:05,"[0;32mI (338004) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:47:06,[0;33mW (338994) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:06,[0;33mW (338994) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 14[0m
+2024-08-16 13:47:06,"[0;32mI (338994) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:06,"[0;32mI (339004) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:47:06,[0;32mI (339044) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:06,[0;32mI (339044) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:06,[0;32mI (339044) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 74.40 C[0m
+2024-08-16 13:47:06,[0;33mW (339054) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 24[0m
+2024-08-16 13:47:09,[0;31mE (342414) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:47:09,"[0;32mI (342414) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:09,[0;33mW (342414) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:09,[0;33mW (342414) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:47:09,[0;33mW (342424) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 27[0m
+2024-08-16 13:47:09,"[0;32mI (342434) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:09,[0;33mW (342444) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:09,[0;33mW (342444) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:47:09,"[0;32mI (342454) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:47:09,[0;33mW (342464) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 34[0m
+2024-08-16 13:47:09,"[0;32mI (342474) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:47:09,[0;32mI (342474) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:09,[0;32mI (342484) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:09,[0;32mI (342494) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:47:09,[0;33mW (342504) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 25[0m
+2024-08-16 13:47:09,[0;32mI (342504) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:09,[0;32mI (342514) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:09,[0;32mI (342514) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:47:09,[0;33mW (342524) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 33[0m
+2024-08-16 13:47:19,[0;31mE (352474) ESPNOW_MASTER: Internal temperature value: 58.00 C[0m
+2024-08-16 13:47:19,"[0;32mI (352474) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:19,[0;33mW (352474) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:19,[0;33mW (352474) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:47:19,[0;33mW (352484) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 28[0m
+2024-08-16 13:47:19,"[0;32mI (352494) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:19,[0;33mW (352504) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:19,[0;33mW (352504) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:47:19,"[0;32mI (352514) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:47:19,[0;33mW (352524) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 35[0m
+2024-08-16 13:47:19,"[0;32mI (352534) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:47:19,[0;32mI (352544) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:19,[0;32mI (352544) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:19,[0;32mI (352554) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:47:19,[0;33mW (352564) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 26[0m
+2024-08-16 13:47:19,[0;32mI (352564) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:19,[0;32mI (352574) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:19,[0;32mI (352574) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 70.00 C[0m
+2024-08-16 13:47:19,[0;33mW (352584) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 34[0m
+2024-08-16 13:47:29,[0;31mE (362534) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:47:29,"[0;32mI (362534) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:29,[0;33mW (362534) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:29,[0;33mW (362534) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:47:29,[0;33mW (362544) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 29[0m
+2024-08-16 13:47:29,"[0;32mI (362554) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:29,[0;33mW (362564) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:29,[0;33mW (362564) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:47:29,"[0;32mI (362574) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:47:29,[0;33mW (362584) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 36[0m
+2024-08-16 13:47:29,"[0;32mI (362594) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:47:29,[0;32mI (362624) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:29,[0;32mI (362624) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:29,[0;32mI (362624) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:47:29,[0;33mW (362634) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 35[0m
+2024-08-16 13:47:35,[0;33mW (368004) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:35,[0;33mW (368004) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 15[0m
+2024-08-16 13:47:35,"[0;32mI (368004) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:35,"[0;32mI (368024) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:47:36,[0;33mW (369014) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:36,[0;33mW (369014) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 16[0m
+2024-08-16 13:47:36,"[0;32mI (369014) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:36,"[0;32mI (369034) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:47:37,[0;33mW (370024) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:37,[0;33mW (370024) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 17[0m
+2024-08-16 13:47:37,"[0;32mI (370024) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:37,[0;33mW (370034) ESPNOW_MASTER: Change 34:85:18:02:ea:44 has been marked offline[0m
+2024-08-16 13:47:37,"[0;32mI (370044) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:47:39,[0;31mE (372594) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:47:39,"[0;32mI (372594) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:39,[0;33mW (372594) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:39,[0;33mW (372594) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:47:39,[0;33mW (372604) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 37[0m
+2024-08-16 13:47:39,"[0;32mI (372614) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:47:39,[0;32mI (372654) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:39,[0;32mI (372654) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:39,[0;32mI (372654) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:47:39,[0;33mW (372664) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 36[0m
+2024-08-16 13:47:49,[0;31mE (382614) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:47:49,"[0;32mI (382614) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:49,[0;33mW (382614) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:49,[0;33mW (382614) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:47:49,[0;33mW (382624) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 38[0m
+2024-08-16 13:47:49,"[0;32mI (382634) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:47:49,[0;32mI (382674) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:47:49,[0;32mI (382674) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:47:49,[0;32mI (382674) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:47:49,[0;33mW (382684) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 37[0m
+2024-08-16 13:47:59,[0;31mE (392634) ESPNOW_MASTER: Internal temperature value: 55.00 C[0m
+2024-08-16 13:47:59,"[0;32mI (392634) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:47:59,[0;33mW (392634) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:47:59,[0;33mW (392634) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:47:59,[0;33mW (392644) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 39[0m
+2024-08-16 13:47:59,"[0;32mI (392654) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:48:00,[0;32mI (392694) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:00,[0;32mI (392694) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:00,[0;32mI (392694) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:48:00,[0;33mW (392704) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 38[0m
+2024-08-16 13:48:09,[0;31mE (402654) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:48:09,"[0;32mI (402654) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:09,[0;33mW (402654) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:09,[0;33mW (402654) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:48:09,[0;33mW (402664) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 40[0m
+2024-08-16 13:48:09,"[0;32mI (402674) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:48:10,[0;32mI (402714) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:10,[0;32mI (402714) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:10,[0;32mI (402714) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:48:10,[0;33mW (402724) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 39[0m
+2024-08-16 13:48:19,[0;31mE (412674) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:48:19,"[0;32mI (412674) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:19,[0;33mW (412674) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:19,[0;33mW (412674) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:48:20,[0;33mW (412684) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 41[0m
+2024-08-16 13:48:20,"[0;32mI (412694) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:48:20,[0;32mI (412734) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:20,[0;32mI (412734) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:20,[0;32mI (412734) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:48:20,[0;33mW (412744) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 40[0m
+2024-08-16 13:48:30,[0;31mE (422694) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:48:30,"[0;32mI (422694) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:30,[0;33mW (422694) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:30,[0;33mW (422694) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:48:30,[0;33mW (422704) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 42[0m
+2024-08-16 13:48:30,"[0;32mI (422714) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:48:30,[0;32mI (422754) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:30,[0;32mI (422754) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:30,[0;32mI (422754) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 70.00 C[0m
+2024-08-16 13:48:30,[0;33mW (422764) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 41[0m
+2024-08-16 13:48:36,[0;32mI (428794) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:36,[0;32mI (428794) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:48:36,"[0;32mI (428794) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:48:36,[0;33mW (428804) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:36,[0;33mW (428814) ESPNOW_MASTER: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-16 13:48:36,"[0;32mI (428824) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:36,"[0;32mI (428834) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:48:36,[0;32mI (428864) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:36,[0;32mI (428864) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:36,[0;32mI (428864) ESPNOW_MASTER: Updated MAC 34:85:18:02:ea:44 status to online[0m
+2024-08-16 13:48:40,[0;31mE (432714) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:48:40,"[0;32mI (432714) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:40,[0;33mW (432714) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:40,[0;33mW (432714) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:48:40,[0;33mW (432724) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 30[0m
+2024-08-16 13:48:40,"[0;32mI (432734) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:40,"[0;32mI (432734) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:48:40,[0;33mW (432754) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:40,[0;33mW (432754) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:48:40,[0;33mW (432764) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 43[0m
+2024-08-16 13:48:40,"[0;32mI (432774) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:48:40,[0;32mI (432784) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:40,[0;32mI (432784) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:40,[0;32mI (432794) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 73.40 C[0m
+2024-08-16 13:48:40,[0;33mW (432804) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 27[0m
+2024-08-16 13:48:40,[0;32mI (432804) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:40,[0;32mI (432814) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:40,[0;32mI (432814) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:48:40,[0;33mW (432824) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 42[0m
+2024-08-16 13:48:50,[0;31mE (442774) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:48:50,"[0;32mI (442774) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:50,[0;33mW (442774) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:50,[0;33mW (442774) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:48:50,[0;33mW (442784) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 31[0m
+2024-08-16 13:48:50,"[0;32mI (442794) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:50,[0;33mW (442804) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:50,[0;33mW (442804) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:48:50,"[0;32mI (442814) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:48:50,[0;33mW (442824) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 44[0m
+2024-08-16 13:48:50,"[0;32mI (442834) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:48:50,[0;32mI (442864) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:50,[0;32mI (442864) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:50,[0;32mI (442864) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:48:50,[0;33mW (442874) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 43[0m
+2024-08-16 13:48:55,[0;33mW (448034) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:48:55,[0;33mW (448034) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 18[0m
+2024-08-16 13:48:55,"[0;32mI (448034) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:48:55,"[0;32mI (448074) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:48:55,[0;32mI (448084) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:48:55,[0;32mI (448084) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:48:55,[0;32mI (448084) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 74.40 C[0m
+2024-08-16 13:48:55,[0;33mW (448094) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 28[0m
+2024-08-16 13:49:00,[0;31mE (452834) ESPNOW_MASTER: Internal temperature value: 55.00 C[0m
+2024-08-16 13:49:00,"[0;32mI (452834) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:00,[0;33mW (452834) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:00,[0;33mW (452834) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:49:00,[0;33mW (452844) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 32[0m
+2024-08-16 13:49:00,"[0;32mI (452854) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:00,[0;33mW (452864) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:00,[0;33mW (452864) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:49:00,"[0;32mI (452874) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:49:00,[0;33mW (452884) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 45[0m
+2024-08-16 13:49:00,"[0;32mI (452894) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:49:00,[0;32mI (452924) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:00,[0;32mI (452924) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:00,[0;32mI (452924) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:49:00,[0;33mW (452934) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 44[0m
+2024-08-16 13:49:05,[0;33mW (458044) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:05,[0;33mW (458044) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 19[0m
+2024-08-16 13:49:05,"[0;32mI (458044) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:05,"[0;32mI (458074) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:49:05,[0;32mI (458094) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:05,[0;32mI (458094) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:05,[0;32mI (458094) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 75.40 C[0m
+2024-08-16 13:49:05,[0;33mW (458104) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 29[0m
+2024-08-16 13:49:10,[0;31mE (462894) ESPNOW_MASTER: Internal temperature value: 55.00 C[0m
+2024-08-16 13:49:10,"[0;32mI (462894) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:10,[0;33mW (462894) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:10,[0;33mW (462894) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:49:10,[0;33mW (462904) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 33[0m
+2024-08-16 13:49:10,"[0;32mI (462914) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:10,[0;33mW (462924) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:10,[0;33mW (462924) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:49:10,"[0;32mI (462934) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:49:10,[0;33mW (462944) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 46[0m
+2024-08-16 13:49:10,"[0;32mI (462954) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:49:10,[0;32mI (462984) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:10,[0;32mI (462984) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:10,[0;32mI (462984) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:49:10,[0;33mW (462994) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 45[0m
+2024-08-16 13:49:15,[0;33mW (468054) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:15,[0;33mW (468054) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 20[0m
+2024-08-16 13:49:15,"[0;32mI (468054) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:15,"[0;32mI (468074) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:49:16,[0;33mW (469064) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:16,[0;33mW (469064) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 21[0m
+2024-08-16 13:49:16,"[0;32mI (469064) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:16,"[0;32mI (469084) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:49:17,[0;33mW (470074) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:17,[0;33mW (470074) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 22[0m
+2024-08-16 13:49:17,"[0;32mI (470074) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:17,[0;33mW (470084) ESPNOW_MASTER: Change 34:85:18:02:ea:44 has been marked offline[0m
+2024-08-16 13:49:17,"[0;32mI (470094) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:49:20,[0;31mE (472954) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:49:20,"[0;32mI (472954) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:20,[0;33mW (472954) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:20,[0;33mW (472954) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:49:20,[0;33mW (472964) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 47[0m
+2024-08-16 13:49:20,"[0;32mI (472974) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:49:25,[0;33mW (478084) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:25,[0;33mW (478084) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:03:95:08 Current count retry: 4[0m
+2024-08-16 13:49:25,"[0;32mI (478084) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:25,"[0;32mI (478094) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:49:25,[0;32mI (478134) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:25,[0;32mI (478134) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:25,[0;32mI (478134) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:49:25,[0;33mW (478144) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 46[0m
+2024-08-16 13:49:30,[0;31mE (482974) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:49:30,"[0;32mI (482974) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:30,[0;33mW (482974) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:30,[0;33mW (482974) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:49:30,[0;33mW (482984) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 48[0m
+2024-08-16 13:49:30,"[0;32mI (482994) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:49:30,[0;32mI (483034) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:30,[0;32mI (483034) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:30,[0;32mI (483034) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:49:30,[0;33mW (483044) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 47[0m
+2024-08-16 13:49:33,[0;32mI (485794) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:33,[0;32mI (485794) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:49:33,"[0;32mI (485794) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:49:33,[0;33mW (485804) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:33,[0;33mW (485814) ESPNOW_MASTER: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-16 13:49:33,"[0;32mI (485824) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:33,"[0;32mI (485834) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:49:33,[0;32mI (485874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:33,[0;32mI (485874) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:33,[0;32mI (485874) ESPNOW_MASTER: Updated MAC 34:85:18:02:ea:44 status to online[0m
+2024-08-16 13:49:40,[0;31mE (492994) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:49:40,"[0;32mI (492994) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:40,[0;33mW (492994) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:40,[0;33mW (492994) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:49:40,[0;33mW (493004) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 34[0m
+2024-08-16 13:49:40,"[0;32mI (493014) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:40,[0;33mW (493024) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:40,[0;33mW (493024) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:49:40,"[0;32mI (493034) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:49:40,[0;33mW (493044) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 49[0m
+2024-08-16 13:49:40,"[0;32mI (493054) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:49:40,[0;32mI (493064) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:40,[0;32mI (493064) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:40,[0;32mI (493074) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 74.40 C[0m
+2024-08-16 13:49:40,[0;33mW (493084) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 30[0m
+2024-08-16 13:49:40,[0;32mI (493084) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:40,[0;32mI (493094) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:40,[0;32mI (493094) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:49:40,[0;33mW (493104) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 48[0m
+2024-08-16 13:49:50,[0;31mE (503054) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:49:50,"[0;32mI (503054) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:50,[0;33mW (503054) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:50,[0;33mW (503054) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:49:50,[0;33mW (503064) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 35[0m
+2024-08-16 13:49:50,"[0;32mI (503074) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:49:50,"[0;32mI (503074) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:49:50,[0;33mW (503094) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:49:50,[0;33mW (503094) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:49:50,[0;33mW (503104) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 50[0m
+2024-08-16 13:49:50,"[0;32mI (503114) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:49:50,[0;32mI (503114) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:50,[0;32mI (503124) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:50,[0;32mI (503134) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 73.40 C[0m
+2024-08-16 13:49:50,[0;33mW (503144) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 31[0m
+2024-08-16 13:49:50,[0;32mI (503144) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:49:50,[0;32mI (503154) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:49:50,[0;32mI (503154) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 70.00 C[0m
+2024-08-16 13:49:50,[0;33mW (503164) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 49[0m
+2024-08-16 13:50:00,[0;31mE (513114) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:50:00,"[0;32mI (513114) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:00,[0;33mW (513114) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:00,[0;33mW (513114) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:50:00,[0;33mW (513124) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 36[0m
+2024-08-16 13:50:00,"[0;32mI (513134) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:00,[0;33mW (513144) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:00,[0;33mW (513144) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:50:00,"[0;32mI (513154) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:50:00,[0;33mW (513164) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 51[0m
+2024-08-16 13:50:00,"[0;32mI (513174) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:50:00,[0;32mI (513204) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:00,[0;32mI (513204) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:50:00,[0;32mI (513214) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:50:00,[0;33mW (513214) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 50[0m
+2024-08-16 13:50:04,[0;32mI (516874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:04,[0;32mI (516884) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:50:04,"[0;32mI (516884) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:50:05,[0;32mI (517874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:05,[0;32mI (517874) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:50:05,"[0;32mI (517874) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:50:06,[0;32mI (518874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:06,[0;32mI (518874) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:50:06,"[0;32mI (518874) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:50:06,[0;33mW (519114) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:06,[0;33mW (519114) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 23[0m
+2024-08-16 13:50:06,"[0;32mI (519114) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:06,"[0;32mI (519134) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:50:07,[0;32mI (519874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:07,[0;32mI (519874) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:50:07,"[0;32mI (519874) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:50:07,[0;33mW (520124) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:07,[0;33mW (520124) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 24[0m
+2024-08-16 13:50:07,"[0;32mI (520124) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:07,"[0;32mI (520134) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:50:08,[0;32mI (520874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:08,[0;32mI (520874) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:50:08,"[0;32mI (520874) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:50:08,[0;33mW (521134) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:08,[0;33mW (521134) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 25[0m
+2024-08-16 13:50:08,"[0;32mI (521134) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:08,[0;33mW (521144) ESPNOW_MASTER: Change 34:85:18:02:ea:44 has been marked offline[0m
+2024-08-16 13:50:08,"[0;32mI (521154) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:50:10,[0;31mE (523174) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:50:10,"[0;32mI (523174) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:10,[0;33mW (523174) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:10,[0;33mW (523174) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:50:10,[0;33mW (523184) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 52[0m
+2024-08-16 13:50:10,"[0;32mI (523194) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:50:10,[0;32mI (523234) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:10,[0;32mI (523234) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:50:10,[0;32mI (523234) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:50:10,[0;33mW (523244) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 51[0m
+2024-08-16 13:50:12,[0;32mI (524874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:12,[0;32mI (524874) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:50:12,"[0;32mI (524874) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:50:12,[0;33mW (524894) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:12,[0;33mW (524894) ESPNOW_MASTER: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-16 13:50:12,"[0;32mI (524904) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:12,"[0;32mI (524914) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:50:20,[0;31mE (533194) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:50:20,"[0;32mI (533194) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:20,[0;33mW (533194) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:20,[0;33mW (533194) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:50:20,[0;33mW (533204) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 53[0m
+2024-08-16 13:50:20,"[0;32mI (533214) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:50:20,[0;32mI (533254) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:20,[0;32mI (533254) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:50:20,[0;32mI (533254) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:50:20,[0;33mW (533264) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 52[0m
+2024-08-16 13:50:30,[0;31mE (543214) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:50:30,"[0;32mI (543214) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:30,[0;33mW (543214) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:30,[0;33mW (543214) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:50:30,[0;33mW (543224) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 54[0m
+2024-08-16 13:50:30,"[0;32mI (543234) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:50:30,[0;32mI (543274) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:30,[0;32mI (543274) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:50:30,[0;32mI (543274) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:50:30,[0;33mW (543284) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 53[0m
+2024-08-16 13:50:40,[0;31mE (553234) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:50:40,"[0;32mI (553234) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:40,[0;33mW (553234) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:40,[0;33mW (553234) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:50:40,[0;33mW (553244) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 55[0m
+2024-08-16 13:50:40,"[0;32mI (553254) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:50:40,[0;32mI (553294) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:40,[0;32mI (553294) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:50:40,[0;32mI (553294) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:50:40,[0;33mW (553304) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 54[0m
+2024-08-16 13:50:46,[0;32mI (558874) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:46,[0;32mI (558874) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:50:46,"[0;32mI (558874) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:50:46,[0;33mW (558894) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:46,[0;33mW (558894) ESPNOW_MASTER: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-16 13:50:46,"[0;32mI (558904) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:46,"[0;32mI (558914) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:50:46,[0;32mI (558954) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:46,[0;32mI (558954) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:50:46,[0;32mI (558954) ESPNOW_MASTER: Updated MAC 34:85:18:02:ea:44 status to online[0m
+2024-08-16 13:50:50,[0;31mE (563254) ESPNOW_MASTER: Internal temperature value: 58.00 C[0m
+2024-08-16 13:50:50,"[0;32mI (563254) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:50,[0;33mW (563254) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:50,[0;33mW (563254) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:50:50,[0;33mW (563264) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 37[0m
+2024-08-16 13:50:50,"[0;32mI (563274) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:50,[0;33mW (563284) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:50,[0;33mW (563284) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:50:50,"[0;32mI (563294) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:50:50,[0;33mW (563304) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 56[0m
+2024-08-16 13:50:50,"[0;32mI (563314) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:50:50,[0;32mI (563354) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:50:50,[0;32mI (563354) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:50:50,[0;32mI (563354) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:50:50,[0;33mW (563364) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 55[0m
+2024-08-16 13:50:56,[0;33mW (569144) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:56,[0;33mW (569144) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 26[0m
+2024-08-16 13:50:56,"[0;32mI (569144) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:56,"[0;32mI (569164) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:50:57,[0;33mW (570154) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:57,[0;33mW (570154) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 27[0m
+2024-08-16 13:50:57,"[0;32mI (570154) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:57,"[0;32mI (570174) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:50:58,[0;33mW (571164) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:50:58,[0;33mW (571164) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 28[0m
+2024-08-16 13:50:58,"[0;32mI (571164) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:50:58,[0;33mW (571174) ESPNOW_MASTER: Change 34:85:18:02:ea:44 has been marked offline[0m
+2024-08-16 13:50:58,"[0;32mI (571184) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Fail[0m"
+2024-08-16 13:51:00,[0;31mE (573314) ESPNOW_MASTER: Internal temperature value: 58.00 C[0m
+2024-08-16 13:51:00,"[0;32mI (573314) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:51:00,[0;33mW (573314) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:51:00,[0;33mW (573314) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:51:00,[0;33mW (573324) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 57[0m
+2024-08-16 13:51:00,"[0;32mI (573334) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:51:00,[0;32mI (573374) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:51:00,[0;32mI (573374) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:51:00,[0;32mI (573374) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:51:00,[0;33mW (573384) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 56[0m
+2024-08-16 13:51:10,[0;31mE (583334) ESPNOW_MASTER: Internal temperature value: 58.00 C[0m
+2024-08-16 13:51:10,"[0;32mI (583334) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:51:10,[0;33mW (583334) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:51:10,[0;33mW (583334) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:51:10,[0;33mW (583344) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 58[0m
+2024-08-16 13:51:10,"[0;32mI (583354) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:51:10,[0;32mI (583394) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:51:10,[0;32mI (583394) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:51:10,[0;32mI (583394) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:51:10,[0;33mW (583404) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 57[0m
+2024-08-16 13:51:20,[0;31mE (593354) ESPNOW_MASTER: Internal temperature value: 58.00 C[0m
+2024-08-16 13:51:20,"[0;32mI (593354) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:51:20,[0;33mW (593354) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:51:20,[0;33mW (593354) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:51:20,[0;33mW (593364) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 59[0m
+2024-08-16 13:51:20,"[0;32mI (593374) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:51:20,[0;32mI (593414) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:51:20,[0;32mI (593414) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:51:20,[0;32mI (593414) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:51:20,[0;33mW (593424) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 58[0m
+2024-08-16 13:51:30,[0;31mE (603374) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:51:30,"[0;32mI (603374) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:51:30,[0;33mW (603374) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:51:30,[0;33mW (603374) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:51:30,[0;33mW (603384) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 60[0m
+2024-08-16 13:51:30,"[0;32mI (603394) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:51:30,[0;32mI (603434) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:51:30,[0;32mI (603434) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:51:30,[0;32mI (603434) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:51:30,[0;33mW (603444) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 59[0m
+2024-08-16 13:51:40,[0;31mE (613394) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:51:40,"[0;32mI (613394) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:51:40,[0;33mW (613394) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:51:40,[0;33mW (613394) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:51:40,[0;33mW (613404) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 61[0m
+2024-08-16 13:51:40,"[0;32mI (613414) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:51:40,[0;32mI (613454) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:51:40,[0;32mI (613454) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:51:40,[0;32mI (613454) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:51:40,[0;33mW (613464) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 60[0m
+2024-08-16 13:51:50,[0;31mE (623414) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:51:50,"[0;32mI (623414) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:51:50,[0;33mW (623414) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:51:50,[0;33mW (623414) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:51:50,[0;33mW (623424) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 62[0m
+2024-08-16 13:51:50,"[0;32mI (623434) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:51:50,[0;32mI (623474) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:51:50,[0;32mI (623474) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:51:50,[0;32mI (623474) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:51:50,[0;33mW (623484) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 61[0m
+2024-08-16 13:52:00,[0;31mE (633434) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:52:00,"[0;32mI (633434) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:52:00,[0;33mW (633434) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:52:00,[0;33mW (633434) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:52:00,[0;33mW (633444) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 63[0m
+2024-08-16 13:52:00,"[0;32mI (633454) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:52:00,[0;32mI (633494) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:52:00,[0;32mI (633494) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:52:00,[0;32mI (633494) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:52:00,[0;33mW (633504) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 62[0m
+2024-08-16 13:52:10,[0;31mE (643454) ESPNOW_MASTER: Internal temperature value: 58.00 C[0m
+2024-08-16 13:52:10,"[0;32mI (643454) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:52:10,[0;33mW (643454) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:52:10,[0;33mW (643454) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:52:10,[0;33mW (643464) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 64[0m
+2024-08-16 13:52:10,"[0;32mI (643474) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:52:10,[0;32mI (643514) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:52:10,[0;32mI (643514) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:52:10,[0;32mI (643514) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:52:10,[0;33mW (643524) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 63[0m
+2024-08-16 13:52:20,[0;31mE (653474) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:52:20,"[0;32mI (653474) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:52:20,[0;33mW (653474) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:52:20,[0;33mW (653474) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:52:20,[0;33mW (653484) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 65[0m
+2024-08-16 13:52:20,"[0;32mI (653494) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:52:20,[0;32mI (653534) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:52:20,[0;32mI (653534) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:52:20,[0;32mI (653534) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:52:20,[0;33mW (653544) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 64[0m
+2024-08-16 13:52:30,[0;31mE (663494) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:52:30,"[0;32mI (663494) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:52:30,[0;33mW (663494) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:52:30,[0;33mW (663494) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:52:30,[0;33mW (663504) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 66[0m
+2024-08-16 13:52:30,"[0;32mI (663514) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:52:30,[0;32mI (663554) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:52:30,[0;32mI (663554) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:52:30,[0;32mI (663554) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:52:30,[0;33mW (663564) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 65[0m
+2024-08-16 13:52:40,[0;31mE (673514) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:52:40,"[0;32mI (673514) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:52:40,[0;33mW (673514) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:52:40,[0;33mW (673514) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:52:40,[0;33mW (673524) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 67[0m
+2024-08-16 13:52:40,"[0;32mI (673534) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:52:40,[0;32mI (673574) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:52:40,[0;32mI (673574) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:52:40,[0;32mI (673574) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:52:40,[0;33mW (673584) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 66[0m
+2024-08-16 13:52:50,[0;31mE (683534) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:52:50,"[0;32mI (683534) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:52:50,[0;33mW (683534) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:52:50,[0;33mW (683534) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:52:50,[0;33mW (683544) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 68[0m
+2024-08-16 13:52:50,"[0;32mI (683554) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:52:50,[0;32mI (683594) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:52:50,[0;32mI (683594) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:52:50,[0;32mI (683594) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:52:50,[0;33mW (683604) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 67[0m
+2024-08-16 13:53:00,[0;31mE (693554) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:53:00,"[0;32mI (693554) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:00,[0;33mW (693554) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:00,[0;33mW (693554) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:53:00,[0;33mW (693564) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 69[0m
+2024-08-16 13:53:00,"[0;32mI (693574) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:53:00,[0;32mI (693614) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:00,[0;32mI (693614) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:00,[0;32mI (693614) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:53:00,[0;33mW (693624) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 68[0m
+2024-08-16 13:53:10,[0;31mE (703574) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:53:10,"[0;32mI (703574) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:10,[0;33mW (703574) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:10,[0;33mW (703574) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:53:10,[0;33mW (703584) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 70[0m
+2024-08-16 13:53:10,"[0;32mI (703594) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:53:10,[0;32mI (703634) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:10,[0;32mI (703634) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:10,[0;32mI (703634) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:53:10,[0;33mW (703644) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 69[0m
+2024-08-16 13:53:17,[0;32mI (709884) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:17,[0;32mI (709884) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:17,"[0;32mI (709884) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:17,[0;33mW (709894) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:17,[0;33mW (709894) ESPNOW_MASTER: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-16 13:53:17,"[0;32mI (709904) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:17,"[0;32mI (709914) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:17,[0;32mI (709944) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:17,[0;32mI (709944) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:17,[0;32mI (709954) ESPNOW_MASTER: Updated MAC 34:85:18:02:ea:44 status to online[0m
+2024-08-16 13:53:20,[0;31mE (713594) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:53:20,"[0;32mI (713594) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:20,[0;33mW (713594) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:20,[0;33mW (713594) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:53:20,[0;33mW (713604) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 38[0m
+2024-08-16 13:53:20,"[0;32mI (713614) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:20,"[0;32mI (713614) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:20,[0;33mW (713634) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:20,[0;33mW (713634) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:53:20,[0;33mW (713644) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 71[0m
+2024-08-16 13:53:20,[0;32mI (713654) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:20,[0;32mI (713654) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:20,[0;32mI (713664) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 74.40 C[0m
+2024-08-16 13:53:20,[0;33mW (713674) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 32[0m
+2024-08-16 13:53:21,"[0;32mI (713674) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:53:21,[0;32mI (713694) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:21,[0;32mI (713694) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:21,[0;32mI (713694) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:53:21,[0;33mW (713704) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 70[0m
+2024-08-16 13:53:26,[0;32mI (719444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:26,[0;32mI (719444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:26,"[0;32mI (719444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:27,[0;32mI (720444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:27,[0;32mI (720444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:27,"[0;32mI (720444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:28,[0;32mI (721444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:28,[0;32mI (721444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:28,"[0;32mI (721444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:29,[0;32mI (722444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:29,[0;32mI (722444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:29,"[0;32mI (722444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:30,[0;32mI (723444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:30,[0;32mI (723444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:30,"[0;32mI (723444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:30,[0;31mE (723654) ESPNOW_MASTER: Internal temperature value: 58.00 C[0m
+2024-08-16 13:53:30,"[0;32mI (723654) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:30,[0;33mW (723654) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:30,[0;33mW (723654) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:53:30,[0;33mW (723664) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 39[0m
+2024-08-16 13:53:30,"[0;32mI (723674) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:31,"[0;32mI (723674) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:31,[0;33mW (723694) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:31,[0;33mW (723694) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:53:31,[0;33mW (723704) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 72[0m
+2024-08-16 13:53:31,"[0;32mI (723714) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:53:31,[0;32mI (723744) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:31,[0;32mI (723744) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:31,[0;32mI (723754) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:53:31,[0;33mW (723754) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 71[0m
+2024-08-16 13:53:31,[0;32mI (724444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:31,[0;32mI (724444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:31,"[0;32mI (724444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:32,[0;32mI (725444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:32,[0;32mI (725444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:32,"[0;32mI (725444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:33,[0;32mI (726444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:33,[0;32mI (726444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:33,"[0;32mI (726444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:34,[0;32mI (727444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:34,[0;32mI (727444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:34,"[0;32mI (727444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:35,[0;32mI (728444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:35,[0;32mI (728444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:35,"[0;32mI (728444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:36,[0;33mW (729174) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:36,[0;33mW (729174) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 29[0m
+2024-08-16 13:53:36,"[0;32mI (729174) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:36,"[0;32mI (729184) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:36,[0;32mI (729444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:36,[0;32mI (729444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:36,"[0;32mI (729444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:37,[0;33mW (730184) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:37,[0;33mW (730184) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 30[0m
+2024-08-16 13:53:37,"[0;32mI (730184) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:37,"[0;32mI (730194) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:37,[0;32mI (730444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:37,[0;32mI (730444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:37,"[0;32mI (730444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:38,[0;33mW (731194) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:38,[0;33mW (731194) ESPNOW_MASTER: Retry CHECK CONNECT with 34:85:18:02:ea:44 Current count retry: 31[0m
+2024-08-16 13:53:38,"[0;32mI (731194) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:38,[0;33mW (731204) ESPNOW_MASTER: Change 34:85:18:02:ea:44 has been marked offline[0m
+2024-08-16 13:53:38,"[0;32mI (731204) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:38,[0;32mI (731444) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:38,[0;32mI (731444) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-08-16 13:53:38,"[0;32mI (731444) ESPNOW_MASTER: Received data from MAC: 34:85:18:02:ea:44, Data Length: 21, Data: slave_REQUEST_connect[0m"
+2024-08-16 13:53:38,[0;33mW (731454) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:38,[0;33mW (731464) ESPNOW_MASTER: Response AGREE CONNECT to MAC 34:85:18:02:ea:44[0m
+2024-08-16 13:53:38,"[0;32mI (731464) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:38,"[0;32mI (731474) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:38,[0;32mI (731514) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:38,[0;32mI (731514) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:38,[0;32mI (731514) ESPNOW_MASTER: Updated MAC 34:85:18:02:ea:44 status to online[0m
+2024-08-16 13:53:41,[0;31mE (733714) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:53:41,"[0;32mI (733714) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:41,[0;33mW (733714) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:41,[0;33mW (733714) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:53:41,[0;33mW (733724) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 40[0m
+2024-08-16 13:53:41,"[0;32mI (733734) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:41,"[0;32mI (733734) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:41,[0;33mW (733754) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:41,[0;33mW (733754) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:53:41,[0;33mW (733764) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 73[0m
+2024-08-16 13:53:41,[0;32mI (733774) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:41,[0;32mI (733774) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:41,[0;32mI (733784) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 72.40 C[0m
+2024-08-16 13:53:41,[0;33mW (733794) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 33[0m
+2024-08-16 13:53:41,"[0;32mI (733794) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:53:41,[0;32mI (733804) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:41,[0;32mI (733814) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:41,[0;32mI (733814) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:53:41,[0;33mW (733824) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 72[0m
+2024-08-16 13:53:51,[0;31mE (743774) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:53:51,"[0;32mI (743774) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:51,[0;33mW (743774) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:51,[0;33mW (743774) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:53:51,[0;33mW (743784) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 41[0m
+2024-08-16 13:53:51,"[0;32mI (743794) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:53:51,"[0;32mI (743794) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:53:51,[0;33mW (743814) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:53:51,[0;33mW (743814) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:53:51,[0;33mW (743824) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 74[0m
+2024-08-16 13:53:51,[0;32mI (743834) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:51,[0;32mI (743834) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:51,[0;32mI (743844) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 73.40 C[0m
+2024-08-16 13:53:51,[0;33mW (743854) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 34[0m
+2024-08-16 13:53:51,"[0;32mI (743854) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:53:51,[0;32mI (743864) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:53:51,[0;32mI (743874) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:53:51,[0;32mI (743874) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:53:51,[0;33mW (743884) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 73[0m
+2024-08-16 13:54:01,[0;31mE (753834) ESPNOW_MASTER: Internal temperature value: 57.00 C[0m
+2024-08-16 13:54:01,"[0;32mI (753834) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:54:01,[0;33mW (753834) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:54:01,[0;33mW (753834) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:54:01,[0;33mW (753844) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 42[0m
+2024-08-16 13:54:01,"[0;32mI (753854) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:54:01,"[0;32mI (753854) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:54:01,[0;33mW (753874) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:54:01,[0;33mW (753874) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:54:01,[0;33mW (753884) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 75[0m
+2024-08-16 13:54:01,[0;32mI (753894) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:54:01,[0;32mI (753894) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:54:01,[0;32mI (753904) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 73.40 C[0m
+2024-08-16 13:54:01,[0;33mW (753914) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 35[0m
+2024-08-16 13:54:01,"[0;32mI (753914) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:54:01,[0;32mI (753934) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:54:01,[0;32mI (753934) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:54:01,[0;32mI (753934) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:54:01,[0;33mW (753944) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 74[0m
+2024-08-16 13:54:11,[0;31mE (763894) ESPNOW_MASTER: Internal temperature value: 56.00 C[0m
+2024-08-16 13:54:11,"[0;32mI (763894) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:54:11,[0;33mW (763894) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:54:11,[0;33mW (763894) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:02:ea:44[0m
+2024-08-16 13:54:11,[0;33mW (763904) ESPNOW_MASTER: Send to 34:85:18:02:ea:44 - Counting: 43[0m
+2024-08-16 13:54:11,"[0;32mI (763914) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-08-16 13:54:11,"[0;32mI (763914) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:02:ea:44, Status: Success[0m"
+2024-08-16 13:54:11,[0;33mW (763934) ESPNOW_MASTER: ---------------------------------[0m
+2024-08-16 13:54:11,[0;33mW (763934) ESPNOW_MASTER: Send to CHECK CONNECTION to MAC  34:85:18:03:95:08[0m
+2024-08-16 13:54:11,[0;33mW (763944) ESPNOW_MASTER: Send to 34:85:18:03:95:08 - Counting: 76[0m
+2024-08-16 13:54:11,[0;32mI (763954) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:54:11,[0;32mI (763954) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:54:11,[0;32mI (763964) ESPNOW_MASTER: MAC 34:85:18:02:ea:44 (length: 27): slave_KEEP_connect: 73.40 C[0m
+2024-08-16 13:54:11,[0;33mW (763974) ESPNOW_MASTER: Receive from 34:85:18:02:ea:44 - Counting: 36[0m
+2024-08-16 13:54:11,"[0;32mI (763974) ESPNOW_MASTER: Send callback: MAC Address 34:85:18:03:95:08, Status: Success[0m"
+2024-08-16 13:54:11,[0;32mI (763984) ESPNOW_MASTER: _________________________________[0m
+2024-08-16 13:54:11,[0;32mI (763994) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-08-16 13:54:11,[0;32mI (763994) ESPNOW_MASTER: MAC 34:85:18:03:95:08 (length: 27): slave_KEEP_connect: 69.00 C[0m
+2024-08-16 13:54:11,[0;33mW (764004) ESPNOW_MASTER: Receive from 34:85:18:03:95:08 - Counting: 75[0m

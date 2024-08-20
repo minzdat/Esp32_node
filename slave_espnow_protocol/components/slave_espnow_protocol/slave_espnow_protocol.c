@@ -3,7 +3,64 @@
 static QueueHandle_t s_slave_espnow_queue;
 static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;
 static slave_espnow_send_param_t send_param;
+static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
+char payload[MAX_DATA_LEN + 1]; 
 mac_master_t s_master_unicast_mac;
+
+/* Prepare ESPNOW data to be sent. */
+// void espnow_data_prepare(slave_espnow_send_param_t *send_param)
+// {
+//     espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
+
+//     assert(send_param->len >= sizeof(espnow_data_t));
+
+//     buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? ESPNOW_DATA_BROADCAST : ESPNOW_DATA_UNICAST;
+//     buf->seq_num = s_espnow_seq[buf->type]++;
+//     buf->crc = 0;
+//     /* Fill all remaining bytes after the data with random values */
+//     esp_fill_random(buf->payload, send_param->len - sizeof(espnow_data_t));
+//     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
+// }
+
+void espnow_data_parse(uint8_t *data, uint16_t data_len)
+{
+    espnow_data_t *buf = (espnow_data_t *)data;
+    uint16_t crc, crc_cal = 0;
+
+    if (data_len < sizeof(espnow_data_t)) {
+        ESP_LOGE(TAG, "Receive ESPNOW data too short, len:%d", data_len);
+        return;
+    }
+
+    // Log the data received
+    ESP_LOGI(TAG, "Received ESPNOW data:");
+    ESP_LOGI(TAG, "  type: %d", buf->type);
+    ESP_LOGI(TAG, "  seq_num: %d", buf->seq_num);
+    ESP_LOGI(TAG, "  crc: %d", buf->crc);
+
+    // Log the payload if present
+    if (data_len > sizeof(espnow_data_t)) {
+        // Ensure payload is null-terminated
+        memcpy(payload, buf->payload, data_len - sizeof(espnow_data_t));
+        payload[data_len - sizeof(espnow_data_t)] = '\0'; // Null-terminate the string
+
+        ESP_LOGI(TAG, "  payload: %s", payload);
+    } 
+    else {
+        ESP_LOGI(TAG, "  No payload data.");
+    }
+
+    crc = buf->crc;
+    buf->crc = 0;
+    crc_cal = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, data_len);
+
+    if (crc_cal == crc) {
+        ESP_LOGI(TAG, "CRC check passed.");
+    } else {
+        ESP_LOGE(TAG, "CRC check failed. Calculated CRC: %d, Received CRC: %d", crc_cal, crc);
+        return;
+    }
+}
 
 // Hàm xóa peer của thiết bị khác
 void erase_peer(const uint8_t *peer_mac) 
@@ -134,7 +191,7 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
         ESP_LOGI(TAG, "_________________________________");
         ESP_LOGI(TAG, "Receive unicast ESPNOW data");
         ESP_LOGI(TAG, "Received data from MAC: " MACSTR ", Data Length: %d, Data: %.*s",
-            MAC2STR(recv_cb->mac_addr), recv_cb->data_len, recv_cb->data_len, recv_cb->data);       
+            MAC2STR(recv_cb->mac_addr), recv_cb->data_len, recv_cb->data_len, recv_cb->data);
         
         switch (s_master_unicast_mac.connected) 
         {
@@ -154,8 +211,11 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 break;
 
             case true:
+
+                espnow_data_parse(recv_cb->data, recv_cb->data_len);
+
                 // Check if the received data is CHECK_CONNECTION_MSG
-                if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && memcmp(recv_cb->data, CHECK_CONNECTION_MSG, recv_cb->data_len) == 0) 
+                if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)payload, CHECK_CONNECTION_MSG) != NULL) 
                 {
                     float temperature = read_internal_temperature_sensor();
 

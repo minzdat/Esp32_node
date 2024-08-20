@@ -118,6 +118,19 @@ typedef struct {
     master_espnow_event_info_t info;
 } master_espnow_event_t;
 
+enum {
+    ESPNOW_DATA_BROADCAST,
+    ESPNOW_DATA_UNICAST,
+    ESPNOW_DATA_MAX,
+};
+
+typedef struct {
+    uint8_t type;                         //[1 bytes] Broadcast or unicast ESPNOW data.
+    uint16_t seq_num;                     //[2 bytes] Sequence number of ESPNOW data.
+    uint16_t crc;                         //[2 bytes] CRC16 value of ESPNOW data.
+    uint8_t payload[0];                   //Real payload of ESPNOW data.
+} __attribute__((packed)) espnow_data_t;
+
 /* Parameters of sending ESPNOW data. */
 typedef struct {
     bool unicast;                         //Send unicast ESPNOW data.
