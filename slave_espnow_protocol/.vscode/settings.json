@@ -1,0 +1,31 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.adapterTargetName": "esp32s3",
+  "idf.openOcdConfigs": [
+    "board/esp32s3-builtin.cfg"
+  ],
+  "idf.portWin": "COM17",
+  "idf.flashType": "UART",
+  "files.associations": {
+    "esp_timer.h": "c",
+    "esp_mac.h": "c",
+    "*.tcc": "c",
+    "charconv": "c",
+    "chrono": "c",
+    "optional": "c",
+    "format": "c",
+    "ratio": "c",
+    "system_error": "c",
+    "array": "c",
+    "functional": "c",
+    "regex": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "utility": "c",
+    "gpio.h": "c",
+    "random": "c",
+    "slave_espnow_protocol.h": "c",
+    "freertos.h": "c",
+    "cjson.h": "c"
+  }
+}
