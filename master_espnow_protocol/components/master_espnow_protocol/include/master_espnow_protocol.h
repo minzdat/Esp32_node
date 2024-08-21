@@ -19,6 +19,7 @@
 #include "esp_crc.h"
 #include "esp_timer.h"
 #include "driver/temperature_sensor.h"
+#include "esp_pm.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -77,6 +78,18 @@
 #define MAX_SEND_ERRORS             3
 #define MAX_DATA_LEN                250
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
+
+#define DEFAULT_BEACON_TIMEOUT  CONFIG_WIFI_BEACON_TIMEOUT
+
+#if CONFIG_POWER_SAVE_MIN_MODEM
+#define DEFAULT_PS_MODE WIFI_PS_MIN_MODEM
+#elif CONFIG_POWER_SAVE_MAX_MODEM
+#define DEFAULT_PS_MODE WIFI_PS_MAX_MODEM
+#elif CONFIG_POWER_SAVE_NONE
+#define DEFAULT_PS_MODE WIFI_PS_NONE
+#else
+#define DEFAULT_PS_MODE WIFI_PS_NONE
+#endif /*CONFIG_POWER_SAVE_MODEM*/
 
 typedef struct {
     uint8_t peer_addr[ESP_NOW_ETH_ALEN];    // ESPNOW peer MAC address

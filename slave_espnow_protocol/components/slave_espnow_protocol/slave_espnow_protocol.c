@@ -4,30 +4,34 @@ static QueueHandle_t s_slave_espnow_queue;
 static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;
 static slave_espnow_send_param_t send_param;
 static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
-char payload[MAX_DATA_LEN + 1]; 
 mac_master_t s_master_unicast_mac;
+char payload[MAX_DATA_LEN + 1]; 
 
 /* Prepare ESPNOW data to be sent. */
-// void espnow_data_prepare(slave_espnow_send_param_t *send_param)
-// {
-//     espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
+void espnow_data_prepare(slave_espnow_send_param_t *send_param, char *message)
+{
+    espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
 
-//     assert(send_param->len >= sizeof(espnow_data_t));
+    assert(send_param->len >= sizeof(espnow_data_t));
 
-//     buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? ESPNOW_DATA_BROADCAST : ESPNOW_DATA_UNICAST;
-//     buf->seq_num = s_espnow_seq[buf->type]++;
-//     buf->crc = 0;
-//     /* Fill all remaining bytes after the data with random values */
-//     esp_fill_random(buf->payload, send_param->len - sizeof(espnow_data_t));
-//     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
-// }
+    buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? ESPNOW_DATA_BROADCAST : ESPNOW_DATA_UNICAST;
+    buf->seq_num = s_espnow_seq[buf->type]++;
+    buf->crc = 0;
+
+    size_t message_len = strlen(message);
+
+    memcpy(buf->payload, message, message_len);
+    
+    buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
+}
 
 void espnow_data_parse(uint8_t *data, uint16_t data_len)
 {
     espnow_data_t *buf = (espnow_data_t *)data;
     uint16_t crc, crc_cal = 0;
 
-    if (data_len < sizeof(espnow_data_t)) {
+    if (data_len < sizeof(espnow_data_t)) 
+    {
         ESP_LOGE(TAG, "Receive ESPNOW data too short, len:%d", data_len);
         return;
     }
@@ -106,22 +110,16 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
 /* Function to send a unicast response*/
 esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt)
 {
-    add_peer(dest_mac, encrypt);
-
     slave_espnow_send_param_t send_param_agree;
-    memset(&send_param_agree, 0, sizeof(slave_espnow_send_param_t));
+    // memset(&send_param_agree, 0, sizeof(slave_espnow_send_param_t));
 
-    send_param_agree.len = strlen(message);
-    
-    if (send_param_agree.len > sizeof(send_param_agree.buffer)) {
-        ESP_LOGE(TAG, "Message too long to fit in the buffer");
-        vSemaphoreDelete(s_slave_espnow_queue);
-        esp_now_deinit();
-        return ESP_FAIL;
-    }
+    send_param_agree.len = MAX_DATA_LEN;
 
     memcpy(send_param_agree.dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
-    memcpy(send_param_agree.buffer, message, send_param_agree.len);
+    
+    espnow_data_prepare(&send_param_agree, message);
+
+    add_peer(dest_mac, encrypt);
 
     // Send the unicast response
     if (esp_now_send(send_param_agree.dest_mac, send_param_agree.buffer, send_param_agree.len) != ESP_OK) 
@@ -193,11 +191,13 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
         ESP_LOGI(TAG, "Received data from MAC: " MACSTR ", Data Length: %d, Data: %.*s",
             MAC2STR(recv_cb->mac_addr), recv_cb->data_len, recv_cb->data_len, recv_cb->data);
         
+        espnow_data_parse(recv_cb->data, recv_cb->data_len);
+
         switch (s_master_unicast_mac.connected) 
         {
             case false:
                 // Check if the received data is MASTER_AGREE_CONNECT_MSG
-                if (recv_cb->data_len >= strlen(MASTER_AGREE_CONNECT_MSG) && memcmp(recv_cb->data, MASTER_AGREE_CONNECT_MSG, recv_cb->data_len) == 0) 
+                if (recv_cb->data_len >= strlen(MASTER_AGREE_CONNECT_MSG) && strstr((char *)payload, MASTER_AGREE_CONNECT_MSG) != NULL) 
                 {
                     memcpy(s_master_unicast_mac.peer_addr, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
                     ESP_LOGI(TAG, "Added MAC Master " MACSTR " SUCCESS", MAC2STR(s_master_unicast_mac.peer_addr));
@@ -211,9 +211,6 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 break;
 
             case true:
-
-                espnow_data_parse(recv_cb->data, recv_cb->data_len);
-
                 // Check if the received data is CHECK_CONNECTION_MSG
                 if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)payload, CHECK_CONNECTION_MSG) != NULL) 
                 {
@@ -222,7 +219,8 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     char response_message[250];
                     int message_len = snprintf(response_message, sizeof(response_message), "%s: %.2f C", STILL_CONNECTED_MSG, temperature);
 
-                    if (message_len >= sizeof(response_message)) {
+                    if (message_len >= sizeof(response_message)) 
+                    {
                         ESP_LOGE(TAG, "Response message is too long");
                         return;
                     }

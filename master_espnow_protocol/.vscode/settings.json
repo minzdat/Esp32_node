@@ -24,7 +24,9 @@
         "esp_now.h": "c",
         "esp_event.h": "c",
         "esp_crc.h": "c",
-        "esp_timer.h": "c"
+        "esp_timer.h": "c",
+        "temperature_sensor.h": "c",
+        "esp_pm.h": "c"
     },
     "idf.flashType": "UART"
 }
