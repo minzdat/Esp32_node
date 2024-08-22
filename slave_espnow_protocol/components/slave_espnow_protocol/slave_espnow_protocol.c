@@ -7,6 +7,53 @@ static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 mac_master_t s_master_unicast_mac;
 char payload[MAX_DATA_LEN + 1]; 
 
+void prepare_payload(espnow_data_t *espnow_data, 
+                float temperature_mcu, int rssi, 
+                float temperature_rdo, float do_value, 
+                float temperature_phg, float ph_value, 
+                const char *message) {
+    // Initialize variable sensor_data_t with input parameters
+    sensor_data_t sensor_data = {
+        .temperature_mcu = temperature_mcu,
+        .rssi = rssi,
+        .temperature_rdo = temperature_rdo,
+        .do_value = do_value,
+        .temperature_phg = temperature_phg,
+        .ph_value = ph_value
+    };
+
+    // Copy message to sensor_data
+    strncpy(sensor_data.message, message, STILL_CONNECTED_MSG_SIZE);
+
+    // Calculate the size of sensor_data_t
+    size_t sensor_data_size = sizeof(sensor_data_t);
+
+    // Make sure that the sensor_data_t size is not larger than the fixed size of the payload
+    if (sensor_data_size > PAYLOAD_SIZE) {
+        ESP_LOGE(TAG, "The sensor_data_t data is too large to fit in the payload");
+        return;
+    }
+
+    // Copy sensor_data_t into the payload and fill in the rest as needed
+    memcpy(espnow_data->payload, &sensor_data, sensor_data_size);
+
+    // If the data is less than 120 bytes, fill the remainder with 0
+    if (sensor_data_size < PAYLOAD_SIZE) {
+        memset(espnow_data->payload + sensor_data_size, 0, PAYLOAD_SIZE - sensor_data_size);
+    }
+
+    // Print payload size and data for testing
+    ESP_LOGI(TAG, "Payload size: %d bytes", PAYLOAD_SIZE);
+    ESP_LOGI(TAG, "     MCU Temperature: %.2f", sensor_data.temperature_mcu);
+    ESP_LOGI(TAG, "     RSSI: %d", sensor_data.rssi);
+    ESP_LOGI(TAG, "     RDO Temperature: %.2f", sensor_data.temperature_rdo);
+    ESP_LOGI(TAG, "     DO Value: %.2f", sensor_data.do_value);
+    ESP_LOGI(TAG, "     PHG Temperature: %.2f", sensor_data.temperature_phg);
+    ESP_LOGI(TAG, "     PH Value: %.2f", sensor_data.ph_value);
+    ESP_LOGI(TAG, "     Message: %s", sensor_data.message);
+
+}
+
 /* Prepare ESPNOW data to be sent. */
 void espnow_data_prepare(slave_espnow_send_param_t *send_param, char *message)
 {
@@ -20,7 +67,16 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, char *message)
 
     size_t message_len = strlen(message);
 
-    memcpy(buf->payload, message, message_len);
+    if (strstr(message, STILL_CONNECTED_MSG) != NULL) 
+    {
+        float temperature = read_internal_temperature_sensor();
+
+        prepare_payload(buf, temperature, -45, 23.1, 7.6, 24.0, 7.2, STILL_CONNECTED_MSG);
+    } 
+    else 
+    {
+        memcpy(buf->payload, message, message_len);
+    }
     
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }

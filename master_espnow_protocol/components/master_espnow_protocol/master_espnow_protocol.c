@@ -10,6 +10,29 @@ list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t waiting_connect_slaves[MAX_SLAVES];
 char payload[MAX_DATA_LEN + 1]; 
 
+/* Parse ESPNOW data payload. */
+void parse_payload(const espnow_data_t *espnow_data) {
+    if (sizeof(espnow_data->payload) < sizeof(sensor_data_t)) 
+    {
+        ESP_LOGE(TAG, "Payload size is too small to parse sensor_data_t");
+        return;
+    }
+
+    sensor_data_t sensor_data;
+    memcpy(&sensor_data, espnow_data->payload, sizeof(sensor_data_t));
+
+    ESP_LOGI(TAG, "Parsed Sensor Data:");
+    ESP_LOGI(TAG, "     MCU Temperature: %.2f", sensor_data.temperature_mcu);
+    ESP_LOGI(TAG, "     RSSI: %d", sensor_data.rssi);
+    ESP_LOGI(TAG, "     RDO Temperature: %.2f", sensor_data.temperature_rdo);
+    ESP_LOGI(TAG, "     DO Value: %.2f", sensor_data.do_value);
+    ESP_LOGI(TAG, "     PHG Temperature: %.2f", sensor_data.temperature_phg);
+    ESP_LOGI(TAG, "     PH Value: %.2f", sensor_data.ph_value);
+    ESP_LOGI(TAG, "     Message: %s", sensor_data.message);
+
+    memcpy(payload, sensor_data.message, sizeof(sensor_data.message));
+}
+
 /* Prepare ESPNOW data to be sent. */
 void espnow_data_prepare(master_espnow_send_param_t *send_param, char *message)
 {
@@ -53,6 +76,12 @@ void espnow_data_parse(uint8_t *data, uint16_t data_len)
         payload[data_len - sizeof(espnow_data_t)] = '\0'; // Null-terminate the string
 
         ESP_LOGI(TAG, "  payload: %s", payload);
+
+        if (strstr(payload, SLAVE_SAVED_MAC_MSG) == NULL) 
+        {
+            parse_payload(buf);
+        }
+
     } 
     else {
         ESP_LOGI(TAG, "  No payload data.");

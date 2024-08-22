@@ -77,6 +77,7 @@
 #define CURRENT_INDEX               0
 #define MAX_SEND_ERRORS             3
 #define MAX_DATA_LEN                250
+#define STILL_CONNECTED_MSG_SIZE    (sizeof(STILL_CONNECTED_MSG) - 1)
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 
 #define DEFAULT_BEACON_TIMEOUT  CONFIG_WIFI_BEACON_TIMEOUT
@@ -138,10 +139,20 @@ enum {
 };
 
 typedef struct {
+    float temperature_mcu;
+    int rssi;
+    float temperature_rdo;
+    float do_value;
+    float temperature_phg;
+    float ph_value;
+    char message[STILL_CONNECTED_MSG_SIZE];
+} sensor_data_t;
+
+typedef struct {
     uint8_t type;                         //[1 bytes] Broadcast or unicast ESPNOW data.
     uint16_t seq_num;                     //[2 bytes] Sequence number of ESPNOW data.
     uint16_t crc;                         //[2 bytes] CRC16 value of ESPNOW data.
-    uint8_t payload[0];                   //Real payload of ESPNOW data.
+    uint8_t payload[120];                  //Real payload of ESPNOW data.
 } __attribute__((packed)) espnow_data_t;
 
 /* Parameters of sending ESPNOW data. */
