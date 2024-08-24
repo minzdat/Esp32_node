@@ -59,19 +59,20 @@
 #endif
 
 #define TAG                         "ESPNOW_SLAVE"
-#define REQUEST_CONNECTION_MSG      "slave_REQUEST_connect"
-#define MASTER_AGREE_CONNECT_MSG    "master_AGREE_connect"
-#define SLAVE_SAVED_MAC_MSG         "slave_SAVED_mac"
-#define CHECK_CONNECTION_MSG        "master_CHECK_connect"
-#define STILL_CONNECTED_MSG         "slave_KEEP_connect"
+#define REQUEST_CONNECTION_MSG      "REQUEST_connect"
+#define MASTER_AGREE_CONNECT_MSG    "AGREE_connect"
+#define SLAVE_SAVED_MAC_MSG         "SAVED_mac"
+#define CHECK_CONNECTION_MSG        "CHECK_connect"
+#define STILL_CONNECTED_MSG         "KEEP_connect"
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define SLAVE_BROADCAST_MAC         { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
+#define DISCONNECTED_TIMEOUT        13 * 1000000
 #define ESPNOW_QUEUE_SIZE           6
 #define CURRENT_INDEX               0
 #define MAX_DATA_LEN                250
-#define PAYLOAD_SIZE                120 
-#define STILL_CONNECTED_MSG_SIZE    (sizeof(STILL_CONNECTED_MSG) - 1)
+#define MAX_PAYLOAD_LEN             120 
+#define STILL_CONNECTED_MSG_SIZE    (sizeof(STILL_CONNECTED_MSG))
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 
 typedef struct {
@@ -128,7 +129,7 @@ typedef struct {
     uint8_t type;                         //[1 bytes] Broadcast or unicast ESPNOW data.
     uint16_t seq_num;                     //[2 bytes] Sequence number of ESPNOW data.
     uint16_t crc;                         //[2 bytes] CRC16 value of ESPNOW data.
-    uint8_t payload[PAYLOAD_SIZE];                  //Real payload of ESPNOW data.
+    uint8_t payload[MAX_PAYLOAD_LEN];     //[120 bytes] Real payload of ESPNOW data.
 } __attribute__((packed)) espnow_data_t;
 
 /* Parameters of sending ESPNOW data. */
@@ -150,6 +151,10 @@ float read_internal_temperature_sensor(void);
 void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 void slave_wifi_init(void);
 
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, const char *message);
+void parse_payload(const espnow_data_t *espnow_data);
+void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *message);
+void espnow_data_parse(uint8_t *data, uint16_t data_len);
 void erase_peer(const uint8_t *peer_mac);
 void add_peer(const uint8_t *peer_mac, bool encrypt); 
 esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt);

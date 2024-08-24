@@ -60,10 +60,11 @@
 #endif
 
 #define TAG                         "ESPNOW_MASTER"
-#define RESPONSE_AGREE_CONNECT      "master_AGREE_connect"
-#define SLAVE_SAVED_MAC_MSG         "slave_SAVED_mac"
-#define CHECK_CONNECTION_MSG        "master_CHECK_connect"
-#define STILL_CONNECTED_MSG         "slave_KEEP_connect"
+#define REQUEST_CONNECTION_MSG      "REQUEST_connect"
+#define RESPONSE_AGREE_CONNECT      "AGREE_connect"
+#define SLAVE_SAVED_MAC_MSG         "SAVED_mac"
+#define CHECK_CONNECTION_MSG        "CHECK_connect"
+#define STILL_CONNECTED_MSG         "KEEP_connect"
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_SLAVES              "waiting_slaves"
 #define WIFI_CONNECTED_BIT          BIT0
@@ -71,16 +72,17 @@
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 #define ESPNOW_MAXDELAY             512
 #define TIME_CHECK_CONNECT          10000
+#define RETRY_TIMEOUT               5 * 1000000
 #define NUMBER_RETRY                3
 #define ESPNOW_QUEUE_SIZE           6
 #define MAX_SLAVES                  3
 #define CURRENT_INDEX               0
 #define MAX_SEND_ERRORS             3
 #define MAX_DATA_LEN                250
-#define STILL_CONNECTED_MSG_SIZE    (sizeof(STILL_CONNECTED_MSG) - 1)
+#define MAX_PAYLOAD_LEN             120
+#define STILL_CONNECTED_MSG_SIZE    (sizeof(STILL_CONNECTED_MSG))
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
-
-#define DEFAULT_BEACON_TIMEOUT  CONFIG_WIFI_BEACON_TIMEOUT
+#define DEFAULT_BEACON_TIMEOUT      CONFIG_WIFI_BEACON_TIMEOUT
 
 #if CONFIG_POWER_SAVE_MIN_MODEM
 #define DEFAULT_PS_MODE WIFI_PS_MIN_MODEM
@@ -152,7 +154,7 @@ typedef struct {
     uint8_t type;                         //[1 bytes] Broadcast or unicast ESPNOW data.
     uint16_t seq_num;                     //[2 bytes] Sequence number of ESPNOW data.
     uint16_t crc;                         //[2 bytes] CRC16 value of ESPNOW data.
-    uint8_t payload[120];                  //Real payload of ESPNOW data.
+    uint8_t payload[MAX_PAYLOAD_LEN];     //[120 bytes] Real payload of ESPNOW data.
 } __attribute__((packed)) espnow_data_t;
 
 /* Parameters of sending ESPNOW data. */
@@ -170,7 +172,7 @@ typedef struct {
 
 // Function to read temperature internal esp
 void init_temperature_sensor();
-void read_internal_temperature_sensor(void);
+float read_internal_temperature_sensor(void);
 
 // Function to NVS
 void test_allowed_connect_slaves_to_nvs(list_slaves_t *allowed_connect_slaves);
@@ -185,6 +187,10 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void);
 
 // Function to master espnow
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, const char *message);
+void parse_payload(const espnow_data_t *espnow_data);
+void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *message);
+void espnow_data_parse(uint8_t *data, uint16_t data_len);
 void add_peer(const uint8_t *peer_mac, bool encrypt); 
 void add_waiting_connect_slaves(const uint8_t *mac_addr);
 esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt);

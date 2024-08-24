@@ -90,19 +90,19 @@ void master_wifi_init(void)
 //     ESP_ERROR_CHECK( esp_wifi_set_protocol(ESPNOW_WIFI_IF, WIFI_PROTOCOL_11B|WIFI_PROTOCOL_11G|WIFI_PROTOCOL_11N|WIFI_PROTOCOL_LR) );
 // #endif
 
-    #if CONFIG_PM_ENABLE
-        // Configure dynamic frequency scaling:
-        // maximum and minimum frequencies are set in sdkconfig,
-        // automatic light sleep is enabled if tickless idle support is enabled.
-        esp_pm_config_t pm_config = {
-                .max_freq_mhz = CONFIG_MAX_CPU_FREQ_MHZ,
-                .min_freq_mhz = CONFIG_MIN_CPU_FREQ_MHZ,
-    #if CONFIG_FREERTOS_USE_TICKLESS_IDLE
-                .light_sleep_enable = true
-    #endif
-        };
-        ESP_ERROR_CHECK( esp_pm_configure(&pm_config) );
-    #endif // CONFIG_PM_ENABLE
+    // #if CONFIG_PM_ENABLE
+    //     // Configure dynamic frequency scaling:
+    //     // maximum and minimum frequencies are set in sdkconfig,
+    //     // automatic light sleep is enabled if tickless idle support is enabled.
+    //     esp_pm_config_t pm_config = {
+    //             .max_freq_mhz = CONFIG_MAX_CPU_FREQ_MHZ,
+    //             .min_freq_mhz = CONFIG_MIN_CPU_FREQ_MHZ,
+    // #if CONFIG_FREERTOS_USE_TICKLESS_IDLE
+    //             .light_sleep_enable = true
+    // #endif
+    //     };
+    //     ESP_ERROR_CHECK( esp_pm_configure(&pm_config) );
+    // #endif // CONFIG_PM_ENABLE
 
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -114,10 +114,10 @@ void master_wifi_init(void)
     ESP_ERROR_CHECK( esp_wifi_set_mode(ESPNOW_WIFI_MODE) );
     ESP_ERROR_CHECK( esp_wifi_start());
 
-    ESP_ERROR_CHECK(esp_wifi_set_inactive_time(WIFI_IF_STA, DEFAULT_BEACON_TIMEOUT));
+    // ESP_ERROR_CHECK(esp_wifi_set_inactive_time(WIFI_IF_STA, DEFAULT_BEACON_TIMEOUT));
 
-    ESP_LOGI(TAG, "esp_wifi_set_ps().");
-    esp_wifi_set_ps(DEFAULT_PS_MODE);
+    // ESP_LOGI(TAG, "esp_wifi_set_ps().");
+    // esp_wifi_set_ps(DEFAULT_PS_MODE);
 
     ESP_ERROR_CHECK( esp_wifi_set_channel(CONFIG_ESPNOW_CHANNEL, WIFI_SECOND_CHAN_NONE));
 
