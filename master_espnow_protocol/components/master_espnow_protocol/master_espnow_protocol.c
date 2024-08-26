@@ -405,6 +405,9 @@ void master_espnow_task(void *pvParameter)
                 }
             }
         }
+
+        esp_deep_sleep_start();
+
         vTaskDelay(pdMS_TO_TICKS(TIME_CHECK_CONNECT));
     }
 }
@@ -472,7 +475,7 @@ void retry_connect_lost_task(void *pvParameter)
                     break;
             }
         }
-        vTaskDelay(pdMS_TO_TICKS(2000)); // Delay 1s
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1s
     }
 }
 
@@ -489,10 +492,13 @@ esp_err_t master_espnow_init(void)
     ESP_ERROR_CHECK( esp_now_init() );
     ESP_ERROR_CHECK( esp_now_register_send_cb(master_espnow_send_cb) );
     ESP_ERROR_CHECK( esp_now_register_recv_cb(master_espnow_recv_cb) );
-#if CONFIG_ESPNOW_ENABLE_POWER_SAVE
-    ESP_ERROR_CHECK( esp_now_set_wake_window(CONFIG_ESPNOW_WAKE_WINDOW) );
-    ESP_ERROR_CHECK( esp_wifi_connectionless_module_set_wake_interval(CONFIG_ESPNOW_WAKE_INTERVAL) );
-#endif
+// #if CONFIG_ESPNOW_ENABLE_POWER_SAVE
+//     ESP_ERROR_CHECK( esp_now_set_wake_window(CONFIG_ESPNOW_WAKE_WINDOW) );
+//     ESP_ERROR_CHECK( esp_wifi_connectionless_module_set_wake_interval(CONFIG_ESPNOW_WAKE_INTERVAL) );
+// #endif
+
+    esp_sleep_enable_timer_wakeup(ENABLE_TIMER_WAKEUP);
+
     /* Set primary master key. */
     ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) ); 
     

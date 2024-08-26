@@ -20,6 +20,7 @@
 #include "esp_timer.h"
 #include "driver/temperature_sensor.h"
 #include "esp_pm.h"
+#include "esp_sleep.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -71,8 +72,9 @@
 #define WIFI_FAIL_BIT               BIT1
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 #define ESPNOW_MAXDELAY             512
-#define TIME_CHECK_CONNECT          10000
-#define RETRY_TIMEOUT               5 * 1000000
+#define TIME_CHECK_CONNECT          10000           // Unit ms
+#define ENABLE_TIMER_WAKEUP         10 * 1000000    // Unit us
+#define RETRY_TIMEOUT               5 * 1000000     // Unit us
 #define NUMBER_RETRY                3
 #define ESPNOW_QUEUE_SIZE           6
 #define MAX_SLAVES                  3
@@ -147,6 +149,7 @@ typedef struct {
     float do_value;
     float temperature_phg;
     float ph_value;
+    uint16_t crc;
     char message[STILL_CONNECTED_MSG_SIZE];
 } sensor_data_t;
 

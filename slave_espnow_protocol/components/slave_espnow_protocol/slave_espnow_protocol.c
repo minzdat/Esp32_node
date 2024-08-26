@@ -337,7 +337,7 @@ void slave_espnow_task(void *pvParameter)
                 }
                 break;
         }
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 seconds
+        vTaskDelay(pdMS_TO_TICKS(500)); // Delay 0.5 seconds
     }
 }
 
