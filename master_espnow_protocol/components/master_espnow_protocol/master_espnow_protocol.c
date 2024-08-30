@@ -126,16 +126,6 @@ void espnow_data_parse(uint8_t *data, uint16_t data_len)
     ESP_LOGI(TAG, "     seq_num: %d", buf->seq_num);
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
 
-    // Log the payload if present
-    if (data_len > sizeof(espnow_data_t)) 
-    {
-        parse_payload(buf);
-    } 
-    else 
-    {
-        ESP_LOGI(TAG, "  No payload data.");
-    }
-
     crc = buf->crc;
     buf->crc = 0;
     crc_cal = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, data_len);
@@ -148,6 +138,22 @@ void espnow_data_parse(uint8_t *data, uint16_t data_len)
     {
         ESP_LOGE(TAG, "CRC check failed. Calculated CRC: %d, Received CRC: %d", crc_cal, crc);
         return;
+    }
+
+        // Log the payload if present
+    if (data_len > sizeof(espnow_data_t)) 
+    {
+        parse_payload(buf);
+        sensor_data_t sensor_data;
+        // buf->crc = crc_cal;
+        memcpy(&sensor_data, buf->payload, sizeof(sensor_data_t));
+        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
+        dump_uart((uint8_t*)&sensor_data, sizeof(sensor_data_t));
+
+    } 
+    else 
+    {
+        ESP_LOGI(TAG, "  No payload data.");
     }
 }
 
