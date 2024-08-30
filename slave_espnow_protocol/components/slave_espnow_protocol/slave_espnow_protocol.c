@@ -1,5 +1,6 @@
 #include "slave_espnow_protocol.h"
 
+static bool sleep_mode;
 static char payload[MAX_PAYLOAD_LEN]; 
 static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;
 static QueueHandle_t s_slave_espnow_queue;
@@ -93,6 +94,12 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *mess
     buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? ESPNOW_DATA_BROADCAST : ESPNOW_DATA_UNICAST;
     buf->seq_num = s_espnow_seq[buf->type]++;
     buf->crc = 0;
+
+    // Log the data received
+    ESP_LOGI(TAG, "Parsed ESPNOW packed:");
+    ESP_LOGI(TAG, "     type: %d", buf->type);
+    ESP_LOGI(TAG, "     seq_num: %d", buf->seq_num);
+    ESP_LOGI(TAG, "     crc: %d", buf->crc);
 
     float temperature = read_internal_temperature_sensor();
     prepare_payload(buf, temperature, -45, 23.1, 7.6, 24.0, 7.2, message);
@@ -274,6 +281,9 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     ESP_LOGI(TAG, "Added MAC Master " MACSTR " SUCCESS", MAC2STR(s_master_unicast_mac.peer_addr));
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " SAVED MAC Master", MAC2STR(s_master_unicast_mac.peer_addr));
                     s_master_unicast_mac.connected = true;
+
+                    save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect);
+
                     s_master_unicast_mac.start_time =  esp_timer_get_time();
                     response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG, false);
                     add_peer(s_master_unicast_mac.peer_addr, true);
@@ -284,9 +294,13 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 // Check if the received data is CHECK_CONNECTION_MSG
                 if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)payload, CHECK_CONNECTION_MSG) != NULL) 
                 {
-                    s_master_unicast_mac.start_time = esp_timer_get_time();;
+                    s_master_unicast_mac.start_time = esp_timer_get_time();
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " %s", MAC2STR(s_master_unicast_mac.peer_addr),STILL_CONNECTED_MSG);
                     response_specified_mac(s_master_unicast_mac.peer_addr, STILL_CONNECTED_MSG, true);
+
+                    s_master_unicast_mac.count_keep_connect = 0;
+
+                    sleep_mode = true;
                 }
                 break;
         }
@@ -332,12 +346,34 @@ void slave_espnow_task(void *pvParameter)
 
                 if (elapsed_time > DISCONNECTED_TIMEOUT)
                 {
-                    ESP_LOGW(TAG, "Time Out !");
-                    s_master_unicast_mac.connected = false;
+                    // ESP_LOGW(TAG, "Time Out !");
+                    
+                    // s_master_unicast_mac.connected = false;
+
+                    if (s_master_unicast_mac.count_keep_connect >= 3)
+                    {
+                        s_master_unicast_mac.connected = false;
+                        s_master_unicast_mac.count_keep_connect = 0;
+                        save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect);
+                        
+                    }
+                    
+                    s_master_unicast_mac.count_keep_connect++;
+
+                    save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect);
+                    
+                    deep_sleep_mode();
                 }
+
+
+                if (sleep_mode)
+                {
+                    deep_sleep_mode();
+                }
+                
                 break;
         }
-        vTaskDelay(pdMS_TO_TICKS(500)); // Delay 0.5 seconds
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 seconds
     }
 }
 
@@ -378,6 +414,8 @@ void slave_espnow_deinit(slave_espnow_send_param_t *send_param)
 
 void slave_espnow_protocol()
 {
+    sleep_mode = false;
+    
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) 
@@ -390,6 +428,16 @@ void slave_espnow_protocol()
     slave_wifi_init();
 
     init_temperature_sensor();
+
+    //  ---Process values ​​from nvs---
+
+    // erase_nvs(NVS_KEY_CONNECTED);
+    load_from_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, &s_master_unicast_mac);
+    ESP_LOGI("TAG", "s_master_unicast_mac.connected = %s", s_master_unicast_mac.connected ? "true" : "false");
+    
+    //  ---Process values ​​from nvs---
+
+    deep_sleep_register_rtc_timer_wakeup();
 
     slave_espnow_init();
 

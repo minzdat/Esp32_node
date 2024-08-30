@@ -19,6 +19,7 @@
 #include "esp_crc.h"
 #include "esp_timer.h"
 #include "driver/temperature_sensor.h"
+#include "deep_sleep.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -64,10 +65,13 @@
 #define SLAVE_SAVED_MAC_MSG         "SAVED_mac"
 #define CHECK_CONNECTION_MSG        "CHECK_connect"
 #define STILL_CONNECTED_MSG         "KEEP_connect"
+#define NVS_NAMESPACE               "storage"
+#define NVS_KEY_CONNECTED           "connected"
+#define NVS_KEY_KEEP_CONNECT        "keep_connect"
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define SLAVE_BROADCAST_MAC         { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
-#define DISCONNECTED_TIMEOUT        13 * 1000000
+#define DISCONNECTED_TIMEOUT        10 * 1000000
 #define ESPNOW_QUEUE_SIZE           6
 #define CURRENT_INDEX               0
 #define MAX_DATA_LEN                250
@@ -77,7 +81,8 @@
 
 typedef struct {
     uint8_t peer_addr[ESP_NOW_ETH_ALEN];
-    bool connected;                            
+    bool connected;  
+    int32_t count_keep_connect;                          
     TickType_t start_time;
     TickType_t end_time;
 } mac_master_t;
@@ -145,12 +150,20 @@ typedef struct {
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } slave_espnow_send_param_t;
 
+// Function to NVS
+void erase_nvs(const char *key);
+void load_from_nvs(const char *key_connected, const char *key_count, mac_master_t *mac_master);
+void save_to_nvs(const char *key_connected, const char *key_count, bool connected, int count_keep_connect);
+
+// Function to read temperature internal esp
 void init_temperature_sensor();
 float read_internal_temperature_sensor(void);
 
+// Function to wifi
 void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 void slave_wifi_init(void);
 
+// Function to slave espnow
 void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, const char *message);
 void parse_payload(const espnow_data_t *espnow_data);
 void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *message);

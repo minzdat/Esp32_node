@@ -20,7 +20,7 @@
 #include "esp_timer.h"
 #include "driver/temperature_sensor.h"
 #include "esp_pm.h"
-#include "esp_sleep.h"
+#include "deep_sleep.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -73,8 +73,7 @@
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 #define ESPNOW_MAXDELAY             512
 #define TIME_CHECK_CONNECT          10000           // Unit ms
-#define ENABLE_TIMER_WAKEUP         10 * 1000000    // Unit us
-#define RETRY_TIMEOUT               5 * 1000000     // Unit us
+#define RETRY_TIMEOUT               6 * 1000000     // Unit us
 #define NUMBER_RETRY                3
 #define ESPNOW_QUEUE_SIZE           6
 #define MAX_SLAVES                  3
@@ -104,9 +103,9 @@ typedef struct {
     TickType_t end_time;
     int number_retry;
     int check_connect_errors;
-    int count_send;
-    int count_receive;
-    int count_retry;
+    // int count_send;
+    // int count_receive;
+    // int count_retry;
 } list_slaves_t;
 
 typedef enum {
@@ -149,7 +148,6 @@ typedef struct {
     float do_value;
     float temperature_phg;
     float ph_value;
-    uint16_t crc;
     char message[STILL_CONNECTED_MSG_SIZE];
 } sensor_data_t;
 
@@ -202,7 +200,7 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
 void master_espnow_task(void *pvParameter);
 void retry_connect_lost_task(void *pvParameter);
 esp_err_t master_espnow_init(void);
-void master_espnow_deinit(master_espnow_send_param_t *send_param);
+void master_espnow_deinit();
 void master_espnow_protocol();
 
 #endif //MASTER_ESPNOW_PROTOCOL_H
