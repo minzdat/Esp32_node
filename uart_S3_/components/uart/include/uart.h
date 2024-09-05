@@ -89,5 +89,8 @@ void update_or_add_device(sensor_data_t *new_data);
 void log_all_devices();
 void uart_init(void);
 void uart_event_task(void *pvParameters);
+void send_uart_(int UART_NUM, const char *_message);
+void send_mac_via_uart(uint8_t *mac_address, int mac_len); 
+
 
 #endif // UART_H

@@ -1,6 +1,9 @@
 #include "uart.h"
 #include "pub_sub_client.h"
 
+uint8_t mac1[6] = {0xdc, 0xda, 0x0c, 0x0d, 0x42, 0x48}; //
+uint8_t mac2[6] = {0xd8, 0x3b, 0xda, 0x9a, 0x34, 0xac}; //
+uint8_t mac3[6] = {0xdc, 0xda, 0x0c, 0x18, 0xbc, 0x84}; //
 
 static const char *TAG = "UART";
 static uint32_t crc_error_count = 0;
@@ -17,7 +20,7 @@ void process_uart_data(uint8_t *data, size_t length) {
     size_t expected_len = sizeof(sensor_data_uart_t);
     if (length < expected_len) {
         ESP_LOGE(TAG, "Data size is too small: %d bytes, expected %d bytes", length, expected_len);
-        return;
+        //return; /* */
     }
     sensor_data_uart_t recv_packet; 
     sensor_data_uart_t *recv_packet_ptr = &recv_packet;
@@ -29,14 +32,11 @@ void process_uart_data(uint8_t *data, size_t length) {
     //printf("message recv: %s\n", recv_packet_ptr->message);
     if (recv_packet_ptr->crc == calculated_crc) {
         ESP_LOGI(TAG, "Received valid data");
-
         // Gán dữ liệu từ recv_packet_ptr vào cấu trúc sensor_data_t để xử lý
         recv_data = recv_packet_ptr->data;
-
         // Xử lý dữ liệu nhận được
         update_or_add_device(&recv_data);
         log_all_devices();
-
         //mqtt
         
     } else {
@@ -190,6 +190,14 @@ void uart_event_task(void *pvParameters)
             case UART_DATA:
                 ESP_LOGI(TAG, "[UART DATA]: %d", event.size);
                 int length = uart_read_bytes(UART1_NUM, recv_message, event.size, portMAX_DELAY);
+                ESP_LOGE(TAG,"recv_message :::%s", recv_message);
+
+                if (strcmp((char*)recv_message, "CONNECT") == 0) {
+                    send_mac_via_uart(mac1, 6);
+                    send_mac_via_uart(mac2, 6);
+                    send_mac_via_uart(mac3, 6);
+                }
+
                 process_uart_data(recv_message, length);
                 uart_write_bytes(UART1_NUM, (const char*) dtmp, event.size);
                 /*---------------------------------------------------*/
@@ -238,4 +246,27 @@ void uart_event_task(void *pvParameters)
     free(dtmp);
     dtmp = NULL;
     vTaskDelete(NULL);
+}
+void send_uart_(int UART_NUM, const char *_message) {
+    int len = strlen(_message);
+    
+    // Gửi chuỗi ACK qua UART
+    int written = uart_write_bytes(UART_NUM, _message, len);
+    
+    if (written == len) {
+        ESP_LOGI("UART_ACK", "ACK sent successfully: %s", _message);
+    } else {
+        ESP_LOGE("UART_ACK", "Failed to send ACK: %s", _message);
+    }
+}
+void send_mac_via_uart(uint8_t *mac_address, int mac_len) {
+
+    char mac_string[18];
+    snprintf(mac_string, sizeof(mac_string), 
+             "%02x:%02x:%02x:%02x:%02x:%02x", 
+             mac_address[0], mac_address[1], mac_address[2], 
+             mac_address[3], mac_address[4], mac_address[5]);
+    uart_write_bytes(UART1_NUM, "\n", 1);         
+    uart_write_bytes(UART1_NUM, mac_string, strlen(mac_string));
+    uart_write_bytes(UART1_NUM, "\n", 1);
 }

@@ -25,7 +25,10 @@
         "esp_event.h": "c",
         "esp_crc.h": "c",
         "esp_timer.h": "c",
-        "esp_netif.h": "c"
+        "esp_netif.h": "c",
+        "deep_sleep.h": "c",
+        "esp_sleep.h": "c",
+        "uart.h": "c"
     },
     "idf.flashType": "UART",
     "idf.gitPathWin": "D:\\ESP32\\.espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe"

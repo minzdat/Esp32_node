@@ -11,37 +11,20 @@
 #include "esp_crc.h"
 
 // #define PATTERN_CHR_NUM    (3)         /*!< Set the number of consecutive and identical characters received by receiver which defines a UART pattern*/
-#define UART1_NUM         UART_NUM_1    // Sử dụng UART1
-#define UART_BAUD_RATE     (115200)
-#define TASK_STACK_SIZE    (1024*2)
-#define QUEUE_SIZE         (20)
-#define TXD1_PIN           (5)    // Chân TX (thay đổi nếu cần)
-#define RXD1_PIN           (4)    // Chân RX (thay đổi nếu cần)
-
-#define PATTERN_CHR_NUM    (3)  
 static const char *TAG = "UART TEST";
+QueueHandle_t uart1_queue;
 
 int count = 0;
 int count1 = 1;
 int count_num =0;
 
-#define BUF_SIZE (1024*4)
-#define RD_BUF_SIZE        (BUF_SIZE)
-static QueueHandle_t uart1_queue;
-
-static void uart_event_task(void *pvParameters)
+void uart_event_task(void *pvParameters)
 {
     uart_event_t event;
     size_t buffered_size;
     uint8_t* dtmp = (uint8_t*) malloc(RD_BUF_SIZE + 1);
     if (dtmp == NULL) {
         ESP_LOGE(TAG, "Failed to allocate memory for dtmp");
-        vTaskDelete(NULL);
-    }
-    uint8_t* decrypted_dtmp = (uint8_t*) malloc(RD_BUF_SIZE);  // Bộ đệm để lưu dữ liệu giải mã
-    if (decrypted_dtmp == NULL) {
-        ESP_LOGE(TAG, "Failed to allocate memory for decrypted_dtmp");
-        free(dtmp);
         vTaskDelete(NULL);
     }
     while (true) {
@@ -69,7 +52,6 @@ static void uart_event_task(void *pvParameters)
                 //ESP_LOGI(TAG, "[DATA EVT]:");
                 //uart_write_bytes(UART1_NUM, (const char*) dtmp, event.size);
                 //uart_write_bytes(UART1_NUM, (const char*) dtmp, BUF_SIZE);
-                
             case UART_FIFO_OVF:
                 ESP_LOGI(TAG, "hw fifo overflow");
                 uart_flush_input(UART1_NUM);
@@ -132,7 +114,7 @@ void uart_config(void){
     ESP_ERROR_CHECK(uart_set_pin(UART1_NUM, TXD1_PIN, RXD1_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE)); //uart_set_pin(uart_port_t uart_num, int tx_io_num, int rx_io_num, int rts_io_num, int cts_io_num)
     uart_enable_pattern_det_baud_intr(UART1_NUM, '+', PATTERN_CHR_NUM, 9, 0, 0);
     uart_pattern_queue_reset(UART1_NUM, QUEUE_SIZE);
-    
+
     xTaskCreate(uart_event_task, "uart_event_task", 1024*4, NULL, 12, NULL);
 }
 
@@ -180,4 +162,15 @@ void send_uart(sensor_data_tt *data, const char *message) {
     // In chiều dài gói tin gửi
     printf("Sent %d bytes (data + CRC), s: %d, r: %d\n", txBytes, count, count1);
 }
-
+void send_uart_(int UART_NUM, const char *_message) {
+    int len = strlen(_message) + 1;
+    
+    // Gửi chuỗi ACK qua UART
+    int written = uart_write_bytes(UART_NUM, _message, len);
+    
+    if (written == len) {
+        ESP_LOGI("UART_ACK", "ACK sent successfully: %s", _message);
+    } else {
+        ESP_LOGE("UART_ACK", "Failed to send ACK: %s", _message);
+    }
+}

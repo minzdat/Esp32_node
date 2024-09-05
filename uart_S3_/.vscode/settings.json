@@ -14,7 +14,9 @@
     "idf.pythonBinPathWin": "D:\\ESP32\\.espressif\\python_env\\idf5.2_py3.11_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "D:\\ESP32\\.espressif",
     "files.associations": {
-        "iot_button.h": "c"
+        "iot_button.h": "c",
+        "sdkconfig.h": "c",
+        "uart.h": "c"
     },
     "idf.portWin": "COM42",
     "idf.flashType": "UART"

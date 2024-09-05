@@ -1,4 +1,5 @@
 #include "master_espnow_protocol.h"
+
 #include "uart.h"
 
 static int current_index = CURRENT_INDEX;
@@ -229,11 +230,11 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
             ESP_LOGI("SENSOR_DATA", "Temperature PHG: %.6f", recv_data->temperature_phg);
             ESP_LOGI("SENSOR_DATA", "pH: %.6f", recv_data->ph_value);
                         // dump_uart((const char *)recv_cb->data);
-                    send_uart(recv_data, "hello");
+                    send_uart(recv_data, "helzlo");
                     //sensor_data_t *send_uart = (sensor_data_t *)recv_cb; // Đây là struct bạn đã nhận được.
                     //sendStructData("TX1", recv_data, sizeof(recv_data));
 
-
+                    //deep_sleep_mode();////
                     break;
 
                 }
