@@ -175,6 +175,7 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " CHECK CONNECT with temperature %.2f C", MAC2STR(s_master_unicast_mac.peer_addr), temperature);
                     //response_specified_mac(s_master_unicast_mac.peer_addr, response_message, true);
                     esp_now_send(s_master_unicast_mac.peer_addr,(uint8_t *)&data_sensor,sizeof(data_sensor));
+                    //go_to_sleep();
                 }
                 break;
         }

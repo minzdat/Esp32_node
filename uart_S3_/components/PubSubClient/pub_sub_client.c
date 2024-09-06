@@ -54,8 +54,8 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
         case MQTT_EVENT_DATA:
             ESP_LOGI(MQTT_TAG, "MQTT_RECEIVED DATA");
             //memcpy(g_buffer_sub, event->data, event->data_len);
-            //ESP_LOGE("rrrr", "gyttf %s",event->data);
-            mqtt_subcriber(event);
+            ESP_LOGE("rrrr", "gyttf %s",event->data);
+            //mqtt_subcriber(event);
             break;
         case MQTT_EVENT_ERROR:
             break;
@@ -111,7 +111,7 @@ void mqtt_init2(char *broker_uri, char *username ,char *client_id)
     esp_mqtt_client_start(g_mqtt_client2);
 }
 
-/**
+/*
  * @brief Parses an input string and adds key-value pairs to a JSON object.
  *
  * This function tokenizes the input string using delimiters (": " and ", ") to extract

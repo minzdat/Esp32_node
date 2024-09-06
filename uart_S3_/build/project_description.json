@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "uart_S3_",
-    "project_version":    "82ca0d2-dirty",
+    "project_version":    "73d47ff-dirty",
     "project_path":       "D:/ESP32/myProject/uartnow/uart_S3_",
     "idf_path":           "D:/ESP32/esp-idf/v5.2.2/esp-idf",
     "build_dir":          "D:/ESP32/myProject/uartnow/uart_S3_/build",

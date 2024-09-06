@@ -12,5 +12,5 @@ void app_main(void)
     master_espnow_protocol();
     //send_uart_(UART1_NUM, "CONNECT");
     //send_uart_message("helo", sizeof("helo"));
-    xTaskCreate(test, "hhh",5000, NULL, 5, NULL );
+    //xTaskCreate(test, "hhh",5000, NULL, 5, NULL );
 }

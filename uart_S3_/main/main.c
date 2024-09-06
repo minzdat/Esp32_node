@@ -37,7 +37,8 @@ void app_main(void)
     mqtt_init(BROKER, USER_NAME_1, NULL);
     mqtt_init2(BROKER, USER_NAME_3, NULL);
     //mqtt_init(BROKER, USER_NAME, NULL);
-    //subcribe_to_topic(TOPIC,3);
+    subcribe_to_topic(TOPIC,1);
+
     //xTaskCreate(parsedata, "parsedata", 1024*4, NULL, configMAX_PRIORITIES - 2, NULL);
     xTaskCreate(uart_event_task, "uart_event_task", 1024*4, NULL, 12, NULL);
     //xTaskCreate(rx1_task, "uart1_rx_task", 1024*4, NULL, configMAX_PRIORITIES - 1, NULL);
