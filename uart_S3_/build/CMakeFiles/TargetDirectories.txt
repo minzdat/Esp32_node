@@ -687,6 +687,13 @@ D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/button_/CMakeFiles/list_instal
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/button_/CMakeFiles/install.dir
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/button_/CMakeFiles/install/local.dir
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/button_/CMakeFiles/install/strip.dir
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/CMakeFiles/__idf_logging_.dir
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/CMakeFiles/edit_cache.dir
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/CMakeFiles/rebuild_cache.dir
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/CMakeFiles/list_install_components.dir
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/CMakeFiles/install.dir
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/CMakeFiles/install/local.dir
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/CMakeFiles/install/strip.dir
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/wifi_/CMakeFiles/__idf_wifi_.dir
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/wifi_/CMakeFiles/edit_cache.dir
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/wifi_/CMakeFiles/rebuild_cache.dir

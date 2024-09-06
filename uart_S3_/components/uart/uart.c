@@ -1,6 +1,7 @@
 #include "uart.h"
 #include "pub_sub_client.h"
 
+
 uint8_t mac1[6] = {0xdc, 0xda, 0x0c, 0x0d, 0x42, 0x48}; //
 uint8_t mac2[6] = {0xd8, 0x3b, 0xda, 0x9a, 0x34, 0xac}; //
 uint8_t mac3[6] = {0xdc, 0xda, 0x0c, 0x18, 0xbc, 0x84}; //
@@ -164,6 +165,7 @@ void uart_init(void){
     /*Config Uart 2*/
     /*Config Uart 1 - Uart 0 is default*/
     ESP_ERROR_CHECK(uart_driver_install(UART1_NUM, BUF_SIZE * 4, BUF_SIZE * 4, QUEUE_SIZE, &uart1_queue, 0)); //uart_driver_install(uart_port_t uart_num, int rx_buffer_size, int tx_buffer_size, int queue_size, QueueHandle_t *uart_queue, int intr_alloc_flags)
+    //register_uart_wakeup(UART1_NUM);
     ESP_ERROR_CHECK(uart_param_config(UART1_NUM, &uart_config1));
     esp_log_level_set(TAG, ESP_LOG_INFO);
     ESP_ERROR_CHECK(uart_set_pin(UART1_NUM, TXD1_PIN, RXD1_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE)); //uart_set_pin(uart_port_t uart_num, int tx_io_num, int rx_io_num, int rts_io_num, int cts_io_num)

@@ -28153,6 +28153,34 @@
             {
                 "children": [
                     {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "UDP Port to send log output to",
+                        "id": "LOG_UDP_PORT",
+                        "name": "LOG_UDP_PORT",
+                        "range": null,
+                        "title": "UDP Port",
+                        "type": "int"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "IP address to send log output to",
+                        "id": "LOG_UDP_IP",
+                        "name": "LOG_UDP_IP",
+                        "range": null,
+                        "title": "IP address to send log output",
+                        "type": "string"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-udp-logging",
+                "title": "UDP Logging",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
                         "children": [
                             {
                                 "children": [],

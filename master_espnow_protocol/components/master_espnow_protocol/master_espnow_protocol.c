@@ -1,5 +1,5 @@
 #include "master_espnow_protocol.h"
-
+#include "sleep.h"
 #include "uart.h"
 
 static int current_index = CURRENT_INDEX;
@@ -231,6 +231,9 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
             ESP_LOGI("SENSOR_DATA", "pH: %.6f", recv_data->ph_value);
                         // dump_uart((const char *)recv_cb->data);
                     send_uart(recv_data, "helzlo");
+
+                    //sleep_init(, false, UART_NUM_1);
+                    //go_to_sleep();
                     //sensor_data_t *send_uart = (sensor_data_t *)recv_cb; // Đây là struct bạn đã nhận được.
                     //sendStructData("TX1", recv_data, sizeof(recv_data));
 
@@ -321,7 +324,7 @@ void retry_connect_lost_task(void *pvParameter)
                         allowed_connect_slaves[i].end_time =  esp_timer_get_time();
                         uint64_t elapsed_time = allowed_connect_slaves[i].end_time - allowed_connect_slaves[i].start_time;
 
-                        if (elapsed_time > 5 * 1000000) 
+                        if (elapsed_time > 8 * 1000000) 
                         {
                             if (allowed_connect_slaves[i].number_retry == NUMBER_RETRY)
                             {

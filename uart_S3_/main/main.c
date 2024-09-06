@@ -5,6 +5,7 @@
 #include "nvs_flash.h"
 #include "pub_sub_client.h"
 #include "lwip/ip4_addr.h"  // Để sử dụng ip4_addr_t
+#include "logging_.h"
 static const char *TAG = "UART TEST";
 
 int count = 0;
@@ -32,6 +33,7 @@ void app_main(void)
     wifi_init();
     wifi_init_sta(SSID, PASS);
     // wifi_init_sta();
+    
     uart_init();
     button_init();
     mqtt_init(BROKER, USER_NAME_1, NULL);

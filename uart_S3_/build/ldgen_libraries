@@ -68,4 +68,5 @@ D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/main/libmain.a
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/PubSubClient/libPubSubClient.a
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/uart/libuart.a
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/button_/libbutton_.a
+D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/logging_/liblogging_.a
 D:/ESP32/myProject/uartnow/uart_S3_/build/esp-idf/wifi_/libwifi_.a

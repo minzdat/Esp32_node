@@ -10,7 +10,7 @@
 #include "esp_http_client.h"
 #include "esp_timer.h"
 #include <esp_now.h>
-
+#include "logging_.h"
 // #include "protocol_examples_common.h"
 
 // #include "esp_ping.h"
@@ -46,6 +46,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         ESP_LOGI(TAG, "Got IP: %s", ip_str);
                 // xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
                 // xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+        udp_logging_init("192.168.1.2", 12345, udp_logging_vprintf );
 
 
     }

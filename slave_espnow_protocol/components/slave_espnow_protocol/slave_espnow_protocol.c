@@ -1,4 +1,5 @@
 #include "slave_espnow_protocol.h"
+#include "sleep.h"
 
 static QueueHandle_t s_slave_espnow_queue;
 static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;

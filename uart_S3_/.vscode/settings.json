@@ -16,7 +16,10 @@
     "files.associations": {
         "iot_button.h": "c",
         "sdkconfig.h": "c",
-        "uart.h": "c"
+        "uart.h": "c",
+        "logging.h": "c",
+        "esp_system.h": "c",
+        "logging_.h": "c"
     },
     "idf.portWin": "COM42",
     "idf.flashType": "UART"
