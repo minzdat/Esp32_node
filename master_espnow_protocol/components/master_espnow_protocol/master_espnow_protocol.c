@@ -42,7 +42,7 @@ void log_table_devices()
                          table_devices[i].data.ph_value);
             }
         }
-
+ 
     ESP_LOGI(TAG, "--------------------------------------------------------------------------------------------------------");
 }
 
@@ -64,7 +64,6 @@ void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data
                 {
                     table_devices[i].data = *esp_data;
                 }
-                
                 log_table_devices();
 
                 // Free the mutex
@@ -149,6 +148,15 @@ void parse_payload(espnow_data_t *espnow_data)
     ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
     ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
     ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
+
+
+        espnow_data_t sensor_data;
+        espnow_data_t *buf = (espnow_data_t *)espnow_data;
+        sensor_data_t bufff=buf->payload;
+        // buf->crc = crc_cal;
+        memcpy(&sensor_data,espnow_data, sizeof(espnow_data_t));
+        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
+        dump_uart((uint8_t*)&sensor_data, 120);
 }
 
 /* Prepare ESPNOW data to be sent. */
@@ -417,6 +425,12 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
     {  
         ESP_LOGI(TAG, "_________________________________");
         ESP_LOGI(TAG, "Receive unicast ESPNOW data");
+
+
+
+
+
+
 
         // Check if the received data is SLAVE_SAVED_MAC_MSG to change status of MAC Online
         for (int i = 0; i < MAX_SLAVES; i++) 
