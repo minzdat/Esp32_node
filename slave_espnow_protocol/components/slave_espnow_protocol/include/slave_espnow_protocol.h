@@ -1,6 +1,7 @@
 #ifndef SLAVE_ESPNOW_PROTOCOL_H
 #define SLAVE_ESPNOW_PROTOCOL_H
 
+#include <math.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
@@ -20,6 +21,7 @@
 #include "esp_timer.h"
 #include "driver/temperature_sensor.h"
 #include "deep_sleep.h"
+#include "light_sleep.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -68,15 +70,17 @@
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_CONNECTED           "connected"
 #define NVS_KEY_KEEP_CONNECT        "keep_connect"
+#define NVS_KEY_PEER_ADDR           "peer_addr"
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define SLAVE_BROADCAST_MAC         { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
-#define DISCONNECTED_TIMEOUT        10 * 1000000
+#define DISCONNECTED_TIMEOUT        6 * 1000 * 1000
 #define ESPNOW_QUEUE_SIZE           6
 #define CURRENT_INDEX               0
+#define COUNT_DISCONNECTED          2
 #define MAX_DATA_LEN                250
 #define MAX_PAYLOAD_LEN             120 
-#define STILL_CONNECTED_MSG_SIZE    (sizeof(STILL_CONNECTED_MSG))
+#define PACKED_MSG_SIZE             20
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 
 typedef struct {
@@ -127,14 +131,15 @@ typedef struct {
     float do_value;
     float temperature_phg;
     float ph_value;
-    char message[STILL_CONNECTED_MSG_SIZE];
 } sensor_data_t;
 
 typedef struct {
-    uint8_t type;                         //[1 bytes] Broadcast or unicast ESPNOW data.
-    uint16_t seq_num;                     //[2 bytes] Sequence number of ESPNOW data.
-    uint16_t crc;                         //[2 bytes] CRC16 value of ESPNOW data.
-    uint8_t payload[MAX_PAYLOAD_LEN];     //[120 bytes] Real payload of ESPNOW data.
+    uint8_t type;                               //[1 bytes]   Broadcast or unicast ESPNOW data.
+    uint16_t seq_num;                           //[2 bytes]   Sequence number of ESPNOW data.
+    uint16_t crc;                               //[2 bytes]   CRC16 value of ESPNOW data.
+    char message[PACKED_MSG_SIZE];              //[20 bytes]  Message espnow
+    // uint8_t payload[MAX_PAYLOAD_LEN];        //[120 bytes] Real payload of ESPNOW data.
+    sensor_data_t payload;
 } __attribute__((packed)) espnow_data_t;
 
 /* Parameters of sending ESPNOW data. */
@@ -150,10 +155,13 @@ typedef struct {
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } slave_espnow_send_param_t;
 
+extern mac_master_t s_master_unicast_mac;
+
 // Function to NVS
+void log_data_from_nvs();
 void erase_nvs(const char *key);
-void load_from_nvs(const char *key_connected, const char *key_count, mac_master_t *mac_master);
-void save_to_nvs(const char *key_connected, const char *key_count, bool connected, int count_keep_connect);
+void load_from_nvs(const char *key_connected, const char *key_count, const char *key_peer_addr, mac_master_t *mac_master);
+void save_to_nvs(const char *key_connected, const char *key_count, const char *key_peer_addr, bool connected, int count_keep_connect, const uint8_t *peer_addr);
 
 // Function to read temperature internal esp
 void init_temperature_sensor();
@@ -164,8 +172,8 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void slave_wifi_init(void);
 
 // Function to slave espnow
-void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, const char *message);
-void parse_payload(const espnow_data_t *espnow_data);
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value);
+void parse_payload(espnow_data_t *espnow_data);
 void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *message);
 void espnow_data_parse(uint8_t *data, uint16_t data_len);
 void erase_peer(const uint8_t *peer_mac);
@@ -175,7 +183,7 @@ void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
 void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void slave_espnow_task(void *pvParameter);
 esp_err_t slave_espnow_init(void);
-void slave_espnow_deinit(slave_espnow_send_param_t *send_param);
+void slave_espnow_deinit();
 void slave_espnow_protocol();
 
 #endif //SLAVE_ESPNOW_PROTOCOL_H

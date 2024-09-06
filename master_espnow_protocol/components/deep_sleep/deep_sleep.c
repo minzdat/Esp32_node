@@ -1,18 +1,18 @@
 #include "deep_sleep.h"
 
-void deep_sleep_register_gpio_wakeup()
-{
-    const gpio_config_t config = 
-    {
-        .pin_bit_mask = BIT(WAKEUP_GPIO_PIN),
-        .mode = GPIO_MODE_INPUT,
-    };
+// void deep_sleep_register_gpio_wakeup()
+// {
+//     const gpio_config_t config = 
+//     {
+//         .pin_bit_mask = BIT(WAKEUP_GPIO_PIN),
+//         .mode = GPIO_MODE_INPUT,
+//     };
 
-    ESP_ERROR_CHECK(gpio_config(&config));
-    ESP_ERROR_CHECK(esp_deep_sleep_enable_gpio_wakeup(BIT(WAKEUP_GPIO_PIN), ESP_GPIO_WAKEUP_GPIO_HIGH));
+//     ESP_ERROR_CHECK(gpio_config(&config));
+//     ESP_ERROR_CHECK(esp_deep_sleep_enable_gpio_wakeup(BIT(WAKEUP_GPIO_PIN), ESP_GPIO_WAKEUP_GPIO_HIGH));
 
-    printf("Enabling GPIO wakeup on pins GPIO%d\n", WAKEUP_GPIO_PIN);
-}
+//     printf("Enabling GPIO wakeup on pins GPIO%d\n", WAKEUP_GPIO_PIN);
+// }
 
 void deep_sleep_register_rtc_timer_wakeup()
 {

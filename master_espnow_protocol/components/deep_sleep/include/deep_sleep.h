@@ -6,7 +6,7 @@
 #include "driver/rtc_io.h"
 
 #define WAKEUP_GPIO_PIN             2
-#define ENABLE_TIMER_WAKEUP         10    // Unit s
+#define ENABLE_TIMER_WAKEUP         2    // Unit s
 
 void deep_sleep_register_gpio_wakeup();
 void deep_sleep_register_rtc_timer_wakeup();

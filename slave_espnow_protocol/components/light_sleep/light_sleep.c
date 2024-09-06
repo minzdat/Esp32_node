@@ -74,8 +74,9 @@ void light_sleep_task(void *args)
                     wait_gpio_inactive();
                 }
 
-                master_espnow_deinit();                
-                master_espnow_init(); 
+
+                slave_espnow_deinit();                
+                slave_espnow_init(); 
 
                 start_time_light_sleep = 0;
                 light_sleep_flag = false;   

@@ -1,7 +1,7 @@
 #include "slave_espnow_protocol.h"
 
-static bool sleep_mode;
-static char payload[MAX_PAYLOAD_LEN]; 
+static int8_t rssi;
+static char message_packed[MAX_PAYLOAD_LEN]; 
 static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;
 static QueueHandle_t s_slave_espnow_queue;
 static slave_espnow_send_param_t send_param;
@@ -9,79 +9,37 @@ static slave_espnow_send_param_t send_param_specified;
 static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 mac_master_t s_master_unicast_mac;
 
-void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, const char *message) 
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value) 
 {
-
-    // Initialize variable sensor_data_t with input parameters
-    sensor_data_t sensor_data = 
-    {
-        .temperature_mcu = temperature_mcu,
-        .rssi = rssi,
-        .temperature_rdo = temperature_rdo,
-        .do_value = do_value,
-        .temperature_phg = temperature_phg,
-        .ph_value = ph_value
-    };
-
-    // Calculate the size of the message
-    size_t message_size = strlen(message);
-
-    // Copy message to sensor_data, ensuring not to exceed the allocated size
-    strncpy(sensor_data.message, message, message_size);
-
-    // Calculate the size of sensor_data_t
-    size_t sensor_data_size = sizeof(sensor_data_t);
-
-    // Make sure that the sensor_data_t size is not larger than the fixed size of the payload
-    if (sensor_data_size > MAX_PAYLOAD_LEN) 
-    {
-        ESP_LOGE(TAG, "The sensor_data_t data is too large to fit in the payload");
-        return;
-    }
-
-    // Copy sensor_data_t into the payload and fill in the rest as needed
-    memcpy(espnow_data->payload, &sensor_data, sensor_data_size);
-
-    // If the data is less than 120 bytes, fill the remainder with 0
-    if (sensor_data_size < MAX_PAYLOAD_LEN) 
-    {
-        memset(espnow_data->payload + sensor_data_size, 0, MAX_PAYLOAD_LEN - sensor_data_size);
-    }
+    // Initialize sensor data directly in the payload field
+    espnow_data->payload.temperature_mcu = temperature_mcu;
+    espnow_data->payload.rssi = rssi;
+    espnow_data->payload.temperature_rdo = temperature_rdo;
+    espnow_data->payload.do_value = do_value;
+    espnow_data->payload.temperature_phg = temperature_phg;
+    espnow_data->payload.ph_value = ph_value;
 
     // Print payload size and data for testing
-    ESP_LOGI(TAG, "     Payload size: %d bytes", MAX_PAYLOAD_LEN);
-    ESP_LOGI(TAG, "         MCU Temperature: %.2f", sensor_data.temperature_mcu);
-    ESP_LOGI(TAG, "         RSSI: %d", sensor_data.rssi);
-    ESP_LOGI(TAG, "         RDO Temperature: %.2f", sensor_data.temperature_rdo);
-    ESP_LOGI(TAG, "         DO Value: %.2f", sensor_data.do_value);
-    ESP_LOGI(TAG, "         PHG Temperature: %.2f", sensor_data.temperature_phg);
-    ESP_LOGI(TAG, "         PH Value: %.2f", sensor_data.ph_value);
-    ESP_LOGI(TAG, "         Message: %s", sensor_data.message);
-
+    ESP_LOGI(TAG, "     Payload size: %d bytes", sizeof(sensor_data_t));
+    ESP_LOGI(TAG, "         MCU Temperature: %.2f", espnow_data->payload.temperature_mcu);
+    ESP_LOGI(TAG, "         RSSI: %d", espnow_data->payload.rssi);
+    ESP_LOGI(TAG, "         RDO Temperature: %.2f", espnow_data->payload.temperature_rdo);
+    ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
+    ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
+    ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
 }
 
 /* Parse ESPNOW data payload. */
-void parse_payload(const espnow_data_t *espnow_data) 
+void parse_payload(espnow_data_t *espnow_data) 
 {
-    if (sizeof(espnow_data->payload) < sizeof(sensor_data_t)) 
-    {
-        ESP_LOGE(TAG, "Payload size is too small to parse sensor_data_t");
-        return;
-    }
-
-    sensor_data_t sensor_data;
-    memcpy(&sensor_data, espnow_data->payload, sizeof(sensor_data_t));
-
+    // Directly access the fields of the payload
     ESP_LOGI(TAG, "     Parsed ESPNOW payload:");
-    ESP_LOGI(TAG, "         MCU Temperature: %.2f", sensor_data.temperature_mcu);
-    ESP_LOGI(TAG, "         RSSI: %d", sensor_data.rssi);
-    ESP_LOGI(TAG, "         RDO Temperature: %.2f", sensor_data.temperature_rdo);
-    ESP_LOGI(TAG, "         DO Value: %.2f", sensor_data.do_value);
-    ESP_LOGI(TAG, "         PHG Temperature: %.2f", sensor_data.temperature_phg);
-    ESP_LOGI(TAG, "         PH Value: %.2f", sensor_data.ph_value);
-    ESP_LOGI(TAG, "         Message: %s", sensor_data.message);
-
-    memcpy(payload, sensor_data.message, strlen(sensor_data.message) + 1);
+    ESP_LOGI(TAG, "         MCU Temperature: %.2f", espnow_data->payload.temperature_mcu);
+    ESP_LOGI(TAG, "         RSSI: %d", espnow_data->payload.rssi);
+    ESP_LOGI(TAG, "         RDO Temperature: %.2f", espnow_data->payload.temperature_rdo);
+    ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
+    ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
+    ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
 }
 
 /* Prepare ESPNOW data to be sent. */
@@ -95,14 +53,23 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *mess
     buf->seq_num = s_espnow_seq[buf->type]++;
     buf->crc = 0;
 
+    // Calculate the size of the message
+    size_t message_size = strlen(message);
+
+    // Copy message to sensor_data, ensuring not to exceed the allocated size
+    strncpy(buf->message, message, message_size);
+
+    buf->message[message_size] = '\0';
+
     // Log the data received
     ESP_LOGI(TAG, "Parsed ESPNOW packed:");
     ESP_LOGI(TAG, "     type: %d", buf->type);
     ESP_LOGI(TAG, "     seq_num: %d", buf->seq_num);
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
+    ESP_LOGI(TAG, "     message: %s", buf->message);
 
     float temperature = read_internal_temperature_sensor();
-    prepare_payload(buf, temperature, -45, 23.1, 7.6, 24.0, 7.2, message);
+    prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
@@ -124,6 +91,10 @@ void espnow_data_parse(uint8_t *data, uint16_t data_len)
     ESP_LOGI(TAG, "     type: %d", buf->type);
     ESP_LOGI(TAG, "     seq_num: %d", buf->seq_num);
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
+    
+    // Copy the full message array safely
+    memcpy(message_packed, buf->message, sizeof(buf->message));
+    ESP_LOGI(TAG, "     message: %s", message_packed);
 
     // Log the payload if present
     if (data_len > sizeof(espnow_data_t)) 
@@ -158,12 +129,12 @@ void erase_peer(const uint8_t *peer_mac)
         if (del_err != ESP_OK) 
         {
             ESP_LOGE(TAG, "Failed to delete peer " MACSTR ": %s",
-                     MAC2STR(peer_mac), esp_err_to_name(del_err));
+                    MAC2STR(peer_mac), esp_err_to_name(del_err));
         } 
         else 
         {
             ESP_LOGI(TAG, "Deleted peer " MACSTR,
-                     MAC2STR(peer_mac));
+                    MAC2STR(peer_mac));
         }
     }
 }
@@ -175,7 +146,7 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
     memset(&peer, 0, sizeof(esp_now_peer_info_t));
     peer.channel = CONFIG_ESPNOW_CHANNEL;
     peer.ifidx = ESPNOW_WIFI_IF;
-    peer.encrypt = encrypt;
+    peer.encrypt = false;
     memcpy(peer.lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
     memcpy(peer.peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
 
@@ -235,6 +206,9 @@ void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
 
 void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len)
 {
+    rssi = recv_info->rx_ctrl->rssi;
+    // ESP_LOGI(TAG, "RSSI: %d dBm", rssi);
+
     slave_espnow_event_t evt;
     slave_espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
     uint8_t * mac_addr = recv_info->src_addr;
@@ -275,24 +249,24 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
         {
             case false:
                 // Check if the received data is MASTER_AGREE_CONNECT_MSG
-                if (recv_cb->data_len >= strlen(MASTER_AGREE_CONNECT_MSG) && strstr((char *)payload, MASTER_AGREE_CONNECT_MSG) != NULL) 
+                if (recv_cb->data_len >= strlen(MASTER_AGREE_CONNECT_MSG) && strstr((char *)message_packed, MASTER_AGREE_CONNECT_MSG) != NULL) 
                 {
                     memcpy(s_master_unicast_mac.peer_addr, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
                     ESP_LOGI(TAG, "Added MAC Master " MACSTR " SUCCESS", MAC2STR(s_master_unicast_mac.peer_addr));
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " SAVED MAC Master", MAC2STR(s_master_unicast_mac.peer_addr));
                     s_master_unicast_mac.connected = true;
 
-                    save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect);
+                    save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
 
                     s_master_unicast_mac.start_time =  esp_timer_get_time();
                     response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG, false);
-                    add_peer(s_master_unicast_mac.peer_addr, true);
+                    add_peer(s_master_unicast_mac.peer_addr, false);
                 }
                 break;
 
             case true:
                 // Check if the received data is CHECK_CONNECTION_MSG
-                if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)payload, CHECK_CONNECTION_MSG) != NULL) 
+                if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)message_packed, CHECK_CONNECTION_MSG) != NULL) 
                 {
                     s_master_unicast_mac.start_time = esp_timer_get_time();
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " %s", MAC2STR(s_master_unicast_mac.peer_addr),STILL_CONNECTED_MSG);
@@ -300,7 +274,8 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
 
                     s_master_unicast_mac.count_keep_connect = 0;
 
-                    sleep_mode = true;
+                    light_sleep_flag = true;
+                    start_time_light_sleep = esp_timer_get_time();
                 }
                 break;
         }
@@ -317,11 +292,13 @@ void slave_espnow_task(void *pvParameter)
 
     while (true) 
     {
+        // ESP_LOGE(TAG, "Task slave_espnow_task");
+
         switch (s_master_unicast_mac.connected) 
         {
             case false:
 
-                erase_peer(s_master_unicast_mac.peer_addr);
+                // erase_peer(s_master_unicast_mac.peer_addr);
            
                 /* Start sending broadcast ESPNOW data. */
                 ESP_LOGW(TAG, "---------------------------------");
@@ -346,31 +323,26 @@ void slave_espnow_task(void *pvParameter)
 
                 if (elapsed_time > DISCONNECTED_TIMEOUT)
                 {
-                    // ESP_LOGW(TAG, "Time Out !");
+                    ESP_LOGW(TAG, "Time Out !");
                     
                     // s_master_unicast_mac.connected = false;
 
-                    if (s_master_unicast_mac.count_keep_connect >= 3)
+                    if (s_master_unicast_mac.count_keep_connect >= COUNT_DISCONNECTED)
                     {
                         s_master_unicast_mac.connected = false;
                         s_master_unicast_mac.count_keep_connect = 0;
-                        save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect);
                         
+                        save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
+
                     }
-                    
-                    s_master_unicast_mac.count_keep_connect++;
+                    else
+                    {
+                        s_master_unicast_mac.count_keep_connect++;
 
-                    save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect);
-                    
-                    deep_sleep_mode();
+                        save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
+                    }
                 }
 
-
-                if (sleep_mode)
-                {
-                    deep_sleep_mode();
-                }
-                
                 break;
         }
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 seconds
@@ -400,22 +372,17 @@ esp_err_t slave_espnow_init(void)
     /* Add broadcast peer information to peer list. */
     add_peer(s_slave_broadcast_mac, false);
 
-    /* Initialize sending parameters. */
-    memset(&send_param, 0, sizeof(slave_espnow_send_param_t));
-
     return ESP_OK;
 }
 
-void slave_espnow_deinit(slave_espnow_send_param_t *send_param)
+void slave_espnow_deinit()
 {
     vSemaphoreDelete(s_slave_espnow_queue);
     esp_now_deinit();
 }
 
 void slave_espnow_protocol()
-{
-    sleep_mode = false;
-    
+{    
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) 
@@ -432,14 +399,20 @@ void slave_espnow_protocol()
     //  ---Process values ​​from nvs---
 
     // erase_nvs(NVS_KEY_CONNECTED);
-    load_from_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, &s_master_unicast_mac);
-    ESP_LOGI("TAG", "s_master_unicast_mac.connected = %s", s_master_unicast_mac.connected ? "true" : "false");
+    load_from_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, &s_master_unicast_mac);
+    log_data_from_nvs();
     
     //  ---Process values ​​from nvs---
 
-    deep_sleep_register_rtc_timer_wakeup();
+    /* Enable wakeup from light sleep by timer */
+    register_timer_wakeup();
 
     slave_espnow_init();
 
+    /* Initialize sending parameters. */
+    memset(&send_param, 0, sizeof(slave_espnow_send_param_t));
+
     xTaskCreate(slave_espnow_task, "slave_espnow_task", 4096, &send_param, 4, NULL);
+
+    xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 6, NULL);
 }

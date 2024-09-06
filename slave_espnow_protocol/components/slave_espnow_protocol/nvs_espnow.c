@@ -1,5 +1,18 @@
 #include "slave_espnow_protocol.h"
 
+void log_data_from_nvs() 
+{
+    // Log the value of the entire s_master_unicast_mac
+    ESP_LOGI("TAG", "s_master_unicast_mac.connected = %s", s_master_unicast_mac.connected ? "true" : "false");
+    ESP_LOGI("TAG", "s_master_unicast_mac.count_keep_connect = %" PRId32, s_master_unicast_mac.count_keep_connect);
+
+    // Log peer address (if you need to log MAC address)
+    ESP_LOGI("TAG", "s_master_unicast_mac.peer_addr = %02x:%02x:%02x:%02x:%02x:%02x",
+             s_master_unicast_mac.peer_addr[0], s_master_unicast_mac.peer_addr[1],
+             s_master_unicast_mac.peer_addr[2], s_master_unicast_mac.peer_addr[3],
+             s_master_unicast_mac.peer_addr[4], s_master_unicast_mac.peer_addr[5]);
+}
+
 // Function to remove the value of s_master_unicast_mac.connected from NVS
 void erase_nvs(const char *key) 
 {
@@ -37,7 +50,7 @@ void erase_nvs(const char *key)
 
 
 // Function to load values ​​from NVS into members of the structure
-void load_from_nvs(const char *key_connected, const char *key_count, mac_master_t *mac_master) 
+void load_from_nvs(const char *key_connected, const char *key_count, const char *key_peer_addr, mac_master_t *mac_master) 
 {
     esp_err_t err;
     nvs_handle_t my_handle;
@@ -84,12 +97,38 @@ void load_from_nvs(const char *key_connected, const char *key_count, mac_master_
         ESP_LOGI(TAG, "Loaded count_keep_connect value from NVS successfully with key_count '%s'!", key_count);
     }
 
+
+    // Read the value of peer_addr from NVS
+    size_t required_size = ESP_NOW_ETH_ALEN; // Size of peer_addr array
+    err = nvs_get_blob(my_handle, key_peer_addr, NULL, &required_size);
+    if (err == ESP_ERR_NVS_NOT_FOUND) 
+    {
+        ESP_LOGW(TAG, "No saved peer_addr value found in NVS with key_peer_addr '%s'!", key_peer_addr);
+        memset(mac_master->peer_addr, 0, ESP_NOW_ETH_ALEN); // Initialize with zeros if not found
+    } 
+    else if (err != ESP_OK) 
+    {
+        ESP_LOGE(TAG, "Error (%s) getting peer_addr blob size from NVS with key_peer_addr '%s'!", esp_err_to_name(err), key_peer_addr);
+    } 
+    else 
+    {
+        err = nvs_get_blob(my_handle, key_peer_addr, mac_master->peer_addr, &required_size);
+        if (err != ESP_OK) 
+        {
+            ESP_LOGE(TAG, "Error (%s) reading peer_addr value from NVS with key_peer_addr '%s'!", esp_err_to_name(err), key_peer_addr);
+        } 
+        else 
+        {
+            ESP_LOGI(TAG, "Loaded peer_addr value from NVS successfully with key_peer_addr '%s'!", key_peer_addr);
+        }
+    }
+
     // Close the NVS handle
     nvs_close(my_handle);
 }
 
 // Function to save the value of s_master_unicast_mac.connected to NVS
-void save_to_nvs(const char *key_connected, const char *key_count, bool connected, int count_keep_connect) 
+void save_to_nvs(const char *key_connected, const char *key_count, const char *key_peer_addr, bool connected, int count_keep_connect, const uint8_t *peer_addr) 
 {
     esp_err_t err;
     nvs_handle_t my_handle;
@@ -122,6 +161,17 @@ void save_to_nvs(const char *key_connected, const char *key_count, bool connecte
     else 
     {
         ESP_LOGI(TAG, "Saved count_keep_connect value to NVS successfully with key '%s'!", key_count);
+    }
+
+    // Save the value of peer_addr to NVS
+    err = nvs_set_blob(my_handle, key_peer_addr, peer_addr, ESP_NOW_ETH_ALEN);
+    if (err != ESP_OK) 
+    {
+        ESP_LOGE(TAG, "Error (%s) saving peer_addr value to NVS with key '%s'!", esp_err_to_name(err), key_peer_addr);
+    } 
+    else 
+    {
+        ESP_LOGI(TAG, "Saved peer_addr value to NVS successfully with key '%s'!", key_peer_addr);
     }
 
     // Commit the changes and close the NVS handle

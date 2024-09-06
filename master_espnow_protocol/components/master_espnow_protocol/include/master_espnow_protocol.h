@@ -21,8 +21,7 @@
 #include "driver/temperature_sensor.h"
 #include "esp_pm.h"
 #include "deep_sleep.h"
-
-#include "read_serial.h"
+#include "light_sleep.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -74,8 +73,8 @@
 #define WIFI_FAIL_BIT               BIT1
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 #define ESPNOW_MAXDELAY             512
-#define TIME_CHECK_CONNECT          10000           // Unit ms
-#define RETRY_TIMEOUT               6 * 1000000     // Unit us
+#define TIME_CHECK_CONNECT          3 * 1000            // Unit ms
+#define RETRY_TIMEOUT               1 * 1000 * 1000     // Unit us
 #define NUMBER_RETRY                3
 #define ESPNOW_QUEUE_SIZE           6
 #define MAX_SLAVES                  3
@@ -83,7 +82,7 @@
 #define MAX_SEND_ERRORS             3
 #define MAX_DATA_LEN                250
 #define MAX_PAYLOAD_LEN             120
-#define STILL_CONNECTED_MSG_SIZE    (sizeof(STILL_CONNECTED_MSG))
+#define PACKED_MSG_SIZE             20
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 #define DEFAULT_BEACON_TIMEOUT      CONFIG_WIFI_BEACON_TIMEOUT
 
@@ -150,15 +149,22 @@ typedef struct {
     float do_value;
     float temperature_phg;
     float ph_value;
-    char message[STILL_CONNECTED_MSG_SIZE];
 } sensor_data_t;
 
 typedef struct {
-    uint8_t type;                         //[1 bytes] Broadcast or unicast ESPNOW data.
-    uint16_t seq_num;                     //[2 bytes] Sequence number of ESPNOW data.
-    uint16_t crc;                         //[2 bytes] CRC16 value of ESPNOW data.
-    uint8_t payload[MAX_PAYLOAD_LEN];     //[120 bytes] Real payload of ESPNOW data.
+    uint8_t type;                               // [1 bytes]    Broadcast or unicast ESPNOW data.
+    uint16_t seq_num;                           // [2 bytes]    Sequence number of ESPNOW data.
+    uint16_t crc;                               // [2 bytes]    CRC16 value of ESPNOW data.
+    char message[PACKED_MSG_SIZE];              // [20 bytes]   Message espnow
+    // uint8_t payload[MAX_PAYLOAD_LEN];        // [120 bytes]  Real payload of ESPNOW data.
+    sensor_data_t payload;
 } __attribute__((packed)) espnow_data_t;
+
+typedef struct {
+    uint8_t peer_addr[ESP_NOW_ETH_ALEN];    // ESPNOW peer MAC address
+    bool status;                            // Variable status has two statuses online: 1 and offline: 0
+    sensor_data_t data;                     // Data devices
+} table_device_t;
 
 /* Parameters of sending ESPNOW data. */
 typedef struct {
@@ -172,6 +178,9 @@ typedef struct {
     uint8_t buffer[MAX_DATA_LEN];         //Buffer pointing to ESPNOW data.
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } master_espnow_send_param_t;
+
+// Public variable
+extern list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 
 // Function to read temperature internal esp
 void init_temperature_sensor();
@@ -190,8 +199,8 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void);
 
 // Function to master espnow
-void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, const char *message);
-void parse_payload(const espnow_data_t *espnow_data);
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value); 
+void parse_payload(espnow_data_t *espnow_data); 
 void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *message);
 void espnow_data_parse(uint8_t *data, uint16_t data_len);
 void add_peer(const uint8_t *peer_mac, bool encrypt); 

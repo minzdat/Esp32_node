@@ -14,7 +14,7 @@
 #include "esp_timer.h"
 #include "esp_check.h"
 #include "driver/gpio.h"
-#include "master_espnow_protocol.h"
+#include "slave_espnow_protocol.h"
 
 #define TAG_LIGHT_SLEEP         "LIGHT_SLEEP"
 #define TIMER_WAKEUP_TIME_US    (2 * 1000 * 1000)

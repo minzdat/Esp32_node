@@ -1,6 +1,7 @@
 #include "master_espnow_protocol.h"
 
-static char payload[MAX_PAYLOAD_LEN]; 
+static int8_t rssi;
+static char message_packed[MAX_PAYLOAD_LEN]; 
 static int current_index = CURRENT_INDEX;
 static const uint8_t s_master_broadcast_mac[ESP_NOW_ETH_ALEN] = MASTER_BROADCAST_MAC;
 static QueueHandle_t s_master_espnow_queue;
@@ -10,79 +11,144 @@ static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 list_slaves_t test_allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t waiting_connect_slaves[MAX_SLAVES];
+sensor_data_t esp_data_sensor;
+table_device_t table_devices[MAX_SLAVES];
+SemaphoreHandle_t table_devices_mutex;
 
-void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, const char *message) 
+void log_table_devices() 
 {
-    // Initialize variable sensor_data_t with input parameters
-    sensor_data_t sensor_data = 
+    ESP_LOGI(TAG, "---------------------------------------------------------------------------------------------------------");
+        ESP_LOGI(TAG, "| %-17s | %-7s | %-7s | %-12s | %-12s | %-12s | %-8s | %-8s |", 
+                 "MAC Address", "Status", "RSSI", "Temp MCU", "Temp RDO", "Temp PHG", "DO Value", "pH Value");
+        ESP_LOGI(TAG, "--------------------------------------------------------------------------------------------------------");
+        
+        for (int i = 0; i < MAX_SLAVES; i++) 
+        {
+            if (memcmp(table_devices[i].peer_addr, "\0\0\0\0\0\0", ESP_NOW_ETH_ALEN) != 0) 
+            {
+                char mac_str[18];
+                sprintf(mac_str, "%02X:%02X:%02X:%02X:%02X:%02X", 
+                        table_devices[i].peer_addr[0], table_devices[i].peer_addr[1], table_devices[i].peer_addr[2],
+                        table_devices[i].peer_addr[3], table_devices[i].peer_addr[4], table_devices[i].peer_addr[5]);
+
+                ESP_LOGI(TAG, "| %-17s | %-7s | %-7d | %-12.2f | %-12.2f | %-12.2f | %-8.2f | %-8.2f |",
+                         mac_str,
+                         table_devices[i].status ? "Online" : "Offline",
+                         table_devices[i].data.rssi,
+                         table_devices[i].data.temperature_mcu,
+                         table_devices[i].data.temperature_rdo,
+                         table_devices[i].data.temperature_phg,
+                         table_devices[i].data.do_value,
+                         table_devices[i].data.ph_value);
+            }
+        }
+
+    ESP_LOGI(TAG, "--------------------------------------------------------------------------------------------------------");
+}
+
+// The function stores the value into table_device_t
+void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data, bool status) 
+{
+    if (xSemaphoreTake(table_devices_mutex, portMAX_DELAY)) 
     {
-        .temperature_mcu = temperature_mcu,
-        .rssi = rssi,
-        .temperature_rdo = temperature_rdo,
-        .do_value = do_value,
-        .temperature_phg = temperature_phg,
-        .ph_value = ph_value
-    };
+        for (int i = 0; i < MAX_SLAVES; i++) 
+        {
+            // Check if the MAC address already exists in the table
+            if (memcmp(table_devices[i].peer_addr, peer_addr, ESP_NOW_ETH_ALEN) == 0) 
+            {
+                // Update data if it already exists
+                table_devices[i].status = status;
 
-    // Calculate the size of the message
-    size_t message_size = strlen(message);
+                // Only update data if esp_data is not NULL
+                if (esp_data != NULL) 
+                {
+                    table_devices[i].data = *esp_data;
+                }
+                
+                log_table_devices();
 
-    // Copy message to sensor_data, ensuring not to exceed the allocated size
-    strncpy(sensor_data.message, message, message_size);
+                // Free the mutex
+                xSemaphoreGive(table_devices_mutex);
+                return;
+            }
+        }
 
-    // Calculate the size of sensor_data_t
-    size_t sensor_data_size = sizeof(sensor_data_t);
+        // If the MAC address does not exist, add it to the table
+        for (int i = 0; i < MAX_SLAVES; i++) 
+        {
+            // Find blank cells (blank MAC address)
+            if (memcmp(table_devices[i].peer_addr, "\0\0\0\0\0\0", ESP_NOW_ETH_ALEN) == 0) 
+            {
+                // Copy MAC address and save data
+                memcpy(table_devices[i].peer_addr, peer_addr, ESP_NOW_ETH_ALEN);
+                table_devices[i].status = status;
 
-    // Make sure that the sensor_data_t size is not larger than the fixed size of the payload
-    if (sensor_data_size > MAX_PAYLOAD_LEN) 
-    {
-        ESP_LOGE(TAG, "The sensor_data_t data is too large to fit in the payload");
-        return;
+                // Only update data if esp_data is not NULL
+                if (esp_data != NULL) 
+                {
+                    table_devices[i].data = *esp_data;
+                }
+                
+                log_table_devices();
+                
+                // Free the mutex
+                xSemaphoreGive(table_devices_mutex);
+                return;
+            }
+        }
+
+        ESP_LOGW(TAG, "Table device is full. Cannot add new device");
+
+        log_table_devices();
+
+        // Free the mutex
+        xSemaphoreGive(table_devices_mutex);
     }
-
-    // Copy sensor_data_t into the payload and fill in the rest as needed
-    memcpy(espnow_data->payload, &sensor_data, sensor_data_size);
-
-    // If the data is less than 120 bytes, fill the remainder with 0
-    if (sensor_data_size < MAX_PAYLOAD_LEN) 
+    else 
     {
-        memset(espnow_data->payload + sensor_data_size, 0, MAX_PAYLOAD_LEN - sensor_data_size);
+        ESP_LOGE(TAG, "Failed to take mutex to save data to table_devices");
     }
+}
+
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value) 
+{
+    // Initialize sensor data directly in the payload field
+    espnow_data->payload.temperature_mcu = temperature_mcu;
+    espnow_data->payload.rssi = rssi;
+    espnow_data->payload.temperature_rdo = temperature_rdo;
+    espnow_data->payload.do_value = do_value;
+    espnow_data->payload.temperature_phg = temperature_phg;
+    espnow_data->payload.ph_value = ph_value;
 
     // Print payload size and data for testing
-    ESP_LOGI(TAG, "     Payload size: %d bytes", MAX_PAYLOAD_LEN);
-    ESP_LOGI(TAG, "         MCU Temperature: %.2f", sensor_data.temperature_mcu);
-    ESP_LOGI(TAG, "         RSSI: %d", sensor_data.rssi);
-    ESP_LOGI(TAG, "         RDO Temperature: %.2f", sensor_data.temperature_rdo);
-    ESP_LOGI(TAG, "         DO Value: %.2f", sensor_data.do_value);
-    ESP_LOGI(TAG, "         PHG Temperature: %.2f", sensor_data.temperature_phg);
-    ESP_LOGI(TAG, "         PH Value: %.2f", sensor_data.ph_value);
-    ESP_LOGI(TAG, "         Message: %s", sensor_data.message);
-
+    ESP_LOGI(TAG, "     Payload size: %d bytes", sizeof(sensor_data_t));
+    ESP_LOGI(TAG, "         MCU Temperature: %.2f", espnow_data->payload.temperature_mcu);
+    ESP_LOGI(TAG, "         RSSI: %d", espnow_data->payload.rssi);
+    ESP_LOGI(TAG, "         RDO Temperature: %.2f", espnow_data->payload.temperature_rdo);
+    ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
+    ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
+    ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
 }
 
 /* Parse ESPNOW data payload. */
-void parse_payload(const espnow_data_t *espnow_data) 
+void parse_payload(espnow_data_t *espnow_data) 
 {
-    if (sizeof(espnow_data->payload) < sizeof(sensor_data_t)) 
-    {
-        ESP_LOGE(TAG, "Payload size is too small to parse sensor_data_t");
-        return;
-    }
+    // Save values ​​to esp_data_sensor
+    esp_data_sensor.temperature_mcu = espnow_data->payload.temperature_mcu;
+    esp_data_sensor.rssi = espnow_data->payload.rssi;
+    esp_data_sensor.temperature_rdo = espnow_data->payload.temperature_rdo;
+    esp_data_sensor.do_value = espnow_data->payload.do_value;
+    esp_data_sensor.temperature_phg = espnow_data->payload.temperature_phg;
+    esp_data_sensor.ph_value = espnow_data->payload.ph_value;
 
-    sensor_data_t sensor_data;
-    memcpy(&sensor_data, espnow_data->payload, sizeof(sensor_data_t));
-
+    // Directly access the fields of the payload
     ESP_LOGI(TAG, "     Parsed ESPNOW payload:");
-    ESP_LOGI(TAG, "         MCU Temperature: %.2f", sensor_data.temperature_mcu);
-    ESP_LOGI(TAG, "         RSSI: %d", sensor_data.rssi);
-    ESP_LOGI(TAG, "         RDO Temperature: %.2f", sensor_data.temperature_rdo);
-    ESP_LOGI(TAG, "         DO Value: %.2f", sensor_data.do_value);
-    ESP_LOGI(TAG, "         PHG Temperature: %.2f", sensor_data.temperature_phg);
-    ESP_LOGI(TAG, "         PH Value: %.2f", sensor_data.ph_value);
-    ESP_LOGI(TAG, "         Message: %s", sensor_data.message);
-
-    memcpy(payload, sensor_data.message, strlen(sensor_data.message) + 1);
+    ESP_LOGI(TAG, "         MCU Temperature: %.2f", espnow_data->payload.temperature_mcu);
+    ESP_LOGI(TAG, "         RSSI: %d", espnow_data->payload.rssi);
+    ESP_LOGI(TAG, "         RDO Temperature: %.2f", espnow_data->payload.temperature_rdo);
+    ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
+    ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
+    ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
 }
 
 /* Prepare ESPNOW data to be sent. */
@@ -95,15 +161,24 @@ void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *mes
     buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? ESPNOW_DATA_BROADCAST : ESPNOW_DATA_UNICAST;
     buf->seq_num = s_espnow_seq[buf->type]++;
     buf->crc = 0;
+    
+    // Calculate the size of the message
+    size_t message_size = strlen(message);
+
+    // Copy message to sensor_data, ensuring not to exceed the allocated size
+    strncpy(buf->message, message, message_size);
+
+    buf->message[message_size] = '\0';
 
     // Log the data received
     ESP_LOGI(TAG, "Parsed ESPNOW packed:");
     ESP_LOGI(TAG, "     type: %d", buf->type);
     ESP_LOGI(TAG, "     seq_num: %d", buf->seq_num);
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
+    ESP_LOGI(TAG, "     message: %s", buf->message);
 
     float temperature = read_internal_temperature_sensor();
-    prepare_payload(buf, temperature, -45, 23.1, 7.6, 24.0, 7.2, message);
+    prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
@@ -126,6 +201,20 @@ void espnow_data_parse(uint8_t *data, uint16_t data_len)
     ESP_LOGI(TAG, "     seq_num: %d", buf->seq_num);
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
 
+    // Copy the full message array safely
+    memcpy(message_packed, buf->message, sizeof(buf->message));
+    ESP_LOGI(TAG, "     message: %s", message_packed);
+
+    // Log the payload if present
+    if (data_len > sizeof(espnow_data_t)) 
+    {
+        parse_payload(buf);
+    } 
+    else 
+    {
+        ESP_LOGI(TAG, "  No payload data.");
+    }
+
     crc = buf->crc;
     buf->crc = 0;
     crc_cal = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, data_len);
@@ -139,22 +228,6 @@ void espnow_data_parse(uint8_t *data, uint16_t data_len)
         ESP_LOGE(TAG, "CRC check failed. Calculated CRC: %d, Received CRC: %d", crc_cal, crc);
         return;
     }
-
-        // Log the payload if present
-    if (data_len > sizeof(espnow_data_t)) 
-    {
-        parse_payload(buf);
-        sensor_data_t sensor_data;
-        // buf->crc = crc_cal;
-        memcpy(&sensor_data, buf->payload, sizeof(sensor_data_t));
-        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
-        dump_uart((uint8_t*)&sensor_data, sizeof(sensor_data_t));
-
-    } 
-    else 
-    {
-        ESP_LOGI(TAG, "  No payload data.");
-    }
 }
 
 void add_peer(const uint8_t *peer_mac, bool encrypt) 
@@ -164,7 +237,7 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
     memset(&peer, 0, sizeof(esp_now_peer_info_t));
     peer.channel = CONFIG_ESPNOW_CHANNEL;
     peer.ifidx = ESPNOW_WIFI_IF;
-    peer.encrypt = encrypt;
+    peer.encrypt = false;
     memcpy(peer.lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
     memcpy(peer.peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
 
@@ -273,6 +346,9 @@ void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status
 
 void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len)
 {
+    rssi = recv_info->rx_ctrl->rssi;
+    // ESP_LOGI(TAG, "RSSI: %d dBm", rssi);
+
     master_espnow_event_t evt;
     master_espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
     uint8_t * mac_addr = recv_info->src_addr;
@@ -317,7 +393,7 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                     // Parse the received data when the condition is met
                     espnow_data_parse(recv_cb->data, recv_cb->data_len);
 
-                    if (recv_cb->data_len >= strlen(REQUEST_CONNECTION_MSG) && strstr((char *)payload, REQUEST_CONNECTION_MSG) != NULL) 
+                    if (recv_cb->data_len >= strlen(REQUEST_CONNECTION_MSG) && strstr((char *)message_packed, REQUEST_CONNECTION_MSG) != NULL) 
                     {
                         // Call a function to response agree connect
                         allowed_connect_slaves[i].start_time = esp_timer_get_time();
@@ -351,7 +427,7 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                 // Parse the received data when the condition is met
                 espnow_data_parse(recv_cb->data, recv_cb->data_len);
 
-                if (recv_cb->data_len >= strlen(SLAVE_SAVED_MAC_MSG) && strstr((char *)payload, SLAVE_SAVED_MAC_MSG) != NULL) 
+                if (recv_cb->data_len >= strlen(SLAVE_SAVED_MAC_MSG) && strstr((char *)message_packed, SLAVE_SAVED_MAC_MSG) != NULL) 
                 {
                     allowed_connect_slaves[i].status = true; // Set status to Online
 
@@ -361,18 +437,27 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                     allowed_connect_slaves[i].number_retry = 0;
 
                     save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
+                    write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
 
                     break;
                 }
-                else if (recv_cb->data_len >= strlen(STILL_CONNECTED_MSG) && strstr((char *)payload, STILL_CONNECTED_MSG) != NULL)
+                else if (recv_cb->data_len >= strlen(STILL_CONNECTED_MSG) && strstr((char *)message_packed, STILL_CONNECTED_MSG) != NULL)
                 {
+
+                    write_table_devices(allowed_connect_slaves[i].peer_addr, &esp_data_sensor, allowed_connect_slaves[i].status);
+
                     allowed_connect_slaves[i].start_time = 0;
                     allowed_connect_slaves[i].check_connect_errors = 0;
                     // allowed_connect_slaves[i].count_receive++;
 
                     // ESP_LOGW(TAG, "Receive from " MACSTR " - Counting: %d", MAC2STR(allowed_connect_slaves[i].peer_addr), allowed_connect_slaves[i].count_receive);
+                    
+                    // vTaskDelay(pdMS_TO_TICKS(2000));
 
-                    deep_sleep_mode();
+                    // deep_sleep_mode();
+
+                    light_sleep_flag = true;
+                    start_time_light_sleep = esp_timer_get_time();
 
                     break;
                 }
@@ -390,7 +475,7 @@ void master_espnow_task(void *pvParameter)
     while (true) 
     {
 
-        ESP_LOGE(TAG, "Task master_espnow_task");
+        // ESP_LOGE(TAG, "Task master_espnow_task");
 
         // Browse the allowed_connect_slaves list
         for (int i = 0; i < MAX_SLAVES; i++) 
@@ -408,7 +493,7 @@ void master_espnow_task(void *pvParameter)
                                        
                 espnow_data_prepare(send_param, CHECK_CONNECTION_MSG); 
          
-                add_peer(allowed_connect_slaves[i].peer_addr, true);
+                add_peer(allowed_connect_slaves[i].peer_addr, false);
 
                 if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) 
                 {
@@ -426,6 +511,7 @@ void master_espnow_task(void *pvParameter)
                         // allowed_connect_slaves[i].count_retry = 0;
 
                         save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
+                        write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
                     }
                 } 
                 else 
@@ -445,7 +531,7 @@ void retry_connect_lost_task(void *pvParameter)
 {
     while (true) 
     {
-        ESP_LOGE(TAG, "Task retry_connect_lost_task");
+        // ESP_LOGE(TAG, "Task retry_connect_lost_task");
 
         for (int i = 0; i < MAX_SLAVES; i++) 
         {
@@ -459,7 +545,7 @@ void retry_connect_lost_task(void *pvParameter)
 
                         if (elapsed_time > RETRY_TIMEOUT) 
                         {
-                            if (allowed_connect_slaves[i].number_retry == NUMBER_RETRY)
+                            if (allowed_connect_slaves[i].number_retry >= NUMBER_RETRY)
                             {
                                 ESP_LOGW(TAG, "---------------------------------");
                                 ESP_LOGW(TAG, "Retry %s with " MACSTR "",RESPONSE_AGREE_CONNECT, MAC2STR(allowed_connect_slaves[i].peer_addr));
@@ -500,6 +586,7 @@ void retry_connect_lost_task(void *pvParameter)
                                 allowed_connect_slaves[i].check_connect_errors = 0;
 
                                 save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
+                                write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
                             }
                         }
                     }
@@ -530,9 +617,7 @@ esp_err_t master_espnow_init(void)
 
     /* Set primary master key. */
     ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) ); 
-    
-    /* Initialize sending parameters. */
-    memset(&send_param, 0, sizeof(master_espnow_send_param_t));
+
 
     return ESP_OK;
 }
@@ -545,6 +630,8 @@ void master_espnow_deinit()
 
 void master_espnow_protocol()
 {
+    table_devices_mutex = xSemaphoreCreateMutex();
+
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) 
@@ -566,14 +653,29 @@ void master_espnow_protocol()
 
     load_info_slaves_from_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
 
+    for (int i = 0; i < MAX_SLAVES; i++) 
+    {
+        write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
+    }
+
     // ---Data demo MAC from Slave---
 
-    deep_sleep_register_rtc_timer_wakeup();
-    deep_sleep_register_gpio_wakeup();
+    // deep_sleep_register_rtc_timer_wakeup();
+    // deep_sleep_register_gpio_wakeup();
+
+    /* Enable wakeup from light sleep by timer */
+    register_timer_wakeup();
+    /* Enable wakeup from light sleep by gpio */
+    register_gpio_wakeup();
 
     master_espnow_init();
+
+    /* Initialize sending parameters. */
+    memset(&send_param, 0, sizeof(master_espnow_send_param_t));
 
     xTaskCreate(master_espnow_task, "master_espnow_task", 4096, &send_param, 4, NULL);
 
     xTaskCreate(retry_connect_lost_task, "retry_connect_lost_task", 4096, NULL, 5, NULL);
+
+    xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 6, NULL);
 }
