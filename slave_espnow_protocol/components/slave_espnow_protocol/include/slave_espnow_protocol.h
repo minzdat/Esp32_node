@@ -22,6 +22,7 @@
 #include "driver/temperature_sensor.h"
 #include "deep_sleep.h"
 #include "light_sleep.h"
+#include "slave_controller.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -67,6 +68,7 @@
 #define SLAVE_SAVED_MAC_MSG         "SAVED_mac"
 #define CHECK_CONNECTION_MSG        "CHECK_connect"
 #define STILL_CONNECTED_MSG         "KEEP_connect"
+#define CONTROL_RELAY_MSG           "CONTROL_relay"
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_CONNECTED           "connected"
 #define NVS_KEY_KEEP_CONNECT        "keep_connect"
@@ -74,7 +76,7 @@
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define SLAVE_BROADCAST_MAC         { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
-#define DISCONNECTED_TIMEOUT        6 * 1000 * 1000
+#define DISCONNECTED_TIMEOUT        13 * 1000 * 1000     // 3 seconds
 #define ESPNOW_QUEUE_SIZE           6
 #define CURRENT_INDEX               0
 #define COUNT_DISCONNECTED          2

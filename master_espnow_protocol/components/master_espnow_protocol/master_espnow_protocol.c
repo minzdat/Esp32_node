@@ -1,5 +1,6 @@
 #include "master_espnow_protocol.h"
 
+static int64_t start_time_check_connect;
 static int8_t rssi;
 static char message_packed[MAX_PAYLOAD_LEN]; 
 static int current_index = CURRENT_INDEX;
@@ -12,7 +13,7 @@ list_slaves_t test_allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t waiting_connect_slaves[MAX_SLAVES];
 sensor_data_t esp_data_sensor;
-extern table_device_t table_devices[MAX_SLAVES];
+table_device_t table_devices[MAX_SLAVES];
 SemaphoreHandle_t table_devices_mutex;
 
 void log_table_devices() 
@@ -40,15 +41,9 @@ void log_table_devices()
                          table_devices[i].data.temperature_phg,
                          table_devices[i].data.do_value,
                          table_devices[i].data.ph_value);
-        // table_device_t sensor_data;
-        // buf->crc = crc_cal;
-        // memcpy(&sensor_data,&table_devices[i], sizeof(table_device_t));
-        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
-        // if (table_devices[i].status==1)
-        // dump_uart((uint8_t*)&sensor_data, 120);
             }
         }
- 
+
     ESP_LOGI(TAG, "--------------------------------------------------------------------------------------------------------");
 }
 
@@ -70,6 +65,7 @@ void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data
                 {
                     table_devices[i].data = *esp_data;
                 }
+                
                 log_table_devices();
 
                 // Free the mutex
@@ -154,9 +150,6 @@ void parse_payload(espnow_data_t *espnow_data)
     ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
     ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
     ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
-
-
-
 }
 
 /* Prepare ESPNOW data to be sent. */
@@ -426,12 +419,6 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
         ESP_LOGI(TAG, "_________________________________");
         ESP_LOGI(TAG, "Receive unicast ESPNOW data");
 
-
-
-
-
-
-
         // Check if the received data is SLAVE_SAVED_MAC_MSG to change status of MAC Online
         for (int i = 0; i < MAX_SLAVES; i++) 
         {
@@ -488,55 +475,61 @@ void master_espnow_task(void *pvParameter)
 
     while (true) 
     {
+        ESP_LOGE(TAG, "Task master_espnow_task");
 
-        // ESP_LOGE(TAG, "Task master_espnow_task");
+        //Send check connect
+        int64_t current_time = esp_timer_get_time();
 
-        // Browse the allowed_connect_slaves list
-        for (int i = 0; i < MAX_SLAVES; i++) 
+        if ((current_time - start_time_check_connect) >= TIME_CHECK_CONNECT) 
         {
-            if (allowed_connect_slaves[i].status) // Check online status
-            { 
-                // Update destination MAC address
-                memcpy(send_param->dest_mac, allowed_connect_slaves[i].peer_addr, ESP_NOW_ETH_ALEN);
-                ESP_LOGW(TAG, "---------------------------------");
-                ESP_LOGW(TAG, "Send %s to MAC  " MACSTR "",CHECK_CONNECTION_MSG, MAC2STR(allowed_connect_slaves[i].peer_addr));
+            // Browse the allowed_connect_slaves list
+            for (int i = 0; i < MAX_SLAVES; i++) 
+            {
+                if (allowed_connect_slaves[i].status) // Check online status
+                { 
+                    // Update destination MAC address
+                    memcpy(send_param->dest_mac, allowed_connect_slaves[i].peer_addr, ESP_NOW_ETH_ALEN);
+                    ESP_LOGW(TAG, "---------------------------------");
+                    ESP_LOGW(TAG, "Send %s to MAC  " MACSTR "",CHECK_CONNECTION_MSG, MAC2STR(allowed_connect_slaves[i].peer_addr));
 
-                // Count the number of packets sent
-                // allowed_connect_slaves[i].count_send ++;
-                // ESP_LOGW(TAG, "Send to " MACSTR " - Counting: %d", MAC2STR(allowed_connect_slaves[i].peer_addr), allowed_connect_slaves[i].count_send);
-                                       
-                espnow_data_prepare(send_param, CHECK_CONNECTION_MSG); 
-         
-                add_peer(allowed_connect_slaves[i].peer_addr, false);
+                    // Count the number of packets sent
+                    // allowed_connect_slaves[i].count_send ++;
+                    // ESP_LOGW(TAG, "Send to " MACSTR " - Counting: %d", MAC2STR(allowed_connect_slaves[i].peer_addr), allowed_connect_slaves[i].count_send);
+                                        
+                    espnow_data_prepare(send_param, CHECK_CONNECTION_MSG); 
+            
+                    add_peer(allowed_connect_slaves[i].peer_addr, false);
 
-                if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) 
-                {
-                    allowed_connect_slaves[i].send_errors++;
-                    ESP_LOGE(TAG, "Send error to MAC: " MACSTR ". Current send_errors count: %d", MAC2STR(send_param->dest_mac), allowed_connect_slaves[i].send_errors);
-                    if (allowed_connect_slaves[i].send_errors >= MAX_SEND_ERRORS)
+                    if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) 
                     {
-                        allowed_connect_slaves[i].status = false; // Mark MAC as offline
+                        allowed_connect_slaves[i].send_errors++;
+                        ESP_LOGE(TAG, "Send error to MAC: " MACSTR ". Current send_errors count: %d", MAC2STR(send_param->dest_mac), allowed_connect_slaves[i].send_errors);
+                        if (allowed_connect_slaves[i].send_errors >= MAX_SEND_ERRORS)
+                        {
+                            allowed_connect_slaves[i].status = false; // Mark MAC as offline
 
-                        ESP_LOGW(TAG, "MAC: " MACSTR " has been marked offline", MAC2STR( allowed_connect_slaves[i].peer_addr));
+                            ESP_LOGW(TAG, "MAC: " MACSTR " has been marked offline", MAC2STR( allowed_connect_slaves[i].peer_addr));
 
-                        // Reset value count if device marked offline
-                        // allowed_connect_slaves[i].count_receive = 0;
-                        // allowed_connect_slaves[i].count_send = 0;
-                        // allowed_connect_slaves[i].count_retry = 0;
+                            // Reset value count if device marked offline
+                            // allowed_connect_slaves[i].count_receive = 0;
+                            // allowed_connect_slaves[i].count_send = 0;
+                            // allowed_connect_slaves[i].count_retry = 0;
 
-                        save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
-                        write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
+                            save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
+                            write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
+                        }
+                    } 
+                    else 
+                    {
+                        allowed_connect_slaves[i].send_errors = 0;
+                        allowed_connect_slaves[i].start_time = esp_timer_get_time(); 
                     }
-                } 
-                else 
-                {
-                    allowed_connect_slaves[i].send_errors = 0;
-                    allowed_connect_slaves[i].start_time = esp_timer_get_time(); 
                 }
             }
-        }
 
-        vTaskDelay(pdMS_TO_TICKS(TIME_CHECK_CONNECT));
+            start_time_check_connect = esp_timer_get_time();
+        }
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -545,7 +538,7 @@ void retry_connect_lost_task(void *pvParameter)
 {
     while (true) 
     {
-        // ESP_LOGE(TAG, "Task retry_connect_lost_task");
+        ESP_LOGE(TAG, "Task retry_connect_lost_task");
 
         for (int i = 0; i < MAX_SLAVES; i++) 
         {
@@ -644,7 +637,10 @@ void master_espnow_deinit()
 
 void master_espnow_protocol()
 {
+    // Initialize Semaphore Mutex for Table Devices
     table_devices_mutex = xSemaphoreCreateMutex();
+
+    start_time_check_connect = esp_timer_get_time();
 
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
@@ -659,7 +655,7 @@ void master_espnow_protocol()
 
     init_temperature_sensor();
 
-    // ---Data demo MAC from Slave---
+    /* ----------Data demo MAC from Slave---------- */
 
     // test_allowed_connect_slaves_to_nvs(test_allowed_connect_slaves);
 
@@ -667,20 +663,29 @@ void master_espnow_protocol()
 
     load_info_slaves_from_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
 
+    /* End----------Data demo MAC from Slave---------- */
+
+    // Load MAC and status Slave to Table Devices
     for (int i = 0; i < MAX_SLAVES; i++) 
     {
         write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
     }
 
-    // ---Data demo MAC from Slave---
+     /* ----------Set up Wake up for Deep Sleep---------- */
 
     // deep_sleep_register_rtc_timer_wakeup();
     // deep_sleep_register_gpio_wakeup();
 
-    /* Enable wakeup from light sleep by timer */
+    /* End----------Set up Wake up for Deep Sleep---------- */
+
+    /* ----------Set up Wake up for Light Sleep---------- */
+
+    // Enable wakeup from light sleep by timer
     register_timer_wakeup();
-    /* Enable wakeup from light sleep by gpio */
+    // Enable wakeup from light sleep by gpio
     register_gpio_wakeup();
+
+    /* End ----------Set up Wake up for Light Sleep---------- */
 
     master_espnow_init();
 
@@ -689,7 +694,7 @@ void master_espnow_protocol()
 
     xTaskCreate(master_espnow_task, "master_espnow_task", 4096, &send_param, 4, NULL);
 
-    xTaskCreate(retry_connect_lost_task, "retry_connect_lost_task", 4096, NULL, 5, NULL);
+    xTaskCreate(retry_connect_lost_task, "retry_connect_lost_task", 4096, NULL, 4, NULL);
 
-    xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 6, NULL);
+    xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 3, NULL);
 }

@@ -55,4 +55,5 @@ void dump_uart(uint8_t *message, size_t len);
 uint8_t wait_connect_serial();
 void check_timeout();
 void accept_connect(uint8_t *message);
+
 #endif

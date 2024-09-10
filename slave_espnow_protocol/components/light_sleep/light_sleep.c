@@ -2,12 +2,12 @@
 
 bool light_sleep_flag = false;
 int64_t start_time_light_sleep = 0;
+
 void light_sleep_task(void *args)
 {
     while (true) 
     {
-        
-        // ESP_LOGE(TAG_LIGHT_SLEEP, "Task light_sleep_task");
+        ESP_LOGE(TAG_LIGHT_SLEEP, "Task light_sleep_task");
 
         if (light_sleep_flag)
         {
@@ -16,9 +16,9 @@ void light_sleep_task(void *args)
             if ((current_time - start_time_light_sleep) >= TIMER_LIGHT_SLEEP) 
             {
 
-                ESP_LOGI(TAG_LIGHT_SLEEP, "Current time light sleep : %lld us", current_time);
-                ESP_LOGI(TAG_LIGHT_SLEEP, "Start time light sleep   : %lld us", start_time_light_sleep);
-                ESP_LOGI(TAG_LIGHT_SLEEP, "Enter time light sleep   : %lld us", (current_time - start_time_light_sleep));
+                // ESP_LOGI(TAG_LIGHT_SLEEP, "Current time light sleep : %lld us", current_time);
+                // ESP_LOGI(TAG_LIGHT_SLEEP, "Start time light sleep   : %lld us", start_time_light_sleep);
+                // ESP_LOGI(TAG_LIGHT_SLEEP, "Enter time light sleep   : %lld us", (current_time - start_time_light_sleep));
 
                 printf("Entering light sleep\n");
                 /* To make sure the complete line is printed before entering sleep mode,
@@ -87,4 +87,10 @@ void light_sleep_task(void *args)
         vTaskDelay(pdMS_TO_TICKS(1000));   
     }
     vTaskDelete(NULL);
+}
+
+void light_sleep_init()
+{
+    /* Enable wakeup from light sleep by timer */
+    register_timer_wakeup();
 }

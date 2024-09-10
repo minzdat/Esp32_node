@@ -2,12 +2,12 @@
 
 bool light_sleep_flag = false;
 int64_t start_time_light_sleep = 0;
+
 void light_sleep_task(void *args)
 {
     while (true) 
     {
-        
-        // ESP_LOGE(TAG_LIGHT_SLEEP, "Task light_sleep_task");
+        ESP_LOGE(TAG_LIGHT_SLEEP, "Task light_sleep_task");
 
         if (light_sleep_flag)
         {
@@ -77,8 +77,14 @@ void light_sleep_task(void *args)
                 master_espnow_deinit();                
                 master_espnow_init(); 
 
+                if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_GPIO) 
+                {    
+                    handle_device(DEVICE_RELAY, true); 
+                }
+                
                 start_time_light_sleep = 0;
                 light_sleep_flag = false;   
+            
             }
                     
         }

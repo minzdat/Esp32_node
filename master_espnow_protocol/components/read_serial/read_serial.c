@@ -138,11 +138,10 @@ static void uart_event(void *pvParameters)
                         table_device_tt sensor_data;
                         // buf->crc = crc_cal;
                         memcpy(&sensor_data,&table_devices[1], sizeof(table_device_tt));
-                        ESP_LOGI(TAG, "         MCU Temperature: %.2f", table_devices[1]. data.temperature_mcu);
+                        ESP_LOGI(TAG, "         MCU Temperature: %.2f", table_devices[1].data.temperature_mcu);
 
                         // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
                         // if (table_devices[1].status==1)
-                        if (table_devices[1].status==1)
                         dump_uart((uint8_t*)&sensor_data, 120);
                     }
                 }
