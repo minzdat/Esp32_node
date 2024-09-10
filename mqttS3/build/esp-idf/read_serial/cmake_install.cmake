@@ -1,4 +1,4 @@
-# Install script for directory: D:/esp32/gitnew/uartnow/mqttS3/components/read_serial
+# Install script for directory: D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/components/read_serial
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

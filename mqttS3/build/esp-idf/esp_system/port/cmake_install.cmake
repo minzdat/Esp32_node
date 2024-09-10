@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/esp32/gitnew/uartnow/mqttS3/build/esp-idf/esp_system/port/soc/esp32s3/cmake_install.cmake")
+  include("D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/build/esp-idf/esp_system/port/soc/esp32s3/cmake_install.cmake")
 endif()
 

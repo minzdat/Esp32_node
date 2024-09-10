@@ -298,7 +298,7 @@ void parse_payloadd(const espnow_data_t *espnow_data) {
     // espnow_data->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)espnow_data, sizeof(sensor_data_t));
 
 }
-espnow_data_t *recv_data;
+table_device_t *recv_data;
 
 
 
@@ -313,9 +313,9 @@ static void uart_event(void *pvParameters)
     while (true){
         if (xQueueReceive(uart0_queue, (void *)&event, (TickType_t)portMAX_DELAY)) {
             // bzero(encrypted_message, 20);
-            memset(encrypted_message, 0, sizeof(encrypted_message));
+            memset(encrypted_message, 0, event.size);
                 ESP_LOGI(TAG, "[Size DATA]: %d", event.size);
-                int length = uart_read_bytes(UART_NUM, encrypted_message, event.size, 50 / portTICK_PERIOD_MS);
+                int length = uart_read_bytes(UART_NUM, encrypted_message, event.size, 100 / portTICK_PERIOD_MS);
                 uart_flush(UART_NUM);
                 ESP_LOGW(TAG, "Reicv %d bytes : ",length);
                 printf("%s \n",encrypted_message);
@@ -326,14 +326,14 @@ static void uart_event(void *pvParameters)
                 // memcpy(decrypted_message, encrypted_message, sizeof(encrypted_message));
                 // espnow_data_t *recv_data = (espnow_data_t *)encrypted_message;
 
-                recv_data = (espnow_data_t *)encrypted_message;
+                recv_data = (table_device_t *)encrypted_message;
                 connect_request* mess=(connect_request*) encrypted_message;
                 // print_hex(recv_data,  event.size);
 
     // In các giá trị cảm biến
     // parse_payload(recv_data);
     // if (!connect_check)
-    accept_connect((uint8_t *)encrypted_message);
+    // accept_connect((uint8_t *)encrypted_message);
     // if (!strncmp(REQUEST_CONNECTION_MSG ,(char *)encrypted_message,sizeof(REQUEST_CONNECTION_MSG))){
     //     dump_uart((uint8_t *)RESPONSE_AGREE,sizeof(RESPONSE_AGREE));
     //     // connect_check=true;
@@ -373,10 +373,10 @@ static void uart_event(void *pvParameters)
                 // parse_payload(&recv_data->payload);
 
     if (connect_check){
-        if (strcmp((char *)recv_data->message, REQUEST_UART) == 0) {
-            parse_payload(&recv_data->payload);
+        if (memcmp(&recv_data->peer_addr, &recv_data->peer_addr, 6) == 0) {
+            parse_payload(&recv_data->data);
             connect_request keep_connect;
-            memcpy(keep_connect.message,REQUEST_UART,sizeof(REQUEST_UART));
+            memcpy(keep_connect.message,MESSAGES_DATA,sizeof(MESSAGES_DATA));
             // dump_uart((const char *)keep_connect.message,  sizeof(keep_connect.message));
 
             time_now=esp_timer_get_time(); 
@@ -392,15 +392,16 @@ static void uart_event(void *pvParameters)
 
 void uart_event_task(void){
     // configure_gpio_output();
+    wait_connect_serial();
     xTaskCreate(uart_event, "uart_event", 4096, NULL, 12, NULL);
     // xTaskCreate(check_timeout, "check_timeout", 4096, NULL, 12, NULL);
 
 }
 
 
-uint8_t wait_connect_serial(){
-    return connect_check;
-}
+// uint8_t wait_connect_serial(){
+//     return connect_check;
+// }
 
 void accept_connect(uint8_t *message){
     if (!strncmp(REQUEST_CONNECTION_MSG ,(char *)message,sizeof(REQUEST_CONNECTION_MSG))){
@@ -415,41 +416,26 @@ void accept_connect(uint8_t *message){
     }
 }
 
-uint8_t wait_connect_seriallll(){
-    uart_event_t event;
-    unsigned char reponse_connect_uart[sizeof(connect_request)];
-
+void wait_connect_serial(){
+    uint8_t reponse_connect_uart[20]; 
+    messages_request mess;
+    memcpy(mess.message, REQUEST_UART, sizeof(REQUEST_UART));
     while (true)
     {   
-        if (xQueueReceive(uart0_queue, (void *)&event, (TickType_t)portMAX_DELAY)) {
-        memset(reponse_connect_uart, 0, sizeof(connect_request));
-        uart_read_bytes(UART_NUM, reponse_connect_uart, event.size, pdMS_TO_TICKS(300));
+        vTaskDelay(pdMS_TO_TICKS(2000));
+        ESP_LOGW(TAG,"wait_connect_serial");
         uart_flush(UART_NUM);
-        // connect_request mess;
-        // memcpy(mess.message, reponse_connect_uart, sizeof(reponse_connect_uart));
-        connect_request* mess=(connect_request*) reponse_connect_uart;
+        dump_uart((uint8_t *) &mess.message,  sizeof(mess.message));
 
-        // dump_uart( RESPONSE_AGREE,  sizeof(RESPONSE_AGREE));
-        vTaskDelay(pdMS_TO_TICKS(200));
-        ESP_LOGI(TAG,"wait_connect_serial");
-        printf("%s \n",(char *)mess);
+        memset(reponse_connect_uart, 0, sizeof(reponse_connect_uart));
 
-            
-        if (strcmp((char *)mess, REQUEST_CONNECTION_MSG) == 0) {
+        uart_read_bytes(UART_NUM, reponse_connect_uart, sizeof(reponse_connect_uart), pdMS_TO_TICKS(200));
+        if (strcmp((char *)reponse_connect_uart, RESPONSE_AGREE) == 0) {
             ESP_LOGI(TAG, "CONNECTED");
-            memcpy(mess->message, RESPONSE_AGREE, sizeof(RESPONSE_AGREE));
-            // dump_uart((const char *)mess->message,  sizeof(mess->message));
-            uint8_t mac[6];
-            memcpy(mac, mess->mac, sizeof(mess->mac));
-            // uint8_t mac[] = mess->mac;
-            ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
-                 mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
-            
+            dump_uart((uint8_t *) RESPONSE_CONNECTED,  sizeof(RESPONSE_CONNECTED));
             break;
         }
 
-        }
-    // return 1;
     }
-return 1;
+    return ;
 }

@@ -1533,7 +1533,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_read_serial_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\Users\ASUS\.espressif\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -SD:\esp32\gitnew\uartnow\mqttS3 -BD:\esp32\gitnew\uartnow\mqttS3\build
+  command = C:\Users\ASUS\.espressif\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -SD:\esp32\rf-wifi\TepBac_RF_WIFI\mqttS3 -BD:\esp32\rf-wifi\TepBac_RF_WIFI\mqttS3\build
   description = Re-running CMake...
   generator = 1
 

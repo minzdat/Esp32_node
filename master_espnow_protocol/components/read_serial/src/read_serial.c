@@ -17,7 +17,7 @@ const char *TAG="Read Serial";
 int time_now=0;
 int time_check=0;
 int timeout=10000000;
-bool connect_check=false;
+bool connect_check=true;
 
 // #define PATTERN_CHR_NUM    (3)         /*!< Set the number of consecutive and identical characters received by receiver which defines a UART pattern*/
 #define UART_NUM_P2         UART_NUM_1    // Sử dụng UART1
@@ -27,6 +27,9 @@ bool connect_check=false;
 #define BUF_SIZE (5000)
 #define RD_BUF_SIZE (BUF_SIZE)
 static QueueHandle_t uart0_queue;
+#define MAX_SLAVES                  3
+
+extern table_device_tt table_devices[MAX_SLAVES];
 
 void uart_config(void){
         uart_config_t uart_config = {
@@ -118,6 +121,9 @@ static void uart_event(void *pvParameters)
                     ESP_LOGE(TAG, "Reicv %d bytes : ",event.size);
                     printf("%s \n",decrypted_message);
 
+
+                    accept_connect((uint8_t *)decrypted_message);
+
                 if (connect_check){
                     if (strcmp((char *)decrypted_message, REQUEST_UART) == 0) {
                         time_now=esp_timer_get_time(); 
@@ -127,11 +133,21 @@ static void uart_event(void *pvParameters)
                         time_now=esp_timer_get_time();
                         ESP_LOGE(TAG, "Reicv %s ",decrypted_message);
                     }
+                    
+                    else if (memcmp((char *)decrypted_message, GET_DATA, 6) == 0){
+                        table_device_tt sensor_data;
+                        // buf->crc = crc_cal;
+                        memcpy(&sensor_data,&table_devices[1], sizeof(table_device_tt));
+                        ESP_LOGI(TAG, "         MCU Temperature: %.2f", table_devices[1].data.temperature_mcu);
+
+                        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
+                        // if (table_devices[1].status==1)
+                        dump_uart((uint8_t*)&sensor_data, 120);
+                    }
                 }
-                
-                if ((strcmp((char *)decrypted_message, RESPONSE_AGREE) == 0)&&(!connect_check)) {
-                    connect_check=true;
-                }
+                // if ((strcmp((char *)decrypted_message, RESPONSE_AGREE) == 0)&&(!connect_check)) {
+                //     connect_check=true;
+                // }
 
             }
         }
@@ -177,11 +193,10 @@ void check_timeout(){
 
 
 void uart_event_task(void){
-    wait_connect_serial();
+    // wait_connect_serial();
     xTaskCreate(uart_event, "uart_event", 4096, NULL, 12, NULL);
     // check_timeout();
     // xTaskCreate(check_timeout, "check_timeout", 4096, NULL, 12, NULL);
-
 }
 
 
@@ -189,7 +204,18 @@ void uart_event_task(void){
 // strncpy(mess.message, request_connect, sizeof(request_connect));
 
 
-
+void accept_connect(uint8_t *message){
+    if (!strncmp(REQUEST_CONNECTION_MSG ,(char *)message,sizeof(REQUEST_CONNECTION_MSG))){
+        dump_uart((uint8_t *)RESPONSE_AGREE,sizeof(RESPONSE_AGREE));
+        // connect_check=true;
+        ESP_LOGI(TAG, RESPONSE_AGREE);
+    }
+    if (!strncmp(RESPONSE_CONNECTED ,(char *)message,sizeof(RESPONSE_CONNECTED))){
+        // dump_uart((uint8_t *)RESPONSE_AGREE,sizeof(RESPONSE_AGREE));
+        connect_check=true;
+        ESP_LOGI(TAG, "connected");
+    }
+}
 uint8_t wait_connect_serial(){
     uint8_t reponse_connect_uart[20]; 
     messages_request mess;

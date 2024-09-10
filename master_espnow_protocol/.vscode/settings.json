@@ -44,6 +44,15 @@
     "initializer_list": "c",
     "span": "c",
     "light_sleep.h": "c",
-    "string": "c"
+    "string": "c",
+    "time.h": "c",
+    "assert.h": "c",
+    "esp_random.h": "c",
+    "esp_netif.h": "c",
+    "esp_crc.h": "c",
+    "esp_pm.h": "c",
+    "deep_sleep.h": "c",
+    "esp_sleep.h": "c",
+    "gpio.h": "c"
   }
 }

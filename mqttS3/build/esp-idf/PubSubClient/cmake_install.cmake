@@ -1,4 +1,4 @@
-# Install script for directory: D:/esp32/gitnew/uartnow/mqttS3/components/PubSubClient
+# Install script for directory: D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/components/PubSubClient
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

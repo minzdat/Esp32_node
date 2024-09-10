@@ -3,4 +3,4 @@ source "C:/Users/ASUS/esp/v5.2.2/esp-idf/components/esp_app_format/Kconfig.projb
 source "C:/Users/ASUS/esp/v5.2.2/esp-idf/components/esp_rom/Kconfig.projbuild"
 source "C:/Users/ASUS/esp/v5.2.2/esp-idf/components/esptool_py/Kconfig.projbuild"
 source "C:/Users/ASUS/esp/v5.2.2/esp-idf/components/partition_table/Kconfig.projbuild"
-source "D:/esp32/gitnew/uartnow/mqttS3/main/Kconfig.projbuild"
+source "D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/main/Kconfig.projbuild"

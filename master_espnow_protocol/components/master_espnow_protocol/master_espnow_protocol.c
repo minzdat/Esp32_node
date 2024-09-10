@@ -12,7 +12,7 @@ list_slaves_t test_allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t waiting_connect_slaves[MAX_SLAVES];
 sensor_data_t esp_data_sensor;
-table_device_t table_devices[MAX_SLAVES];
+extern table_device_t table_devices[MAX_SLAVES];
 SemaphoreHandle_t table_devices_mutex;
 
 void log_table_devices() 
@@ -40,6 +40,12 @@ void log_table_devices()
                          table_devices[i].data.temperature_phg,
                          table_devices[i].data.do_value,
                          table_devices[i].data.ph_value);
+        // table_device_t sensor_data;
+        // buf->crc = crc_cal;
+        // memcpy(&sensor_data,&table_devices[i], sizeof(table_device_t));
+        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
+        // if (table_devices[i].status==1)
+        // dump_uart((uint8_t*)&sensor_data, 120);
             }
         }
  
@@ -150,13 +156,7 @@ void parse_payload(espnow_data_t *espnow_data)
     ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
 
 
-        espnow_data_t sensor_data;
-        espnow_data_t *buf = (espnow_data_t *)espnow_data;
-        sensor_data_t bufff=buf->payload;
-        // buf->crc = crc_cal;
-        memcpy(&sensor_data,espnow_data, sizeof(espnow_data_t));
-        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
-        dump_uart((uint8_t*)&sensor_data, 120);
+
 }
 
 /* Prepare ESPNOW data to be sent. */
@@ -661,9 +661,9 @@ void master_espnow_protocol()
 
     // ---Data demo MAC from Slave---
 
-    test_allowed_connect_slaves_to_nvs(test_allowed_connect_slaves);
+    // test_allowed_connect_slaves_to_nvs(test_allowed_connect_slaves);
 
-    save_info_slaves_to_nvs("KEY_SLA_ALLOW", test_allowed_connect_slaves);
+    // save_info_slaves_to_nvs("KEY_SLA_ALLOW", test_allowed_connect_slaves);
 
     load_info_slaves_from_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
 

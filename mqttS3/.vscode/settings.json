@@ -32,6 +32,7 @@
     "future": "c",
     "mutex": "c",
     "esp_crt_bundle.h": "c",
-    "regex": "c"
+    "regex": "c",
+    "stdio.h": "c"
   }
 }

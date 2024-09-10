@@ -8,10 +8,6 @@
 #include "esp_timer.h"
 #include <math.h>
 
-
-
-
-
 #include "connect_wifi.h"
 #include "pub_sub_client.h"
 #include "read_serial.h"
@@ -83,7 +79,9 @@ connect_request mess_button;
 
 static void button_longpress_cb(void *arg, void *usr_data)
 {
-    memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
+    // memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
+    memcpy(mess_button.message, GET_DATA, sizeof(GET_DATA));
+
     dump_uart(&mess_button, sizeof(mess_button));
     delay(500);
     ESP_ERROR_CHECK(!(BUTTON_LONG_PRESS_START == iot_button_get_event(arg)));
