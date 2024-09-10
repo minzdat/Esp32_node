@@ -1,4 +1,4 @@
-@echo off
+
 color a
 git add .
 echo Type Commit
