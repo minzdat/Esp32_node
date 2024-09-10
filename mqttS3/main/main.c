@@ -60,7 +60,7 @@ static void mqtt_task(void *pvParameters)
 {
     sensor_data_t sensor_data;
     while(1)
-    {   memcpy(mess_button.message, GET_DATA, sizeof(GET_DATA));
+    {   memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
         dump_uart(&mess_button, sizeof(mess_button));
         vTaskDelay(5000/ portTICK_PERIOD_MS);
 

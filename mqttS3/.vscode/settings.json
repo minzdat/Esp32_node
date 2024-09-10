@@ -33,6 +33,7 @@
     "mutex": "c",
     "esp_crt_bundle.h": "c",
     "regex": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "stdlib.h": "c"
   }
 }
