@@ -4,8 +4,13 @@
     "project_version":    "v5.2.2-dirty",
     "project_path":       "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader/subproject",
     "idf_path":           "D:/ESP32/esp-idf/v5.2.2/esp-idf",
+<<<<<<< HEAD
     "build_dir":          "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader",
     "config_file":        "D:/ESP32/myProject/Esp32_node/mqttS3/sdkconfig",
+=======
+    "build_dir":          "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader",
+    "config_file":        "D:/ESP32/myProject/uartnow/mqttS3/sdkconfig",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     "config_defaults":    "",
     "bootloader_elf":     "",
     "app_elf":            "bootloader.elf",
@@ -54,7 +59,11 @@
             "priv_reqs": [ "micro-ecc", "spi_flash", "efuse", "esp_bootloader_format", "esp_app_format", "hal" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/bootloader_support/libbootloader_support.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/bootloader_support/libbootloader_support.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_common.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_common_loader.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_clock_init.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_mem.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_random.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_efuse.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/flash_encrypt.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/secure_boot.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_random_esp32s3.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/bootloader_flash/src/flash_qio_mode.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32s3.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_utility.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/flash_partitions.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/esp_image_format.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_init.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_clock_loader.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_console.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_console_loader.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/esp32s3/bootloader_sha.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/esp32s3/bootloader_soc.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/esp32s3/bootloader_esp32s3.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader_support/src/bootloader_panic.c" ],
             "include_dirs": [ "include", "bootloader_flash/include", "private_include" ]
         },
@@ -69,7 +78,11 @@
             "priv_reqs": [ "bootloader_support", "soc", "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/efuse/libefuse.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/efuse/libefuse.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/esp32s3/esp_efuse_table.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/esp32s3/esp_efuse_fields.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/esp32s3/esp_efuse_rtc_calib.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/esp32s3/esp_efuse_utility.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/src/esp_efuse_api.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/src/esp_efuse_fields.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/src/esp_efuse_utility.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/efuse/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c" ],
             "include_dirs": [ "include", "esp32s3/include" ]
         },
@@ -99,7 +112,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/esp_bootloader_format/libesp_bootloader_format.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/esp_bootloader_format/libesp_bootloader_format.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -114,7 +131,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/esp_common/libesp_common.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/esp_common/libesp_common.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_common/src/esp_err_to_name.c" ],
             "include_dirs": [ "include" ]
         },
@@ -129,7 +150,11 @@
             "priv_reqs": [ "efuse", "spi_flash", "bootloader_support", "esp_system" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/esp_hw_support/libesp_hw_support.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/esp_hw_support/libesp_hw_support.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/cpu.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/esp_memory_utils.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/port/esp32s3/cpu_region_protect.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/port/esp32s3/rtc_clk.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/port/esp32s3/rtc_clk_init.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/port/esp32s3/rtc_init.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/port/esp32s3/rtc_sleep.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/port/esp32s3/rtc_time.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_hw_support/port/esp32s3/chip_info.c" ],
             "include_dirs": [ "include", "include/soc", "include/soc/esp32s3" ]
         },
@@ -144,7 +169,11 @@
             "priv_reqs": [ "soc", "hal" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/esp_rom/libesp_rom.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/esp_rom/libesp_rom.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_crc.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_sys.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_uart.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_spiflash.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_efuse.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_longjmp.S", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_systimer.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_wdt.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_cache_esp32s2_esp32s3.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/patches/esp_rom_cache_writeback_esp32s3.S" ],
             "include_dirs": [ "include", "include/esp32s3", "esp32s3" ]
         },
@@ -159,7 +188,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/esp_system/libesp_system.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/esp_system/libesp_system.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_system/esp_err.c" ],
             "include_dirs": []
         },
@@ -204,7 +237,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/hal/libhal.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/hal/libhal.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/hal/hal_utils.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/hal/mpu_hal.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/hal/efuse_hal.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/hal/esp32s3/efuse_hal.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/hal/mmu_hal.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/hal/cache_hal.c" ],
             "include_dirs": [ "platform_port/include", "esp32s3/include", "include" ]
         },
@@ -219,7 +256,11 @@
             "priv_reqs": [ "soc", "hal", "esp_hw_support" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/log/liblog.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/log/liblog.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/log/log.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/log/log_buffers.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/log/log_noos.c" ],
             "include_dirs": [ "include" ]
         },
@@ -234,7 +275,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/main/libmain.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/main/libmain.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader/subproject/main/bootloader_start.c" ],
             "include_dirs": []
         },
@@ -249,7 +294,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/micro-ecc/libmicro-ecc.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/micro-ecc/libmicro-ecc.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/bootloader/subproject/components/micro-ecc/uECC_verify_antifault.c" ],
             "include_dirs": [ ".", "micro-ecc" ]
         },
@@ -294,7 +343,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/soc/libsoc.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/soc/libsoc.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/lldesc.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/dport_access_common.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/interrupts.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/gpio_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/uart_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/adc_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/dedic_gpio_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/gdma_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/spi_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/ledc_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/pcnt_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/rmt_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/sdm_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/i2s_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/i2c_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/temperature_sensor_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/timer_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/lcd_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/mcpwm_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/mpi_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/sdmmc_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/touch_sensor_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/twai_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/usb_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/usb_dwc_periph.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/soc/esp32s3/rtc_io_periph.c" ],
             "include_dirs": [ "include", "esp32s3", "esp32s3/include" ]
         },
@@ -309,7 +362,11 @@
             "priv_reqs": [ "bootloader_support", "soc" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/spi_flash/libspi_flash.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/spi_flash/libspi_flash.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/spi_flash/spi_flash_wrap.c" ],
             "include_dirs": [ "include" ]
         },
@@ -324,7 +381,11 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "file": "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/xtensa/libxtensa.a",
+=======
+            "file": "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/xtensa/libxtensa.a",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "sources": [ "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/xtensa/eri.c", "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/xtensa/xt_trax.c" ],
             "include_dirs": [ "esp32s3/include", "include", "deprecated_include" ]
         }
@@ -390,6 +451,7 @@
             "managed_priv_reqs": [],
             "include_dirs": []
         },
+<<<<<<< HEAD
         "button": {
             "alias": "idf::button",
             "target": "___idf_button",
@@ -402,6 +464,8 @@
             "managed_priv_reqs": [],
             "include_dirs": [ "include" ]
         },
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         "cmock": {
             "alias": "idf::cmock",
             "target": "___idf_cmock",
@@ -424,7 +488,11 @@
             "priv_reqs": [ "driver" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "include_dirs": [ "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader" ]
+=======
+            "include_dirs": [ "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader" ]
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         },
         "cxx": {
             "alias": "idf::cxx",
@@ -472,7 +540,11 @@
             "priv_reqs": [ "http_parser", "esp_timer", "lwip" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
+<<<<<<< HEAD
             "include_dirs": [ "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader", "esp-tls-crypto" ]
+=======
+            "include_dirs": [ "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader", "esp-tls-crypto" ]
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         },
         "esp_adc": {
             "alias": "idf::esp_adc",

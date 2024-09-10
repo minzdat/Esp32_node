@@ -32,7 +32,11 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
         case MQTT_EVENT_CONNECTED:
             ESP_LOGI(MQTT_TAG, "MQTT_EVENT_CONNECTED");
             xEventGroupSetBits(g_mqtt_event_group,g_constant_ConnectBit);
+<<<<<<< HEAD
             esp_mqtt_client_subscribe(g_mqtt_event_group,"v1/devices/me/rpc/request/+",0);
+=======
+            // esp_mqtt_client_subscribe(g_mqtt_event_group,"v1/devices/me/rpc/request/+",0);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             break;
         case MQTT_EVENT_DISCONNECTED:
             ESP_LOGI(MQTT_TAG, "MQTT_EVENT_DISCONNECTED");
@@ -50,8 +54,12 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
             break;
         case MQTT_EVENT_DATA:
             ESP_LOGI(MQTT_TAG, "MQTT_RECEIVED DATA");
+<<<<<<< HEAD
             // memcpy(g_buffer_sub, event->data, event->data_len);
 
+=======
+            //memcpy(g_buffer_sub, event->data, event->data_len);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             mqtt_subcriber(event);
             break;
         case MQTT_EVENT_ERROR:
@@ -123,6 +131,7 @@ void parse_and_add_to_json(const char *input_string, cJSON *json_obj)
     }    // Free the copy of input string
     free(input_copy);
 }
+<<<<<<< HEAD
 extern QueueHandle_t g_mqtt_queue;
 
 
@@ -188,6 +197,19 @@ void mqtt_subcriber(esp_mqtt_event_handle_t event)
     // g_salinity_value=cJSON_GetObjectItem(params,"salinity")->valuedouble;
     // cJSON_Delete(data_sub);
     // cJSON_free(my_json_string);
+=======
+
+void mqtt_subcriber(esp_mqtt_event_handle_t event)
+{
+    char send[100];
+    strncpy(send,event->data,event->data_len);
+    cJSON* data_sub=cJSON_Parse(send);
+    cJSON *params=cJSON_GetObjectItem(data_sub,"params");
+    char *my_json_string = cJSON_Print(params);
+    g_salinity_value=cJSON_GetObjectItem(params,"salinity")->valuedouble;
+    cJSON_Delete(data_sub);
+    cJSON_free(my_json_string);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 }
 
@@ -209,9 +231,12 @@ void data_to_mqtt(char *data, char *topic, int delay_time_ms, int qos)
 {
     xEventGroupWaitBits(g_mqtt_event_group,g_constant_ConnectBit,false,true,portMAX_DELAY);
     int len = strlen(data);
+<<<<<<< HEAD
     // data_test
     strcpy(data_test, data);
 
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     if (len > 0) 
     {
         data[len] = '\0';  // Null-terminate the received data

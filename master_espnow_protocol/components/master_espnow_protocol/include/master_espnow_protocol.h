@@ -19,12 +19,16 @@
 #include "esp_crc.h"
 #include "esp_timer.h"
 #include "driver/temperature_sensor.h"
+<<<<<<< HEAD
 #include "esp_pm.h"
 #include "deep_sleep.h"
 #include "light_sleep.h"
 
 
 #include "read_serial.h"
+=======
+
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
 #define ESPNOW_WIFI_MODE WIFI_MODE_STA
@@ -64,25 +68,37 @@
 #endif
 
 #define TAG                         "ESPNOW_MASTER"
+<<<<<<< HEAD
 #define REQUEST_CONNECTION_MSG      "REQUEST_connect"
 #define RESPONSE_AGREE_CONNECT      "AGREE_connect"
 #define SLAVE_SAVED_MAC_MSG         "SAVED_mac"
 #define CHECK_CONNECTION_MSG        "CHECK_connect"
 #define STILL_CONNECTED_MSG         "KEEP_connect"
+=======
+#define RESPONSE_AGREE_CONNECT      "master_AGREE_connect"
+#define SLAVE_SAVED_MAC_MSG         "slave_SAVED_mac"
+#define CHECK_CONNECTION_MSG        "master_CHECK_connect"
+#define STILL_CONNECTED_MSG         "slave_KEEP_connect"
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_SLAVES              "waiting_slaves"
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 #define ESPNOW_MAXDELAY             512
+<<<<<<< HEAD
 #define TIME_CHECK_CONNECT          3 * 1000            // Unit ms
 #define RETRY_TIMEOUT               1 * 1000 * 1000     // Unit us
+=======
+#define TIME_CHECK_CONNECT          10000
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 #define NUMBER_RETRY                3
 #define ESPNOW_QUEUE_SIZE           6
 #define MAX_SLAVES                  3
 #define CURRENT_INDEX               0
 #define MAX_SEND_ERRORS             3
 #define MAX_DATA_LEN                250
+<<<<<<< HEAD
 #define MAX_PAYLOAD_LEN             120
 #define PACKED_MSG_SIZE             20
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
@@ -97,6 +113,9 @@
 #else
 #define DEFAULT_PS_MODE WIFI_PS_NONE
 #endif /*CONFIG_POWER_SAVE_MODEM*/
+=======
+#define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 typedef struct {
     uint8_t peer_addr[ESP_NOW_ETH_ALEN];    // ESPNOW peer MAC address
@@ -106,9 +125,15 @@ typedef struct {
     TickType_t end_time;
     int number_retry;
     int check_connect_errors;
+<<<<<<< HEAD
     // int count_send;
     // int count_receive;
     // int count_retry;
+=======
+    int count_send;
+    int count_receive;
+    int count_retry;
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 } list_slaves_t;
 
 typedef enum {
@@ -138,6 +163,7 @@ typedef struct {
     master_espnow_event_info_t info;
 } master_espnow_event_t;
 
+<<<<<<< HEAD
 enum {
     ESPNOW_DATA_BROADCAST,
     ESPNOW_DATA_UNICAST,
@@ -168,6 +194,8 @@ typedef struct {
     sensor_data_t data;                     // Data devices
 } table_device_t;
 
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 /* Parameters of sending ESPNOW data. */
 typedef struct {
     bool unicast;                         //Send unicast ESPNOW data.
@@ -181,12 +209,28 @@ typedef struct {
     uint8_t dest_mac[ESP_NOW_ETH_ALEN];   //MAC address of destination device.
 } master_espnow_send_param_t;
 
+<<<<<<< HEAD
 // Public variable
 extern list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 
 // Function to read temperature internal esp
 void init_temperature_sensor();
 float read_internal_temperature_sensor(void);
+=======
+typedef struct __attribute__((packed)) {
+    uint8_t mac[6];
+    float temperature_mcu;
+    int rssi;
+    float temperature_rdo;
+    float do_value;
+    float temperature_phg;
+    float ph_value;
+} sensor_data_t;
+
+// Function to read temperature internal esp
+void init_temperature_sensor();
+void read_internal_temperature_sensor(void);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 // Function to NVS
 void test_allowed_connect_slaves_to_nvs(list_slaves_t *allowed_connect_slaves);
@@ -201,10 +245,13 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void);
 
 // Function to master espnow
+<<<<<<< HEAD
 void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value); 
 void parse_payload(espnow_data_t *espnow_data); 
 void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *message);
 void espnow_data_parse(uint8_t *data, uint16_t data_len);
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 void add_peer(const uint8_t *peer_mac, bool encrypt); 
 void add_waiting_connect_slaves(const uint8_t *mac_addr);
 esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt);
@@ -213,7 +260,15 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
 void master_espnow_task(void *pvParameter);
 void retry_connect_lost_task(void *pvParameter);
 esp_err_t master_espnow_init(void);
+<<<<<<< HEAD
 void master_espnow_deinit();
 void master_espnow_protocol();
 
+=======
+void master_espnow_deinit(master_espnow_send_param_t *send_param);
+void master_espnow_protocol();
+
+void prepare_data(sensor_data_t *data);
+
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 #endif //MASTER_ESPNOW_PROTOCOL_H

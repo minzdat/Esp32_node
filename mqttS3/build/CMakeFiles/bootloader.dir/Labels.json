@@ -2,6 +2,7 @@
 	"sources" : 
 	[
 		{
+<<<<<<< HEAD
 			"file" : "D:/ESP32/myProject/Esp32_node/mqttS3/build/CMakeFiles/bootloader"
 		},
 		{
@@ -30,6 +31,36 @@
 		},
 		{
 			"file" : "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+=======
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 		}
 	],
 	"target" : 

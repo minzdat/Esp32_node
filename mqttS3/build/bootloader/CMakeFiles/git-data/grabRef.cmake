@@ -15,7 +15,11 @@
 
 set(HEAD_HASH)
 
+<<<<<<< HEAD
 file(READ "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
+=======
+file(READ "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 string(STRIP "${HEAD_CONTENTS}" HEAD_CONTENTS)
 set(GIT_DIR "D:/ESP32/esp-idf/v5.2.2/esp-idf/.git")
@@ -34,17 +38,31 @@ if(HEAD_CONTENTS MATCHES "ref")
 	# named branch
 	string(REPLACE "ref: " "" HEAD_REF "${HEAD_CONTENTS}")
 	if(EXISTS "${GIT_DIR}/${HEAD_REF}")
+<<<<<<< HEAD
 		configure_file("${GIT_DIR}/${HEAD_REF}" "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" COPYONLY)
 	elseif(EXISTS "${GIT_DIR}/logs/${HEAD_REF}")
 		configure_file("${GIT_DIR}/logs/${HEAD_REF}" "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" COPYONLY)
+=======
+		configure_file("${GIT_DIR}/${HEAD_REF}" "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" COPYONLY)
+	elseif(EXISTS "${GIT_DIR}/logs/${HEAD_REF}")
+		configure_file("${GIT_DIR}/logs/${HEAD_REF}" "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" COPYONLY)
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 		set(HEAD_HASH "${HEAD_REF}")
 	endif()
 else()
 	# detached HEAD
+<<<<<<< HEAD
 	configure_file("${GIT_DIR}/HEAD" "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" COPYONLY)
 endif()
 
 if(NOT HEAD_HASH)
 	file(READ "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
+=======
+	configure_file("${GIT_DIR}/HEAD" "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" COPYONLY)
+endif()
+
+if(NOT HEAD_HASH)
+	file(READ "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 	string(STRIP "${HEAD_HASH}" HEAD_HASH)
 endif()

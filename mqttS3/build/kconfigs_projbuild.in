@@ -3,4 +3,8 @@ source "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_app_format/Kconfig.projbu
 source "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esp_rom/Kconfig.projbuild"
 source "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/esptool_py/Kconfig.projbuild"
 source "D:/ESP32/esp-idf/v5.2.2/esp-idf/components/partition_table/Kconfig.projbuild"
+<<<<<<< HEAD
 source "D:/ESP32/myProject/Esp32_node/mqttS3/main/Kconfig.projbuild"
+=======
+source "D:/ESP32/myProject/uartnow/mqttS3/main/Kconfig.projbuild"
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f

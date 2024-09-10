@@ -5,6 +5,10 @@
 cmake_minimum_required(VERSION 3.5)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+<<<<<<< HEAD
 project(slave_espnow_protocol)
 
 list(APPEND EXTRA_COMPONENT_DIRS "components")
+=======
+project(slave_espnow_protocol)
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f

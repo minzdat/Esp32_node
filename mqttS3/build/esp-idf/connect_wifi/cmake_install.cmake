@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: D:/ESP32/myProject/Esp32_node/mqttS3/components/connect_wifi
+=======
+# Install script for directory: D:/ESP32/myProject/uartnow/mqttS3/components/connect_wifi
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

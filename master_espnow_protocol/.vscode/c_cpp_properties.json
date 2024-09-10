@@ -2,7 +2,11 @@
     "configurations": [
         {
             "name": "ESP-IDF",
+<<<<<<< HEAD
             "compilerPath": "${config:idf.toolsPathWin}\\tools\\riscv32-esp-elf\\esp-13.2.0_20230928\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe",
+=======
+            "compilerPath": "${config:idf.toolsPathWin}\\tools\\xtensa-esp-elf\\esp-13.2.0_20230928\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             "compileCommands": "${config:idf.buildPath}/compile_commands.json",
             "includePath": [
                 "${config:idf.espIdfPath}/components/**",

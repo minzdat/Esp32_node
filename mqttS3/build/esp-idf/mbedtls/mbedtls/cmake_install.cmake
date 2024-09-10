@@ -39,10 +39,17 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+<<<<<<< HEAD
   include("D:/ESP32/myProject/Esp32_node/mqttS3/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
   include("D:/ESP32/myProject/Esp32_node/mqttS3/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
   include("D:/ESP32/myProject/Esp32_node/mqttS3/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
   include("D:/ESP32/myProject/Esp32_node/mqttS3/build/esp-idf/mbedtls/mbedtls/pkgconfig/cmake_install.cmake")
+=======
+  include("D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
+  include("D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
+  include("D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
+  include("D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/mbedtls/pkgconfig/cmake_install.cmake")
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 endif()
 

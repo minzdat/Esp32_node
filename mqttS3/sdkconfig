@@ -578,6 +578,7 @@ CONFIG_BT_ALARM_MAX_NUM=50
 # end of Bluetooth
 
 #
+<<<<<<< HEAD
 # IoT Button
 #
 CONFIG_BUTTON_PERIOD_TIME_MS=5
@@ -593,6 +594,8 @@ CONFIG_ADC_BUTTON_SAMPLE_TIMES=1
 # end of IoT Button
 
 #
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 # Driver Configurations
 #
 
@@ -1912,6 +1915,7 @@ CONFIG_WIFI_PROV_AUTOSTOP_TIMEOUT=30
 CONFIG_WIFI_PROV_STA_ALL_CHANNEL_SCAN=y
 # CONFIG_WIFI_PROV_STA_FAST_SCAN is not set
 # end of Wi-Fi Provisioning Manager
+<<<<<<< HEAD
 
 #
 # UDP Logging
@@ -1930,6 +1934,8 @@ CONFIG_CU_DIAGNOSTICS_COLOR_ALWAYS=y
 # CONFIG_CU_GCC_LTO_ENABLE is not set
 # CONFIG_CU_GCC_STRING_1BYTE_ALIGN is not set
 # end of CMake Utilities
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 # end of Component config
 
 # CONFIG_IDF_EXPERIMENTAL_FEATURES is not set

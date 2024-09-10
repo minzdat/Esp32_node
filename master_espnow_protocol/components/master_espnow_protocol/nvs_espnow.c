@@ -7,9 +7,15 @@ void test_allowed_connect_slaves_to_nvs(list_slaves_t *test_allowed_connect_slav
     memset(test_allowed_connect_slaves, 0, sizeof(list_slaves_t) * MAX_SLAVES);
     
     // MASTER hard-coded MAC addresses and statuses
+<<<<<<< HEAD
     uint8_t mac1[ESP_NOW_ETH_ALEN] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc}; //
     uint8_t mac2[ESP_NOW_ETH_ALEN] = {0x34, 0x85, 0x18, 0x25, 0x22, 0x94};
     uint8_t mac3[ESP_NOW_ETH_ALEN] = {0xdc, 0xda, 0x0c, 0x0d, 0x41, 0xac}; //
+=======
+    uint8_t mac1[ESP_NOW_ETH_ALEN] = {0xdc, 0xda, 0x0c, 0x0d, 0x42, 0x48}; //
+    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0xd8, 0x3b, 0xda, 0x9a, 0x34, 0xac}; //
+    uint8_t mac3[ESP_NOW_ETH_ALEN] = {0xdc, 0xda, 0x0c, 0x18, 0xbc, 0x84}; //
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     
     // Add MAC addresses and statuses to the list
     memcpy(test_allowed_connect_slaves[0].peer_addr, mac1, ESP_NOW_ETH_ALEN);
@@ -39,9 +45,15 @@ void print_info_slaves(list_slaves_t *info_slaves)
         ESP_LOGI(TAG, "  End Time: %lu", (unsigned long)slave.end_time);
         ESP_LOGI(TAG, "  Number of Retries: %d", slave.number_retry);
         ESP_LOGI(TAG, "  Check Connect Errors: %d", slave.check_connect_errors);
+<<<<<<< HEAD
         // ESP_LOGI(TAG, "  Count Send: %d", slave.count_send);
         // ESP_LOGI(TAG, "  Count Receive: %d", slave.count_receive);
         // ESP_LOGI(TAG, "  Count Retry: %d", slave.count_retry);
+=======
+        ESP_LOGI(TAG, "  Count Send: %d", slave.count_send);
+        ESP_LOGI(TAG, "  Count Receive: %d", slave.count_receive);
+        ESP_LOGI(TAG, "  Count Retry: %d", slave.count_retry);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     }
 }
 

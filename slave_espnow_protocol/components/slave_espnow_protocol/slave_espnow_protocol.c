@@ -1,4 +1,5 @@
 #include "slave_espnow_protocol.h"
+<<<<<<< HEAD
 
 static int8_t rssi;
 static char message_packed[MAX_PAYLOAD_LEN]; 
@@ -144,6 +145,16 @@ void espnow_data_parse(uint8_t *data, uint16_t data_len)
     }
 }
 
+=======
+#include "sleep.h"
+
+static QueueHandle_t s_slave_espnow_queue;
+static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;
+static slave_espnow_send_param_t send_param;
+mac_master_t s_master_unicast_mac;
+
+// Hàm xóa peer của thiết bị khác
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 void erase_peer(const uint8_t *peer_mac) 
 {
     if (esp_now_is_peer_exist(peer_mac)) 
@@ -152,12 +163,20 @@ void erase_peer(const uint8_t *peer_mac)
         if (del_err != ESP_OK) 
         {
             ESP_LOGE(TAG, "Failed to delete peer " MACSTR ": %s",
+<<<<<<< HEAD
                     MAC2STR(peer_mac), esp_err_to_name(del_err));
+=======
+                     MAC2STR(peer_mac), esp_err_to_name(del_err));
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         } 
         else 
         {
             ESP_LOGI(TAG, "Deleted peer " MACSTR,
+<<<<<<< HEAD
                     MAC2STR(peer_mac));
+=======
+                     MAC2STR(peer_mac));
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         }
     }
 }
@@ -169,7 +188,11 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
     memset(&peer, 0, sizeof(esp_now_peer_info_t));
     peer.channel = CONFIG_ESPNOW_CHANNEL;
     peer.ifidx = ESPNOW_WIFI_IF;
+<<<<<<< HEAD
     peer.encrypt = false;
+=======
+    peer.encrypt = encrypt;
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     memcpy(peer.lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
     memcpy(peer.peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
 
@@ -187,6 +210,7 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
 /* Function to send a unicast response*/
 esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt)
 {
+<<<<<<< HEAD
     send_param_specified.len = MAX_DATA_LEN;
 
     memcpy(send_param_specified.dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
@@ -200,6 +224,30 @@ esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, b
     {
         ESP_LOGE(TAG, "Send error");
         slave_espnow_deinit(&send_param_specified);
+=======
+    add_peer(dest_mac, encrypt);
+
+    slave_espnow_send_param_t send_param_agree;
+    memset(&send_param_agree, 0, sizeof(slave_espnow_send_param_t));
+
+    send_param_agree.len = strlen(message);
+    
+    if (send_param_agree.len > sizeof(send_param_agree.buffer)) {
+        ESP_LOGE(TAG, "Message too long to fit in the buffer");
+        vSemaphoreDelete(s_slave_espnow_queue);
+        esp_now_deinit();
+        return ESP_FAIL;
+    }
+
+    memcpy(send_param_agree.dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
+    memcpy(send_param_agree.buffer, message, send_param_agree.len);
+
+    // Send the unicast response
+    if (esp_now_send(send_param_agree.dest_mac, send_param_agree.buffer, send_param_agree.len) != ESP_OK) 
+    {
+        ESP_LOGE(TAG, "Send error");
+        slave_espnow_deinit(&send_param_agree);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         vTaskDelete(NULL);
     }
 
@@ -229,9 +277,12 @@ void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
 
 void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len)
 {
+<<<<<<< HEAD
     rssi = recv_info->rx_ctrl->rssi;
     // ESP_LOGI(TAG, "RSSI: %d dBm", rssi);
 
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     slave_espnow_event_t evt;
     slave_espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
     uint8_t * mac_addr = recv_info->src_addr;
@@ -265,30 +316,48 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
     {
         ESP_LOGI(TAG, "_________________________________");
         ESP_LOGI(TAG, "Receive unicast ESPNOW data");
+<<<<<<< HEAD
         
         espnow_data_parse(recv_cb->data, recv_cb->data_len);
 
+=======
+        ESP_LOGI(TAG, "Received data from MAC: " MACSTR ", Data Length: %d, Data: %.*s",
+            MAC2STR(recv_cb->mac_addr), recv_cb->data_len, recv_cb->data_len, recv_cb->data);       
+        
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         switch (s_master_unicast_mac.connected) 
         {
             case false:
                 // Check if the received data is MASTER_AGREE_CONNECT_MSG
+<<<<<<< HEAD
                 if (recv_cb->data_len >= strlen(MASTER_AGREE_CONNECT_MSG) && strstr((char *)message_packed, MASTER_AGREE_CONNECT_MSG) != NULL) 
+=======
+                if (recv_cb->data_len >= strlen(MASTER_AGREE_CONNECT_MSG) && memcmp(recv_cb->data, MASTER_AGREE_CONNECT_MSG, recv_cb->data_len) == 0) 
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
                 {
                     memcpy(s_master_unicast_mac.peer_addr, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
                     ESP_LOGI(TAG, "Added MAC Master " MACSTR " SUCCESS", MAC2STR(s_master_unicast_mac.peer_addr));
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " SAVED MAC Master", MAC2STR(s_master_unicast_mac.peer_addr));
                     s_master_unicast_mac.connected = true;
+<<<<<<< HEAD
 
                     save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
 
                     s_master_unicast_mac.start_time =  esp_timer_get_time();
                     response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG, false);
                     add_peer(s_master_unicast_mac.peer_addr, false);
+=======
+                    s_master_unicast_mac.start_time =  esp_timer_get_time();
+                    response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG, false);
+                    add_peer(s_master_unicast_mac.peer_addr, true);
+
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
                 }
                 break;
 
             case true:
                 // Check if the received data is CHECK_CONNECTION_MSG
+<<<<<<< HEAD
                 if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)message_packed, CHECK_CONNECTION_MSG) != NULL) 
                 {
                     s_master_unicast_mac.start_time = esp_timer_get_time();
@@ -299,6 +368,29 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
 
                     light_sleep_flag = true;
                     start_time_light_sleep = esp_timer_get_time();
+=======
+                if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && memcmp(recv_cb->data, CHECK_CONNECTION_MSG, recv_cb->data_len) == 0) 
+                {
+                    float temperature = read_internal_temperature_sensor();
+
+                    char response_message[250];
+                    int message_len = snprintf(response_message, sizeof(response_message), "%s: %.2f C", STILL_CONNECTED_MSG, temperature);
+
+                    if (message_len >= sizeof(response_message)) {
+                        ESP_LOGE(TAG, "Response message is too long");
+                        return;
+                    }
+                    s_master_unicast_mac.start_time = esp_timer_get_time();
+    
+                    sensor_data_t data_sensor;
+                    prepare_data(&data_sensor);
+                    data_sensor.rssi=recv_info->rx_ctrl->rssi;
+
+                    ESP_LOGW(TAG, "Response to MAC " MACSTR " CHECK CONNECT with temperature %.2f C", MAC2STR(s_master_unicast_mac.peer_addr), temperature);
+                    //response_specified_mac(s_master_unicast_mac.peer_addr, response_message, true);
+                    esp_now_send(s_master_unicast_mac.peer_addr,(uint8_t *)&data_sensor,sizeof(data_sensor));
+                    //go_to_sleep();
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
                 }
                 break;
         }
@@ -309,6 +401,7 @@ void slave_espnow_task(void *pvParameter)
 {
     slave_espnow_send_param_t *send_param = (slave_espnow_send_param_t *)pvParameter;
     
+<<<<<<< HEAD
     send_param->len = MAX_DATA_LEN;
 
     memcpy(send_param->dest_mac, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN);
@@ -317,10 +410,29 @@ void slave_espnow_task(void *pvParameter)
     {
         // ESP_LOGE(TAG, "Task slave_espnow_task");
 
+=======
+    send_param->len = strlen(REQUEST_CONNECTION_MSG);
+
+    if (send_param->len > MAX_DATA_LEN) 
+    {
+        ESP_LOGE(TAG, "Message length exceeds buffer size");
+        free(send_param);
+        vSemaphoreDelete(s_slave_espnow_queue);
+        esp_now_deinit();
+        return;
+    }
+
+    memcpy(send_param->dest_mac, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN);
+    memcpy(send_param->buffer, REQUEST_CONNECTION_MSG, send_param->len);
+
+    while (true) 
+    {
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
         switch (s_master_unicast_mac.connected) 
         {
             case false:
 
+<<<<<<< HEAD
                 // erase_peer(s_master_unicast_mac.peer_addr);
            
                 /* Start sending broadcast ESPNOW data. */
@@ -329,6 +441,13 @@ void slave_espnow_task(void *pvParameter)
 
                 espnow_data_prepare(send_param, REQUEST_CONNECTION_MSG); 
 
+=======
+                erase_peer(s_master_unicast_mac.peer_addr);  
+
+                /* Start sending broadcast ESPNOW data. */
+                ESP_LOGW(TAG, "---------------------------------");
+                ESP_LOGW(TAG, "Start sending broadcast data");
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
                 if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) 
                 {
                     ESP_LOGE(TAG, "Send error");
@@ -344,6 +463,7 @@ void slave_espnow_task(void *pvParameter)
 
                 ESP_LOGI(TAG, "Elapsed time: %llu microseconds", elapsed_time);
 
+<<<<<<< HEAD
                 if (elapsed_time > DISCONNECTED_TIMEOUT)
                 {
                     ESP_LOGW(TAG, "Time Out !");
@@ -366,6 +486,13 @@ void slave_espnow_task(void *pvParameter)
                     }
                 }
 
+=======
+                if (elapsed_time > 13 * 1000000)
+                {
+                    ESP_LOGW(TAG, "Time Out !");
+                    s_master_unicast_mac.connected = false;
+                }
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
                 break;
         }
         vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 seconds
@@ -395,17 +522,34 @@ esp_err_t slave_espnow_init(void)
     /* Add broadcast peer information to peer list. */
     add_peer(s_slave_broadcast_mac, false);
 
+<<<<<<< HEAD
     return ESP_OK;
 }
 
 void slave_espnow_deinit()
 {
+=======
+    /* Initialize sending parameters. */
+    memset(&send_param, 0, sizeof(slave_espnow_send_param_t));
+
+    return ESP_OK;
+}
+
+void slave_espnow_deinit(slave_espnow_send_param_t *send_param)
+{
+    free(send_param->buffer);
+    free(send_param);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     vSemaphoreDelete(s_slave_espnow_queue);
     esp_now_deinit();
 }
 
 void slave_espnow_protocol()
+<<<<<<< HEAD
 {    
+=======
+{
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) 
@@ -419,6 +563,7 @@ void slave_espnow_protocol()
 
     init_temperature_sensor();
 
+<<<<<<< HEAD
     //  ---Process values ​​from nvs---
 
     // erase_nvs(NVS_KEY_CONNECTED);
@@ -440,3 +585,39 @@ void slave_espnow_protocol()
     xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 6, NULL);
 }
 
+=======
+    slave_espnow_init();
+
+    xTaskCreate(slave_espnow_task, "slave_espnow_task", 4096, &send_param, 4, NULL);
+}
+
+#include <math.h>
+    float angle=-100;
+    float sin_angle1;
+    float sin_angle2;
+    float sin_angle3;
+    float sin_angle4;
+void make_fake_data(){
+    sin_angle1 =  sin(angle*0.06283)*10+10;
+    sin_angle2 = sin(angle*0.031415)*10+10;
+    sin_angle3 = sin(angle*0.0157)*10+10;
+    sin_angle4 = sin(angle*0.031415)*10+30;
+
+    angle++;
+    if (angle>100){
+        angle=-100;
+    }
+}
+void prepare_data(sensor_data_t *data) {
+    // Set MAC address (Example: "48:27:e2:c7:21:7c")
+    uint8_t mac[6];
+    esp_wifi_get_mac(ESP_IF_WIFI_STA, mac);
+    memcpy(data->mac, mac, sizeof(mac));
+    make_fake_data();
+    data->temperature_mcu=read_internal_temperature_sensor();
+    data->temperature_rdo = sin_angle1;
+    data->do_value = sin_angle2;
+    data->temperature_phg = sin_angle3;
+    data->ph_value = sin_angle4;
+}
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f

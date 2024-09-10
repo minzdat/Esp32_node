@@ -19,7 +19,11 @@ float read_internal_temperature_sensor(void)
     // Read the temperature value
     float temperature_value;
     ESP_ERROR_CHECK(temperature_sensor_get_celsius(temp_sensor, &temperature_value));
+<<<<<<< HEAD
     // ESP_LOGE(TAG, "Internal temperature value: %.02f C", temperature_value);
+=======
+    ESP_LOGE(TAG, "Internal temperature value: %.02f C", temperature_value);
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
     return temperature_value;
 }

@@ -1,6 +1,10 @@
 {
   "C_Cpp.intelliSenseEngine": "default",
+<<<<<<< HEAD
   "idf.portWin": "COM25",
+=======
+  "idf.portWin": "COM35",
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
   "idf.flashType": "UART",
   "idf.adapterTargetName": "esp32s3",
   "idf.openOcdConfigs": [
@@ -22,6 +26,7 @@
     "event_groups.h": "c",
     "random": "c",
     "nvs_flash.h": "c",
+<<<<<<< HEAD
     "read_serial.h": "c",
     "esp_crc.h": "c",
     "esp_spi_flash.h": "c",
@@ -33,5 +38,8 @@
     "mutex": "c",
     "esp_crt_bundle.h": "c",
     "regex": "c"
+=======
+    "read_serial.h": "c"
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
   }
 }

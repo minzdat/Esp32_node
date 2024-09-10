@@ -38,6 +38,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+<<<<<<< HEAD
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/ESP32/myProject/Esp32_node/mqttS3/build/esp-idf/mbedtls/mbedtls/library/libmbedcrypto.a")
 endif()
 
@@ -47,5 +48,16 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/ESP32/myProject/Esp32_node/mqttS3/build/esp-idf/mbedtls/mbedtls/library/libmbedtls.a")
+=======
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/mbedtls/library/libmbedcrypto.a")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/mbedtls/library/libmbedx509.a")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/mbedtls/library/libmbedtls.a")
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 endif()
 

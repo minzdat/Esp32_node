@@ -1,5 +1,6 @@
 #ifndef READ_SERIAL_H
 #define READ_SERIAL_H
+<<<<<<< HEAD
 #include <string.h>
 #include <stdlib.h>
 #include "esp_wifi.h"
@@ -58,13 +59,23 @@ typedef struct {
     // uint8_t payload[120];     //[120 bytes] Real payload of ESPNOW data.
     sensor_data_t payload;
 } __attribute__((packed)) espnow_data_t;
+=======
+
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 void uart_config(void);
 void uart_event_task(void);
 void add_json(void);
+<<<<<<< HEAD
 void dump_uart(uint8_t *message, size_t len);
 int get_data(float *data1, float *data2, float *data3, float *data4);
 uint8_t wait_connect_serial();
 void delay(int x);
 void accept_connect(uint8_t *message);
+=======
+void dump_uart(const char *message);
+
+
+
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 #endif

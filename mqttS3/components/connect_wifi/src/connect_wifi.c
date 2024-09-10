@@ -8,7 +8,10 @@
 #include "string.h"
 #include "esp_crt_bundle.h"
 #include "esp_http_client.h"
+<<<<<<< HEAD
 #include "udp_logging.h"
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 #include "esp_timer.h"
 #include <esp_now.h>
 
@@ -47,7 +50,11 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         ESP_LOGI(TAG, "Got IP: %s", ip_str);
                 // xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
                 // xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+<<<<<<< HEAD
         udp_logging_init("34.150.93.172", 5013, udp_logging_vprintf ); //UDP_LOGGING
+=======
+
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
     }
     else if (event_base == WIFI_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
@@ -179,6 +186,56 @@ void wifi_scan() {
     }
 }
 
+<<<<<<< HEAD
+=======
+// void wifi_init_sta(const char* w_ssid,const char* w_pass) {
+//     esp_netif_create_default_wifi_sta();
+//     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+//     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+//     // esp_log_level_set("wifi",ESP_LOG_NONE);
+//     esp_event_handler_instance_t instance_any_id;
+//     esp_event_handler_instance_t instance_got_ip;
+//                     ESP_LOGI(TAG,"Wifi gg");
+
+//     ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT,
+//                                                         ESP_EVENT_ANY_ID,
+//                                                         &wifi_event_handler,
+//                                                         NULL,
+//                                                         &instance_any_id));
+//     ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT,
+//                                                         IP_EVENT_STA_GOT_IP,
+//                                                         &wifi_event_handler,
+//                                                         NULL,
+//                                                         &instance_got_ip));
+//     ESP_LOGI(TAG,"Wifi wifi_config");
+
+
+//     wifi_config_t wifi_config = {
+//         .sta = {
+//             .ssid = WIFI_SSID,
+//             .password = WIFI_PASS,
+//         },
+//     };    
+//         strcpy((char*)wifi_config.sta.ssid, w_ssid);
+//         strcpy((char*)wifi_config.sta.password, w_pass);
+
+//     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+//     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config));
+//     ESP_ERROR_CHECK(esp_wifi_start());
+
+//     ESP_LOGI(TAG,"Wifi esp_wifi_start");
+//     // esp_wifi_connect();
+
+//     // xEventGroupWaitBits(g_wifi_event_group, g_constant_ConnectedBit, true, true, portMAX_DELAY);
+//     xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT, false, true, portMAX_DELAY);
+
+    // xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT, false, true, portMAX_DELAY);
+//         ESP_LOGI(TAG,"Wifi wifi_event_group");
+
+// }
+
+
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 void wifi_init_softap(const char* w_ssid,const char* w_pass) {
 
@@ -198,8 +255,14 @@ void wifi_init_softap(const char* w_ssid,const char* w_pass) {
         },
     };
 
+<<<<<<< HEAD
     strcpy((char*)wifi_config.ap.ssid, w_ssid);
     strcpy((char*)wifi_config.ap.password, w_pass);    
+=======
+  
+        strcpy((char*)wifi_config.ap.ssid, w_ssid);
+        strcpy((char*)wifi_config.ap.password, w_pass);    
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     esp_wifi_set_config(WIFI_IF_AP, &wifi_config);
     esp_wifi_start();
 }

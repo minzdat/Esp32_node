@@ -75,6 +75,7 @@ menu "Master Configuration"
         config ESP_WIFI_AUTH_WAPI_PSK
             bool "WAPI PSK"
     endchoice
+<<<<<<< HEAD
 
     config WIFI_BEACON_TIMEOUT
         int "WiFi beacon timeout"
@@ -164,6 +165,9 @@ menu "Master Configuration"
         default 26 if MIN_CPU_FREQ_26M
         default 13 if MIN_CPU_FREQ_13M
 
+=======
+            
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
     config ESPNOW_PMK
         string "ESPNOW primary master key"
         default "pmk1234567890123"

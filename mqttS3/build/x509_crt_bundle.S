@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* * Data converted from D:/ESP32/myProject/Esp32_node/mqttS3/build/esp-idf/mbedtls/x509_crt_bundle
+=======
+/* * Data converted from D:/ESP32/myProject/uartnow/mqttS3/build/esp-idf/mbedtls/x509_crt_bundle
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
  */
 .data
 .section .rodata.embedded

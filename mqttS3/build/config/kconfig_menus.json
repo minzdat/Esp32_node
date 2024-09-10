@@ -14214,6 +14214,7 @@
             {
                 "children": [
                     {
+<<<<<<< HEAD
                         "children": [],
                         "depends_on": null,
                         "help": "\"Button scan interval\"",
@@ -14346,6 +14347,8 @@
             {
                 "children": [
                     {
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
                         "children": [
                             {
                                 "children": [],
@@ -28300,6 +28303,7 @@
                 "id": "component-config-wi-fi-provisioning-manager",
                 "title": "Wi-Fi Provisioning Manager",
                 "type": "menu"
+<<<<<<< HEAD
             },
             {
                 "children": [
@@ -28438,6 +28442,8 @@
                 "id": "component-config-cmake-utilities",
                 "title": "CMake Utilities",
                 "type": "menu"
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
             }
         ],
         "depends_on": null,

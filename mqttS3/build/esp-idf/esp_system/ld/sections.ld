@@ -1,6 +1,10 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
+<<<<<<< HEAD
 /* Generated from: D:\ESP32\myProject\Esp32_node\mqttS3\build\esp-idf\esp_system\ld\sections.ld.in */
+=======
+/* Generated from: D:\ESP32\myProject\uartnow\mqttS3\build\esp-idf\esp_system\ld\sections.ld.in */
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 
 /*
 

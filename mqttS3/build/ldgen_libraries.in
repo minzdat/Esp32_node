@@ -34,13 +34,20 @@ $<TARGET_FILE:__idf_esp_netif>
 $<TARGET_FILE:__idf_wpa_supplicant>
 $<TARGET_FILE:__idf_esp_coex>
 $<TARGET_FILE:__idf_esp_wifi>
+<<<<<<< HEAD
 $<TARGET_FILE:__idf_esp_adc>
 $<TARGET_FILE:__idf_button>
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 $<TARGET_FILE:__idf_unity>
 $<TARGET_FILE:__idf_cmock>
 $<TARGET_FILE:__idf_console>
 $<TARGET_FILE:__idf_http_parser>
 $<TARGET_FILE:__idf_esp-tls>
+<<<<<<< HEAD
+=======
+$<TARGET_FILE:__idf_esp_adc>
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 $<TARGET_FILE:__idf_esp_eth>
 $<TARGET_FILE:__idf_esp_gdbstub>
 $<TARGET_FILE:__idf_esp_hid>
@@ -66,6 +73,9 @@ $<TARGET_FILE:__idf_usb>
 $<TARGET_FILE:__idf_wifi_provisioning>
 $<TARGET_FILE:__idf_main>
 $<TARGET_FILE:__idf_PubSubClient>
+<<<<<<< HEAD
 $<TARGET_FILE:__idf_udp_logging>
+=======
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 $<TARGET_FILE:__idf_connect_wifi>
 $<TARGET_FILE:__idf_read_serial>

@@ -39,7 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+<<<<<<< HEAD
   include("D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/esp-idf/cmake_install.cmake")
+=======
+  include("D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/esp-idf/cmake_install.cmake")
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +54,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "D:/ESP32/myProject/Esp32_node/mqttS3/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "D:/ESP32/myProject/uartnow/mqttS3/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> 0d65c9acca272f1193113c0af4e2c3e13a3f601f
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
