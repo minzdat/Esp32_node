@@ -36,7 +36,7 @@
 #endif
 
 /* Use boot button as gpio input */
-#define GPIO_WAKEUP_NUM         BOOT_BUTTON_NUM
+#define GPIO_WAKEUP_NUM         4
 /* "Boot" button is active low */
 #define GPIO_WAKEUP_LEVEL       0
 

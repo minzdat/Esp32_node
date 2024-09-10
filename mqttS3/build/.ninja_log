@@ -1019,3 +1019,5 @@
 24956	25496	7476678272718845	D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/build/.bin_timestamp	13951ab1b1c83558
 25496	25648	0	esp-idf/esptool_py/CMakeFiles/app_check_size	576b4f2b8a3c037a
 25496	25648	0	D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/build/esp-idf/esptool_py/CMakeFiles/app_check_size	576b4f2b8a3c037a
+1505	121446	7476687207267720	build.ninja	714ac64a78317b81
+373	127707	7476687207267720	build.ninja	714ac64a78317b81
