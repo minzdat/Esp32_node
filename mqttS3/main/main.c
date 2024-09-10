@@ -60,7 +60,7 @@ static void mqtt_task(void *pvParameters)
 {
     sensor_data_t sensor_data;
     while(1)
-    {   memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
+    {   memcpy(mess_button.message, GET_DATA, sizeof(GET_DATA));
         dump_uart(&mess_button, sizeof(mess_button));
         vTaskDelay(5000/ portTICK_PERIOD_MS);
 
@@ -83,7 +83,7 @@ static void mqtt_task(void *pvParameters)
 static void button_longpress_cb(void *arg, void *usr_data)
 {
     // memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
-    memcpy(mess_button.message, GET_DATA, sizeof(GET_DATA));
+    memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
     dump_uart(&mess_button, sizeof(mess_button));
     delay(500);
     ESP_ERROR_CHECK(!(BUTTON_LONG_PRESS_START == iot_button_get_event(arg)));

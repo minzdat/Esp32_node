@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "espnow_example",
-    "project_version":    "0184b782-dirty",
+    "project_version":    "f1d65731-dirty",
     "project_path":       "D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3",
     "idf_path":           "C:/Users/ASUS/esp/v5.2.2/esp-idf",
     "build_dir":          "D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/build",
