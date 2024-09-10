@@ -15,17 +15,18 @@
 #include "esp_check.h"
 #include "driver/gpio.h"
 #include "master_espnow_protocol.h"
+#include "master_controller.h"
 
 #define TAG_LIGHT_SLEEP         "LIGHT_SLEEP"
-#define TIMER_WAKEUP_TIME_US    (2 * 1000 * 1000)
-#define TIMER_LIGHT_SLEEP       (1 * 1000 * 1000)    // Unit us
+#define TIMER_WAKEUP_TIME_US    (10 * 1000 * 1000)   // 10 seconds
+#define TIMER_LIGHT_SLEEP       (0 * 1000 * 1000)   // 0 seconds
 
 /* Most development boards have "boot" button attached to GPIO0.
  * You can also change this to another pin.
  */
 #if CONFIG_IDF_TARGET_ESP32C3 || CONFIG_IDF_TARGET_ESP32C2 || CONFIG_IDF_TARGET_ESP32H2 \
     || CONFIG_IDF_TARGET_ESP32C6
-#define BOOT_BUTTON_NUM         4
+#define BOOT_BUTTON_NUM         9
 #elif CONFIG_IDF_TARGET_ESP32C5
 #define BOOT_BUTTON_NUM         28
 #elif CONFIG_IDF_TARGET_ESP32P4

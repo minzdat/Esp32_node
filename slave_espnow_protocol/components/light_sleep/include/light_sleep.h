@@ -17,8 +17,8 @@
 #include "slave_espnow_protocol.h"
 
 #define TAG_LIGHT_SLEEP         "LIGHT_SLEEP"
-#define TIMER_WAKEUP_TIME_US    (2 * 1000 * 1000)
-#define TIMER_LIGHT_SLEEP       (1 * 1000 * 1000)    // Unit us
+#define TIMER_WAKEUP_TIME_US    (1 * 1000 * 1000)   // 1 seconds
+#define TIMER_LIGHT_SLEEP       (0 * 1000 * 1000)   // 0 seconds
 
 /* Most development boards have "boot" button attached to GPIO0.
  * You can also change this to another pin.
@@ -46,5 +46,6 @@ esp_err_t register_timer_wakeup(void);
 void wait_gpio_inactive(void);
 esp_err_t register_gpio_wakeup(void);
 void light_sleep_task(void *args);
+void light_sleep_init();
 
 #endif //LIGHT_SLEEP_H

@@ -2,15 +2,19 @@
 
 void log_data_from_nvs() 
 {
+    ESP_LOGI(TAG, "____________________________________________________");
+    
     // Log the value of the entire s_master_unicast_mac
-    ESP_LOGI("TAG", "s_master_unicast_mac.connected = %s", s_master_unicast_mac.connected ? "true" : "false");
-    ESP_LOGI("TAG", "s_master_unicast_mac.count_keep_connect = %" PRId32, s_master_unicast_mac.count_keep_connect);
+    ESP_LOGI(TAG, "s_master_unicast_mac.connected = %s", s_master_unicast_mac.connected ? "true" : "false");
+    ESP_LOGI(TAG, "s_master_unicast_mac.count_keep_connect = %" PRId32, s_master_unicast_mac.count_keep_connect);
 
     // Log peer address (if you need to log MAC address)
-    ESP_LOGI("TAG", "s_master_unicast_mac.peer_addr = %02x:%02x:%02x:%02x:%02x:%02x",
+    ESP_LOGI(TAG, "s_master_unicast_mac.peer_addr = %02x:%02x:%02x:%02x:%02x:%02x",
              s_master_unicast_mac.peer_addr[0], s_master_unicast_mac.peer_addr[1],
              s_master_unicast_mac.peer_addr[2], s_master_unicast_mac.peer_addr[3],
              s_master_unicast_mac.peer_addr[4], s_master_unicast_mac.peer_addr[5]);
+
+    ESP_LOGI(TAG, "____________________________________________________");
 }
 
 // Function to remove the value of s_master_unicast_mac.connected from NVS

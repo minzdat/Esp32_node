@@ -23,8 +23,6 @@
 #include "deep_sleep.h"
 #include "light_sleep.h"
 
-
-#include "read_serial.h"
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
 #define ESPNOW_WIFI_MODE WIFI_MODE_STA
@@ -74,12 +72,12 @@
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
+#define MAX_SLAVES                  3
+#define TIME_CHECK_CONNECT          10 * 1000 * 1000     // 10 seconds
+#define RETRY_TIMEOUT               2 * 1000 * 1000     // 2 seconds
 #define ESPNOW_MAXDELAY             512
-#define TIME_CHECK_CONNECT          3 * 1000            // Unit ms
-#define RETRY_TIMEOUT               1 * 1000 * 1000     // Unit us
 #define NUMBER_RETRY                3
 #define ESPNOW_QUEUE_SIZE           6
-#define MAX_SLAVES                  3
 #define CURRENT_INDEX               0
 #define MAX_SEND_ERRORS             3
 #define MAX_DATA_LEN                250
@@ -163,8 +161,8 @@ typedef struct {
 } __attribute__((packed)) espnow_data_t;
 
 typedef struct {
-    uint8_t peer_addr[ESP_NOW_ETH_ALEN];    // ESPNOW peer MAC address
-    bool status;                            // Variable status has two statuses online: 1 and offline: 0
+    uint8_t peer_addr[ESP_NOW_ETH_ALEN];    // [6 bytes] ESPNOW peer MAC address
+    bool status;                            // [1 bytes] Variable status has two statuses online: 1 and offline: 0
     sensor_data_t data;                     // Data devices
 } table_device_t;
 
@@ -183,6 +181,7 @@ typedef struct {
 
 // Public variable
 extern list_slaves_t allowed_connect_slaves[MAX_SLAVES];
+extern table_device_t table_devices[MAX_SLAVES];
 
 // Function to read temperature internal esp
 void init_temperature_sensor();
@@ -201,6 +200,8 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void);
 
 // Function to master espnow
+void log_table_devices();
+void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data, bool status);
 void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value); 
 void parse_payload(espnow_data_t *espnow_data); 
 void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *message);

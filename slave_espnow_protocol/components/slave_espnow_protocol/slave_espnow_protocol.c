@@ -254,9 +254,11 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     memcpy(s_master_unicast_mac.peer_addr, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
                     ESP_LOGI(TAG, "Added MAC Master " MACSTR " SUCCESS", MAC2STR(s_master_unicast_mac.peer_addr));
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " SAVED MAC Master", MAC2STR(s_master_unicast_mac.peer_addr));
-                    s_master_unicast_mac.connected = true;
 
+                    s_master_unicast_mac.connected = true;
                     save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
+                    // On LED CONNECT
+                    handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
 
                     s_master_unicast_mac.start_time =  esp_timer_get_time();
                     response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG, false);
@@ -277,6 +279,14 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     light_sleep_flag = true;
                     start_time_light_sleep = esp_timer_get_time();
                 }
+                // Request control RELAY
+                else if (recv_cb->data_len >= strlen(CONTROL_RELAY_MSG) && strstr((char *)message_packed, CONTROL_RELAY_MSG) != NULL) 
+                {
+                    //Control RELAY
+                    light_sleep_flag = false;
+                    handle_device(DEVICE_RELAY, NULL);
+                }
+                
                 break;
         }
     }         
@@ -292,7 +302,7 @@ void slave_espnow_task(void *pvParameter)
 
     while (true) 
     {
-        // ESP_LOGE(TAG, "Task slave_espnow_task");
+        ESP_LOGE(TAG, "Task slave_espnow_task");
 
         switch (s_master_unicast_mac.connected) 
         {
@@ -331,9 +341,9 @@ void slave_espnow_task(void *pvParameter)
                     {
                         s_master_unicast_mac.connected = false;
                         s_master_unicast_mac.count_keep_connect = 0;
-                        
                         save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
-
+                        // Off LED CONNECT
+                        handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
                     }
                     else
                     {
@@ -396,16 +406,14 @@ void slave_espnow_protocol()
 
     init_temperature_sensor();
 
-    //  ---Process values ​​from nvs---
+    //  ----------Process values ​​from nvs----------
 
     // erase_nvs(NVS_KEY_CONNECTED);
     load_from_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, &s_master_unicast_mac);
     log_data_from_nvs();
-    
-    //  ---Process values ​​from nvs---
+    handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
 
-    /* Enable wakeup from light sleep by timer */
-    register_timer_wakeup();
+    //  End----------Process values ​​from nvs----------
 
     slave_espnow_init();
 
