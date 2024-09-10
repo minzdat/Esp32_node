@@ -54,19 +54,23 @@ void send_data(sensor_data_t sensor_data){
 }
 
 QueueHandle_t g_mqtt_queue;
+connect_request mess_button;
 
 static void mqtt_task(void *pvParameters)
 {
     sensor_data_t sensor_data;
     while(1)
-    {
+    {   memcpy(mess_button.message, GET_DATA, sizeof(GET_DATA));
+        dump_uart(&mess_button, sizeof(mess_button));
+        vTaskDelay(5000/ portTICK_PERIOD_MS);
+
         // xQueueReceive(g_mqtt_queue,&sensor_data,(TickType_t)portMAX_DELAY);
         
         if(xQueueReceive(g_mqtt_queue,&sensor_data,(TickType_t)portMAX_DELAY))
         {
             send_data(sensor_data);
             
-                    vTaskDelay(5000/ portTICK_PERIOD_MS);
+                    // vTaskDelay(500/ portTICK_PERIOD_MS);
 
         }
     }
@@ -74,14 +78,12 @@ static void mqtt_task(void *pvParameters)
 }
 
 
-connect_request mess_button;
 
 
 static void button_longpress_cb(void *arg, void *usr_data)
 {
     // memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
     memcpy(mess_button.message, GET_DATA, sizeof(GET_DATA));
-
     dump_uart(&mess_button, sizeof(mess_button));
     delay(500);
     ESP_ERROR_CHECK(!(BUTTON_LONG_PRESS_START == iot_button_get_event(arg)));
