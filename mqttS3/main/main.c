@@ -132,7 +132,7 @@ void app_main(void) {
     //     break;
     //     delay(100);
     // }
-
+///
     wifi_init();
     wifi_init_sta(SSID,PASS);
 
