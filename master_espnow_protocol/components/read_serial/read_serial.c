@@ -4,9 +4,8 @@ int time_now=0;
 int time_check=0;
 int timeout=10000000;
 bool connect_check=true;
-static QueueHandle_t uart0_queue;
 
-extern table_device_tt table_devices[MAX_SLAVES];
+static QueueHandle_t uart0_queue;
 
 void uart_config(void)
 {
@@ -45,6 +44,7 @@ void encrypt_message(const unsigned char *input, unsigned char *output, size_t l
 
 void dump_uart(uint8_t *message, size_t len)
 {
+
     // len = sizeof(len);
     printf("send \n");
     uint8_t encrypted_message[len]; // AES block size = 16 bytes
@@ -77,7 +77,6 @@ void add_json()
     // printf("Size: %d \n",strlen(json_string));
     // printf("JSON: %s\n", json_string);
     uart_write_bytes(UART_NUM_P2,json_string, strlen(json_string));
-
 }
 
 void uart_event(void *pvParameters)
@@ -115,22 +114,40 @@ void uart_event(void *pvParameters)
                         time_now=esp_timer_get_time();
                         ESP_LOGE(TAG_READ_SERIAL, "Reicv %s ",decrypted_message);
                     }
+                    
                     else if (memcmp((char *)decrypted_message, GET_DATA, 6) == 0)
                     {
                         table_device_tt sensor_data;
+                        messages_request* mess_get= (messages_request*)decrypted_message;
+                        
+                        // messages_request mess_get=(messages_request*)decrypted_message
                         // buf->crc = crc_cal;
-                        memcpy(&sensor_data,&table_devices[1], sizeof(table_device_tt));
-                        ESP_LOGI(TAG_READ_SERIAL, "         MCU Temperature: %.2f", table_devices[1].data.temperature_mcu);
+                        memcpy(&sensor_data,&table_devices[0], sizeof(table_device_tt));
+                            // ESP_LOGE(TAG_READ_SERIAL, "size table_device_tt %d ",sizeof(table_device_tt)ư3r);
 
+                        ESP_LOGI(TAG_READ_SERIAL, "         MCU Temperature: %.2f", table_devices[0].data.temperature_mcu);
+                        // ESP_LOGI(TAG_READ_SERIAL, " MAC: %.2f", table_devices[0].data.temperature_mcu);
+                             ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
+                        mess_get->mac[0], mess_get->mac[1], mess_get->mac[2], mess_get->mac[3], mess_get->mac[4], mess_get->mac[5]);
                         // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
                         // if (table_devices[1].status==1)
-                        dump_uart((uint8_t*)&sensor_data, 120);
+                        dump_uart((uint8_t*)&sensor_data, sizeof(table_device_tt));
+                    }
+                    else if (strcmp((char *)decrypted_message,WAKE_UP_COMMAND)==0)
+                    {
+                        dump_uart((uint8_t *)WOKE_UP,sizeof(WOKE_UP));
+                    }
+                    else if (memcmp((char *)decrypted_message, GET_FULL_DATA, 6) == 0)
+                    {
+                        dump_uart((uint8_t*)&table_devices, sizeof(table_device_tt)*MAX_SLAVES);
+
                     }
                 }
                 // if ((strcmp((char *)decrypted_message, RESPONSE_AGREE) == 0)&&(!connect_check)) 
                 // {
                 //     connect_check=true;
                 // }
+
             }
         }
     }
@@ -152,6 +169,7 @@ void check_timeout()
 
     while (1)
     {
+
         if ((time_now!=0)&&(connect_check))
         {
             time_check=esp_timer_get_time();
@@ -173,6 +191,7 @@ void check_timeout()
             dump_uart((uint8_t *) &mess,  sizeof(mess));
         }
         delay(1000);
+
     }
 }
 
@@ -212,7 +231,7 @@ uint8_t wait_connect_serial()
     uint8_t mac[6];
     memcpy(mac, mess.mac, sizeof(mess.mac));
     ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
-            mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+                mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 
     while (true)
     {   

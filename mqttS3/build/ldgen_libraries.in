@@ -64,7 +64,9 @@ $<TARGET_FILE:__idf_touch_element>
 $<TARGET_FILE:__idf_usb>
 $<TARGET_FILE:__idf_wifi_provisioning>
 $<TARGET_FILE:__idf_main>
+$<TARGET_FILE:__idf_Global>
 $<TARGET_FILE:__idf_PubSubClient>
 $<TARGET_FILE:__idf_button>
+$<TARGET_FILE:__idf_udp_logging>
 $<TARGET_FILE:__idf_connect_wifi>
 $<TARGET_FILE:__idf_read_serial>

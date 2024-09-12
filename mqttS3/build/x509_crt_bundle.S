@@ -1,4 +1,4 @@
-/* * Data converted from D:/esp32/rf-wifi/TepBac_RF_WIFI/mqttS3/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Dev_minz/Tepbac_project/public_github/New folder/Esp32_node/mqttS3/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

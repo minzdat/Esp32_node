@@ -11,7 +11,7 @@
     "idf.openOcdConfigs": [
         "board/esp32s3-builtin.cfg"
     ],
-    "idf.portWin": "COM16",
+    "idf.portWin": "COM13",
     "idf.pythonBinPathWin": "C:\\Users\\tminh\\.espressif\\python_env\\idf5.2_py3.11_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "C:\\Users\\tminh\\.espressif",
     "files.associations": {
@@ -38,7 +38,11 @@
         "deep_sleep.h": "c",
         "semphr.h": "c",
         "master_controller.h": "c",
-        "read_serial.h": "c"
+        "read_serial.h": "c",
+        "freertos.h": "c",
+        "task.h": "c",
+        "gpio.h": "c",
+        "cstdint": "c"
     },
     "idf.flashType": "UART"
 }

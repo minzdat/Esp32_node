@@ -1,15 +1,15 @@
 dependencies:
   espressif/cmake_utilities:
-    component_hash: 351350613ceafba240b761b4ea991e0f231ac7a9f59a9ee901f751bddc0bb18f
+    component_hash: null
     source:
-      service_url: https://api.components.espressif.com/
-      type: service
+      path: C:\Dev_minz\Tepbac_project\public_github\New folder\Esp32_node\mqttS3\components\espressif__cmake_utilities
+      type: local
     version: 0.5.3
   idf:
     component_hash: null
     source:
       type: idf
     version: 5.2.2
-manifest_hash: 68ae70cce0268ad3db7ecdaef508cdc62e94fbd72dd890b29815c1a3be34af97
+manifest_hash: 7d4ffca6ef5611c0f790d71396d25e13387c45c0dcdfc113d637712a012c72c5
 target: esp32s3
 version: 1.0.0

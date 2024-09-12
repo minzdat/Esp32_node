@@ -498,16 +498,15 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                 }
                 else if (recv_cb->data_len >= strlen(DISCONNECT_NODE_MSG) && strstr((char *)message_packed, DISCONNECT_NODE_MSG) != NULL)
                 {
-                    erase_key_in_nvs("KEY_SLA_ALLOW");
-
-                    load_info_slaves_from_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
 
                     // Clear the `allowed_connect_slaves` arrayWW
                     for (int i = 0; i < MAX_SLAVES; i++) 
                     {
                         memset(&allowed_connect_slaves[i], 0, sizeof(list_slaves_t));
                     }
-
+                    
+                    erase_key_in_nvs("KEY_SLA_ALLOW");
+                    
                     erase_table_devices();
                 }
             }

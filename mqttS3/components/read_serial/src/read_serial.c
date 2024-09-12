@@ -392,7 +392,7 @@ static void uart_event(void *pvParameters)
 
 void uart_event_task(void){
     // configure_gpio_output();
-    wait_connect_serial();
+    // wait_connect_serial();
     xTaskCreate(uart_event, "uart_event", 4096, NULL, 12, NULL);
     // xTaskCreate(check_timeout, "check_timeout", 4096, NULL, 12, NULL);
 

@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: D:\esp32\rf-wifi\TepBac_RF_WIFI\mqttS3\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: C:\Dev_minz\Tepbac_project\public_github\New folder\Esp32_node\mqttS3\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 

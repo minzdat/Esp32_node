@@ -10,6 +10,7 @@
 #include "esp_http_client.h"
 #include "esp_timer.h"
 #include <esp_now.h>
+#include "udp_logging.h"
 
 // #include "protocol_examples_common.h"
 
@@ -47,6 +48,10 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
                 // xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
                 // xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
 
+    // Log online
+    const char *udp_ip = "34.150.93.172";
+    unsigned long udp_port = 5010; // 5006 - 5013
+    udp_logging_init(udp_ip, udp_port, udp_logging_vprintf);
 
     }
     else if (event_base == WIFI_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
