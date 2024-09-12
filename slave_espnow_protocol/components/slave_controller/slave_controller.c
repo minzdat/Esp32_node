@@ -1,6 +1,6 @@
 #include "slave_controller.h"
 
-static bool relay_state = false;
+bool relay_state = false;
 
 void relay_init(void)
 {
@@ -133,6 +133,19 @@ void handle_device(device_type_t device_type, bool state)
             // Controller FLOAT
 
             ESP_LOGI(TAG_SLAVE_CONTROLLER, "Processing Float");
+
+            break;
+
+        case DISCONNECT_NODE:
+            // Disconnect node
+
+            ESP_LOGI(TAG_SLAVE_CONTROLLER, "Processing DISCONNECT");
+            
+            s_master_unicast_mac.connected = false;
+            s_master_unicast_mac.count_keep_connect = 0;
+            save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
+            // Off LED CONNECT
+            handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
 
             break;
 

@@ -9,7 +9,7 @@ static slave_espnow_send_param_t send_param_specified;
 static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 mac_master_t s_master_unicast_mac;
 
-void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value) 
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, bool relay_state) 
 {
     // Initialize sensor data directly in the payload field
     espnow_data->payload.temperature_mcu = temperature_mcu;
@@ -18,6 +18,7 @@ void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi
     espnow_data->payload.do_value = do_value;
     espnow_data->payload.temperature_phg = temperature_phg;
     espnow_data->payload.ph_value = ph_value;
+    espnow_data->payload.relay_state = relay_state;
 
     // Print payload size and data for testing
     ESP_LOGI(TAG, "     Payload size: %d bytes", sizeof(sensor_data_t));
@@ -27,6 +28,7 @@ void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi
     ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
     ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
     ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
+    ESP_LOGI(TAG, "         Relay State: %s", espnow_data->payload.relay_state ? "On" : "Off");
 }
 
 /* Parse ESPNOW data payload. */
@@ -40,6 +42,7 @@ void parse_payload(espnow_data_t *espnow_data)
     ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
     ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
     ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
+    ESP_LOGI(TAG, "         Relay State: %s", espnow_data->payload.relay_state ? "On" : "Off");
 }
 
 /* Prepare ESPNOW data to be sent. */
@@ -69,7 +72,7 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *mess
     ESP_LOGI(TAG, "     message: %s", buf->message);
 
     float temperature = read_internal_temperature_sensor();
-    prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2);
+    prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2, relay_state);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
@@ -242,7 +245,8 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
     {
         ESP_LOGI(TAG, "_________________________________");
         ESP_LOGI(TAG, "Receive unicast ESPNOW data");
-        
+        ESP_LOGW(TAG, "Receive from MAC " MACSTR "", MAC2STR(recv_cb->mac_addr));
+
         espnow_data_parse(recv_cb->data, recv_cb->data_len);
 
         switch (s_master_unicast_mac.connected) 
@@ -289,6 +293,19 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
 
                     //  Response ON/OFF RELAY
                     response_specified_mac(s_master_unicast_mac.peer_addr, CONTROL_RELAY_MSG, false);
+
+                    light_sleep_flag = true;
+                }
+                // Request DISCONNECT node
+                else if (recv_cb->data_len >= strlen(DISCONNECT_NODE_MSG) && strstr((char *)message_packed, DISCONNECT_NODE_MSG) != NULL) 
+                {
+                    light_sleep_flag = false;
+
+                    //  Disconnect node
+                    handle_device(DISCONNECT_NODE, NULL);
+
+                    //  Response disconnected
+                    response_specified_mac(s_master_unicast_mac.peer_addr, DISCONNECT_NODE_MSG, false);
 
                     light_sleep_flag = true;
                 }

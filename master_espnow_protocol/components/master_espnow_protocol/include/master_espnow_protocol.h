@@ -68,6 +68,7 @@
 #define CHECK_CONNECTION_MSG        "CHECK_connect"
 #define STILL_CONNECTED_MSG         "KEEP_connect"
 #define CONTROL_RELAY_MSG           "CONTROL_relay"
+#define DISCONNECT_NODE_MSG         "DISCONNECT_node"
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_SLAVES              "waiting_slaves"
 #define WIFI_CONNECTED_BIT          BIT0
@@ -150,6 +151,7 @@ typedef struct {
     float do_value;
     float temperature_phg;
     float ph_value;
+    bool relay_state;
 } sensor_data_t;
 
 typedef struct {
@@ -201,9 +203,10 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void);
 
 // Function to master espnow
+void erase_table_devices();
 void log_table_devices();
 void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data, bool status);
-void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value); 
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, bool relay_state); 
 void parse_payload(espnow_data_t *espnow_data); 
 void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *message);
 void espnow_data_parse(uint8_t *data, uint16_t data_len);

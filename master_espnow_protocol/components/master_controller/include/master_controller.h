@@ -8,9 +8,11 @@
 
 #define TAG_MASTER_CONTROLLER           "MASTER_CONTROLLER"
 #define CONTROL_RELAY_MSG               "CONTROL_relay"
+#define DISCONNECT_NODE_MSG             "DISCONNECT_node"
 
 typedef enum {
     DEVICE_RELAY,
+    DISCONNECT_NODE,
     DEVICE_UNKNOWN
 } device_type_t;
 

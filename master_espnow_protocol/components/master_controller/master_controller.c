@@ -14,6 +14,22 @@ void handle_device(device_type_t device_type, bool state)
             response_specified_mac(mac_address, CONTROL_RELAY_MSG, false);
 
             break;
+        
+        case DISCONNECT_NODE:
+            // Disconnect node
+
+            ESP_LOGI(TAG_MASTER_CONTROLLER, "Processing DISCONNECT");
+
+            // Response disconnect
+            for (int i = 0; i < MAX_SLAVES; i++) 
+            {
+                if (allowed_connect_slaves[i].status) // Check online status
+                { 
+                    response_specified_mac(allowed_connect_slaves[i].peer_addr, DISCONNECT_NODE_MSG, false);        
+                }
+            }
+            
+            break;
 
         default:
             // Unspecified case

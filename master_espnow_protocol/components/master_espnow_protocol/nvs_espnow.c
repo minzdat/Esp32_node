@@ -31,8 +31,8 @@ void print_info_slaves(list_slaves_t *info_slaves)
         
         ESP_LOGI(TAG, "Slave %d:", i);
         ESP_LOGI(TAG, "  MAC Address: %02x:%02x:%02x:%02x:%02x:%02x",
-                 slave.peer_addr[0], slave.peer_addr[1], slave.peer_addr[2],
-                 slave.peer_addr[3], slave.peer_addr[4], slave.peer_addr[5]);
+                slave.peer_addr[0], slave.peer_addr[1], slave.peer_addr[2],
+                slave.peer_addr[3], slave.peer_addr[4], slave.peer_addr[5]);
         ESP_LOGI(TAG, "  Status: %s", slave.status ? "Online" : "Offline");
         ESP_LOGI(TAG, "  Send Errors: %d", slave.send_errors);
         ESP_LOGI(TAG, "  Start Time: %lu", (unsigned long)slave.start_time);

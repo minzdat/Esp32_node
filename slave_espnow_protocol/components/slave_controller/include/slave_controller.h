@@ -19,11 +19,14 @@ typedef enum {
 
 typedef enum {
     DEVICE_RELAY,
+    DISCONNECT_NODE,
     DEVICE_LED_CONNECT,
     DEVICE_LED,
     DEVICE_FLOAT,
     DEVICE_UNKNOWN
 } device_type_t;
+
+extern bool relay_state;
 
 void relay_init(void);
 void relay_on(void);

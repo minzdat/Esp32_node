@@ -16,11 +16,32 @@ sensor_data_t esp_data_sensor;
 table_device_t table_devices[MAX_SLAVES];
 SemaphoreHandle_t table_devices_mutex;
 
+void erase_table_devices() 
+{
+    if (xSemaphoreTake(table_devices_mutex, portMAX_DELAY)) 
+    {
+        for (int i = 0; i < MAX_SLAVES; i++) 
+        {
+            memset(&table_devices[i], 0, sizeof(table_device_t));
+                        
+            ESP_LOGE(TAG, "Erase Table Devices");
+
+            log_table_devices();
+        }
+        xSemaphoreGive(table_devices_mutex);
+
+    } 
+    else 
+    {
+        ESP_LOGE(TAG, "Failed to take mutex to erase device from table_devices");
+    }
+}
+
 void log_table_devices() 
 {
     ESP_LOGI(TAG, "---------------------------------------------------------------------------------------------------------");
-        ESP_LOGI(TAG, "| %-17s | %-7s | %-7s | %-12s | %-12s | %-12s | %-8s | %-8s |", 
-                 "MAC Address", "Status", "RSSI", "Temp MCU", "Temp RDO", "Temp PHG", "DO Value", "pH Value");
+        ESP_LOGI(TAG, "| %-17s | %-7s | %-7s | %-12s | %-12s | %-12s | %-8s | %-8s | %-7s |", 
+                 "MAC Address", "Status", "RSSI", "Temp MCU", "Temp RDO", "Temp PHG", "DO Value", "pH Value", "Relay");
         ESP_LOGI(TAG, "--------------------------------------------------------------------------------------------------------");
         
         for (int i = 0; i < MAX_SLAVES; i++) 
@@ -32,7 +53,7 @@ void log_table_devices()
                         table_devices[i].peer_addr[0], table_devices[i].peer_addr[1], table_devices[i].peer_addr[2],
                         table_devices[i].peer_addr[3], table_devices[i].peer_addr[4], table_devices[i].peer_addr[5]);
 
-                ESP_LOGI(TAG, "| %-17s | %-7s | %-7d | %-12.2f | %-12.2f | %-12.2f | %-8.2f | %-8.2f |",
+                ESP_LOGI(TAG, "| %-17s | %-7s | %-7d | %-12.2f | %-12.2f | %-12.2f | %-8.2f | %-8.2f | %-7s |",
                          mac_str,
                          table_devices[i].status ? "Online" : "Offline",
                          table_devices[i].data.rssi,
@@ -40,7 +61,8 @@ void log_table_devices()
                          table_devices[i].data.temperature_rdo,
                          table_devices[i].data.temperature_phg,
                          table_devices[i].data.do_value,
-                         table_devices[i].data.ph_value);
+                         table_devices[i].data.ph_value,
+                         table_devices[i].data.relay_state ? "On" : "Off");
             }
         }
 
@@ -111,7 +133,7 @@ void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data
     }
 }
 
-void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value) 
+void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, bool relay_state) 
 {
     // Initialize sensor data directly in the payload field
     espnow_data->payload.temperature_mcu = temperature_mcu;
@@ -120,6 +142,7 @@ void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi
     espnow_data->payload.do_value = do_value;
     espnow_data->payload.temperature_phg = temperature_phg;
     espnow_data->payload.ph_value = ph_value;
+    espnow_data->payload.relay_state = relay_state;
 
     // Print payload size and data for testing
     ESP_LOGI(TAG, "     Payload size: %d bytes", sizeof(sensor_data_t));
@@ -129,6 +152,7 @@ void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi
     ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
     ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
     ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
+    ESP_LOGI(TAG, "         Relay State: %s", espnow_data->payload.relay_state ? "On" : "Off");
 }
 
 /* Parse ESPNOW data payload. */
@@ -141,6 +165,7 @@ void parse_payload(espnow_data_t *espnow_data)
     esp_data_sensor.do_value = espnow_data->payload.do_value;
     esp_data_sensor.temperature_phg = espnow_data->payload.temperature_phg;
     esp_data_sensor.ph_value = espnow_data->payload.ph_value;
+    esp_data_sensor.relay_state = espnow_data->payload.relay_state;
 
     // Directly access the fields of the payload
     ESP_LOGI(TAG, "     Parsed ESPNOW payload:");
@@ -150,6 +175,8 @@ void parse_payload(espnow_data_t *espnow_data)
     ESP_LOGI(TAG, "         DO Value: %.2f", espnow_data->payload.do_value);
     ESP_LOGI(TAG, "         PHG Temperature: %.2f", espnow_data->payload.temperature_phg);
     ESP_LOGI(TAG, "         PH Value: %.2f", espnow_data->payload.ph_value);
+    ESP_LOGI(TAG, "         Relay State: %s", espnow_data->payload.relay_state ? "On" : "Off");
+
 }
 
 /* Prepare ESPNOW data to be sent. */
@@ -179,7 +206,7 @@ void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *mes
     ESP_LOGI(TAG, "     message: %s", buf->message);
 
     float temperature = read_internal_temperature_sensor();
-    prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2);
+    prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2, esp_data_sensor.relay_state);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
@@ -468,6 +495,20 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                     light_sleep_flag = true;
                     // start_time_light_sleep = esp_timer_get_time();
 
+                }
+                else if (recv_cb->data_len >= strlen(DISCONNECT_NODE_MSG) && strstr((char *)message_packed, DISCONNECT_NODE_MSG) != NULL)
+                {
+                    erase_key_in_nvs("KEY_SLA_ALLOW");
+
+                    load_info_slaves_from_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
+
+                    // Clear the `allowed_connect_slaves` arrayWW
+                    for (int i = 0; i < MAX_SLAVES; i++) 
+                    {
+                        memset(&allowed_connect_slaves[i], 0, sizeof(list_slaves_t));
+                    }
+
+                    erase_table_devices();
                 }
             }
         }

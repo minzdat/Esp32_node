@@ -27,6 +27,9 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 /* WiFi should start before using ESPNOW */
 void master_wifi_init(void)
 {
+/*---------------------------------------------------------------------------------*/
+// Espnow protocol WITH WIFI
+
 //     s_wifi_event_group = xEventGroupCreate();
 
 //     ESP_ERROR_CHECK(esp_netif_init());
@@ -76,7 +79,12 @@ void master_wifi_init(void)
 //      * happened. */
 //     if (bits & WIFI_CONNECTED_BIT) {
 //         ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
-//                  CONFIG_ESP_WIFI_SSID, CONFIG_ESP_WIFI_PASSWORD);
+//                 CONFIG_ESP_WIFI_SSID, CONFIG_ESP_WIFI_PASSWORD);
+
+//         // const char *udp_ip = "34.150.93.172";
+//         // unsigned long udp_port = 5010; // 5006 - 5013
+//         // udp_logging_init(udp_ip, udp_port, udp_logging_vprintf);
+
 //     } else if (bits & WIFI_FAIL_BIT) {
 //         ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
 //                  CONFIG_ESP_WIFI_SSID, CONFIG_ESP_WIFI_PASSWORD);
@@ -89,6 +97,8 @@ void master_wifi_init(void)
 // #if CONFIG_ESPNOW_ENABLE_LONG_RANGE
 //     ESP_ERROR_CHECK( esp_wifi_set_protocol(ESPNOW_WIFI_IF, WIFI_PROTOCOL_11B|WIFI_PROTOCOL_11G|WIFI_PROTOCOL_11N|WIFI_PROTOCOL_LR) );
 // #endif
+
+/*---------------------------------------------------------------------------------*/
 
     // #if CONFIG_PM_ENABLE
     //     // Configure dynamic frequency scaling:
@@ -103,6 +113,9 @@ void master_wifi_init(void)
     //     };
     //     ESP_ERROR_CHECK( esp_pm_configure(&pm_config) );
     // #endif // CONFIG_PM_ENABLE
+
+/*---------------------------------------------------------------------------------*/
+// Espnow protocol NOT WIFI
 
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());

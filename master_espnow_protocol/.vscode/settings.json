@@ -32,7 +32,13 @@
         "esp_log.h": "c",
         "light_sleep.h": "c",
         "esp_system.h": "c",
-        "queue.h": "c"
+        "queue.h": "c",
+        "udp_logging.h": "c",
+        "global.h": "c",
+        "deep_sleep.h": "c",
+        "semphr.h": "c",
+        "master_controller.h": "c",
+        "read_serial.h": "c"
     },
     "idf.flashType": "UART"
 }
