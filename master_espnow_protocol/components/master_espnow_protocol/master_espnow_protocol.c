@@ -462,6 +462,13 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
 
                     break;
                 }
+                else if (recv_cb->data_len >= strlen(CONTROL_RELAY_MSG) && strstr((char *)message_packed, CONTROL_RELAY_MSG) != NULL)
+                {
+
+                    light_sleep_flag = true;
+                    // start_time_light_sleep = esp_timer_get_time();
+
+                }
             }
         }
     }
@@ -670,22 +677,6 @@ void master_espnow_protocol()
     {
         write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
     }
-
-     /* ----------Set up Wake up for Deep Sleep---------- */
-
-    // deep_sleep_register_rtc_timer_wakeup();
-    // deep_sleep_register_gpio_wakeup();
-
-    /* End----------Set up Wake up for Deep Sleep---------- */
-
-    /* ----------Set up Wake up for Light Sleep---------- */
-
-    // Enable wakeup from light sleep by timer
-    register_timer_wakeup();
-    // Enable wakeup from light sleep by gpio
-    register_gpio_wakeup();
-
-    /* End ----------Set up Wake up for Light Sleep---------- */
 
     master_espnow_init();
 

@@ -1,38 +1,17 @@
 #include "read_serial.h"
-// #include "master_espnow_protocol.h"
-#include "esp_wifi.h"
-#include "esp_system.h"
-
-const char *TAG="Read Serial";
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_log.h"
-#include "freertos/queue.h"
-#include "driver/uart.h"
-#include "driver/gpio.h"
-
-#include "esp_timer.h"
-#include "cJSON.h"
 
 int time_now=0;
 int time_check=0;
 int timeout=10000000;
 bool connect_check=true;
-
-// #define PATTERN_CHR_NUM    (3)         /*!< Set the number of consecutive and identical characters received by receiver which defines a UART pattern*/
-#define UART_NUM_P2         UART_NUM_1    // Sử dụng UART1
-#define TX_GPIO_NUM     5    // Chân TX (thay đổi nếu cần)
-#define RX_GPIO_NUM      4    // Chân RX (thay đổi nếu cần)
-#define BAUD_RATE        115200         // Tốc độ baud
-#define BUF_SIZE (5000)
-#define RD_BUF_SIZE (BUF_SIZE)
 static QueueHandle_t uart0_queue;
-#define MAX_SLAVES                  3
 
 extern table_device_tt table_devices[MAX_SLAVES];
 
-void uart_config(void){
-        uart_config_t uart_config = {
+void uart_config(void)
+{
+    uart_config_t uart_config = 
+    {
         .baud_rate = BAUD_RATE,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
@@ -52,10 +31,8 @@ void uart_config(void){
     // uart_set_pin(EX_UART_NUM_P2, TX_PIN, RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 }
 
-#include "mbedtls/aes.h"
-#define BUF_SIZEz 1024
-
-void encrypt_message(const unsigned char *input, unsigned char *output, size_t length) {
+void encrypt_message(const unsigned char *input, unsigned char *output, size_t length) 
+{
     mbedtls_aes_context aes;
     unsigned char key[16] = "7832477891326794";
     unsigned char iv[16] =  "4892137489723148";
@@ -66,8 +43,8 @@ void encrypt_message(const unsigned char *input, unsigned char *output, size_t l
     mbedtls_aes_free(&aes);
 }
 
-void dump_uart(uint8_t *message, size_t len){
-    
+void dump_uart(uint8_t *message, size_t len)
+{
     // len = sizeof(len);
     printf("send \n");
     uint8_t encrypted_message[len]; // AES block size = 16 bytes
@@ -78,7 +55,8 @@ void dump_uart(uint8_t *message, size_t len){
     time_check=esp_timer_get_time(); 
 }
 
-void add_json(){
+void add_json()
+{
     cJSON *json_mac = cJSON_CreateObject();
     cJSON *json_data = cJSON_CreateObject();
 
@@ -100,55 +78,59 @@ void add_json(){
     // printf("JSON: %s\n", json_string);
     uart_write_bytes(UART_NUM_P2,json_string, strlen(json_string));
 
-
 }
 
-
-static void uart_event(void *pvParameters)
+void uart_event(void *pvParameters)
 {
     uart_event_t event;
     size_t buffered_size;
     uint8_t* dtmp = (uint8_t*) malloc(RD_BUF_SIZE);
     unsigned char decrypted_message[sizeof(messages_request)];
    
-    while (true){
-        if (xQueueReceive(uart0_queue, (void *)&event, (TickType_t)portMAX_DELAY)) {
+    while (true)
+    {
+        if (xQueueReceive(uart0_queue, (void *)&event, (TickType_t)portMAX_DELAY)) 
+        {
             // bzero(dtmp, RD_BUF_SIZE);
             // memset(dtmp, 0, RD_BUF_SIZE);
-            if (event.type == UART_DATA){
-                    uart_read_bytes(UART_NUM_P2, decrypted_message, event.size, 50 / portTICK_PERIOD_MS);
-                    uart_flush(UART_NUM_P2);
-                    ESP_LOGE(TAG, "Reicv %d bytes : ",event.size);
-                    printf("%s \n",decrypted_message);
+            if (event.type == UART_DATA)
+            {
+                uart_read_bytes(UART_NUM_P2, decrypted_message, event.size, 50 / portTICK_PERIOD_MS);
+                uart_flush(UART_NUM_P2);
+                ESP_LOGE(TAG_READ_SERIAL, "Reicv %d bytes : ",event.size);
+                printf("%s \n",decrypted_message);
 
 
-                    accept_connect((uint8_t *)decrypted_message);
+                accept_connect((uint8_t *)decrypted_message);
 
-                if (connect_check){
-                    if (strcmp((char *)decrypted_message, REQUEST_UART) == 0) {
+                if (connect_check)
+                {
+                    if (strcmp((char *)decrypted_message, REQUEST_UART) == 0) 
+                    {
                         time_now=esp_timer_get_time(); 
                         // connect_check=true;
                     }
-                    else if (strcmp((char *)decrypted_message, BUTTON_MSG) == 0) {
+                    else if (strcmp((char *)decrypted_message, BUTTON_MSG) == 0) 
+                    {
                         time_now=esp_timer_get_time();
-                        ESP_LOGE(TAG, "Reicv %s ",decrypted_message);
+                        ESP_LOGE(TAG_READ_SERIAL, "Reicv %s ",decrypted_message);
                     }
-                    
-                    else if (memcmp((char *)decrypted_message, GET_DATA, 6) == 0){
+                    else if (memcmp((char *)decrypted_message, GET_DATA, 6) == 0)
+                    {
                         table_device_tt sensor_data;
                         // buf->crc = crc_cal;
                         memcpy(&sensor_data,&table_devices[1], sizeof(table_device_tt));
-                        ESP_LOGI(TAG, "         MCU Temperature: %.2f", table_devices[1].data.temperature_mcu);
+                        ESP_LOGI(TAG_READ_SERIAL, "         MCU Temperature: %.2f", table_devices[1].data.temperature_mcu);
 
                         // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
                         // if (table_devices[1].status==1)
                         dump_uart((uint8_t*)&sensor_data, 120);
                     }
                 }
-                // if ((strcmp((char *)decrypted_message, RESPONSE_AGREE) == 0)&&(!connect_check)) {
+                // if ((strcmp((char *)decrypted_message, RESPONSE_AGREE) == 0)&&(!connect_check)) 
+                // {
                 //     connect_check=true;
                 // }
-
             }
         }
     }
@@ -157,78 +139,85 @@ static void uart_event(void *pvParameters)
     vTaskDelete(NULL);
 }
 
-void delay(int x){
+void delay(int x)
+{
     vTaskDelay(pdMS_TO_TICKS(x));
 }
 
-void check_timeout(){
+void check_timeout()
+{
     messages_request mess;
     memcpy(mess.message, REQUEST_UART, sizeof(REQUEST_UART));
     esp_wifi_get_mac(ESP_IF_WIFI_STA, mess.mac);
 
     while (1)
     {
-
-        if ((time_now!=0)&&(connect_check)){
+        if ((time_now!=0)&&(connect_check))
+        {
             time_check=esp_timer_get_time();
             printf("timenow: %d \n",time_now);
             printf("time_check: %d \n",time_check);
-            if ((time_check-time_now)>timeout){
-                ESP_LOGE(TAG, "TIMEOUT UART");
+            if ((time_check-time_now)>timeout)
+            {
+                ESP_LOGE(TAG_READ_SERIAL, "TIMEOUT UART");
                 connect_check=false;
                 time_now=0;
-        //         wait_connect_serial();
-        //         // break;
+                // wait_connect_serial();
+                // break;
             }
         }
 
-        if (!connect_check){
-            ESP_LOGE(TAG, "connect_check UART");
+        if (!connect_check)
+        {
+            ESP_LOGE(TAG_READ_SERIAL, "connect_check UART");
             dump_uart((uint8_t *) &mess,  sizeof(mess));
         }
         delay(1000);
-
     }
 }
 
-
-void uart_event_task(void){
+void uart_event_task(void)
+{
     // wait_connect_serial();
     xTaskCreate(uart_event, "uart_event", 4096, NULL, 12, NULL);
     // check_timeout();
     // xTaskCreate(check_timeout, "check_timeout", 4096, NULL, 12, NULL);
 }
 
-
 // connect_request mess;
 // strncpy(mess.message, request_connect, sizeof(request_connect));
 
-
-void accept_connect(uint8_t *message){
-    if (!strncmp(REQUEST_CONNECTION_MSG ,(char *)message,sizeof(REQUEST_CONNECTION_MSG))){
+void accept_connect(uint8_t *message)
+{
+    if (!strncmp(REQUEST_CONNECTION_MSG ,(char *)message,sizeof(REQUEST_CONNECTION_MSG)))
+    {
         dump_uart((uint8_t *)RESPONSE_AGREE,sizeof(RESPONSE_AGREE));
         // connect_check=true;
-        ESP_LOGI(TAG, RESPONSE_AGREE);
+        ESP_LOGI(TAG_READ_SERIAL, RESPONSE_AGREE);
     }
-    if (!strncmp(RESPONSE_CONNECTED ,(char *)message,sizeof(RESPONSE_CONNECTED))){
+    if (!strncmp(RESPONSE_CONNECTED ,(char *)message,sizeof(RESPONSE_CONNECTED)))
+    {
         // dump_uart((uint8_t *)RESPONSE_AGREE,sizeof(RESPONSE_AGREE));
         connect_check=true;
-        ESP_LOGI(TAG, "connected");
+        ESP_LOGI(TAG_READ_SERIAL, "connected");
     }
 }
-uint8_t wait_connect_serial(){
+
+uint8_t wait_connect_serial()
+{
     uint8_t reponse_connect_uart[20]; 
     messages_request mess;
     memcpy(mess.message, REQUEST_UART, sizeof(REQUEST_UART));
     esp_wifi_get_mac(ESP_IF_WIFI_STA, mess.mac);
     uint8_t mac[6];
-            memcpy(mac, mess.mac, sizeof(mess.mac));
-     ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
-                 mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+    memcpy(mac, mess.mac, sizeof(mess.mac));
+    ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
+            mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+
     while (true)
     {   
         vTaskDelay(pdMS_TO_TICKS(2000));
-        ESP_LOGW(TAG,"wait_connect_serial");
+        ESP_LOGW(TAG_READ_SERIAL,"wait_connect_serial");
         uart_flush(UART_NUM_P2);
         dump_uart((uint8_t *) &mess.message,  sizeof(mess.message));
 
@@ -236,8 +225,9 @@ uint8_t wait_connect_serial(){
 
         uart_read_bytes(UART_NUM_P2, reponse_connect_uart, sizeof(reponse_connect_uart), pdMS_TO_TICKS(200));
             
-        if (strcmp((char *)reponse_connect_uart, RESPONSE_AGREE) == 0) {
-            ESP_LOGI(TAG, "CONNECTED");
+        if (strcmp((char *)reponse_connect_uart, RESPONSE_AGREE) == 0) 
+        {
+            ESP_LOGI(TAG_READ_SERIAL, "CONNECTED");
             dump_uart((uint8_t *) RESPONSE_CONNECTED,  sizeof(RESPONSE_CONNECTED));
             break;
         }

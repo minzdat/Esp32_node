@@ -67,6 +67,7 @@
 #define SLAVE_SAVED_MAC_MSG         "SAVED_mac"
 #define CHECK_CONNECTION_MSG        "CHECK_connect"
 #define STILL_CONNECTED_MSG         "KEEP_connect"
+#define CONTROL_RELAY_MSG           "CONTROL_relay"
 #define NVS_NAMESPACE               "storage"
 #define NVS_KEY_SLAVES              "waiting_slaves"
 #define WIFI_CONNECTED_BIT          BIT0

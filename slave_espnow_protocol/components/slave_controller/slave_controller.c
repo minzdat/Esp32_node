@@ -111,8 +111,6 @@ void handle_device(device_type_t device_type, bool state)
                 ESP_LOGI(TAG_SLAVE_CONTROLLER, "RELAY ON");
             }            
 
-            light_sleep_flag = true;
-
             break;
         
         case DEVICE_LED_CONNECT:

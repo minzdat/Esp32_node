@@ -2,6 +2,8 @@
 
 bool light_sleep_flag = false;
 int64_t start_time_light_sleep = 0;
+int64_t sleep_duration = 0;
+int64_t timer_wakeup = TIMER_WAKEUP_TIME_US;
 
 void light_sleep_task(void *args)
 {
@@ -41,9 +43,22 @@ void light_sleep_task(void *args)
                 {
                     case ESP_SLEEP_WAKEUP_TIMER:
                         wakeup_reason = "timer";
+
+                        sleep_duration = 0;
+                        timer_wakeup = TIMER_WAKEUP_TIME_US - sleep_duration;
+                        ESP_LOGI(TAG_LIGHT_SLEEP, "Set up timer wakeup: %lld us", timer_wakeup);
+                        register_timer_wakeup(timer_wakeup);
+
                         break;
                     case ESP_SLEEP_WAKEUP_GPIO:
                         wakeup_reason = "pin";
+
+                        sleep_duration = (t_after_us - t_before_us);
+                        ESP_LOGI(TAG_LIGHT_SLEEP, "Slept for: %lld us", sleep_duration);
+                        timer_wakeup = TIMER_WAKEUP_TIME_US - sleep_duration;
+                        ESP_LOGI(TAG_LIGHT_SLEEP, "Set up timer wakeup: %lld us", timer_wakeup);
+                        register_timer_wakeup(timer_wakeup);
+
                         break;
                     case ESP_SLEEP_WAKEUP_UART:
                         wakeup_reason = "uart";
@@ -92,4 +107,12 @@ void light_sleep_task(void *args)
         vTaskDelay(pdMS_TO_TICKS(1000));   
     }
     vTaskDelete(NULL);
+}
+
+void light_sleep_init()
+{
+    // Enable wakeup from light sleep by timer
+    register_timer_wakeup(timer_wakeup);
+    // Enable wakeup from light sleep by gpio
+    register_gpio_wakeup();
 }

@@ -282,9 +282,15 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 // Request control RELAY
                 else if (recv_cb->data_len >= strlen(CONTROL_RELAY_MSG) && strstr((char *)message_packed, CONTROL_RELAY_MSG) != NULL) 
                 {
-                    //Control RELAY
                     light_sleep_flag = false;
+
+                    //  Control RELAY
                     handle_device(DEVICE_RELAY, NULL);
+
+                    //  Response ON/OFF RELAY
+                    response_specified_mac(s_master_unicast_mac.peer_addr, CONTROL_RELAY_MSG, false);
+
+                    light_sleep_flag = true;
                 }
                 
                 break;
