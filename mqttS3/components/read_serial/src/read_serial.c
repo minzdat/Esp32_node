@@ -17,6 +17,7 @@ int time_now=0;
 int time_check=0;
 int timeout=10000000;
 bool connect_check=true;
+// table_device_t table_devices[MAX_SLAVES];
 
 
 #define PATTERN_CHR_NUM    (3)         /*!< Set the number of consecutive and identical characters received by receiver which defines a UART pattern*/
@@ -37,12 +38,15 @@ void uart_config(void){
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .source_clk = UART_SCLK_DEFAULT,
     };
-    uart_driver_install(UART_NUM, BUF_SIZE, BUF_SIZE, 10, &uart0_queue, 0);
+    // uart_driver_install(UART_NUM, BUF_SIZE, BUF_SIZE, 10, &uart0_queue, 0);
+    uart_driver_install(UART_NUM, BUF_SIZE, BUF_SIZE, 0, NULL, 0);
 
     // uart_driver_install(UART_NUM, BUF_SIZE * 2, BUF_SIZE * 2, 20, &uart0_queue, 0);
     uart_param_config(UART_NUM, &uart_config);
     // uart_set_pin(UART_NUM, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
     uart_set_pin(UART_NUM, TX_GPIO_NUM, RX_GPIO_NUM, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+        gpio_set_direction(TX_GPIO_NUM, GPIO_MODE_OUTPUT);
+
     // uart0_queue = xQueueCreate(10, BUF_SIZE);
     // uart_set_pin(EX_UART_NUM, TX_PIN, RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 }
@@ -70,14 +74,71 @@ void decrypt_message(const unsigned char *input, unsigned char *output, size_t l
     mbedtls_aes_free(&aes);
 }
 void dump_uart(uint8_t *message, size_t len){
-    
-    // len = sizeof(len);
     printf("send \n");
     uint8_t encrypted_message[len]; // AES block size = 16 bytes
     // Mã hóa tin nhắn
     encrypt_message((unsigned char *)message, encrypted_message, len);
     // uart_write_bytes(UART_NUM_P2, (const char *)message, sizeof(sensor_data_t));
+    
     uart_write_bytes(UART_NUM, (unsigned char *)message, len);
+}
+
+int get_uart(uint8_t *message, size_t len, int timeout){
+    printf("get \n");
+    uint8_t encrypted_message[len]; // AES block size = 16 bytes
+    // uart_read_bytes(UART_NUM, (unsigned char *)message, len);
+    memset(message, 0, len);
+
+    int length = uart_read_bytes(UART_NUM, message, len+10,  pdMS_TO_TICKS(timeout));
+    uart_flush(UART_NUM);
+                ESP_LOGW(TAG, "Reicv %d bytes : ",length);
+                printf("%s \n",message);
+    return length;
+}
+
+
+int wait_wake_up(){
+    ESP_LOGI(TAG, "Waiting for wake up");
+    uint8_t message[sizeof(WOKE_UP)];
+
+    dump_uart((uint8_t *)WAKE_UP_COMMAND,sizeof(WAKE_UP_COMMAND));
+    // gpio_set_level(TX_GPIO_NUM, 1);
+    // vTaskDelay(pdMS_TO_TICKS(100));  // 50ms delay
+    // gpio_set_level(TX_GPIO_NUM, 0);
+    // vTaskDelay(pdMS_TO_TICKS(100));  // 50ms delay
+    int length = uart_read_bytes(UART_NUM, message, sizeof(WOKE_UP), pdMS_TO_TICKS(500) );//pdMS_TO_TICKS(500) portMAX_DELAY
+    uart_flush(UART_NUM);
+    if (length < 0) {
+        ESP_LOGE(TAG, "Error reading from UART: %d", length);
+        return length;
+    }
+    ESP_LOGW(TAG, "Received %d bytes: %.*s", length, length, message);
+                // printf("%s \n",message);
+    if (length == sizeof(WOKE_UP) && memcmp(message, WOKE_UP, sizeof(WOKE_UP)) == 0) {
+        ESP_LOGI(TAG, "Received correct wake up message");
+        return length;
+    } else {
+        ESP_LOGW(TAG, "Received unexpected message");
+        return 0;
+    }
+    return length;
+}
+
+void get_table(){
+    printf("get_table \n");
+    int length=0;
+    table_device_t message[sizeof(table_device_t)];
+    dump_uart((uint8_t *)GET_FULL_DATA,sizeof(GET_FULL_DATA));
+    for (int i = 0; i < MAX_SLAVES; i++) {
+        length = uart_read_bytes(UART_NUM, message, sizeof(table_device_t), pdMS_TO_TICKS(500) );//pdMS_TO_TICKS(500) portMAX_DELAY
+        // table_devices
+        memcpy(&table_devices[i], message, sizeof(table_device_t));
+        ESP_LOGW(TAG, "Reicv %d bytes : ",length);
+    }
+    uart_flush(UART_NUM);
+    // ESP_LOGW(TAG, "Reicv %d bytes : ",length);
+    // printf("%s \n",message);
+    return;
 }
 void add_json(){
     cJSON *json_mac = cJSON_CreateObject();
@@ -179,11 +240,9 @@ void parse_payload(const sensor_data_t *espnow_data)
         ESP_LOGE(TAG, "Payload size is too small to parse sensor_data_t");
         // return;
     }
-
-    
     memcpy(&sensor_data, espnow_data, sizeof(sensor_data_t));
 
-    xQueueSend(g_mqtt_queue, &sensor_data, portMAX_DELAY);
+    // xQueueSend(g_mqtt_queue, &sensor_data, portMAX_DELAY);
     
     ESP_LOGI(TAG, "     Parsed ESPNOW payload:");
     ESP_LOGI(TAG, "         MCU Temperature: %.2f", sensor_data.temperature_mcu);
@@ -192,19 +251,6 @@ void parse_payload(const sensor_data_t *espnow_data)
     ESP_LOGI(TAG, "         DO Value: %.2f", sensor_data.do_value);
     ESP_LOGI(TAG, "         PHG Temperature: %.2f", sensor_data.temperature_phg);
     ESP_LOGI(TAG, "         PH Value: %.2f", sensor_data.ph_value);
-    // ESP_LOGI(TAG, "         Message: %s", sensor_data.message);
-    // if (strcmp((char *)sensor_data.message, REQUEST_CONNECTION_MSG) == 0) {
-    //     connect_request keep_connect;
-    //     memcpy(keep_connect.message,REQUEST_CONNECTION_MSG,sizeof(REQUEST_CONNECTION_MSG));
-    //     // keep_connect.message
-    //     // dump_uart(keep_connect,sizeof(keep_connect));
-        
-    //     dump_uart((const char *)keep_connect.message,  sizeof(keep_connect.message));
-
-    //     time_now=esp_timer_get_time(); 
-    //     conn=true;
-    // }
-    // memcpy(payload, sensor_data.message, strlen(sensor_data.message) + 1);
 }
 
 #define GPIO_OUTPUT_PIN 17
@@ -310,7 +356,7 @@ static void uart_event(void *pvParameters)
     unsigned char encrypted_message[sizeof(sensor_data_t)];
     unsigned char decrypted_message[sizeof(sensor_data_t)];
    
-    while (true){
+    while (false){
         if (xQueueReceive(uart0_queue, (void *)&event, (TickType_t)portMAX_DELAY)) {
             // bzero(encrypted_message, 20);
             memset(encrypted_message, 0, event.size);
@@ -375,11 +421,10 @@ static void uart_event(void *pvParameters)
     if (connect_check){
         if (memcmp(&recv_data->peer_addr, &recv_data->peer_addr, 6) == 0) {
             parse_payload(&recv_data->data);
-            connect_request keep_connect;
-            memcpy(keep_connect.message,MESSAGES_DATA,sizeof(MESSAGES_DATA));
+            // connect_request keep_connect;
+            // memcpy(keep_connect.message,MESSAGES_DATA,sizeof(MESSAGES_DATA));
             // dump_uart((const char *)keep_connect.message,  sizeof(keep_connect.message));
-
-            time_now=esp_timer_get_time(); 
+            time_now=esp_timer_get_time();
             
         }
     }
@@ -392,7 +437,7 @@ static void uart_event(void *pvParameters)
 
 void uart_event_task(void){
     // configure_gpio_output();
-    // wait_connect_serial();
+    wait_connect_serial();
     xTaskCreate(uart_event, "uart_event", 4096, NULL, 12, NULL);
     // xTaskCreate(check_timeout, "check_timeout", 4096, NULL, 12, NULL);
 
@@ -416,6 +461,36 @@ void accept_connect(uint8_t *message){
     }
 }
 
+void log_table_devices() 
+{
+    ESP_LOGI(TAG, "---------------------------------------------------------------------------------------------------------");
+        ESP_LOGI(TAG, "| %-17s | %-7s | %-7s | %-12s | %-12s | %-12s | %-8s | %-8s |", 
+                 "MAC Address", "Status", "RSSI", "Temp MCU", "Temp RDO", "Temp PHG", "DO Value", "pH Value");
+        ESP_LOGI(TAG, "--------------------------------------------------------------------------------------------------------");
+        
+        for (int i = 0; i < MAX_SLAVES; i++) 
+        {
+            if (memcmp(table_devices[i].peer_addr, "\0\0\0\0\0\0", 6) != 0) 
+            {
+                char mac_str[18];
+                sprintf(mac_str, "%02X:%02X:%02X:%02X:%02X:%02X", 
+                        table_devices[i].peer_addr[0], table_devices[i].peer_addr[1], table_devices[i].peer_addr[2],
+                        table_devices[i].peer_addr[3], table_devices[i].peer_addr[4], table_devices[i].peer_addr[5]);
+
+                ESP_LOGI(TAG, "| %-17s | %-7s | %-7d | %-12.2f | %-12.2f | %-12.2f | %-8.2f | %-8.2f |",
+                         mac_str,
+                         table_devices[i].status ? "Online" : "Offline",
+                         table_devices[i].data.rssi,
+                         table_devices[i].data.temperature_mcu,
+                         table_devices[i].data.temperature_rdo,
+                         table_devices[i].data.temperature_phg,
+                         table_devices[i].data.do_value,
+                         table_devices[i].data.ph_value);
+            }
+        }
+
+    ESP_LOGI(TAG, "--------------------------------------------------------------------------------------------------------");
+}
 void wait_connect_serial(){
     uint8_t reponse_connect_uart[20]; 
     messages_request mess;
@@ -435,7 +510,11 @@ void wait_connect_serial(){
             dump_uart((uint8_t *) RESPONSE_CONNECTED,  sizeof(RESPONSE_CONNECTED));
             break;
         }
-
     }
+    // dump_uart((uint8_t *) GET_FULL_DATA,  sizeof(GET_FULL_DATA));
+    wait_wake_up();
+    get_table();
+    log_table_devices();
+// vTaskDelete(NULL);
     return ;
 }

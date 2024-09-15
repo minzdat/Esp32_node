@@ -40,9 +40,9 @@
 #define TX_GPIO_NUM                     5                       // Chân TX (thay đổi nếu cần)
 #define RX_GPIO_NUM                     4                       // Chân RX (thay đổi nếu cần)
 #define BAUD_RATE                       115200                  // Tốc độ baud
-#define BUF_SIZE                        (5000)
+#define BUF_SIZE                        (1024)
 #define RD_BUF_SIZE                     (BUF_SIZE)
-#define MAX_SLAVES                  3
+#define MAX_SLAVES                      3
 
 // uint8_t reponse_connect_uart[20];
 
@@ -54,6 +54,8 @@ typedef struct {
     float do_value;
     float temperature_phg;
     float ph_value;
+    bool relay_state;
+
 } sensor_data_tt;
 
 // typedef struct {

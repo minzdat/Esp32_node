@@ -66,6 +66,7 @@
 #define RESPONSE_AGREE_CONNECT      "AGREE_connect"
 #define SLAVE_SAVED_MAC_MSG         "SAVED_mac"
 #define CHECK_CONNECTION_MSG        "CHECK_connect"
+#define NOT_RETRY_MSG               "NOT_retry"
 #define STILL_CONNECTED_MSG         "KEEP_connect"
 #define CONTROL_RELAY_MSG           "CONTROL_relay"
 #define DISCONNECT_NODE_MSG         "DISCONNECT_node"
@@ -76,7 +77,7 @@
 #define MASTER_BROADCAST_MAC        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 #define MAX_SLAVES                  3
 #define TIME_CHECK_CONNECT          10 * 1000 * 1000     // 10 seconds
-#define RETRY_TIMEOUT               2 * 1000 * 1000     // 2 seconds
+#define RETRY_TIMEOUT               1 * 1000 * 1000     // 1 seconds
 #define ESPNOW_MAXDELAY             512
 #define NUMBER_RETRY                3
 #define ESPNOW_QUEUE_SIZE           6
@@ -109,6 +110,7 @@ typedef struct {
     // int count_send;
     // int count_receive;
     // int count_retry;
+    char message_retry_fail[PACKED_MSG_SIZE];
 } list_slaves_t;
 
 typedef enum {
@@ -184,6 +186,7 @@ typedef struct {
 
 // Public variable
 extern list_slaves_t allowed_connect_slaves[MAX_SLAVES];
+extern list_slaves_t waiting_connect_slaves[MAX_SLAVES];
 extern table_device_t table_devices[MAX_SLAVES];
 
 // Function to read temperature internal esp
@@ -203,7 +206,7 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void);
 
 // Function to master espnow
-void erase_table_devices();
+void erase_table_devices(int i); 
 void log_table_devices();
 void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data, bool status);
 void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, bool relay_state); 

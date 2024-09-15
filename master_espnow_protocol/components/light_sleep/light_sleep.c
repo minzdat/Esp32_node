@@ -96,7 +96,7 @@ void light_sleep_task(void *args)
                 {
                     dump_uart((uint8_t *)WOKE_UP,sizeof(WOKE_UP));
                     //handle test control device
-                    // handle_device(DEVICE_RELAY, true); 
+                    handle_device(DISCONNECT_NODE, true); 
                 }
                 
                 start_time_light_sleep = 0;

@@ -267,6 +267,8 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     s_master_unicast_mac.start_time =  esp_timer_get_time();
                     response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG, false);
                     add_peer(s_master_unicast_mac.peer_addr, false);
+
+                    light_sleep_flag = true;
                 }
                 break;
 
@@ -274,6 +276,8 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 // Check if the received data is CHECK_CONNECTION_MSG
                 if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)message_packed, CHECK_CONNECTION_MSG) != NULL) 
                 {
+                    light_sleep_flag = false;
+
                     s_master_unicast_mac.start_time = esp_timer_get_time();
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " %s", MAC2STR(s_master_unicast_mac.peer_addr),STILL_CONNECTED_MSG);
                     response_specified_mac(s_master_unicast_mac.peer_addr, STILL_CONNECTED_MSG, true);
@@ -330,6 +334,8 @@ void slave_espnow_task(void *pvParameter)
         switch (s_master_unicast_mac.connected) 
         {
             case false:
+            
+                light_sleep_flag = false;
 
                 // erase_peer(s_master_unicast_mac.peer_addr);
            
@@ -378,7 +384,7 @@ void slave_espnow_task(void *pvParameter)
 
                 break;
         }
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay 1 seconds
+        vTaskDelay(pdMS_TO_TICKS(100)); // Delay 1 seconds
     }
 }
 

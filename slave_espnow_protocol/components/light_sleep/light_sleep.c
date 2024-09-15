@@ -79,12 +79,12 @@ void light_sleep_task(void *args)
                 slave_espnow_init(); 
 
                 start_time_light_sleep = 0;
-                light_sleep_flag = false;   
+                // light_sleep_flag = false;   
             }
                     
         }
 
-        vTaskDelay(pdMS_TO_TICKS(1000));   
+        vTaskDelay(pdMS_TO_TICKS(100));   
     }
     vTaskDelete(NULL);
 }

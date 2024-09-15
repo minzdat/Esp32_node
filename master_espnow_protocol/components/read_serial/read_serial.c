@@ -83,18 +83,18 @@ void uart_event(void *pvParameters)
 {
     uart_event_t event;
     size_t buffered_size;
-    uint8_t* dtmp = (uint8_t*) malloc(RD_BUF_SIZE);
-    unsigned char decrypted_message[sizeof(messages_request)];
+    uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
+    unsigned char decrypted_message[BUF_SIZE];
    
     while (true)
     {
         if (xQueueReceive(uart0_queue, (void *)&event, (TickType_t)portMAX_DELAY)) 
         {
             // bzero(dtmp, RD_BUF_SIZE);
-            // memset(dtmp, 0, RD_BUF_SIZE);
+            memset(decrypted_message, 0, BUF_SIZE);
             if (event.type == UART_DATA)
             {
-                uart_read_bytes(UART_NUM_P2, decrypted_message, event.size, 50 / portTICK_PERIOD_MS);
+                uart_read_bytes(UART_NUM_P2, decrypted_message, event.size, 100 / portTICK_PERIOD_MS);
                 uart_flush(UART_NUM_P2);
                 ESP_LOGE(TAG_READ_SERIAL, "Reicv %d bytes : ",event.size);
                 printf("%s \n",decrypted_message);
@@ -114,31 +114,29 @@ void uart_event(void *pvParameters)
                         time_now=esp_timer_get_time();
                         ESP_LOGE(TAG_READ_SERIAL, "Reicv %s ",decrypted_message);
                     }
-                    
-                    else if (memcmp((char *)decrypted_message, GET_DATA, 6) == 0)
+                    else if ((memcmp((char *)decrypted_message, GET_DATA, 6) == 0))
                     {
                         table_device_tt sensor_data;
                         messages_request* mess_get= (messages_request*)decrypted_message;
-                        
-                        // messages_request mess_get=(messages_request*)decrypted_message
-                        // buf->crc = crc_cal;
-                        memcpy(&sensor_data,&table_devices[0], sizeof(table_device_tt));
                             // ESP_LOGE(TAG_READ_SERIAL, "size table_device_tt %d ",sizeof(table_device_tt)ư3r);
-
-                        ESP_LOGI(TAG_READ_SERIAL, "         MCU Temperature: %.2f", table_devices[0].data.temperature_mcu);
-                        // ESP_LOGI(TAG_READ_SERIAL, " MAC: %.2f", table_devices[0].data.temperature_mcu);
-                             ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
-                        mess_get->mac[0], mess_get->mac[1], mess_get->mac[2], mess_get->mac[3], mess_get->mac[4], mess_get->mac[5]);
-                        // dump_uart((uint8_t*)buf, sizeof(espnow_data_t));
-                        // if (table_devices[1].status==1)
-                        dump_uart((uint8_t*)&sensor_data, sizeof(table_device_tt));
+                        for (int i = 0; i < MAX_SLAVES; i++)
+                        {
+                            if (memcmp(mess_get->mac, table_devices[i].peer_addr, 6)==0)
+                            {
+                                memcpy(&sensor_data,&table_devices[i], sizeof(table_device_tt));
+                                ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
+                                mess_get->mac[0], mess_get->mac[1], mess_get->mac[2], mess_get->mac[3], mess_get->mac[4], mess_get->mac[5]);
+                                dump_uart((uint8_t*)&sensor_data, sizeof(table_device_tt));
+                            }
+                        }
                     }
-                    else if (strcmp((char *)decrypted_message,WAKE_UP_COMMAND)==0)
+                    else if (strcmp((char *)decrypted_message,WAKE_UP_COMMAND)== 0)
                     {
                         dump_uart((uint8_t *)WOKE_UP,sizeof(WOKE_UP));
                     }
                     else if (memcmp((char *)decrypted_message, GET_FULL_DATA, 6) == 0)
-                    {
+                    {   
+                        log_table_devices();
                         dump_uart((uint8_t*)&table_devices, sizeof(table_device_tt)*MAX_SLAVES);
 
                     }

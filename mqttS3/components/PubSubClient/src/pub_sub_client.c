@@ -7,6 +7,7 @@ static EventGroupHandle_t g_mqtt_event_group;
 const int g_constant_ConnectBit = BIT0;
 const int g_constant_PublishedBit = BIT1;
 double g_salinity_value=0;
+extern QueueHandle_t g_mqtt_queue;
 
 /**
  * @brief Handles MQTT events.
@@ -128,11 +129,11 @@ extern QueueHandle_t g_mqtt_queue;
 
 char data_test[200];
 
-void response_mqtt(char* topic)
+void response_mqtt(char *data,char* topic)
 {
     char requestId[50];
     uint8_t sensor_data;
-    char data[200];
+    // char data[200];
 
     sscanf(topic, "v1/devices/me/rpc/request/%s", requestId);
     ESP_LOGI(MQTT_TAG, "Extracted requestId: %s", requestId);
@@ -142,13 +143,12 @@ void response_mqtt(char* topic)
     snprintf(responseTopic, sizeof(responseTopic), "v1/devices/me/rpc/response/%s", requestId);
 
     // Dữ liệu ACK để gửi lên ThingsBoard
-    const char *ack_data = "{\"respone\":\"abcd\"}";
             
     // if(xQueueReceive(g_mqtt_queue,&sensor_data,(TickType_t)portMAX_DELAY))
     // sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f ",sensor_data.temperature_rdo,sensor_data.ph_value,sensor_data.temperature_phg, sensor_data.do_value, sensor_data.temperature_mcu);
 
         // const char *ack_data = "{sjkdhfhgjksdfhjksfd:}";
-        data_test[strlen(data_test)] = '\0';  // Null-terminate the received data
+        data[strlen(data)] = '\0';  // Null-terminate the received data
         // // Publish the data to the MQTT broker
         cJSON *json_obj = cJSON_CreateObject();
         if (json_obj == NULL) 
@@ -156,40 +156,49 @@ void response_mqtt(char* topic)
             printf("Failed to create JSON object.\n");
             return;
         }
-        parse_and_add_to_json(data_test,json_obj);
+        parse_and_add_to_json(data,json_obj);
         char *json_data = cJSON_Print(json_obj);
     // Gửi ACK
         cJSON_Delete(json_obj);
     esp_mqtt_client_publish(g_mqtt_client, responseTopic, json_data, 0, 1, 0);
+    // esp_mqtt_client_publish(g_mqtt_client, topic, json_data, strlen(json_data), 1, 0);
+
     ESP_LOGI(MQTT_TAG, "Sent ACK to topic: %s", responseTopic);
             free(json_data);
 
 }
 
-void mqtt_subcriber(esp_mqtt_event_handle_t event)
-{
-    char data_receiv[50];
-    strncpy(data_receiv,event->data,event->data_len);
-    data_receiv[event->data_len] = '\0';
-            ESP_LOGI(MQTT_TAG, "Other event id:%d", event->event_id);
-            ESP_LOGI(MQTT_TAG, "Other event len:%d", event->data_len);
-            ESP_LOGI(MQTT_TAG, "Other event data:%s",data_receiv);
+// void mqtt_subcriber(esp_mqtt_event_handle_t event)
+// {
+//     char data_receiv[50];
+//     strncpy(data_receiv,event->data,event->data_len);
+//     data_receiv[event->data_len] = '\0';
+//             ESP_LOGI(MQTT_TAG, "Other event id:%d", event->event_id);
+//             ESP_LOGI(MQTT_TAG, "Other event len:%d", event->data_len);
+//             ESP_LOGI(MQTT_TAG, "Other event data:%s",data_receiv);
 
-    // char send[100];
-    // strncpy(send,event->data,event->data_len);
-    cJSON* data_sub=cJSON_Parse(data_receiv);
-    cJSON *params=cJSON_GetObjectItem(data_sub,"params");
-    // cJSON *command=cJSON_GetObjectItem(data_sub,"params");
-    cJSON *command = cJSON_GetObjectItem(params, "abc");
-    // char *my_json_string = cJSON_Print(params);
-    if (command != NULL) 
-        ESP_LOGI(MQTT_TAG,"ABC: %d\n", command->valueint);
-    response_mqtt(event->topic);
-    // g_salinity_value=cJSON_GetObjectItem(params,"salinity")->valuedouble;
-    // cJSON_Delete(data_sub);
-    // cJSON_free(my_json_string);
+//     // char send[100];
+//     // strncpy(send,event->data,event->data_len);
+//     cJSON* data_sub=cJSON_Parse(data_receiv);
+//     cJSON *params=cJSON_GetObjectItem(data_sub,"params");
+//     // cJSON *command=cJSON_GetObjectItem(data_sub,"params");
+//     cJSON *command = cJSON_GetObjectItem(params, "abc");
+//     cJSON *messages = cJSON_GetObjectItem(params, "messages");
 
-}
+//     // char *my_json_string = cJSON_Print(params);
+//     if (command != NULL) 
+//         ESP_LOGI(MQTT_TAG,"ABC: %d\n", command->valueint);
+//     if (messages != NULL) 
+//         ESP_LOGI(MQTT_TAG,"Messages: %s\n", messages->valuestring);
+
+//     ESP_LOGI(MQTT_TAG,"Topic: %s\n",event->topic);
+
+//     response_mqtt(event->topic);
+//     // g_salinity_value=cJSON_GetObjectItem(params,"salinity")->valuedouble;
+//     // cJSON_Delete(data_sub);
+//     // cJSON_free(my_json_string);
+
+// }
 
 /**
  * @brief Publishes data to an MQTT topic.
@@ -243,7 +252,7 @@ void data_to_mqtt(char *data, char *topic, int delay_time_ms, int qos)
         }
         else
         {
-            printf("Message sent: %s \n", json_data);
+            ESP_LOGW("\n \033[37m Message sent: ","%s \033[0m", json_data);
             // cJSON_Delete(json_obj);
             // free(json_data);
         }

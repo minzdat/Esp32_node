@@ -16,13 +16,14 @@
 static const char *TAG = "ESP-NOW Master";
 
 
-int start=0;
-int stop=0;
-int time_s=0;
+// int start=0;
+// int stop=0;
+// int time_s=0;
 
 typedef struct {
         char data[250];
 } esp_now_message_t;
+table_device_t table_devices[MAX_SLAVES];
 
 uint8_t lmk[16] = {0x04, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10};
 uint8_t pmk[16] = {0x03, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10};
@@ -42,37 +43,104 @@ uint16_t data2mqtt[120];
     float temperature_phg;
     float do_value;
 
-void send_data(sensor_data_t sensor_data){
+
+int compare_mac_addresses(const char *mac_s, const uint8_t *mac_m) {
+    uint8_t mac_bytes[6];
+    int values[6];
+    
+    // Parse the string MAC address
+    if (sscanf(mac_s, "%x:%x:%x:%x:%x:%x", &values[0], &values[1], &values[2],
+               &values[3], &values[4], &values[5]) != 6) {
+        return 0; // Invalid format
+    }
+    
+    // Convert parsed values to bytes
+    for (int i = 0; i < 6; i++) {
+        mac_bytes[i] = (uint8_t)values[i];
+    }
+    
+    // Compare the two MAC addresses
+    return memcmp(mac_bytes, mac_m, 6) == 0;
+}
+
+void send_data(table_device_t sensor_data){
     char data[200];
     // uint8_t data_u[100];
     ESP_LOGI(TAG,"Receive data from queue successfully");
             // get_data(&temperature_rdo, &do_value, &temperature_phg, &ph_value);     //temperature_rdo  do_value temperature_phg ph_value
-            sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f ",sensor_data.temperature_rdo,sensor_data.ph_value,sensor_data.temperature_phg, sensor_data.do_value, sensor_data.temperature_mcu);
+            sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f ",sensor_data.data.temperature_rdo,sensor_data.data.do_value,sensor_data.data.temperature_phg, sensor_data.data.ph_value, sensor_data.data.temperature_mcu);
             // xEventGroupWaitBits(g_wifi_event, g_constant_wifi_connected_bit, pdFALSE, pdTRUE, portMAX_DELAY);
             //g_index_queue=0;
             data_to_mqtt(data, "v1/devices/me/telemetry",500, 1);
 }
 
+void mqtt_subcriber(esp_mqtt_event_handle_t event)
+{
+    char data_receiv[50];
+    char data[200];
+    strncpy(data_receiv,event->data,event->data_len);
+    data_receiv[event->data_len] = '\0';
+            ESP_LOGI(TAG, "Other event id:%d", event->event_id);
+            ESP_LOGI(TAG, "Other event len:%d", event->data_len);
+            ESP_LOGI(TAG, "Other event data:%s",data_receiv);
+    cJSON* data_sub=cJSON_Parse(data_receiv);
+    cJSON *params=cJSON_GetObjectItem(data_sub,"params");
+    cJSON *command = cJSON_GetObjectItem(params, "abc");
+    cJSON *messages = cJSON_GetObjectItem(params, "messages");
+    cJSON *mac_j = cJSON_GetObjectItem(params, "mac");
+
+    if (command != NULL) 
+        ESP_LOGI(TAG,"ABC: %d\n", command->valueint);
+
+    ESP_LOGI(TAG,"Topic: %s\n",event->topic);
+    if ((messages != NULL)&&(mac_j != NULL)){
+        ESP_LOGI(TAG,"Messages: %s\n", messages->valuestring);
+        ESP_LOGI(TAG,"MAC: %s\n", mac_j->valuestring);
+        const char *mac_s = mac_j->valuestring;
+    for (int i = 0; i < MAX_SLAVES; i++){
+        // if (memcmp(mess_get->mac, table_devices[i].peer_addr, 6)==0){
+        if (compare_mac_addresses(mac_s, table_devices[i].peer_addr)) {
+        sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f ",table_devices[i].data.temperature_rdo,table_devices[i].data.do_value,table_devices[i].data.temperature_phg, table_devices[i].data.ph_value, table_devices[i].data.temperature_mcu);
+    }
+    }
+    response_mqtt(data,event->topic);
+    }
+
+}
 QueueHandle_t g_mqtt_queue;
 connect_request mess_button;
 
 static void mqtt_task(void *pvParameters)
 {
     sensor_data_t sensor_data;
-    while(1)
-    {   memcpy(mess_button.message, GET_DATA, sizeof(GET_DATA));
-        dump_uart(&mess_button, sizeof(mess_button));
+    connect_request mess_getdata;
+    table_device_t res_getdata;
+
+    uint8_t mac_m[] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc};
+    memcpy(mess_getdata.message, GET_DATA, sizeof(GET_DATA));
+    memcpy(mess_getdata.mac, mac_m, 6);
+    while(1){
         vTaskDelay(5000/ portTICK_PERIOD_MS);
 
-        // xQueueReceive(g_mqtt_queue,&sensor_data,(TickType_t)portMAX_DELAY);
-        
-        if(xQueueReceive(g_mqtt_queue,&sensor_data,(TickType_t)portMAX_DELAY))
-        {
-            send_data(sensor_data);
-            
-                    // vTaskDelay(500/ portTICK_PERIOD_MS);
+        if (!wait_wake_up()) {
+            ESP_LOGE(TAG, "Failed to wake up");
+            continue;
+        }
+        dump_uart(&mess_getdata, sizeof(mess_getdata));
+        int ret =get_uart(&res_getdata,sizeof(res_getdata),500);
+        if (ret){
+            parse_payload(&res_getdata.data);
+            // xQueueReceive(g_mqtt_queue,&sensor_data,(TickType_t)portMAX_DELAY);
+            // if(xQueueReceive(g_mqtt_queue,&sensor_data,500/ portTICK_PERIOD_MS)){
+                send_data(res_getdata);
+            // }
+        }
+        else {
+            ESP_LOGE(TAG, "Failed to get_uart");
+            continue;
 
         }
+
     }
     vTaskDelete(NULL);
 }
@@ -84,8 +152,12 @@ static void button_longpress_cb(void *arg, void *usr_data)
 {
     // memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
     memcpy(mess_button.message, BUTTON_MSG, sizeof(BUTTON_MSG));
-    dump_uart(&mess_button, sizeof(mess_button));
-    delay(500);
+    // dump_uart(&mess_button, sizeof(mess_button));
+    wait_wake_up();
+    // delay(500);
+        get_table();
+    log_table_devices();
+    
     ESP_ERROR_CHECK(!(BUTTON_LONG_PRESS_START == iot_button_get_event(arg)));
     dump_uart(&mess_button, sizeof(mess_button));
     ESP_LOGI(TAG, "long press");
@@ -139,9 +211,9 @@ void app_main(void) {
     
 
     mqtt_init(BROKER, USER_NAME, NULL);
-    subcribe_to_topic(TOPIC,2);
+    subcribe_to_topic(TOPIC,1);
     xTaskCreate(mqtt_task, "mqtt_task", 5000, NULL, 5, NULL);
-    
+
     // data_read=0;
 
 }

@@ -24,4 +24,5 @@ void mqtt_init(char *broker_uri, char *username, char *client_id);
 void subcribe_to_topic(char *topic,int qos);
 void get_data_subcribe_topic( uint16_t *data);
 void mqtt_subcriber(esp_mqtt_event_handle_t event);
+void response_mqtt(char *data,char* topic);
 #endif // PUB_SUBCLIENT

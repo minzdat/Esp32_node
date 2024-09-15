@@ -1,0 +1,1636 @@
+Timestamp,Data
+2024-09-15 13:01:35,[0;31mE (120752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:36,[0;31mE (121272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:36,[0;31mE (121322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:36,[0;31mE (121752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:37,[0;31mE (122272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:37,[0;31mE (122322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:37,[0;31mE (122752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:38,[0;31mE (123272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:38,[0;31mE (123322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:38,[0;31mE (123752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:39,[0;31mE (124272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:39,[0;31mE (124322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:39,[0;31mE (124752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:40,[0;31mE (125272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:40,[0;31mE (125322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:40,[0;31mE (125752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:41,[0;31mE (126272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:41,[0;31mE (126322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:41,[0;31mE (126752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:42,[0;31mE (127272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:42,[0;31mE (127322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:42,[0;31mE (127752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:43,[0;31mE (128272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:43,[0;31mE (128322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:43,[0;31mE (128752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:44,[0;31mE (129272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:44,[0;31mE (129322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:44,[0;31mE (129752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:45,[0;31mE (130272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:45,[0;31mE (130322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:45,[0;31mE (130752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:46,[0;31mE (131272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:46,[0;31mE (131322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:46,[0;31mE (131752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:47,[0;31mE (132272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:47,[0;31mE (132322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:47,[0;31mE (132752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:48,[0;31mE (133272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:48,[0;31mE (133322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:48,[0;31mE (133752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:49,[0;31mE (134272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:49,[0;31mE (134322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:49,[0;31mE (134752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:50,[0;31mE (135272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:50,[0;31mE (135322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:50,[0;31mE (135752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:51,[0;31mE (136272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:51,[0;31mE (136322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:51,[0;31mE (136752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:52,[0;31mE (137272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:52,[0;31mE (137322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:52,[0;31mE (137752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:53,[0;31mE (138272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:53,[0;31mE (138322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:53,[0;31mE (138752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:54,[0;31mE (139272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:54,[0;31mE (139322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:54,[0;31mE (139752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:55,[0;31mE (140272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:55,[0;31mE (140322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:55,[0;31mE (140752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:56,[0;31mE (141272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:56,[0;31mE (141322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:56,[0;31mE (141752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:57,[0;31mE (142272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:57,[0;31mE (142322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:57,[0;31mE (142752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:58,[0;31mE (143272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:58,[0;31mE (143322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:58,[0;31mE (143752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:01:59,[0;31mE (144272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:01:59,[0;31mE (144322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:01:59,[0;31mE (144752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:00,[0;31mE (145272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:00,[0;31mE (145322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:00,[0;31mE (145752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:01,[0;31mE (146272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:01,[0;31mE (146322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:01,[0;31mE (146752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:02,[0;31mE (147272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:02,[0;31mE (147322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:02,[0;31mE (147752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:03,[0;31mE (148272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:03,[0;31mE (148322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:03,[0;31mE (148752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:04,[0;31mE (149272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:04,[0;31mE (149322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:04,[0;31mE (149752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:05,[0;31mE (150272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:05,[0;31mE (150322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:05,[0;31mE (150752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:06,[0;31mE (151272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:06,[0;31mE (151322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:06,[0;31mE (151752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:07,[0;31mE (152272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:07,[0;31mE (152322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:07,[0;31mE (152752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:07,[0;32mI (152802) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:07,[0;32mI (152802) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-09-15 13:02:07,[0;32mI (152802) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:07,[0;32mI (152812) ESPNOW_MASTER:      type: 0[0m
+2024-09-15 13:02:07,[0;32mI (152812) ESPNOW_MASTER:      seq_num: 0[0m
+2024-09-15 13:02:07,[0;32mI (152822) ESPNOW_MASTER:      crc: 44741[0m
+2024-09-15 13:02:07,[0;32mI (152822) ESPNOW_MASTER:      message: REQUEST_connect[0m
+2024-09-15 13:02:07,[0;32mI (152832) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:02:07,[0;32mI (152832) ESPNOW_MASTER:          MCU Temperature: 34.20[0m
+2024-09-15 13:02:07,[0;32mI (152842) ESPNOW_MASTER:          RSSI: 0[0m
+2024-09-15 13:02:07,[0;32mI (152842) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:02:07,[0;32mI (152852) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:02:07,[0;32mI (152862) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:02:07,[0;32mI (152862) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:02:07,[0;32mI (152872) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:02:07,[0;32mI (152872) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:02:07,[0;33mW (152882) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:02:07,[0;33mW (152882) ESPNOW_MASTER: Response AGREE_connect to MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:07,[0;32mI (152892) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:07,[0;32mI (152902) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:07,[0;32mI (152902) ESPNOW_MASTER:      seq_num: 85[0m
+2024-09-15 13:02:07,[0;32mI (152912) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:07,[0;32mI (152912) ESPNOW_MASTER:      message: AGREE_connect[0m
+2024-09-15 13:02:07,"[0;32mI (152922) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:07,[0;32mI (152922) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:07,[0;32mI (152932) ESPNOW_MASTER: Time send callback espnow: 116138055 us[0m
+2024-09-15 13:02:07,"[0;32mI (152932) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:02:08,[0;32mI (153192) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:08,[0;32mI (153192) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:02:08,[0;33mW (153192) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:08,[0;32mI (153202) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:08,[0;32mI (153202) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:08,[0;32mI (153212) ESPNOW_MASTER:      seq_num: 0[0m
+2024-09-15 13:02:08,[0;32mI (153212) ESPNOW_MASTER:      crc: 45807[0m
+2024-09-15 13:02:08,[0;32mI (153222) ESPNOW_MASTER:      message: SAVED_mac[0m
+2024-09-15 13:02:08,[0;32mI (153222) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:02:08,[0;32mI (153232) ESPNOW_MASTER:          MCU Temperature: 35.20[0m
+2024-09-15 13:02:08,[0;32mI (153232) ESPNOW_MASTER:          RSSI: -16[0m
+2024-09-15 13:02:08,[0;32mI (153242) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:02:08,[0;32mI (153242) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:02:08,[0;32mI (153252) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:02:08,[0;32mI (153262) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:02:08,[0;32mI (153262) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:02:08,[0;32mI (153272) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:02:08,[0;31mE (153272) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:08,[0;32mI (153272) ESPNOW_MASTER: Updated MAC f4:12:fa:42:a3:dc status to online[0m
+2024-09-15 13:02:08,[0;32mI (153302) ESPNOW_MASTER: Successfully saved info_slaves to NVS with key 'KEY_SLA_ALLOW'![0m
+2024-09-15 13:02:08,[0;32mI (153312) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:08,[0;32mI (153322) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:08,[0;31mE (153322) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:08,[0;32mI (153332) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:08,[0;32mI (153352) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:08,[0;32mI (153362) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | -14     | 35.70        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:08,[0;32mI (153382) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -18     | 34.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:08,[0;32mI (153392) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:08,[0;32mI (153402) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:08,[0;32mI (153412) ESPNOW_MASTER: Receive broadcast ESPNOW data[0m
+2024-09-15 13:02:08,[0;31mE (153752) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:08,[0;33mW (153752) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:02:08,[0;33mW (153752) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:08,[0;32mI (153752) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:08,[0;32mI (153762) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:08,[0;32mI (153762) ESPNOW_MASTER:      seq_num: 86[0m
+2024-09-15 13:02:08,[0;32mI (153772) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:08,[0;32mI (153772) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:08,"[0;32mI (153782) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:08,[0;32mI (153792) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:08,[0;32mI (153822) ESPNOW_MASTER: Time send callback espnow: 30561 us[0m
+2024-09-15 13:02:08,"[0;32mI (153822) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:08,[0;33mW (153822) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:08,[0;32mI (153832) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:08,[0;32mI (153832) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:08,[0;32mI (153842) ESPNOW_MASTER:      seq_num: 87[0m
+2024-09-15 13:02:08,[0;32mI (153842) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:08,[0;32mI (153852) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:08,"[0;32mI (153852) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:08,[0;32mI (153862) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:08,[0;32mI (153892) ESPNOW_MASTER: Time send callback espnow: 65071 us[0m
+2024-09-15 13:02:08,"[0;32mI (153892) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:08,[0;33mW (153902) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:08,[0;32mI (153912) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:08,[0;32mI (153912) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:08,[0;32mI (153922) ESPNOW_MASTER:      seq_num: 88[0m
+2024-09-15 13:02:08,[0;32mI (153922) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:08,[0;32mI (153922) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:08,"[0;32mI (153932) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:08,[0;32mI (153942) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:08,[0;32mI (153972) ESPNOW_MASTER: Time send callback espnow: 65568 us[0m
+2024-09-15 13:02:08,"[0;32mI (153972) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:08,[0;33mW (153982) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:08,[0;32mI (153982) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:08,[0;32mI (153992) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:08,[0;32mI (153992) ESPNOW_MASTER:      seq_num: 89[0m
+2024-09-15 13:02:09,[0;32mI (154002) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:09,[0;32mI (154002) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:09,"[0;32mI (154012) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:09,[0;32mI (154022) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:09,[0;32mI (154052) ESPNOW_MASTER: Time send callback espnow: 69530 us[0m
+2024-09-15 13:02:09,"[0;32mI (154052) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:09,[0;33mW (154062) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:09,[0;32mI (154072) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:09,[0;32mI (154072) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:09,[0;32mI (154082) ESPNOW_MASTER:      seq_num: 90[0m
+2024-09-15 13:02:09,[0;32mI (154082) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:09,[0;32mI (154082) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:09,"[0;32mI (154092) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:09,[0;32mI (154102) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:09,[0;32mI (154142) ESPNOW_MASTER: Time send callback espnow: 76700 us[0m
+2024-09-15 13:02:09,"[0;32mI (154142) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:09,[0;33mW (154152) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:09,[0;32mI (154152) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:09,[0;32mI (154162) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:09,[0;32mI (154162) ESPNOW_MASTER:      seq_num: 91[0m
+2024-09-15 13:02:09,[0;32mI (154172) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:09,[0;32mI (154172) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:09,"[0;32mI (154182) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:09,[0;32mI (154192) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:09,[0;32mI (154192) ESPNOW_MASTER: Time send callback espnow: 39324 us[0m
+2024-09-15 13:02:09,"[0;32mI (154202) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:02:09,[0;31mE (154282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:09,[0;31mE (154332) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:09,[0;32mI (154372) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:09,[0;32mI (154372) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:02:09,[0;33mW (154372) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:09,[0;32mI (154372) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:09,[0;32mI (154382) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:09,[0;32mI (154382) ESPNOW_MASTER:      seq_num: 1[0m
+2024-09-15 13:02:09,[0;32mI (154392) ESPNOW_MASTER:      crc: 7580[0m
+2024-09-15 13:02:09,[0;32mI (154392) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:02:09,[0;32mI (154402) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:02:09,[0;32mI (154402) ESPNOW_MASTER:          MCU Temperature: 34.20[0m
+2024-09-15 13:02:09,[0;32mI (154412) ESPNOW_MASTER:          RSSI: -16[0m
+2024-09-15 13:02:09,[0;32mI (154412) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:02:09,[0;32mI (154422) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:02:09,[0;32mI (154432) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:02:09,[0;32mI (154432) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:02:09,[0;32mI (154442) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:02:09,[0;32mI (154442) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:02:09,[0;32mI (154452) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:09,[0;32mI (154462) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:09,[0;32mI (154482) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:09,[0;32mI (154492) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:09,[0;32mI (154502) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | -14     | 35.70        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:09,[0;32mI (154522) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -16     | 34.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:09,[0;32mI (154532) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:09,[0;31mE (154792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:10,[0;31mE (155282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:10,[0;31mE (155332) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:10,[0;31mE (155792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:11,[0;31mE (156282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:11,[0;31mE (156332) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:11,[0;32mI (156332) LIGHT_SLEEP: Current time light sleep : 206320611 us[0m
+2024-09-15 13:02:11,[0;32mI (156332) LIGHT_SLEEP: Start time light sleep   : 204538127 us[0m
+2024-09-15 13:02:11,[0;32mI (156332) LIGHT_SLEEP: Enter time light sleep   : 1782484 us[0m
+2024-09-15 13:02:11,Entering light sleep
+2024-09-15 13:02:11,"Returned from light sleep, reason: other, t=206348 ms, slept for 1 ms"
+2024-09-15 13:02:11,I (156352) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:02:11,I (156352) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:02:11,[0;31mE (156792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:12,[0;31mE (157282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:12,[0;31mE (157362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:12,[0;31mE (157792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:13,[0;31mE (158282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:13,[0;31mE (158362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:13,[0;31mE (158792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:14,[0;31mE (159282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:14,[0;31mE (159362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:14,[0;31mE (159792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:15,[0;31mE (160282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:15,[0;31mE (160362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:15,[0;31mE (160792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:16,[0;31mE (161282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:16,[0;31mE (161362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:16,[0;31mE (161792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:17,[0;31mE (162282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:17,[0;31mE (162362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:17,[0;31mE (162792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:18,[0;31mE (163282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:18,[0;31mE (163362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:18,[0;31mE (163792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:19,[0;31mE (164282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:19,[0;31mE (164362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:19,[0;31mE (164792) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:19,[0;33mW (164792) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:02:19,[0;33mW (164792) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:19,[0;32mI (164792) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:19,[0;32mI (164802) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:19,[0;32mI (164802) ESPNOW_MASTER:      seq_num: 92[0m
+2024-09-15 13:02:19,[0;32mI (164812) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:19,[0;32mI (164812) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:19,[0;32mI (164822) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:19,[0;32mI (164852) ESPNOW_MASTER: Time send callback espnow: 33512 us[0m
+2024-09-15 13:02:19,"[0;32mI (164852) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:19,[0;33mW (164852) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:19,[0;32mI (164862) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:19,[0;32mI (164872) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:19,[0;32mI (164872) ESPNOW_MASTER:      seq_num: 93[0m
+2024-09-15 13:02:19,[0;32mI (164882) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:19,[0;32mI (164882) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:19,"[0;32mI (164892) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:19,[0;32mI (164902) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:19,[0;32mI (164932) ESPNOW_MASTER: Time send callback espnow: 63208 us[0m
+2024-09-15 13:02:19,"[0;32mI (164932) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:19,[0;33mW (164932) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:19,[0;32mI (164942) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:19,[0;32mI (164942) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:19,[0;32mI (164952) ESPNOW_MASTER:      seq_num: 94[0m
+2024-09-15 13:02:19,[0;32mI (164952) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:19,[0;32mI (164962) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:19,"[0;32mI (164962) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:19,[0;32mI (164972) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:19,[0;32mI (165002) ESPNOW_MASTER: Time send callback espnow: 63223 us[0m
+2024-09-15 13:02:20,"[0;32mI (165002) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165012) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165022) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165022) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165022) ESPNOW_MASTER:      seq_num: 95[0m
+2024-09-15 13:02:20,[0;32mI (165032) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165032) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,"[0;32mI (165042) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165052) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165092) ESPNOW_MASTER: Time send callback espnow: 76269 us[0m
+2024-09-15 13:02:20,"[0;32mI (165092) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165102) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165102) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165112) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165112) ESPNOW_MASTER:      seq_num: 96[0m
+2024-09-15 13:02:20,[0;32mI (165122) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165122) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,"[0;32mI (165132) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165142) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165172) ESPNOW_MASTER: Time send callback espnow: 65402 us[0m
+2024-09-15 13:02:20,"[0;32mI (165172) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165172) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165182) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165192) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165192) ESPNOW_MASTER:      seq_num: 97[0m
+2024-09-15 13:02:20,[0;32mI (165202) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165202) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,"[0;32mI (165212) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165212) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165252) ESPNOW_MASTER: Time send callback espnow: 64301 us[0m
+2024-09-15 13:02:20,"[0;32mI (165252) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165252) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165262) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165262) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165272) ESPNOW_MASTER:      seq_num: 98[0m
+2024-09-15 13:02:20,[0;32mI (165272) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165282) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,[0;31mE (165282) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:20,"[0;32mI (165282) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165302) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165322) ESPNOW_MASTER: Time send callback espnow: 66084 us[0m
+2024-09-15 13:02:20,"[0;32mI (165332) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165332) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165342) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165342) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165352) ESPNOW_MASTER:      seq_num: 99[0m
+2024-09-15 13:02:20,[0;32mI (165352) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165362) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,[0;31mE (165362) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:20,"[0;32mI (165362) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165372) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165422) ESPNOW_MASTER: Time send callback espnow: 86369 us[0m
+2024-09-15 13:02:20,"[0;32mI (165422) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165432) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165442) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165442) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165452) ESPNOW_MASTER:      seq_num: 100[0m
+2024-09-15 13:02:20,[0;32mI (165452) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165462) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,"[0;32mI (165462) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165472) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165502) ESPNOW_MASTER: Time send callback espnow: 66224 us[0m
+2024-09-15 13:02:20,"[0;32mI (165502) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165512) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165522) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165522) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165522) ESPNOW_MASTER:      seq_num: 101[0m
+2024-09-15 13:02:20,[0;32mI (165532) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165532) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,"[0;32mI (165542) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165552) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165582) ESPNOW_MASTER: Time send callback espnow: 67873 us[0m
+2024-09-15 13:02:20,"[0;32mI (165582) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:20,[0;33mW (165592) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165602) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165602) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165612) ESPNOW_MASTER:      seq_num: 102[0m
+2024-09-15 13:02:20,[0;32mI (165612) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:20,[0;32mI (165612) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:20,"[0;32mI (165622) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:20,[0;32mI (165632) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:20,[0;32mI (165682) ESPNOW_MASTER: Time send callback espnow: 79784 us[0m
+2024-09-15 13:02:20,"[0;32mI (165682) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:02:20,[0;31mE (165822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:20,[0;32mI (165852) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:20,[0;32mI (165852) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:02:20,[0;33mW (165852) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:20,[0;32mI (165862) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:20,[0;32mI (165862) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:20,[0;32mI (165872) ESPNOW_MASTER:      seq_num: 2[0m
+2024-09-15 13:02:20,[0;32mI (165872) ESPNOW_MASTER:      crc: 10676[0m
+2024-09-15 13:02:20,[0;32mI (165882) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:02:20,[0;32mI (165882) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:02:20,[0;32mI (165892) ESPNOW_MASTER:          MCU Temperature: 33.20[0m
+2024-09-15 13:02:20,[0;32mI (165892) ESPNOW_MASTER:          RSSI: -15[0m
+2024-09-15 13:02:20,[0;32mI (165902) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:02:20,[0;32mI (165912) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:02:20,[0;32mI (165912) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:02:20,[0;32mI (165922) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:02:20,[0;32mI (165922) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:02:20,[0;32mI (165932) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:02:20,[0;32mI (165932) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:20,[0;32mI (165952) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:20,[0;32mI (165962) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:20,[0;32mI (165972) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:20,[0;32mI (165992) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | -14     | 35.70        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:21,[0;32mI (166002) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -15     | 33.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:21,[0;32mI (166012) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:21,[0;31mE (166292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:21,[0;31mE (166372) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:21,[0;31mE (166822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:22,[0;31mE (167292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:22,[0;31mE (167372) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:22,[0;32mI (167372) LIGHT_SLEEP: Current time light sleep : 217360601 us[0m
+2024-09-15 13:02:22,[0;32mI (167372) LIGHT_SLEEP: Start time light sleep   : 216022511 us[0m
+2024-09-15 13:02:22,[0;32mI (167372) LIGHT_SLEEP: Enter time light sleep   : 1338090 us[0m
+2024-09-15 13:02:22,Entering light sleep
+2024-09-15 13:02:22,"Returned from light sleep, reason: other, t=217388 ms, slept for 1 ms"
+2024-09-15 13:02:22,I (167392) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:02:22,I (167392) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:02:22,[0;31mE (167822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:23,[0;31mE (168292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:23,[0;31mE (168402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:23,[0;31mE (168822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:24,[0;31mE (169292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:24,[0;31mE (169402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:24,[0;31mE (169822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:25,[0;31mE (170292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:25,[0;31mE (170402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:25,[0;31mE (170822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:26,[0;31mE (171292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:26,[0;31mE (171402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:26,[0;31mE (171822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:27,[0;31mE (172292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:27,[0;31mE (172402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:27,[0;31mE (172822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:28,[0;31mE (173292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:28,[0;31mE (173402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:28,[0;31mE (173822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:29,[0;31mE (174292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:29,[0;31mE (174402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:29,[0;31mE (174822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:30,[0;31mE (175292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:30,[0;31mE (175402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:30,[0;31mE (175822) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:30,[0;33mW (175822) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:02:30,[0;33mW (175822) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:30,[0;32mI (175822) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:30,[0;32mI (175832) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:30,[0;32mI (175832) ESPNOW_MASTER:      seq_num: 103[0m
+2024-09-15 13:02:30,[0;32mI (175842) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:30,[0;32mI (175842) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:30,[0;32mI (175852) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:30,[0;32mI (175892) ESPNOW_MASTER: Time send callback espnow: 37928 us[0m
+2024-09-15 13:02:30,"[0;32mI (175892) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:30,[0;33mW (175892) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:30,[0;32mI (175902) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:30,[0;32mI (175902) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:30,[0;32mI (175912) ESPNOW_MASTER:      seq_num: 104[0m
+2024-09-15 13:02:30,[0;32mI (175912) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:30,[0;32mI (175922) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:30,"[0;32mI (175922) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:30,[0;32mI (175932) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:30,[0;32mI (175962) ESPNOW_MASTER: Time send callback espnow: 65992 us[0m
+2024-09-15 13:02:30,"[0;32mI (175962) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:30,[0;33mW (175972) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:30,[0;32mI (175982) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:30,[0;32mI (175982) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:30,[0;32mI (175992) ESPNOW_MASTER:      seq_num: 105[0m
+2024-09-15 13:02:30,[0;32mI (175992) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:30,[0;32mI (176002) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:31,"[0;32mI (176002) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:31,[0;32mI (176012) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:31,[0;32mI (176052) ESPNOW_MASTER: Time send callback espnow: 68803 us[0m
+2024-09-15 13:02:31,"[0;32mI (176052) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:31,[0;33mW (176052) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:31,[0;32mI (176062) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:31,[0;32mI (176062) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:31,[0;32mI (176072) ESPNOW_MASTER:      seq_num: 106[0m
+2024-09-15 13:02:31,[0;32mI (176072) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:31,[0;32mI (176082) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:31,"[0;32mI (176082) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:31,[0;32mI (176092) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:31,[0;32mI (176122) ESPNOW_MASTER: Time send callback espnow: 64732 us[0m
+2024-09-15 13:02:31,"[0;32mI (176122) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:31,[0;33mW (176132) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:31,[0;32mI (176142) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:31,[0;32mI (176142) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:31,[0;32mI (176142) ESPNOW_MASTER:      seq_num: 107[0m
+2024-09-15 13:02:31,[0;32mI (176152) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:31,[0;32mI (176152) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:31,"[0;32mI (176162) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:31,[0;32mI (176172) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:31,[0;32mI (176172) ESPNOW_MASTER: Time send callback espnow: 39632 us[0m
+2024-09-15 13:02:31,"[0;32mI (176182) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:02:31,[0;31mE (176292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:31,[0;32mI (176342) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:31,[0;32mI (176342) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:02:31,[0;33mW (176342) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:31,[0;32mI (176352) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:31,[0;32mI (176352) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:31,[0;32mI (176362) ESPNOW_MASTER:      seq_num: 3[0m
+2024-09-15 13:02:31,[0;32mI (176362) ESPNOW_MASTER:      crc: 6644[0m
+2024-09-15 13:02:31,[0;32mI (176372) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:02:31,[0;32mI (176372) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:02:31,[0;32mI (176382) ESPNOW_MASTER:          MCU Temperature: 33.20[0m
+2024-09-15 13:02:31,[0;32mI (176392) ESPNOW_MASTER:          RSSI: -14[0m
+2024-09-15 13:02:31,[0;32mI (176392) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:02:31,[0;32mI (176402) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:02:31,[0;31mE (176402) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:31,[0;32mI (176402) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:02:31,[0;32mI (176412) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:02:31,[0;32mI (176422) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:02:31,[0;32mI (176422) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:02:31,[0;32mI (176432) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:31,[0;32mI (176442) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:31,[0;32mI (176462) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:31,[0;32mI (176472) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:31,[0;32mI (176482) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | -14     | 35.70        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:31,[0;32mI (176502) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -14     | 33.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:31,[0;32mI (176512) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:31,[0;31mE (176852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:32,[0;31mE (177292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:32,[0;31mE (177412) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:32,[0;31mE (177852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:33,[0;31mE (178292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:33,[0;31mE (178412) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:33,[0;32mI (178412) LIGHT_SLEEP: Current time light sleep : 228400589 us[0m
+2024-09-15 13:02:33,[0;32mI (178412) LIGHT_SLEEP: Start time light sleep   : 226518409 us[0m
+2024-09-15 13:02:33,[0;32mI (178412) LIGHT_SLEEP: Enter time light sleep   : 1882180 us[0m
+2024-09-15 13:02:33,Entering light sleep
+2024-09-15 13:02:33,"Returned from light sleep, reason: other, t=228428 ms, slept for 1 ms"
+2024-09-15 13:02:33,I (178432) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:02:33,I (178432) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:02:33,[0;31mE (178852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:34,[0;31mE (179292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:34,[0;31mE (179442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:34,[0;31mE (179852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:35,[0;31mE (180292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:35,[0;31mE (180442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:35,[0;31mE (180852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:36,[0;31mE (181292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:36,[0;31mE (181442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:36,[0;31mE (181852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:37,[0;31mE (182292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:37,[0;31mE (182442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:37,[0;31mE (182852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:38,[0;31mE (183292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:38,[0;31mE (183442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:38,[0;31mE (183852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:39,[0;31mE (184292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:39,[0;31mE (184442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:39,[0;31mE (184852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:40,[0;31mE (185292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:40,[0;31mE (185442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:40,[0;31mE (185852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:41,[0;31mE (186292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:41,[0;31mE (186442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:41,[0;31mE (186852) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:41,[0;33mW (186852) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:02:41,[0;33mW (186852) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:41,[0;32mI (186852) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:41,[0;32mI (186862) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:41,[0;32mI (186862) ESPNOW_MASTER:      seq_num: 108[0m
+2024-09-15 13:02:41,[0;32mI (186872) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:41,[0;32mI (186872) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:41,[0;32mI (186882) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:41,[0;32mI (186932) ESPNOW_MASTER: Time send callback espnow: 49044 us[0m
+2024-09-15 13:02:41,"[0;32mI (186932) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:41,[0;33mW (186932) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:41,[0;32mI (186942) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:41,[0;32mI (186942) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:41,[0;32mI (186952) ESPNOW_MASTER:      seq_num: 109[0m
+2024-09-15 13:02:41,[0;32mI (186952) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:41,[0;32mI (186962) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:41,"[0;32mI (186962) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:41,[0;32mI (186972) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187022) ESPNOW_MASTER: Time send callback espnow: 84033 us[0m
+2024-09-15 13:02:42,"[0;32mI (187022) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187032) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187042) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187042) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187052) ESPNOW_MASTER:      seq_num: 110[0m
+2024-09-15 13:02:42,[0;32mI (187052) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187052) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187062) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187072) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187122) ESPNOW_MASTER: Time send callback espnow: 79605 us[0m
+2024-09-15 13:02:42,"[0;32mI (187122) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187122) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187132) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187132) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187142) ESPNOW_MASTER:      seq_num: 111[0m
+2024-09-15 13:02:42,[0;32mI (187142) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187152) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187152) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187162) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187192) ESPNOW_MASTER: Time send callback espnow: 62613 us[0m
+2024-09-15 13:02:42,"[0;32mI (187192) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187192) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187202) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187212) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187212) ESPNOW_MASTER:      seq_num: 112[0m
+2024-09-15 13:02:42,[0;32mI (187222) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187222) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187232) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187242) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187282) ESPNOW_MASTER: Time send callback espnow: 78223 us[0m
+2024-09-15 13:02:42,"[0;32mI (187282) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187292) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;31mE (187292) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:42,[0;32mI (187292) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187302) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187312) ESPNOW_MASTER:      seq_num: 113[0m
+2024-09-15 13:02:42,[0;32mI (187312) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187322) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187322) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187332) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187382) ESPNOW_MASTER: Time send callback espnow: 86102 us[0m
+2024-09-15 13:02:42,"[0;32mI (187382) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187382) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187392) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187402) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187402) ESPNOW_MASTER:      seq_num: 114[0m
+2024-09-15 13:02:42,[0;32mI (187412) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187412) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187422) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187422) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;31mE (187442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:42,[0;32mI (187482) ESPNOW_MASTER: Time send callback espnow: 86231 us[0m
+2024-09-15 13:02:42,"[0;32mI (187482) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187482) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187492) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187502) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187502) ESPNOW_MASTER:      seq_num: 115[0m
+2024-09-15 13:02:42,[0;32mI (187512) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187512) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187522) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187522) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187552) ESPNOW_MASTER: Time send callback espnow: 63226 us[0m
+2024-09-15 13:02:42,"[0;32mI (187552) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187562) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187572) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187572) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187582) ESPNOW_MASTER:      seq_num: 116[0m
+2024-09-15 13:02:42,[0;32mI (187582) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187592) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187592) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187602) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187632) ESPNOW_MASTER: Time send callback espnow: 66887 us[0m
+2024-09-15 13:02:42,"[0;32mI (187632) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:42,[0;33mW (187642) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187652) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187652) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187662) ESPNOW_MASTER:      seq_num: 117[0m
+2024-09-15 13:02:42,[0;32mI (187662) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:42,[0;32mI (187672) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:42,"[0;32mI (187672) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:42,[0;32mI (187682) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:42,[0;32mI (187692) ESPNOW_MASTER: Time send callback espnow: 40655 us[0m
+2024-09-15 13:02:42,"[0;32mI (187692) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:02:42,[0;32mI (187852) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:42,[0;32mI (187852) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:02:42,[0;33mW (187852) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:42,[0;32mI (187862) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:42,[0;32mI (187862) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:42,[0;32mI (187872) ESPNOW_MASTER:      seq_num: 4[0m
+2024-09-15 13:02:42,[0;32mI (187872) ESPNOW_MASTER:      crc: 54244[0m
+2024-09-15 13:02:42,[0;32mI (187882) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:02:42,[0;31mE (187882) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:42,[0;32mI (187882) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:02:42,[0;32mI (187892) ESPNOW_MASTER:          MCU Temperature: 33.20[0m
+2024-09-15 13:02:42,[0;32mI (187902) ESPNOW_MASTER:          RSSI: -12[0m
+2024-09-15 13:02:42,[0;32mI (187902) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:02:42,[0;32mI (187912) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:02:42,[0;32mI (187922) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:02:42,[0;32mI (187922) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:02:42,[0;32mI (187932) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:02:42,[0;32mI (187932) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:02:42,[0;32mI (187942) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:42,[0;32mI (187952) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:42,[0;32mI (187972) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:42,[0;32mI (187982) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:43,[0;32mI (187992) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | -14     | 35.70        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:43,[0;32mI (188012) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -12     | 33.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:43,[0;32mI (188022) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:43,[0;31mE (188302) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:43,[0;31mE (188442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:43,[0;31mE (188892) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:44,[0;31mE (189302) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:44,[0;31mE (189442) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:44,[0;32mI (189442) LIGHT_SLEEP: Current time light sleep : 239430565 us[0m
+2024-09-15 13:02:44,[0;32mI (189442) LIGHT_SLEEP: Start time light sleep   : 238028007 us[0m
+2024-09-15 13:02:44,[0;32mI (189442) LIGHT_SLEEP: Enter time light sleep   : 1402558 us[0m
+2024-09-15 13:02:44,Entering light sleep
+2024-09-15 13:02:44,"Returned from light sleep, reason: other, t=239458 ms, slept for 1 ms"
+2024-09-15 13:02:44,I (189462) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:02:44,I (189462) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:02:44,[0;31mE (189892) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:45,[0;31mE (190302) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:45,[0;31mE (190472) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:45,[0;31mE (190892) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:46,[0;31mE (191302) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:46,ESP-ROM:esp32s3-20210327
+2024-09-15 13:02:46,Build:Mar 27 2021
+2024-09-15 13:02:46,"rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)"
+2024-09-15 13:02:46,SPIWP:0xee
+2024-09-15 13:02:46,"mode:DIO, clock div:1"
+2024-09-15 13:02:46,"load:0x3fce3810,len:0x178c"
+2024-09-15 13:02:46,"load:0x403c9700,len:0x4"
+2024-09-15 13:02:46,"load:0x403c9704,len:0xcbc"
+2024-09-15 13:02:46,"load:0x403cc700,len:0x2d9c"
+2024-09-15 13:02:46,entry 0x403c9914
+2024-09-15 13:02:46,[0;32mI (27) boot: ESP-IDF v5.2.2 2nd stage bootloader[0m
+2024-09-15 13:02:46,[0;32mI (27) boot: compile time Sep 14 2024 22:37:13[0m
+2024-09-15 13:02:46,[0;32mI (27) boot: Multicore bootloader[0m
+2024-09-15 13:02:46,[0;32mI (30) boot: chip revision: v0.2[0m
+2024-09-15 13:02:46,[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+2024-09-15 13:02:46,[0;32mI (38) boot.esp32s3: SPI Mode       : DIO[0m
+2024-09-15 13:02:46,[0;32mI (43) boot.esp32s3: SPI Flash Size : 2MB[0m
+2024-09-15 13:02:46,[0;32mI (48) boot: Enabling RNG early entropy source...[0m
+2024-09-15 13:02:46,[0;32mI (53) boot: Partition Table:[0m
+2024-09-15 13:02:46,[0;32mI (57) boot: ## Label            Usage          Type ST Offset   Length[0m
+2024-09-15 13:02:46,[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+2024-09-15 13:02:46,[0;32mI (72) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+2024-09-15 13:02:46,[0;32mI (79) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+2024-09-15 13:02:46,[0;32mI (87) boot: End of partition table[0m
+2024-09-15 13:02:46,[0;32mI (91) esp_image: segment 0: paddr=00010020 vaddr=3c090020 size=22c88h (142472) map[0m
+2024-09-15 13:02:46,[0;32mI (125) esp_image: segment 1: paddr=00032cb0 vaddr=3fc9a700 size=046a8h ( 18088) load[0m
+2024-09-15 13:02:46,[0;32mI (129) esp_image: segment 2: paddr=00037360 vaddr=40374000 size=08cb8h ( 36024) load[0m
+2024-09-15 13:02:46,[0;32mI (138) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=838ach (538796) map[0m
+2024-09-15 13:02:46,[0;32mI (236) esp_image: segment 4: paddr=000c38d4 vaddr=4037ccb8 size=0d9a8h ( 55720) load[0m
+2024-09-15 13:02:46,[0;32mI (248) esp_image: segment 5: paddr=000d1284 vaddr=600fe000 size=0005ch (    92) load[0m
+2024-09-15 13:02:46,[0;32mI (258) boot: Loaded app from partition at offset 0x10000[0m
+2024-09-15 13:02:46,[0;32mI (258) boot: Disabling RNG early entropy source...[0m
+2024-09-15 13:02:46,[0;32mI (269) cpu_start: Multicore app[0m
+2024-09-15 13:02:46,[0;32mI (279) cpu_start: Pro cpu start user code[0m
+2024-09-15 13:02:46,[0;32mI (279) cpu_start: cpu freq: 160000000 Hz[0m
+2024-09-15 13:02:46,[0;32mI (279) cpu_start: Application information:[0m
+2024-09-15 13:02:46,[0;32mI (282) cpu_start: Project name:     master_espnow_protocol[0m
+2024-09-15 13:02:46,[0;32mI (288) cpu_start: App version:      43a379b8-dirty[0m
+2024-09-15 13:02:46,[0;32mI (294) cpu_start: Compile time:     Sep 14 2024 22:35:48[0m
+2024-09-15 13:02:46,[0;32mI (300) cpu_start: ELF file SHA256:  97332bd91...[0m
+2024-09-15 13:02:46,[0;32mI (305) cpu_start: ESP-IDF:          v5.2.2[0m
+2024-09-15 13:02:46,[0;32mI (310) cpu_start: Min chip rev:     v0.0[0m
+2024-09-15 13:02:46,[0;32mI (315) cpu_start: Max chip rev:     v0.99 [0m
+2024-09-15 13:02:46,[0;32mI (320) cpu_start: Chip rev:         v0.2[0m
+2024-09-15 13:02:46,[0;32mI (325) heap_init: Initializing. RAM available for dynamic allocation:[0m
+2024-09-15 13:02:46,[0;32mI (332) heap_init: At 3FCA2CF0 len 00046A20 (282 KiB): RAM[0m
+2024-09-15 13:02:46,[0;32mI (338) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+2024-09-15 13:02:46,[0;32mI (344) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+2024-09-15 13:02:46,[0;32mI (350) heap_init: At 600FE05C len 00001F8C (7 KiB): RTCRAM[0m
+2024-09-15 13:02:46,[0;32mI (357) spi_flash: detected chip: gd[0m
+2024-09-15 13:02:46,[0;32mI (361) spi_flash: flash io: dio[0m
+2024-09-15 13:02:46,[0;33mW (365) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+2024-09-15 13:02:46,[0;32mI (378) sleep: Configure to isolate all GPIO pins in sleep state[0m
+2024-09-15 13:02:46,[0;32mI (385) sleep: Enable automatic switching of GPIO sleep configuration[0m
+2024-09-15 13:02:46,[0;32mI (392) main_task: Started on CPU0[0m
+2024-09-15 13:02:46,[0;32mI (402) main_task: Calling app_main()[0m
+2024-09-15 13:02:46,[0;32mI (402) LIGHT_SLEEP: timer wakeup source is ready[0m
+2024-09-15 13:02:47,[0;32mI (402) gpio: GPIO[0]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+2024-09-15 13:02:47,Waiting for GPIO0 to go high...
+2024-09-15 13:02:47,[0;32mI (422) LIGHT_SLEEP: gpio wakeup source is ready[0m
+2024-09-15 13:02:47,[0;32mI (422) uart: queue free spaces: 10[0m
+2024-09-15 13:02:47,[0;32mI (462) pp: pp rom version: e7ae62f[0m
+2024-09-15 13:02:47,[0;32mI (462) net80211: net80211 rom version: e7ae62f[0m
+2024-09-15 13:02:47,"I (482) wifi:wifi driver task: 3fcaecf0, prio:23, stack:6656, core=0"
+2024-09-15 13:02:47,I (492) wifi:wifi firmware version: 3e0076f
+2024-09-15 13:02:47,I (492) wifi:wifi certification version: v7.0
+2024-09-15 13:02:47,I (492) wifi:config NVS flash: enabled
+2024-09-15 13:02:47,I (492) wifi:config nano formating: disabled
+2024-09-15 13:02:47,I (492) wifi:Init data frame dynamic rx buffer num: 32
+2024-09-15 13:02:47,I (502) wifi:Init static rx mgmt buffer num: 5
+2024-09-15 13:02:47,I (502) wifi:Init management short buffer num: 32
+2024-09-15 13:02:47,I (512) wifi:Init dynamic tx buffer num: 32
+2024-09-15 13:02:47,I (512) wifi:Init static tx FG buffer num: 2
+2024-09-15 13:02:47,I (522) wifi:Init static rx buffer size: 1600
+2024-09-15 13:02:47,I (522) wifi:Init static rx buffer num: 10
+2024-09-15 13:02:47,I (522) wifi:Init dynamic rx buffer num: 32
+2024-09-15 13:02:47,[0;32mI (532) wifi_init: rx ba win: 6[0m
+2024-09-15 13:02:47,[0;32mI (532) wifi_init: tcpip mbox: 32[0m
+2024-09-15 13:02:47,[0;32mI (542) wifi_init: udp mbox: 6[0m
+2024-09-15 13:02:47,[0;32mI (542) wifi_init: tcp mbox: 6[0m
+2024-09-15 13:02:47,[0;32mI (542) wifi_init: tcp tx win: 5760[0m
+2024-09-15 13:02:47,[0;32mI (552) wifi_init: tcp rx win: 5760[0m
+2024-09-15 13:02:47,[0;32mI (552) wifi_init: tcp mss: 1440[0m
+2024-09-15 13:02:47,[0;32mI (562) wifi_init: WiFi IRAM OP enabled[0m
+2024-09-15 13:02:47,[0;32mI (562) wifi_init: WiFi RX IRAM OP enabled[0m
+2024-09-15 13:02:47,"[0;32mI (572) phy_init: phy_version 670,b7bc9b9,Apr 30 2024,10:54:13[0m"
+2024-09-15 13:02:47,I (632) wifi:mode : sta (dc:da:0c:0d:42:48)
+2024-09-15 13:02:47,I (632) wifi:enable tsf
+2024-09-15 13:02:47,[0;32mI (632) ESPNOW_MASTER: Read internal temperature sensor[0m
+2024-09-15 13:02:47,"[0;32mI (632) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C[0m"
+2024-09-15 13:02:47,[0;32mI (642) ESPNOW_MASTER: Loaded info_slaves from NVS successfully with key 'KEY_SLA_ALLOW'![0m
+2024-09-15 13:02:47,[0;32mI (652) ESPNOW_MASTER: Slave 0:[0m
+2024-09-15 13:02:47,[0;32mI (652) ESPNOW_MASTER:   MAC Address: 34:85:18:03:95:08[0m
+2024-09-15 13:02:47,[0;32mI (652) ESPNOW_MASTER:   Status: Offline[0m
+2024-09-15 13:02:47,[0;32mI (662) ESPNOW_MASTER:   Send Errors: 0[0m
+2024-09-15 13:02:47,[0;32mI (662) ESPNOW_MASTER:   Start Time: 0[0m
+2024-09-15 13:02:47,[0;32mI (672) ESPNOW_MASTER:   End Time: 0[0m
+2024-09-15 13:02:47,[0;32mI (672) ESPNOW_MASTER:   Number of Retries: 0[0m
+2024-09-15 13:02:47,[0;32mI (682) ESPNOW_MASTER:   Check Connect Errors: 0[0m
+2024-09-15 13:02:47,[0;32mI (682) ESPNOW_MASTER: Slave 1:[0m
+2024-09-15 13:02:47,[0;32mI (692) ESPNOW_MASTER:   MAC Address: ec:da:3b:54:b5:9c[0m
+2024-09-15 13:02:47,[0;32mI (692) ESPNOW_MASTER:   Status: Offline[0m
+2024-09-15 13:02:47,[0;32mI (702) ESPNOW_MASTER:   Send Errors: 0[0m
+2024-09-15 13:02:47,[0;32mI (702) ESPNOW_MASTER:   Start Time: 0[0m
+2024-09-15 13:02:47,[0;32mI (712) ESPNOW_MASTER:   End Time: 89100632[0m
+2024-09-15 13:02:47,[0;32mI (712) ESPNOW_MASTER:   Number of Retries: 0[0m
+2024-09-15 13:02:47,[0;32mI (722) ESPNOW_MASTER:   Check Connect Errors: 0[0m
+2024-09-15 13:02:47,[0;32mI (722) ESPNOW_MASTER: Slave 2:[0m
+2024-09-15 13:02:47,[0;32mI (732) ESPNOW_MASTER:   MAC Address: f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:47,[0;32mI (732) ESPNOW_MASTER:   Status: Online[0m
+2024-09-15 13:02:47,[0;32mI (742) ESPNOW_MASTER:   Send Errors: 0[0m
+2024-09-15 13:02:47,[0;32mI (742) ESPNOW_MASTER:   Start Time: 0[0m
+2024-09-15 13:02:47,[0;32mI (742) ESPNOW_MASTER:   End Time: 203272847[0m
+2024-09-15 13:02:47,[0;32mI (752) ESPNOW_MASTER:   Number of Retries: 0[0m
+2024-09-15 13:02:47,[0;32mI (752) ESPNOW_MASTER:   Check Connect Errors: 0[0m
+2024-09-15 13:02:47,[0;32mI (762) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (772) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:47,[0;32mI (792) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (802) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:47,[0;32mI (812) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (832) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (842) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:47,[0;32mI (852) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (872) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:47,[0;32mI (882) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:47,[0;32mI (892) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (902) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (922) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:47,[0;32mI (932) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,[0;32mI (942) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:47,[0;32mI (962) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:47,[0;32mI (972) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:47,[0;32mI (982) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:47,I (1002) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:02:47,[0;31mE (1002) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:47,[0;31mE (1012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:47,[0;31mE (1012) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:47,[0;32mI (1022) main_task: Returned from app_main()[0m
+2024-09-15 13:02:48,[0;31mE (2012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:48,[0;31mE (2012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:48,[0;31mE (2022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:49,[0;31mE (3012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:49,[0;31mE (3012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:49,[0;31mE (3022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:50,[0;31mE (4012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:50,[0;31mE (4012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:50,[0;31mE (4022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:51,[0;31mE (5012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:51,[0;31mE (5012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:51,[0;31mE (5022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:52,[0;31mE (6012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:52,[0;31mE (6012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:52,[0;31mE (6022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:53,[0;31mE (7012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:53,[0;31mE (7012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:53,[0;31mE (7022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:54,[0;31mE (8012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:54,[0;31mE (8012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:54,[0;31mE (8022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:55,[0;31mE (9012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:55,[0;31mE (9012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:55,[0;31mE (9022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:56,[0;31mE (10012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:56,[0;31mE (10012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:56,[0;31mE (10022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:57,[0;31mE (11012) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:57,[0;33mW (11012) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:02:57,[0;33mW (11012) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:57,[0;31mE (11012) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:57,[0;32mI (11012) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:57,[0;31mE (11022) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:57,[0;32mI (11022) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:57,[0;32mI (11032) ESPNOW_MASTER:      seq_num: 0[0m
+2024-09-15 13:02:57,[0;32mI (11042) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:57,[0;32mI (11042) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:57,[0;32mI (11052) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:57,[0;32mI (11092) ESPNOW_MASTER: Time send callback espnow: 37851 us[0m
+2024-09-15 13:02:57,"[0;32mI (11092) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:57,[0;33mW (11092) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:57,[0;32mI (11102) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:57,[0;32mI (11102) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:57,[0;32mI (11112) ESPNOW_MASTER:      seq_num: 1[0m
+2024-09-15 13:02:57,[0;32mI (11112) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:57,[0;32mI (11122) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:57,"[0;32mI (11122) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:57,[0;32mI (11132) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:57,[0;32mI (11192) ESPNOW_MASTER: Time send callback espnow: 92284 us[0m
+2024-09-15 13:02:57,"[0;32mI (11192) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:57,[0;33mW (11192) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:57,[0;32mI (11202) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:57,[0;32mI (11212) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:57,[0;32mI (11212) ESPNOW_MASTER:      seq_num: 2[0m
+2024-09-15 13:02:57,[0;32mI (11222) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:57,[0;32mI (11222) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:57,"[0;32mI (11232) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:57,[0;32mI (11232) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:57,[0;32mI (11282) ESPNOW_MASTER: Time send callback espnow: 73446 us[0m
+2024-09-15 13:02:57,"[0;32mI (11282) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:02:57,[0;33mW (11282) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:57,[0;32mI (11292) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:57,[0;32mI (11292) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:57,[0;32mI (11302) ESPNOW_MASTER:      seq_num: 3[0m
+2024-09-15 13:02:57,[0;32mI (11302) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:02:57,[0;32mI (11312) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:02:57,"[0;32mI (11312) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:02:57,[0;32mI (11322) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:02:57,[0;32mI (11332) ESPNOW_MASTER: Time send callback espnow: 42700 us[0m
+2024-09-15 13:02:57,"[0;32mI (11332) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:02:58,[0;32mI (11512) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:02:58,[0;32mI (11512) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:02:58,[0;33mW (11512) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:02:58,[0;32mI (11512) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:02:58,[0;32mI (11522) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:02:58,[0;32mI (11522) ESPNOW_MASTER:      seq_num: 5[0m
+2024-09-15 13:02:58,[0;32mI (11532) ESPNOW_MASTER:      crc: 48738[0m
+2024-09-15 13:02:58,[0;32mI (11532) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:02:58,[0;32mI (11542) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:02:58,[0;32mI (11542) ESPNOW_MASTER:          MCU Temperature: 33.20[0m
+2024-09-15 13:02:58,[0;32mI (11552) ESPNOW_MASTER:          RSSI: -13[0m
+2024-09-15 13:02:58,[0;32mI (11552) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:02:58,[0;32mI (11562) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:02:58,[0;32mI (11562) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:02:58,[0;32mI (11572) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:02:58,[0;32mI (11582) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:02:58,[0;32mI (11582) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:02:58,[0;32mI (11592) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:58,[0;32mI (11602) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:02:58,[0;32mI (11612) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:58,[0;32mI (11632) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:58,[0;32mI (11642) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:02:58,[0;32mI (11652) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -13     | 33.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:02:58,[0;32mI (11672) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:02:58,[0;31mE (12022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:58,[0;31mE (12042) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:58,[0;31mE (12052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:59,[0;31mE (13022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:02:59,[0;31mE (13042) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:02:59,[0;32mI (13042) LIGHT_SLEEP: Current time light sleep : 13037739 us[0m
+2024-09-15 13:02:59,[0;32mI (13042) LIGHT_SLEEP: Start time light sleep   : 11682271 us[0m
+2024-09-15 13:02:59,[0;32mI (13042) LIGHT_SLEEP: Enter time light sleep   : 1355468 us[0m
+2024-09-15 13:02:59,[0;31mE (13052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:02:59,Entering light sleep
+2024-09-15 13:02:59,"Returned from light sleep, reason: other, t=13070 ms, slept for 1 ms"
+2024-09-15 13:02:59,I (13072) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:02:59,I (13072) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:03:00,[0;31mE (14022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:00,[0;31mE (14052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:00,[0;31mE (14072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:01,[0;31mE (15022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:01,[0;31mE (15052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:01,[0;31mE (15072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:02,[0;31mE (16022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:02,[0;31mE (16052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:02,[0;31mE (16072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:03,[0;31mE (17022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:03,[0;31mE (17052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:03,[0;31mE (17072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:04,[0;31mE (18022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:04,[0;31mE (18052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:04,[0;31mE (18072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:05,[0;31mE (19022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:05,[0;31mE (19052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:05,[0;31mE (19072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:06,[0;31mE (20022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:06,[0;31mE (20052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:06,[0;31mE (20072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:07,[0;31mE (21022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:07,[0;31mE (21052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:07,[0;31mE (21072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:08,[0;31mE (22022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:08,[0;31mE (22052) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:08,[0;33mW (22052) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:03:08,[0;33mW (22052) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:08,[0;32mI (22052) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:08,[0;32mI (22062) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:08,[0;32mI (22062) ESPNOW_MASTER:      seq_num: 4[0m
+2024-09-15 13:03:08,[0;32mI (22072) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:08,[0;31mE (22072) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:08,[0;32mI (22072) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:08,[0;32mI (22082) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:08,[0;32mI (22132) ESPNOW_MASTER: Time send callback espnow: 49869 us[0m
+2024-09-15 13:03:08,"[0;32mI (22132) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:08,[0;33mW (22142) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:08,[0;32mI (22142) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:08,[0;32mI (22152) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:08,[0;32mI (22152) ESPNOW_MASTER:      seq_num: 5[0m
+2024-09-15 13:03:08,[0;32mI (22162) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:08,[0;32mI (22162) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:08,"[0;32mI (22172) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:08,[0;32mI (22182) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:08,[0;32mI (22232) ESPNOW_MASTER: Time send callback espnow: 90493 us[0m
+2024-09-15 13:03:08,"[0;32mI (22232) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:08,[0;33mW (22242) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:08,[0;32mI (22252) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:08,[0;32mI (22252) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:08,[0;32mI (22262) ESPNOW_MASTER:      seq_num: 6[0m
+2024-09-15 13:03:08,[0;32mI (22262) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:08,[0;32mI (22262) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:08,"[0;32mI (22272) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:08,[0;32mI (22282) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:08,[0;32mI (22322) ESPNOW_MASTER: Time send callback espnow: 69137 us[0m
+2024-09-15 13:03:08,"[0;32mI (22322) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:08,[0;33mW (22322) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:08,[0;32mI (22332) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:08,[0;32mI (22332) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:08,[0;32mI (22342) ESPNOW_MASTER:      seq_num: 7[0m
+2024-09-15 13:03:08,[0;32mI (22342) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:08,[0;32mI (22352) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:08,"[0;32mI (22352) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:08,[0;32mI (22362) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:08,[0;32mI (22412) ESPNOW_MASTER: Time send callback espnow: 83868 us[0m
+2024-09-15 13:03:09,"[0;32mI (22412) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:09,[0;33mW (22422) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:09,[0;32mI (22422) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:09,[0;32mI (22432) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:09,[0;32mI (22432) ESPNOW_MASTER:      seq_num: 8[0m
+2024-09-15 13:03:09,[0;32mI (22442) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:09,[0;32mI (22442) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:09,"[0;32mI (22452) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:09,[0;32mI (22462) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:09,[0;32mI (22522) ESPNOW_MASTER: Time send callback espnow: 91041 us[0m
+2024-09-15 13:03:09,"[0;32mI (22522) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:03:09,[0;32mI (22702) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:03:09,[0;32mI (22702) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:03:09,[0;33mW (22702) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:09,[0;32mI (22702) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:09,[0;32mI (22712) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:09,[0;32mI (22712) ESPNOW_MASTER:      seq_num: 6[0m
+2024-09-15 13:03:09,[0;32mI (22722) ESPNOW_MASTER:      crc: 8221[0m
+2024-09-15 13:03:09,[0;32mI (22722) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:03:09,[0;32mI (22732) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:03:09,[0;32mI (22732) ESPNOW_MASTER:          MCU Temperature: 33.20[0m
+2024-09-15 13:03:09,[0;32mI (22742) ESPNOW_MASTER:          RSSI: -13[0m
+2024-09-15 13:03:09,[0;32mI (22742) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:03:09,[0;32mI (22752) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:03:09,[0;32mI (22762) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:03:09,[0;32mI (22762) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:03:09,[0;32mI (22772) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:03:09,[0;32mI (22772) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:03:09,[0;32mI (22782) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:09,[0;32mI (22792) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:03:09,[0;32mI (22802) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:09,[0;32mI (22822) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:09,[0;32mI (22832) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:09,[0;32mI (22842) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -13     | 33.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:03:09,[0;32mI (22862) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:09,[0;31mE (23022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:09,[0;31mE (23082) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:09,[0;31mE (23092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:10,[0;31mE (24022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:10,[0;31mE (24082) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:10,[0;32mI (24082) LIGHT_SLEEP: Current time light sleep : 24077746 us[0m
+2024-09-15 13:03:10,[0;32mI (24082) LIGHT_SLEEP: Start time light sleep   : 22873539 us[0m
+2024-09-15 13:03:10,[0;32mI (24082) LIGHT_SLEEP: Enter time light sleep   : 1204207 us[0m
+2024-09-15 13:03:10,[0;31mE (24092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:10,Entering light sleep
+2024-09-15 13:03:10,"Returned from light sleep, reason: other, t=24110 ms, slept for 1 ms"
+2024-09-15 13:03:10,I (24112) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:03:10,I (24112) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:03:11,[0;31mE (25022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:11,[0;31mE (25092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:11,[0;31mE (25112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:12,[0;31mE (26022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:12,[0;31mE (26092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:12,[0;31mE (26112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:13,[0;31mE (27022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:13,[0;31mE (27092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:13,[0;31mE (27112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:14,[0;31mE (28022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:14,[0;31mE (28092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:14,[0;31mE (28112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:15,[0;31mE (29022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:15,[0;31mE (29092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:15,[0;31mE (29112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:16,[0;31mE (30022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:16,[0;31mE (30092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:16,[0;31mE (30112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:17,[0;31mE (31022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:17,[0;31mE (31092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:17,[0;31mE (31112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:18,[0;31mE (32022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:18,[0;31mE (32092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:18,[0;31mE (32112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:19,[0;31mE (33022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:19,[0;31mE (33092) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:19,[0;33mW (33092) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:03:19,[0;33mW (33092) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:19,[0;32mI (33092) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:19,[0;32mI (33102) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:19,[0;32mI (33102) ESPNOW_MASTER:      seq_num: 9[0m
+2024-09-15 13:03:19,[0;32mI (33112) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:19,[0;31mE (33112) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:19,[0;32mI (33112) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:19,[0;32mI (33122) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:19,[0;32mI (33182) ESPNOW_MASTER: Time send callback espnow: 53382 us[0m
+2024-09-15 13:03:19,"[0;32mI (33182) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:19,[0;33mW (33182) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:19,[0;32mI (33192) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:19,[0;32mI (33192) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:19,[0;32mI (33202) ESPNOW_MASTER:      seq_num: 10[0m
+2024-09-15 13:03:19,[0;32mI (33202) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:19,[0;32mI (33212) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:19,"[0;32mI (33212) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:19,[0;32mI (33222) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:19,[0;32mI (33262) ESPNOW_MASTER: Time send callback espnow: 68305 us[0m
+2024-09-15 13:03:19,"[0;32mI (33262) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:19,[0;33mW (33262) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:19,[0;32mI (33272) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:19,[0;32mI (33272) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:19,[0;32mI (33282) ESPNOW_MASTER:      seq_num: 11[0m
+2024-09-15 13:03:19,[0;32mI (33282) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:19,[0;32mI (33292) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:19,"[0;32mI (33292) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:19,[0;32mI (33302) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:19,[0;32mI (33342) ESPNOW_MASTER: Time send callback espnow: 72518 us[0m
+2024-09-15 13:03:19,"[0;32mI (33342) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:19,[0;33mW (33342) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:19,[0;32mI (33352) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:19,[0;32mI (33362) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:19,[0;32mI (33362) ESPNOW_MASTER:      seq_num: 12[0m
+2024-09-15 13:03:19,[0;32mI (33372) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:19,[0;32mI (33372) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:19,"[0;32mI (33382) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:19,[0;32mI (33382) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (33432) ESPNOW_MASTER: Time send callback espnow: 72460 us[0m
+2024-09-15 13:03:20,"[0;32mI (33432) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:20,[0;33mW (33432) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (33442) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (33442) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (33452) ESPNOW_MASTER:      seq_num: 13[0m
+2024-09-15 13:03:20,[0;32mI (33452) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:20,[0;32mI (33462) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:20,"[0;32mI (33462) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:20,[0;32mI (33472) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (33512) ESPNOW_MASTER: Time send callback espnow: 72031 us[0m
+2024-09-15 13:03:20,"[0;32mI (33512) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:20,[0;33mW (33512) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (33522) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (33532) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (33532) ESPNOW_MASTER:      seq_num: 14[0m
+2024-09-15 13:03:20,[0;32mI (33542) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:20,[0;32mI (33542) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:20,"[0;32mI (33552) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:20,[0;32mI (33552) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (33602) ESPNOW_MASTER: Time send callback espnow: 79785 us[0m
+2024-09-15 13:03:20,"[0;32mI (33602) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:20,[0;33mW (33612) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (33612) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (33622) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (33622) ESPNOW_MASTER:      seq_num: 15[0m
+2024-09-15 13:03:20,[0;32mI (33632) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:20,[0;32mI (33632) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:20,"[0;32mI (33642) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:20,[0;32mI (33652) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (33682) ESPNOW_MASTER: Time send callback espnow: 62215 us[0m
+2024-09-15 13:03:20,"[0;32mI (33682) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:20,[0;33mW (33682) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (33692) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (33692) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (33702) ESPNOW_MASTER:      seq_num: 16[0m
+2024-09-15 13:03:20,[0;32mI (33702) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:20,[0;32mI (33712) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:20,"[0;32mI (33712) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:20,[0;32mI (33722) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (33772) ESPNOW_MASTER: Time send callback espnow: 80490 us[0m
+2024-09-15 13:03:20,"[0;32mI (33772) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:20,[0;33mW (33772) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (33782) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (33792) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (33792) ESPNOW_MASTER:      seq_num: 17[0m
+2024-09-15 13:03:20,[0;32mI (33802) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:20,[0;32mI (33802) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:20,"[0;32mI (33812) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:20,[0;32mI (33812) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (33862) ESPNOW_MASTER: Time send callback espnow: 75139 us[0m
+2024-09-15 13:03:20,"[0;32mI (33862) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:20,[0;33mW (33862) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (33872) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (33872) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (33882) ESPNOW_MASTER:      seq_num: 18[0m
+2024-09-15 13:03:20,[0;32mI (33882) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:20,[0;32mI (33892) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:20,"[0;32mI (33892) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:20,[0;32mI (33902) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (33962) ESPNOW_MASTER: Time send callback espnow: 88750 us[0m
+2024-09-15 13:03:20,"[0;32mI (33962) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:20,[0;33mW (33962) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (33972) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (33972) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (33982) ESPNOW_MASTER:      seq_num: 19[0m
+2024-09-15 13:03:20,[0;32mI (33982) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:20,[0;32mI (33992) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:20,"[0;32mI (33992) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:20,[0;32mI (34002) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:20,[0;32mI (34012) ESPNOW_MASTER: Time send callback espnow: 38725 us[0m
+2024-09-15 13:03:20,"[0;32mI (34012) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:03:20,[0;31mE (34022) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:20,[0;31mE (34122) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:20,[0;31mE (34132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:20,[0;32mI (34182) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:03:20,[0;32mI (34182) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:03:20,[0;33mW (34182) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:20,[0;32mI (34192) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:20,[0;32mI (34192) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:20,[0;32mI (34202) ESPNOW_MASTER:      seq_num: 7[0m
+2024-09-15 13:03:20,[0;32mI (34202) ESPNOW_MASTER:      crc: 44487[0m
+2024-09-15 13:03:20,[0;32mI (34212) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:03:20,[0;32mI (34212) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:03:20,[0;32mI (34222) ESPNOW_MASTER:          MCU Temperature: 33.20[0m
+2024-09-15 13:03:20,[0;32mI (34232) ESPNOW_MASTER:          RSSI: -13[0m
+2024-09-15 13:03:20,[0;32mI (34232) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:03:20,[0;32mI (34242) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:03:20,[0;32mI (34242) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:03:20,[0;32mI (34252) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:03:20,[0;32mI (34252) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:03:20,[0;32mI (34262) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:03:20,[0;32mI (34262) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:20,[0;32mI (34282) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:03:20,[0;32mI (34292) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:20,[0;32mI (34302) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:20,[0;32mI (34322) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:20,[0;32mI (34332) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -13     | 33.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:03:20,[0;32mI (34342) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:21,[0;31mE (35032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:21,[0;31mE (35122) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:21,[0;31mE (35132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:22,[0;31mE (36032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:22,[0;31mE (36122) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:22,[0;32mI (36122) LIGHT_SLEEP: Current time light sleep : 36117717 us[0m
+2024-09-15 13:03:22,[0;32mI (36122) LIGHT_SLEEP: Start time light sleep   : 34359335 us[0m
+2024-09-15 13:03:22,[0;32mI (36122) LIGHT_SLEEP: Enter time light sleep   : 1758382 us[0m
+2024-09-15 13:03:22,[0;31mE (36132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:22,Entering light sleep
+2024-09-15 13:03:22,"Returned from light sleep, reason: other, t=36150 ms, slept for 1 ms"
+2024-09-15 13:03:22,I (36152) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:03:22,I (36152) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:03:23,[0;31mE (37032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:23,[0;31mE (37132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:23,[0;31mE (37152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:24,[0;31mE (38032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:24,[0;31mE (38132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:24,[0;31mE (38152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:25,[0;31mE (39032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:25,[0;31mE (39132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:25,[0;31mE (39152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:26,[0;31mE (40032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:26,[0;31mE (40132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:26,[0;31mE (40152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:27,[0;31mE (41032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:27,[0;31mE (41132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:27,[0;31mE (41152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:28,[0;31mE (42032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:28,[0;31mE (42132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:28,[0;31mE (42152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:29,[0;31mE (43032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:29,[0;31mE (43132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:29,[0;31mE (43152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:30,[0;31mE (44032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:30,[0;31mE (44132) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:30,[0;33mW (44132) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:03:30,[0;33mW (44132) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:30,[0;32mI (44132) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:30,[0;32mI (44142) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:30,[0;32mI (44142) ESPNOW_MASTER:      seq_num: 20[0m
+2024-09-15 13:03:30,[0;32mI (44152) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:30,[0;31mE (44152) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:30,[0;32mI (44152) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:30,[0;32mI (44162) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:30,[0;32mI (44222) ESPNOW_MASTER: Time send callback espnow: 54834 us[0m
+2024-09-15 13:03:30,"[0;32mI (44222) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:30,[0;33mW (44222) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:30,[0;32mI (44232) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:30,[0;32mI (44232) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:30,[0;32mI (44242) ESPNOW_MASTER:      seq_num: 21[0m
+2024-09-15 13:03:30,[0;32mI (44242) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:30,[0;32mI (44252) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:30,"[0;32mI (44252) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:30,[0;32mI (44262) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:30,[0;32mI (44292) ESPNOW_MASTER: Time send callback espnow: 65642 us[0m
+2024-09-15 13:03:30,"[0;32mI (44292) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:30,[0;33mW (44302) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:30,[0;32mI (44312) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:30,[0;32mI (44312) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:30,[0;32mI (44322) ESPNOW_MASTER:      seq_num: 22[0m
+2024-09-15 13:03:30,[0;32mI (44322) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:30,[0;32mI (44332) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:30,"[0;32mI (44332) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:30,[0;32mI (44342) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:30,[0;32mI (44392) ESPNOW_MASTER: Time send callback espnow: 85689 us[0m
+2024-09-15 13:03:30,"[0;32mI (44392) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:30,[0;33mW (44402) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:30,[0;32mI (44402) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:31,[0;32mI (44412) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:31,[0;32mI (44412) ESPNOW_MASTER:      seq_num: 23[0m
+2024-09-15 13:03:31,[0;32mI (44422) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:31,[0;32mI (44422) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:31,"[0;32mI (44432) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:31,[0;32mI (44442) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:31,[0;32mI (44482) ESPNOW_MASTER: Time send callback espnow: 72595 us[0m
+2024-09-15 13:03:31,"[0;32mI (44482) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:31,[0;33mW (44482) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:31,[0;32mI (44492) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:31,[0;32mI (44492) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:31,[0;32mI (44502) ESPNOW_MASTER:      seq_num: 24[0m
+2024-09-15 13:03:31,[0;32mI (44502) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:31,[0;32mI (44512) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:31,"[0;32mI (44512) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:31,[0;32mI (44522) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:31,[0;32mI (44532) ESPNOW_MASTER: Time send callback espnow: 39833 us[0m
+2024-09-15 13:03:31,"[0;32mI (44532) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:03:31,[0;32mI (44692) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:03:31,[0;32mI (44692) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:03:31,[0;33mW (44692) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:31,[0;32mI (44702) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:31,[0;32mI (44712) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:31,[0;32mI (44712) ESPNOW_MASTER:      seq_num: 8[0m
+2024-09-15 13:03:31,[0;32mI (44722) ESPNOW_MASTER:      crc: 51487[0m
+2024-09-15 13:03:31,[0;32mI (44722) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:03:31,[0;32mI (44732) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:03:31,[0;32mI (44732) ESPNOW_MASTER:          MCU Temperature: 33.20[0m
+2024-09-15 13:03:31,[0;32mI (44742) ESPNOW_MASTER:          RSSI: -14[0m
+2024-09-15 13:03:31,[0;32mI (44742) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:03:31,[0;32mI (44752) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:03:31,[0;32mI (44752) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:03:31,[0;32mI (44762) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:03:31,[0;32mI (44762) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:03:31,[0;32mI (44772) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:03:31,[0;32mI (44782) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:31,[0;32mI (44792) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:03:31,[0;32mI (44802) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:31,[0;32mI (44822) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:31,[0;32mI (44832) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:31,[0;32mI (44842) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -14     | 33.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:03:31,[0;32mI (44862) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:31,[0;31mE (45032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:31,[0;31mE (45162) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:31,[0;31mE (45172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:32,[0;31mE (46032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:32,[0;31mE (46162) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:32,[0;32mI (46162) LIGHT_SLEEP: Current time light sleep : 46157712 us[0m
+2024-09-15 13:03:32,[0;32mI (46162) LIGHT_SLEEP: Start time light sleep   : 44871278 us[0m
+2024-09-15 13:03:32,[0;32mI (46162) LIGHT_SLEEP: Enter time light sleep   : 1286434 us[0m
+2024-09-15 13:03:32,[0;31mE (46172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:32,Entering light sleep
+2024-09-15 13:03:32,"Returned from light sleep, reason: other, t=46190 ms, slept for 1 ms"
+2024-09-15 13:03:32,I (46192) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:03:32,I (46192) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:03:33,[0;31mE (47032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:33,[0;31mE (47172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:33,[0;31mE (47192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:34,[0;31mE (48032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:34,[0;31mE (48172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:34,[0;31mE (48192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:35,[0;31mE (49032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:35,[0;31mE (49172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:35,[0;31mE (49192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:36,[0;31mE (50032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:36,[0;31mE (50172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:36,[0;31mE (50192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:37,[0;31mE (51032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:37,[0;31mE (51172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:37,[0;31mE (51192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:38,[0;31mE (52032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:38,[0;31mE (52172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:38,[0;31mE (52192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:39,[0;31mE (53032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:39,[0;31mE (53172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:39,[0;31mE (53192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:40,[0;31mE (54032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:40,[0;31mE (54172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:40,[0;31mE (54192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:41,[0;31mE (55032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:41,[0;31mE (55172) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:41,[0;33mW (55172) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:03:41,[0;33mW (55172) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:41,[0;32mI (55172) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:41,[0;32mI (55182) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:41,[0;32mI (55182) ESPNOW_MASTER:      seq_num: 25[0m
+2024-09-15 13:03:41,[0;32mI (55192) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:41,[0;31mE (55192) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:41,[0;32mI (55192) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:41,[0;32mI (55202) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:41,[0;32mI (55232) ESPNOW_MASTER: Time send callback espnow: 31011 us[0m
+2024-09-15 13:03:41,"[0;32mI (55232) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:41,[0;33mW (55242) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:41,[0;32mI (55252) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:41,[0;32mI (55252) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:41,[0;32mI (55252) ESPNOW_MASTER:      seq_num: 26[0m
+2024-09-15 13:03:41,[0;32mI (55262) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:41,[0;32mI (55262) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:41,"[0;32mI (55272) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:41,[0;32mI (55282) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:41,[0;32mI (55312) ESPNOW_MASTER: Time send callback espnow: 63662 us[0m
+2024-09-15 13:03:41,"[0;32mI (55312) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:41,[0;33mW (55312) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:41,[0;32mI (55322) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:41,[0;32mI (55332) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:41,[0;32mI (55332) ESPNOW_MASTER:      seq_num: 27[0m
+2024-09-15 13:03:41,[0;32mI (55342) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:41,[0;32mI (55342) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:41,"[0;32mI (55352) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:41,[0;32mI (55352) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:41,[0;32mI (55382) ESPNOW_MASTER: Time send callback espnow: 61607 us[0m
+2024-09-15 13:03:41,"[0;32mI (55382) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:41,[0;33mW (55392) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:41,[0;32mI (55392) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:41,[0;32mI (55402) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:41,[0;32mI (55402) ESPNOW_MASTER:      seq_num: 28[0m
+2024-09-15 13:03:42,[0;32mI (55412) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55412) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55422) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55432) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55462) ESPNOW_MASTER: Time send callback espnow: 62266 us[0m
+2024-09-15 13:03:42,"[0;32mI (55462) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:42,[0;33mW (55462) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (55472) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (55472) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (55482) ESPNOW_MASTER:      seq_num: 29[0m
+2024-09-15 13:03:42,[0;32mI (55482) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55492) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55492) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55502) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55542) ESPNOW_MASTER: Time send callback espnow: 68422 us[0m
+2024-09-15 13:03:42,"[0;32mI (55542) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:42,[0;33mW (55542) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (55552) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (55562) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (55562) ESPNOW_MASTER:      seq_num: 30[0m
+2024-09-15 13:03:42,[0;32mI (55562) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55572) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55572) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55582) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55622) ESPNOW_MASTER: Time send callback espnow: 65809 us[0m
+2024-09-15 13:03:42,"[0;32mI (55622) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:42,[0;33mW (55622) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (55632) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (55632) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (55642) ESPNOW_MASTER:      seq_num: 31[0m
+2024-09-15 13:03:42,[0;32mI (55642) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55652) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55652) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55662) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55702) ESPNOW_MASTER: Time send callback espnow: 68518 us[0m
+2024-09-15 13:03:42,"[0;32mI (55702) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:42,[0;33mW (55702) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (55712) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (55712) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (55722) ESPNOW_MASTER:      seq_num: 32[0m
+2024-09-15 13:03:42,[0;32mI (55722) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55732) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55732) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55742) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55782) ESPNOW_MASTER: Time send callback espnow: 73371 us[0m
+2024-09-15 13:03:42,"[0;32mI (55782) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:42,[0;33mW (55792) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (55792) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (55802) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (55802) ESPNOW_MASTER:      seq_num: 33[0m
+2024-09-15 13:03:42,[0;32mI (55812) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55812) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55822) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55832) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55852) ESPNOW_MASTER: Time send callback espnow: 59369 us[0m
+2024-09-15 13:03:42,"[0;32mI (55852) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:42,[0;33mW (55862) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (55872) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (55872) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (55882) ESPNOW_MASTER:      seq_num: 34[0m
+2024-09-15 13:03:42,[0;32mI (55882) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55882) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55892) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55902) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55942) ESPNOW_MASTER: Time send callback espnow: 75142 us[0m
+2024-09-15 13:03:42,"[0;32mI (55942) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:42,[0;33mW (55952) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (55952) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (55962) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (55962) ESPNOW_MASTER:      seq_num: 35[0m
+2024-09-15 13:03:42,[0;32mI (55972) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:42,[0;32mI (55972) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:42,"[0;32mI (55982) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:42,[0;32mI (55992) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:42,[0;32mI (55992) ESPNOW_MASTER: Time send callback espnow: 39862 us[0m
+2024-09-15 13:03:42,"[0;32mI (56002) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Success[0m"
+2024-09-15 13:03:42,[0;31mE (56032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:42,[0;32mI (56172) ESPNOW_MASTER: _________________________________[0m
+2024-09-15 13:03:42,[0;32mI (56172) ESPNOW_MASTER: Receive unicast ESPNOW data[0m
+2024-09-15 13:03:42,[0;33mW (56172) ESPNOW_MASTER: Receive unicast MAC f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:42,[0;32mI (56182) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:42,[0;32mI (56182) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:42,[0;32mI (56192) ESPNOW_MASTER:      seq_num: 0[0m
+2024-09-15 13:03:42,[0;32mI (56192) ESPNOW_MASTER:      crc: 11740[0m
+2024-09-15 13:03:42,[0;32mI (56202) ESPNOW_MASTER:      message: KEEP_connect[0m
+2024-09-15 13:03:42,[0;31mE (56202) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:42,[0;32mI (56202) ESPNOW_MASTER:      Parsed ESPNOW payload:[0m
+2024-09-15 13:03:42,[0;31mE (56212) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:42,[0;32mI (56212) ESPNOW_MASTER:          MCU Temperature: 34.20[0m
+2024-09-15 13:03:42,[0;32mI (56222) ESPNOW_MASTER:          RSSI: -13[0m
+2024-09-15 13:03:42,[0;32mI (56232) ESPNOW_MASTER:          RDO Temperature: 23.10[0m
+2024-09-15 13:03:42,[0;32mI (56242) ESPNOW_MASTER:          DO Value: 7.60[0m
+2024-09-15 13:03:42,[0;32mI (56242) ESPNOW_MASTER:          PHG Temperature: 24.00[0m
+2024-09-15 13:03:42,[0;32mI (56252) ESPNOW_MASTER:          PH Value: 7.20[0m
+2024-09-15 13:03:42,[0;32mI (56252) ESPNOW_MASTER:          Relay State: Off[0m
+2024-09-15 13:03:42,[0;32mI (56262) ESPNOW_MASTER: CRC check passed.[0m
+2024-09-15 13:03:42,[0;32mI (56262) ESPNOW_MASTER: -------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:42,[0;32mI (56282) ESPNOW_MASTER: | MAC Address       | Status  | RSSI    | Temp MCU     | Temp RDO     | Temp PHG     | DO Value | pH Value | Relay   |[0m
+2024-09-15 13:03:42,[0;32mI (56292) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:42,[0;32mI (56302) ESPNOW_MASTER: | 34:85:18:03:95:08 | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:42,[0;32mI (56322) ESPNOW_MASTER: | EC:DA:3B:54:B5:9C | Offline | 0       | 0.00         | 0.00         | 0.00         | 0.00     | 0.00     | Off     |[0m
+2024-09-15 13:03:42,[0;32mI (56332) ESPNOW_MASTER: | F4:12:FA:42:A3:DC | Online  | -13     | 34.20        | 23.10        | 24.00        | 7.60     | 7.20     | Off     |[0m
+2024-09-15 13:03:42,[0;32mI (56342) ESPNOW_MASTER: ------------------------------------------------------------------------------------------------------------------[0m
+2024-09-15 13:03:43,[0;31mE (57032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:43,[0;31mE (57212) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:43,[0;31mE (57222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:44,[0;31mE (58032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:44,[0;31mE (58212) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:44,[0;32mI (58212) LIGHT_SLEEP: Current time light sleep : 58207692 us[0m
+2024-09-15 13:03:44,[0;32mI (58212) LIGHT_SLEEP: Start time light sleep   : 56358568 us[0m
+2024-09-15 13:03:44,[0;32mI (58212) LIGHT_SLEEP: Enter time light sleep   : 1849124 us[0m
+2024-09-15 13:03:44,[0;31mE (58222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:44,Entering light sleep
+2024-09-15 13:03:44,"Returned from light sleep, reason: other, t=58240 ms, slept for 1 ms"
+2024-09-15 13:03:44,I (58242) ESPNOW: espnow [version: 1.0] deinit
+2024-09-15 13:03:44,I (58242) ESPNOW: espnow [version: 1.0] init
+2024-09-15 13:03:45,[0;31mE (59032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:45,[0;31mE (59222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:45,[0;31mE (59242) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:46,[0;31mE (60032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:46,[0;31mE (60222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:46,[0;31mE (60242) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:47,[0;31mE (61032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:47,[0;31mE (61222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:47,[0;31mE (61242) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:48,[0;31mE (62032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:48,[0;31mE (62222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:48,[0;31mE (62242) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:49,[0;31mE (63032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:49,[0;31mE (63222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:49,[0;31mE (63242) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:50,[0;31mE (64032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:50,[0;31mE (64222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:50,[0;31mE (64242) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:51,[0;31mE (65032) ESPNOW_MASTER: Task retry_connect_lost_task[0m
+2024-09-15 13:03:51,[0;31mE (65222) ESPNOW_MASTER: Task master_espnow_task[0m
+2024-09-15 13:03:51,[0;33mW (65222) ESPNOW_MASTER: ---------------------------------[0m
+2024-09-15 13:03:51,[0;33mW (65222) ESPNOW_MASTER: Send CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:51,[0;32mI (65222) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:51,[0;32mI (65232) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:51,[0;32mI (65232) ESPNOW_MASTER:      seq_num: 36[0m
+2024-09-15 13:03:51,[0;32mI (65242) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:51,[0;31mE (65242) LIGHT_SLEEP: Task light_sleep_task[0m
+2024-09-15 13:03:51,[0;32mI (65242) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:51,[0;32mI (65252) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:51,[0;32mI (65282) ESPNOW_MASTER: Time send callback espnow: 28867 us[0m
+2024-09-15 13:03:51,"[0;32mI (65282) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:51,[0;33mW (65282) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:51,[0;32mI (65292) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:51,[0;32mI (65302) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:51,[0;32mI (65302) ESPNOW_MASTER:      seq_num: 37[0m
+2024-09-15 13:03:51,[0;32mI (65312) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:51,[0;32mI (65312) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:51,"[0;32mI (65322) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:51,[0;32mI (65322) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:51,[0;32mI (65362) ESPNOW_MASTER: Time send callback espnow: 71586 us[0m
+2024-09-15 13:03:51,"[0;32mI (65362) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:51,[0;33mW (65372) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:51,[0;32mI (65382) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:51,[0;32mI (65382) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:51,[0;32mI (65392) ESPNOW_MASTER:      seq_num: 38[0m
+2024-09-15 13:03:51,[0;32mI (65392) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:51,[0;32mI (65402) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:51,"[0;32mI (65402) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:51,[0;32mI (65412) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:52,[0;32mI (65452) ESPNOW_MASTER: Time send callback espnow: 68295 us[0m
+2024-09-15 13:03:52,"[0;32mI (65452) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:52,[0;33mW (65452) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:52,[0;32mI (65462) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:52,[0;32mI (65462) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:52,[0;32mI (65472) ESPNOW_MASTER:      seq_num: 39[0m
+2024-09-15 13:03:52,[0;32mI (65472) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:52,[0;32mI (65482) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:52,"[0;32mI (65482) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:52,[0;32mI (65492) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:52,[0;32mI (65542) ESPNOW_MASTER: Time send callback espnow: 80858 us[0m
+2024-09-15 13:03:52,"[0;32mI (65542) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:52,[0;33mW (65542) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:52,[0;32mI (65552) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:52,[0;32mI (65562) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:52,[0;32mI (65562) ESPNOW_MASTER:      seq_num: 40[0m
+2024-09-15 13:03:52,[0;32mI (65562) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:52,[0;32mI (65572) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:52,"[0;32mI (65572) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:52,[0;32mI (65582) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:52,[0;32mI (65622) ESPNOW_MASTER: Time send callback espnow: 66162 us[0m
+2024-09-15 13:03:52,"[0;32mI (65622) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:52,[0;33mW (65622) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:52,[0;32mI (65632) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:52,[0;32mI (65632) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:52,[0;32mI (65642) ESPNOW_MASTER:      seq_num: 41[0m
+2024-09-15 13:03:52,[0;32mI (65642) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:52,[0;32mI (65652) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:52,"[0;32mI (65652) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:52,[0;32mI (65662) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:52,[0;32mI (65692) ESPNOW_MASTER: Time send callback espnow: 58319 us[0m
+2024-09-15 13:03:52,"[0;32mI (65692) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:52,[0;33mW (65692) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:52,[0;32mI (65702) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:52,[0;32mI (65702) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:52,[0;32mI (65712) ESPNOW_MASTER:      seq_num: 42[0m
+2024-09-15 13:03:52,[0;32mI (65712) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:52,[0;32mI (65722) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:52,"[0;32mI (65722) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:52,[0;32mI (65732) ESPNOW_MASTER: Send Success[0m
+2024-09-15 13:03:52,[0;32mI (65762) ESPNOW_MASTER: Time send callback espnow: 59160 us[0m
+2024-09-15 13:03:52,"[0;32mI (65762) ESPNOW_MASTER: Send callback: MAC Address f4:12:fa:42:a3:dc, Status: Fail[0m"
+2024-09-15 13:03:52,[0;33mW (65762) ESPNOW_MASTER: Send retry callback CHECK_connect to MAC  f4:12:fa:42:a3:dc[0m
+2024-09-15 13:03:52,[0;32mI (65772) ESPNOW_MASTER: Parsed ESPNOW packed:[0m
+2024-09-15 13:03:52,[0;32mI (65782) ESPNOW_MASTER:      type: 1[0m
+2024-09-15 13:03:52,[0;32mI (65782) ESPNOW_MASTER:      seq_num: 43[0m
+2024-09-15 13:03:52,[0;32mI (65792) ESPNOW_MASTER:      crc: 0[0m
+2024-09-15 13:03:52,[0;32mI (65792) ESPNOW_MASTER:      message: CHECK_connect[0m
+2024-09-15 13:03:52,"[0;32mI (65802) ESPNOW_MASTER: Peer already exists, modifying peer settings.[0m"
+2024-09-15 13:03:52,[0;32mI (65802) ESPNOW_MASTER: Send Success[0m
