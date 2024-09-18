@@ -71,7 +71,8 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *mess
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
     ESP_LOGI(TAG, "     message: %s", buf->message);
 
-    float temperature = read_internal_temperature_sensor();
+    // float temperature = read_internal_temperature_sensor();
+    float temperature = 5;
     prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2, relay_state);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
@@ -433,7 +434,7 @@ void slave_espnow_protocol()
 
     slave_wifi_init();
 
-    init_temperature_sensor();
+    // init_temperature_sensor();
 
     //  ----------Process values ​​from nvs----------
 

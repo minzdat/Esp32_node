@@ -19,7 +19,7 @@
 #include "esp_now.h"
 #include "esp_crc.h"
 #include "esp_timer.h"
-#include "driver/temperature_sensor.h"
+// #include "driver/temperature_sensor.h"
 #include "deep_sleep.h"
 #include "light_sleep.h"
 #include "slave_controller.h"
@@ -77,7 +77,7 @@
 #define WIFI_CONNECTED_BIT          BIT0
 #define WIFI_FAIL_BIT               BIT1
 #define SLAVE_BROADCAST_MAC         { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
-#define DISCONNECTED_TIMEOUT        15 * 1000 * 1000     // 3 seconds
+#define DISCONNECTED_TIMEOUT        18 * 1000 * 1000     // 3 seconds
 #define ESPNOW_QUEUE_SIZE           6
 #define CURRENT_INDEX               0
 #define COUNT_DISCONNECTED          2

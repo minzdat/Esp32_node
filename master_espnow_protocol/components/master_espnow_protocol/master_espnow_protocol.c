@@ -773,13 +773,13 @@ void master_espnow_protocol()
 
     master_wifi_init();
 
-    init_temperature_sensor();
+    // init_temperature_sensor();
 
     /* ----------Data demo MAC from Slave---------- */
 
-    // test_allowed_connect_slaves_to_nvs(test_allowed_connect_slaves);
+    test_allowed_connect_slaves_to_nvs(test_allowed_connect_slaves);
 
-    // save_info_slaves_to_nvs("KEY_SLA_ALLOW", test_allowed_connect_slaves);
+    save_info_slaves_to_nvs("KEY_SLA_ALLOW", test_allowed_connect_slaves);
 
     load_info_slaves_from_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
 

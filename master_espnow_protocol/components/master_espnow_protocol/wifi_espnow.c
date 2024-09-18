@@ -28,7 +28,7 @@ void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, voi
 void master_wifi_init(void)
 {
 /*---------------------------------------------------------------------------------*/
-// Espnow protocol WITH WIFI
+// // Espnow protocol WITH WIFI
 
 //     s_wifi_event_group = xEventGroupCreate();
 

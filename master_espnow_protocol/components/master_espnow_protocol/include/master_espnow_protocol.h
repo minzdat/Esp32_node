@@ -18,7 +18,7 @@
 #include "esp_now.h"
 #include "esp_crc.h"
 #include "esp_timer.h"
-#include "driver/temperature_sensor.h"
+// #include "driver/temperature_sensor.h"
 #include "esp_pm.h"
 #include "deep_sleep.h"
 #include "light_sleep.h"
@@ -190,8 +190,8 @@ extern list_slaves_t waiting_connect_slaves[MAX_SLAVES];
 extern table_device_t table_devices[MAX_SLAVES];
 
 // Function to read temperature internal esp
-void init_temperature_sensor();
-float read_internal_temperature_sensor(void);
+// void init_temperature_sensor();
+// float read_internal_temperature_sensor(void);
 
 // Function to NVS
 void test_allowed_connect_slaves_to_nvs(list_slaves_t *allowed_connect_slaves);
