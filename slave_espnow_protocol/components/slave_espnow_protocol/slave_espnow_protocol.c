@@ -9,6 +9,25 @@ static slave_espnow_send_param_t send_param_specified;
 static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 mac_master_t s_master_unicast_mac;
 
+/*----------------------------------------------*/
+#include <math.h>
+    float angle=-100;
+    float sin_angle1;
+    float sin_angle2;
+    float sin_angle3;
+    float sin_angle4;
+void make_fake_data(){
+    sin_angle1 =  sin(angle*0.06283)*10+10;
+    sin_angle2 = sin(angle*0.031415)*10+10;
+    sin_angle3 = sin(angle*0.0157)*10+10;
+    sin_angle4 = sin(angle*0.031415)*10+30;
+    angle++;
+    if (angle>100){
+        angle=-100;
+    }
+}
+/*-----------------------------------------------------*/
+
 void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value) 
 {
     // Initialize sensor data directly in the payload field
@@ -68,8 +87,13 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *mess
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
     ESP_LOGI(TAG, "     message: %s", buf->message);
 
-    float temperature = read_internal_temperature_sensor();
-    prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2);
+    make_fake_data();
+    float temperature_mcu = read_internal_temperature_sensor();
+    float temperature_rdo = sin_angle1;
+    float do_value = sin_angle2;
+    float temperature_phg = sin_angle3;
+    float ph_value = sin_angle4;
+    prepare_payload(buf, temperature_mcu, rssi, temperature_rdo, do_value, temperature_phg, ph_value);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
