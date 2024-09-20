@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "espnow_example",
-    "project_version":    "43a379b8-dirty",
+    "project_version":    "16fb7914-dirty",
     "project_path":       "D:/esp32/rf-wifi/Esp32_node/mqttS3",
     "idf_path":           "C:/Users/ASUS/esp/v5.2.2/esp-idf",
     "build_dir":          "D:/esp32/rf-wifi/Esp32_node/mqttS3/build",

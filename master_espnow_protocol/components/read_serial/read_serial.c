@@ -121,12 +121,13 @@ void uart_event(void *pvParameters)
                             // ESP_LOGE(TAG_READ_SERIAL, "size table_device_tt %d ",sizeof(table_device_tt)ư3r);
                         for (int i = 0; i < MAX_SLAVES; i++)
                         {
-                            if (memcmp(mess_get->mac, table_devices[i].peer_addr, 6)==0)
+                            if ((memcmp(mess_get->mac, table_devices[i].peer_addr, 6)==0)&&(table_devices[i].status==1))
                             {
                                 memcpy(&sensor_data,&table_devices[i], sizeof(table_device_tt));
                                 ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
                                 mess_get->mac[0], mess_get->mac[1], mess_get->mac[2], mess_get->mac[3], mess_get->mac[4], mess_get->mac[5]);
                                 dump_uart((uint8_t*)&sensor_data, sizeof(table_device_tt));
+                                break;
                             }
                         }
                     }
@@ -140,6 +141,7 @@ void uart_event(void *pvParameters)
                         dump_uart((uint8_t*)&table_devices, sizeof(table_device_tt)*MAX_SLAVES);
 
                     }
+
                 }
                 // if ((strcmp((char *)decrypted_message, RESPONSE_AGREE) == 0)&&(!connect_check)) 
                 // {

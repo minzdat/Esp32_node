@@ -249,6 +249,7 @@ void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *mes
 
     // float temperature = read_internal_temperature_sensor();
     // prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2, esp_data_sensor.relay_state);
+    // prepare_payload(buf, 25.0f, rssi, 23.1, 7.6, 24.0,  7.2, esp_data_sensor.relay_state);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
@@ -777,9 +778,9 @@ void master_espnow_protocol()
 
     /* ----------Data demo MAC from Slave---------- */
 
-    test_allowed_connect_slaves_to_nvs(test_allowed_connect_slaves);
+    // test_allowed_connect_slaves_to_nvs(test_allowed_connect_slaves);
 
-    save_info_slaves_to_nvs("KEY_SLA_ALLOW", test_allowed_connect_slaves);
+    // save_info_slaves_to_nvs("KEY_SLA_ALLOW", test_allowed_connect_slaves);
 
     load_info_slaves_from_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
 

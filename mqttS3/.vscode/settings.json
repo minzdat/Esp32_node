@@ -1,6 +1,6 @@
 {
   "C_Cpp.intelliSenseEngine": "default",
-  "idf.portWin": "COM60",
+  "idf.portWin": "COM45",
   "idf.flashType": "UART",
   "idf.adapterTargetName": "esp32s3",
   "idf.openOcdConfigs": [
@@ -34,6 +34,7 @@
     "esp_crt_bundle.h": "c",
     "regex": "c",
     "stdio.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "math.h": "c"
   }
 }

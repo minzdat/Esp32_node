@@ -64,11 +64,11 @@ int compare_mac_addresses(const char *mac_s, const uint8_t *mac_m) {
 }
 
 void send_data(table_device_t sensor_data){
-    char data[200];
+    char data[250];
     // uint8_t data_u[100];
     ESP_LOGI(TAG,"Receive data from queue successfully");
             // get_data(&temperature_rdo, &do_value, &temperature_phg, &ph_value);     //temperature_rdo  do_value temperature_phg ph_value
-            sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f ",sensor_data.data.temperature_rdo,sensor_data.data.do_value,sensor_data.data.temperature_phg, sensor_data.data.ph_value, sensor_data.data.temperature_mcu);
+            sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f, temperature: %d",sensor_data.data.temperature_rdo,sensor_data.data.do_value,sensor_data.data.temperature_phg, sensor_data.data.ph_value, sensor_data.data.temperature_mcu, sensor_data.data.rssi);
             // xEventGroupWaitBits(g_wifi_event, g_constant_wifi_connected_bit, pdFALSE, pdTRUE, portMAX_DELAY);
             //g_index_queue=0;
             data_to_mqtt(data, "v1/devices/me/telemetry",500, 1);
@@ -100,7 +100,7 @@ void mqtt_subcriber(esp_mqtt_event_handle_t event)
     for (int i = 0; i < MAX_SLAVES; i++){
         // if (memcmp(mess_get->mac, table_devices[i].peer_addr, 6)==0){
         if (compare_mac_addresses(mac_s, table_devices[i].peer_addr)) {
-        sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f ",table_devices[i].data.temperature_rdo,table_devices[i].data.do_value,table_devices[i].data.temperature_phg, table_devices[i].data.ph_value, table_devices[i].data.temperature_mcu);
+        sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f, relay_state: %d ",table_devices[i].data.temperature_rdo,table_devices[i].data.do_value,table_devices[i].data.temperature_phg, table_devices[i].data.ph_value, table_devices[i].data.temperature_mcu, table_devices[i].data.relay_state);
     }
     }
     response_mqtt(data,event->topic);
@@ -116,10 +116,16 @@ static void mqtt_task(void *pvParameters)
     connect_request mess_getdata;
     table_device_t res_getdata;
 
-    uint8_t mac_m[] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc};
+    // uint8_t mac_m[] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc};
+    uint8_t mac_m[] = {0xd8, 0x3b, 0xda, 0x9a, 0x34, 0xac};
     memcpy(mess_getdata.message, GET_DATA, sizeof(GET_DATA));
     memcpy(mess_getdata.mac, mac_m, 6);
     while(1){
+        int wake_up = wait_wake_up();
+        if (wake_up){
+            get_table();
+            log_table_devices();
+        }
         vTaskDelay(5000/ portTICK_PERIOD_MS);
 
         if (!wait_wake_up()) {
