@@ -85,7 +85,8 @@ void uart_event(void *pvParameters)
     size_t buffered_size;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
     unsigned char decrypted_message[BUF_SIZE];
-   
+    messages_request res_getdata;
+    
     while (true)
     {
         if (xQueueReceive(uart0_queue, (void *)&event, (TickType_t)portMAX_DELAY)) 
@@ -140,6 +141,28 @@ void uart_event(void *pvParameters)
                         log_table_devices();
                         dump_uart((uint8_t*)&table_devices, sizeof(table_device_tt)*MAX_SLAVES);
 
+                    }
+                    else if (memcmp((char *)decrypted_message, SET_RELAY_STATE, 6) == 0)
+                    {
+                        ESP_LOGE(TAG_READ_SERIAL, "SET_RELAY_STATE");
+
+                        messages_request* mess_relay_state= (messages_request*)decrypted_message;
+                        messages_request res_relay_state;
+                        ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
+                                mess_relay_state->mac[0], mess_relay_state->mac[1], mess_relay_state->mac[2], mess_relay_state->mac[3], mess_relay_state->mac[4], mess_relay_state->mac[5]);
+                        for (int i = 0; i < MAX_SLAVES; i++)
+                        {
+                            if ((memcmp(mess_relay_state->mac, table_devices[i].peer_addr, 6)==0))
+                            {
+                                ESP_LOGI("MAC Address", "MAC: %02X:%02X:%02X:%02X:%02X:%02X",
+                                mess_relay_state->mac[0], mess_relay_state->mac[1], mess_relay_state->mac[2], mess_relay_state->mac[3], mess_relay_state->mac[4], mess_relay_state->mac[5]);
+                                memcpy(res_relay_state.message, RESPONSE_RELAY_STATE, sizeof(RESPONSE_RELAY_STATE));
+                                memcpy(res_relay_state .mac, mess_relay_state->mac, 6);
+                                dump_uart((uint8_t*)&res_relay_state, sizeof(res_relay_state));
+                                handle_device(DEVICE_RELAY,true, mess_relay_state->mac);
+                                break;
+                            }
+                        }
                     }
 
                 }

@@ -4,7 +4,7 @@
   "idf.openOcdConfigs": [
     "board/esp32c3-builtin.cfg"
   ],
-  "idf.portWin": "COM17",
+  "idf.portWin": "COM16",
   "idf.flashType": "UART",
   "files.associations": {
     "esp_timer.h": "c",

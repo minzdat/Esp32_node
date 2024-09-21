@@ -11,6 +11,7 @@
 #define REQUEST_CONNECTION_MSG      "CONNECT_request"
 #define GET_DATA      "GET_DATA"
 #define GET_FULL_DATA      "GET_FULL_DATA"
+#define SET_RELAY_STATE      "SET_RELAY_STATE"
 #define WAKE_UP_COMMAND     "WAKE_UP"
 #define MAX_SLAVES                  3
 #define WOKE_UP   "WOKE_UP"

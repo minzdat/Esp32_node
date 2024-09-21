@@ -12,25 +12,26 @@ void relay_init(void)
     io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
     gpio_config(&io_conf);
 
-    rtc_gpio_init(GPIO_RELAY_PIN);
-    rtc_gpio_set_direction(GPIO_RELAY_PIN, RTC_GPIO_MODE_OUTPUT_ONLY);
-    rtc_gpio_set_level(GPIO_RELAY_PIN, gpio_get_level(GPIO_RELAY_PIN));
+    // rtc_gpio_init(GPIO_RELAY_PIN);
+    // // rtc_gpio_set_direction(GPIO_RELAY_PIN, RTC_GPIO_MODE_OUTPUT_ONLY);
+    // rtc_gpio_set_level(GPIO_RELAY_PIN, gpio_get_level(GPIO_RELAY_PIN));
 
     gpio_set_level(GPIO_RELAY_PIN, 1);
-    rtc_gpio_set_level(GPIO_RELAY_PIN, 1);
+
+    // rtc_gpio_set_level(GPIO_RELAY_PIN, 1);
 }
 
 void relay_on(void)
 {
     gpio_set_level(GPIO_RELAY_PIN, 0);
-    rtc_gpio_set_level(GPIO_RELAY_PIN, 0);
+    // rtc_gpio_set_level(GPIO_RELAY_PIN, 0);
     relay_state = true;
 }
 
 void relay_off(void)
 {
     gpio_set_level(GPIO_RELAY_PIN, 1);
-    rtc_gpio_set_level(GPIO_RELAY_PIN, 1);
+    // rtc_gpio_set_level(GPIO_RELAY_PIN, 1);
     relay_state = false;
 }
 
@@ -46,17 +47,17 @@ void led_init(void)
     io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
     gpio_config(&io_conf);
 
-    rtc_gpio_init(GPIO_LED_CONNECT);
-    rtc_gpio_set_direction(GPIO_LED_CONNECT, RTC_GPIO_MODE_OUTPUT_ONLY);
-    rtc_gpio_set_level(GPIO_LED_CONNECT, gpio_get_level(GPIO_LED_CONNECT));
+    // rtc_gpio_init(GPIO_LED_CONNECT);
+    // // rtc_gpio_set_direction(GPIO_LED_CONNECT, RTC_GPIO_MODE_OUTPUT_ONLY);
+    // rtc_gpio_set_level(GPIO_LED_CONNECT, gpio_get_level(GPIO_LED_CONNECT));
     
     // LED configuration
     io_conf.pin_bit_mask = (1ULL << GPIO_LED);
     gpio_config(&io_conf);
 
-    rtc_gpio_init(GPIO_LED);
-    rtc_gpio_set_direction(GPIO_LED, RTC_GPIO_MODE_OUTPUT_ONLY);
-    rtc_gpio_set_level(GPIO_LED, gpio_get_level(GPIO_LED));
+    // rtc_gpio_init(GPIO_LED);
+    // // rtc_gpio_set_direction(GPIO_LED, RTC_GPIO_MODE_OUTPUT_ONLY);
+    // rtc_gpio_set_level(GPIO_LED, gpio_get_level(GPIO_LED));
 }
 
 void led_control(led_id_t led_id, bool state)
@@ -67,7 +68,7 @@ void led_control(led_id_t led_id, bool state)
         case LED_CONNECT:
 
             gpio_set_level(GPIO_LED_CONNECT, state);
-            rtc_gpio_set_level(GPIO_LED_CONNECT, state);
+            // rtc_gpio_set_level(GPIO_LED_CONNECT, state);
 
             ESP_LOGI(TAG_SLAVE_CONTROLLER, "LED CONNECT %s", state ? "ON" : "OFF");
 
@@ -76,7 +77,7 @@ void led_control(led_id_t led_id, bool state)
         case LED:
 
             gpio_set_level(GPIO_LED, state);
-            rtc_gpio_set_level(GPIO_LED, state);
+            // rtc_gpio_set_level(GPIO_LED, state);
 
             ESP_LOGI(TAG_SLAVE_CONTROLLER, "LED PIN %s", state ? "ON" : "OFF");
 

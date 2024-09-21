@@ -78,6 +78,9 @@ void mqtt_subcriber(esp_mqtt_event_handle_t event)
 {
     char data_receiv[50];
     char data[200];
+    connect_request mess_getdata;
+    connect_request res_getdata;
+
     strncpy(data_receiv,event->data,event->data_len);
     data_receiv[event->data_len] = '\0';
             ESP_LOGI(TAG, "Other event id:%d", event->event_id);
@@ -93,20 +96,66 @@ void mqtt_subcriber(esp_mqtt_event_handle_t event)
         ESP_LOGI(TAG,"ABC: %d\n", command->valueint);
 
     ESP_LOGI(TAG,"Topic: %s\n",event->topic);
-    if ((messages != NULL)&&(mac_j != NULL)){
+    // if ((messages != NULL)&&(mac_j != NULL)){
+    if ((memcmp(messages->valuestring, GET_DATA, 7) == 0)&&(mac_j != NULL)){
         ESP_LOGI(TAG,"Messages: %s\n", messages->valuestring);
         ESP_LOGI(TAG,"MAC: %s\n", mac_j->valuestring);
         const char *mac_s = mac_j->valuestring;
-    for (int i = 0; i < MAX_SLAVES; i++){
-        // if (memcmp(mess_get->mac, table_devices[i].peer_addr, 6)==0){
-        if (compare_mac_addresses(mac_s, table_devices[i].peer_addr)) {
-        sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f, relay_state: %d ",table_devices[i].data.temperature_rdo,table_devices[i].data.do_value,table_devices[i].data.temperature_phg, table_devices[i].data.ph_value, table_devices[i].data.temperature_mcu, table_devices[i].data.relay_state);
-    }
-    }
-    response_mqtt(data,event->topic);
-    }
 
+        for (int i = 0; i < MAX_SLAVES; i++){
+            // if (memcmp(mess_get->mac, table_devices[i].peer_addr, 6)==0){
+            if (compare_mac_addresses(mac_s, table_devices[i].peer_addr)) {
+                sprintf(data, "temperature_rdo: %f, do: %f, temperature_phg: %f, ph: %f, cpu_temp: %f, relay_state: %d ",table_devices[i].data.temperature_rdo,table_devices[i].data.do_value,table_devices[i].data.temperature_phg, table_devices[i].data.ph_value, table_devices[i].data.temperature_mcu, table_devices[i].data.relay_state);
+                response_mqtt(data,event->topic);
+            }
+        }
+    }
+    else if (memcmp(messages->valuestring, SET_RELAY_STATE, sizeof(SET_RELAY_STATE)) == 0)
+    {
+        ESP_LOGI(TAG,"Messages: %s\n", messages->valuestring);
+        ESP_LOGI(TAG,"MAC: %s\n", mac_j->valuestring);
+        uint8_t  mac_u[6];
+        // memcpy(mac_s, mac_j->valuestring, 6);
+
+
+        ESP_LOGI(TAG,"MAC: %x:%x:%x:%x:%x:%x\n", mac_u[0], mac_u[1], mac_u[2], mac_u[3], mac_u[4], mac_u[5]);
+
+        for (int i = 0; i < MAX_SLAVES; i++){
+            if (compare_mac_addresses(mac_j->valuestring, table_devices[i].peer_addr)) {
+            // if (memcmp(mac_u, table_devices[i].peer_addr, 6) == 0) {
+                sscanf(mac_j->valuestring, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx",
+                &mac_u[0], &mac_u[1], &mac_u[2],
+                &mac_u[3], &mac_u[4], &mac_u[5]);
+                memcpy(mess_getdata.message, SET_RELAY_STATE, sizeof(SET_RELAY_STATE));
+                memcpy(mess_getdata.mac, mac_u, 6);
+
+                ESP_LOGI(TAG,"MAC: %x:%x:%x:%x:%x:%x\n", mess_getdata.mac[0], mess_getdata.mac[1], mess_getdata.mac[2], mess_getdata.mac[3], mess_getdata.mac[4], mess_getdata.mac[5]);
+
+                int wake_up = wait_wake_up();
+                if (wake_up){
+                    dump_uart(&mess_getdata, sizeof(mess_getdata));
+                    int ret =get_uart(&res_getdata,sizeof(res_getdata),1000);
+                    if (ret){
+                        // table_devices[i].data.relay_state = messages->valuestring;
+                        sprintf(data, "relay_state: %s ",res_getdata.message);
+                        response_mqtt(data,event->topic);
+                    }
+                    else{
+                        ESP_LOGE(TAG, "Failed to get_uart");
+                        continue;
+                }
+                }
+                else {
+                    ESP_LOGE(TAG, "Failed to wake up");
+                    continue;
+                }
+            }
+        }
+    }
 }
+    
+
+
 QueueHandle_t g_mqtt_queue;
 connect_request mess_button;
 
@@ -117,6 +166,10 @@ static void mqtt_task(void *pvParameters)
     table_device_t res_getdata;
 
     // uint8_t mac_m[] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc};
+
+
+
+
     uint8_t mac_m[] = {0xd8, 0x3b, 0xda, 0x9a, 0x34, 0xac};
     memcpy(mess_getdata.message, GET_DATA, sizeof(GET_DATA));
     memcpy(mess_getdata.mac, mac_m, 6);
@@ -126,7 +179,7 @@ static void mqtt_task(void *pvParameters)
             get_table();
             log_table_devices();
         }
-        vTaskDelay(5000/ portTICK_PERIOD_MS);
+        vTaskDelay(10000/ portTICK_PERIOD_MS);
 
         if (!wait_wake_up()) {
             ESP_LOGE(TAG, "Failed to wake up");

@@ -30,6 +30,8 @@
 #define REQUEST_CONNECTION_MSG          "CONNECT_request"
 #define WOKE_UP                         "WOKE_UP"
 #define WAKE_UP_COMMAND                 "WAKE_UP"
+#define SET_RELAY_STATE                 "SET_RELAY_STATE"
+#define RESPONSE_RELAY_STATE            "RELAY_STATE"
 
 #define BUTTON_MSG                      "BUTTON_MSG"
 #define GET_DATA                        "GET_DATA"

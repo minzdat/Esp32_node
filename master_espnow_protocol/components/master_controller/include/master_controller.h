@@ -16,6 +16,6 @@ typedef enum {
     DEVICE_UNKNOWN
 } device_type_t;
 
-void handle_device(device_type_t device_type, bool state); 
+void handle_device(device_type_t device_type, bool state, const uint8_t *dest_mac); 
 
 #endif //MASTER_CONTROLLER_H

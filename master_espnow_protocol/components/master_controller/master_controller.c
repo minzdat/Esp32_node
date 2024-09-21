@@ -52,7 +52,7 @@ void disconnect_node_task(void *pvParameters)
     vTaskDelete(NULL);
 }
 
-void handle_device(device_type_t device_type, bool state)
+void handle_device(device_type_t device_type, bool state, const uint8_t *dest_mac)
 {
     switch (device_type) 
     {
@@ -61,7 +61,7 @@ void handle_device(device_type_t device_type, bool state)
 
             ESP_LOGI(TAG_MASTER_CONTROLLER, "Processing RELAY");
             
-            response_specified_mac(mac_address, CONTROL_RELAY_MSG, false);
+            response_specified_mac(dest_mac, CONTROL_RELAY_MSG, false);
 
             break;
         

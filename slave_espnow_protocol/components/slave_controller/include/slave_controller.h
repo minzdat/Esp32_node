@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "esp_log.h"
 #include "driver/gpio.h"
-#include "driver/rtc_io.h"
+// #include "driver/rtc_io.h"
 #include "light_sleep.h"
 
 #define TAG_SLAVE_CONTROLLER            "SLAVE_CONTROLLER"
