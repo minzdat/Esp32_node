@@ -3,6 +3,45 @@
 bool light_sleep_flag = false;
 int64_t start_time_light_sleep = 0;
 
+void processing_before_lightsleep(void) 
+{
+    // Processing before light sleep
+    if (slave_espnow_handle != NULL) 
+    {
+        vTaskSuspend(slave_espnow_handle);
+        ESP_LOGI(TAG_LIGHT_SLEEP, "Suspended slave_espnow_task");
+    }
+
+    esp_err_t ret;
+
+    ret = esp_now_unregister_send_cb();
+    if (ret == ESP_OK) {
+        ESP_LOGI("ESP-NOW", "Unregister send callback successfully.");
+    } else {
+        ESP_LOGE("ESP-NOW", "Failed to unregister send callback: %s", esp_err_to_name(ret));
+    }
+
+    ret = esp_now_unregister_recv_cb();
+    if (ret == ESP_OK) {
+        ESP_LOGI("ESP-NOW", "Unregister receive callback successfully.");
+    } else {
+        ESP_LOGE("ESP-NOW", "Failed to unregister receive callback: %s", esp_err_to_name(ret));
+    }
+
+    slave_espnow_deinit();      
+}
+
+void processing_after_lightsleep(void) 
+{
+    slave_espnow_init(); 
+
+    if (slave_espnow_handle != NULL) 
+    {
+        vTaskResume(slave_espnow_handle);
+        ESP_LOGI(TAG_LIGHT_SLEEP, "Resumed slave_espnow_task");
+    }
+}
+
 void light_sleep_task(void *args)
 {
     while (true) 
@@ -15,25 +54,27 @@ void light_sleep_task(void *args)
 
             if ((current_time - start_time_light_sleep) >= TIMER_LIGHT_SLEEP) 
             {
-
-                // ESP_LOGI(TAG_LIGHT_SLEEP, "Current time light sleep : %lld us", current_time);
-                // ESP_LOGI(TAG_LIGHT_SLEEP, "Start time light sleep   : %lld us", start_time_light_sleep);
-                // ESP_LOGI(TAG_LIGHT_SLEEP, "Enter time light sleep   : %lld us", (current_time - start_time_light_sleep));
+                ESP_LOGI(TAG_LIGHT_SLEEP, "Timer wake up : %lld us", (current_time - start_time_light_sleep));
 
                 printf("Entering light sleep\n");
                 /* To make sure the complete line is printed before entering sleep mode,
                 * need to wait until UART TX FIFO is empty:
                 */
                 uart_wait_tx_idle_polling(CONFIG_ESP_CONSOLE_UART_NUM);
+           
+                // processing_before_lightsleep();
 
                 /* Get timestamp before entering sleep */
                 int64_t t_before_us = esp_timer_get_time();
-
+                
                 /* Enter sleep mode */
                 esp_light_sleep_start();
 
                 /* Get timestamp after waking up from sleep */
                 int64_t t_after_us = esp_timer_get_time();
+
+                // Processing after light sleep
+                start_time_light_sleep = t_after_us;
 
                 /* Determine wake up reason */
                 const char* wakeup_reason;
@@ -74,16 +115,11 @@ void light_sleep_task(void *args)
                     wait_gpio_inactive();
                 }
 
+                // processing_after_lightsleep(); 
 
-                slave_espnow_deinit();                
-                slave_espnow_init(); 
-
-                start_time_light_sleep = 0;
-                // light_sleep_flag = false;   
             }
                     
         }
-
         vTaskDelay(pdMS_TO_TICKS(100));   
     }
     vTaskDelete(NULL);

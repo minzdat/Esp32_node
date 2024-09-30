@@ -7,6 +7,8 @@ bool connect_check=true;
 
 static QueueHandle_t uart0_queue;
 
+TaskHandle_t uart_event_handle = NULL;
+
 void uart_config(void)
 {
     uart_config_t uart_config = 
@@ -196,7 +198,7 @@ void check_timeout()
 void uart_event_task(void)
 {
     // wait_connect_serial();
-    xTaskCreate(uart_event, "uart_event", 4096, NULL, 12, NULL);
+    xTaskCreate(uart_event, "uart_event", 4096, NULL, 12, &uart_event_handle);
     // check_timeout();
     // xTaskCreate(check_timeout, "check_timeout", 4096, NULL, 12, NULL);
 }

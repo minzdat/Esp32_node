@@ -7,8 +7,8 @@ void test_allowed_connect_slaves_to_nvs(list_slaves_t *test_allowed_connect_slav
     memset(test_allowed_connect_slaves, 0, sizeof(list_slaves_t) * MAX_SLAVES);
     
     // MASTER hard-coded MAC addresses and statuses
-    uint8_t mac1[ESP_NOW_ETH_ALEN] = {0xdc, 0xda, 0x0c, 0x0d, 0x42, 0x48};
-    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0x30, 0xc9, 0x22, 0x32, 0xf1, 0x2c};
+    uint8_t mac1[ESP_NOW_ETH_ALEN] = {0x48, 0x27, 0xe2, 0xc7, 0x1d, 0x18};
+    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0x48, 0x27, 0xe2, 0xc9, 0x7b, 0x6c};
     uint8_t mac3[ESP_NOW_ETH_ALEN] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc};
     
     // Add MAC addresses and statuses to the list

@@ -8,6 +8,7 @@ static slave_espnow_send_param_t send_param;
 static slave_espnow_send_param_t send_param_specified;
 static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 mac_master_t s_master_unicast_mac;
+TaskHandle_t slave_espnow_handle = NULL;
 
 void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, bool relay_state) 
 {
@@ -71,8 +72,7 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *mess
     ESP_LOGI(TAG, "     crc: %d", buf->crc);
     ESP_LOGI(TAG, "     message: %s", buf->message);
 
-    // float temperature = read_internal_temperature_sensor();
-    float temperature = 5;
+    float temperature = read_internal_temperature_sensor();
     prepare_payload(buf, temperature, rssi, 23.1, 7.6, 24.0, 7.2, relay_state);
 
     buf->crc = esp_crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
@@ -180,8 +180,8 @@ esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, b
     if (esp_now_send(send_param_specified.dest_mac, send_param_specified.buffer, send_param_specified.len) != ESP_OK) 
     {
         ESP_LOGE(TAG, "Send error");
-        slave_espnow_deinit(&send_param_specified);
-        vTaskDelete(NULL);
+        // slave_espnow_deinit(&send_param_specified);
+        // vTaskDelete(NULL);
     }
 
     return ESP_OK;
@@ -211,7 +211,6 @@ void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
 void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len)
 {
     rssi = recv_info->rx_ctrl->rssi;
-    // ESP_LOGI(TAG, "RSSI: %d dBm", rssi);
 
     slave_espnow_event_t evt;
     slave_espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
@@ -285,13 +284,14 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
 
                     s_master_unicast_mac.count_keep_connect = 0;
 
-                    light_sleep_flag = true;
                     start_time_light_sleep = esp_timer_get_time();
+
+                    light_sleep_flag = true;
                 }
                 // Request control RELAY
                 else if (recv_cb->data_len >= strlen(CONTROL_RELAY_MSG) && strstr((char *)message_packed, CONTROL_RELAY_MSG) != NULL) 
                 {
-                    light_sleep_flag = false;
+                    // light_sleep_flag = false;
 
                     //  Control RELAY
                     handle_device(DEVICE_RELAY, NULL);
@@ -299,12 +299,12 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     //  Response ON/OFF RELAY
                     response_specified_mac(s_master_unicast_mac.peer_addr, CONTROL_RELAY_MSG, false);
 
-                    light_sleep_flag = true;
+                    // light_sleep_flag = true;
                 }
                 // Request DISCONNECT node
                 else if (recv_cb->data_len >= strlen(DISCONNECT_NODE_MSG) && strstr((char *)message_packed, DISCONNECT_NODE_MSG) != NULL) 
                 {
-                    light_sleep_flag = false;
+                    // light_sleep_flag = false;
 
                     //  Disconnect node
                     handle_device(DISCONNECT_NODE, NULL);
@@ -312,7 +312,7 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     //  Response disconnected
                     response_specified_mac(s_master_unicast_mac.peer_addr, DISCONNECT_NODE_MSG, false);
 
-                    light_sleep_flag = true;
+                    // light_sleep_flag = true;
                 }
                 
                 break;
@@ -323,7 +323,7 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
 void slave_espnow_task(void *pvParameter)
 {
     slave_espnow_send_param_t *send_param = (slave_espnow_send_param_t *)pvParameter;
-    
+        
     send_param->len = MAX_DATA_LEN;
 
     memcpy(send_param->dest_mac, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN);
@@ -337,8 +337,7 @@ void slave_espnow_task(void *pvParameter)
             case false:
             
                 light_sleep_flag = false;
-
-                // erase_peer(s_master_unicast_mac.peer_addr);
+                erase_peer(s_master_unicast_mac.peer_addr);
            
                 /* Start sending broadcast ESPNOW data. */
                 ESP_LOGW(TAG, "---------------------------------");
@@ -349,8 +348,8 @@ void slave_espnow_task(void *pvParameter)
                 if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) 
                 {
                     ESP_LOGE(TAG, "Send error");
-                    slave_espnow_deinit(send_param);
-                    vTaskDelete(NULL);
+                    // slave_espnow_deinit(send_param);
+                    // vTaskDelete(NULL);
                 }
                 break;
 
@@ -359,7 +358,7 @@ void slave_espnow_task(void *pvParameter)
                 s_master_unicast_mac.end_time =  esp_timer_get_time();
                 uint64_t elapsed_time = s_master_unicast_mac.end_time - s_master_unicast_mac.start_time;
 
-                ESP_LOGI(TAG, "Elapsed time: %llu microseconds", elapsed_time);
+                ESP_LOGI(TAG, "Timeout to keep connection: %llu microseconds", elapsed_time);
 
                 if (elapsed_time > DISCONNECTED_TIMEOUT)
                 {
@@ -367,25 +366,33 @@ void slave_espnow_task(void *pvParameter)
                     
                     // s_master_unicast_mac.connected = false;
 
-                    if (s_master_unicast_mac.count_keep_connect >= COUNT_DISCONNECTED)
-                    {
-                        s_master_unicast_mac.connected = false;
-                        s_master_unicast_mac.count_keep_connect = 0;
-                        save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
-                        // Off LED CONNECT
-                        handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
-                    }
-                    else
-                    {
-                        s_master_unicast_mac.count_keep_connect++;
+                    light_sleep_flag = false;
+                    s_master_unicast_mac.connected = false;
+                    s_master_unicast_mac.count_keep_connect = 0;
+                    save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
+                    // Off LED CONNECT
+                    handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
 
-                        save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
-                    }
+                    // if (s_master_unicast_mac.count_keep_connect >= COUNT_DISCONNECTED)
+                    // {
+                    //     light_sleep_flag = false;
+                    //     s_master_unicast_mac.connected = false;
+                    //     s_master_unicast_mac.count_keep_connect = 0;
+                    //     save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
+                    //     // Off LED CONNECT
+                    //     handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
+                    // }
+                    // else
+                    // {
+                    //     s_master_unicast_mac.count_keep_connect++;
+
+                    //     save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
+                    // }
                 }
 
                 break;
         }
-        vTaskDelay(pdMS_TO_TICKS(100)); // Delay 1 seconds
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
 
@@ -402,10 +409,10 @@ esp_err_t slave_espnow_init(void)
     ESP_ERROR_CHECK( esp_now_init() );
     ESP_ERROR_CHECK( esp_now_register_send_cb(slave_espnow_send_cb) );
     ESP_ERROR_CHECK( esp_now_register_recv_cb(slave_espnow_recv_cb) );
-// #if CONFIG_ESPNOW_ENABLE_POWER_SAVE
-//     ESP_ERROR_CHECK( esp_now_set_wake_window(CONFIG_ESPNOW_WAKE_WINDOW) );
-//     ESP_ERROR_CHECK( esp_wifi_connectionless_module_set_wake_interval(CONFIG_ESPNOW_WAKE_INTERVAL) );
-// #endif
+#if CONFIG_ESPNOW_ENABLE_POWER_SAVE
+    ESP_ERROR_CHECK( esp_now_set_wake_window(CONFIG_ESPNOW_WAKE_WINDOW) );
+    ESP_ERROR_CHECK( esp_wifi_connectionless_module_set_wake_interval(CONFIG_ESPNOW_WAKE_INTERVAL) );
+#endif
     /* Set primary slave key. */
     ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) );
 
@@ -432,9 +439,11 @@ void slave_espnow_protocol()
     }
     ESP_ERROR_CHECK( ret );
 
+    // Initialize wifi_espnow
     slave_wifi_init();
 
-    // init_temperature_sensor();
+    // Initialize temperature mcu esp
+    init_temperature_sensor();
 
     //  ----------Process values ​​from nvs----------
 
@@ -445,12 +454,13 @@ void slave_espnow_protocol()
 
     //  End----------Process values ​​from nvs----------
 
+    // Initialize espnow
     slave_espnow_init();
 
     /* Initialize sending parameters. */
     memset(&send_param, 0, sizeof(slave_espnow_send_param_t));
 
-    xTaskCreate(slave_espnow_task, "slave_espnow_task", 4096, &send_param, 4, NULL);
+    xTaskCreate(slave_espnow_task, "slave_espnow_task", 4096, &send_param, 4, &slave_espnow_handle);
 
-    xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 6, NULL);
+    xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 3, NULL);
 }

@@ -86,6 +86,7 @@ typedef struct {
 } messages_request;
 
 // extern table_device_tt table_devices[MAX_SLAVES];
+extern TaskHandle_t uart_event_handle;
 
 void uart_config(void);
 void encrypt_message(const unsigned char *input, unsigned char *output, size_t length);

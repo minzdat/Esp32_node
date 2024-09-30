@@ -18,10 +18,11 @@
 #include "esp_now.h"
 #include "esp_crc.h"
 #include "esp_timer.h"
-// #include "driver/temperature_sensor.h"
+#include "driver/temperature_sensor.h"
 #include "esp_pm.h"
 #include "deep_sleep.h"
 #include "light_sleep.h"
+#include "udp_logging.h"
 
 /* ESPNOW can work in both station and softap mode. It is configured in menuconfig. */
 #if CONFIG_ESPNOW_WIFI_MODE_STATION
@@ -88,6 +89,9 @@
 #define PACKED_MSG_SIZE             20
 #define IS_BROADCAST_ADDR(addr)     (memcmp(addr, s_master_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 #define DEFAULT_BEACON_TIMEOUT      CONFIG_WIFI_BEACON_TIMEOUT
+#define CONFIG_ESPNOW_WITH_WIFI     0
+#define SEND_CALLBACK_RETRY         10
+#define EVENT_BIT_CONTINUE          (1 << 0)
 
 #if CONFIG_POWER_SAVE_MIN_MODEM
 #define DEFAULT_PS_MODE WIFI_PS_MIN_MODEM
@@ -105,11 +109,13 @@ typedef struct {
     int send_errors;                        // Value send error
     TickType_t start_time;
     TickType_t end_time;
+    TickType_t time_retry_callback;
     int number_retry;
     int check_connect_errors;
-    // int count_send;
+    bool check_connect_success;
+    bool check_keep_connect;
     // int count_receive;
-    // int count_retry;
+    int count_retry;
     char message_retry_fail[PACKED_MSG_SIZE];
 } list_slaves_t;
 
@@ -188,10 +194,15 @@ typedef struct {
 extern list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 extern list_slaves_t waiting_connect_slaves[MAX_SLAVES];
 extern table_device_t table_devices[MAX_SLAVES];
+extern TaskHandle_t master_espnow_handle;
+extern TaskHandle_t retry_connect_lost_handle;
+extern QueueHandle_t slave_disconnect_queue;
+extern int devices_online;
+extern int64_t start_time_check_connect;
 
 // Function to read temperature internal esp
-// void init_temperature_sensor();
-// float read_internal_temperature_sensor(void);
+void init_temperature_sensor();
+float read_internal_temperature_sensor(void);
 
 // Function to NVS
 void test_allowed_connect_slaves_to_nvs(list_slaves_t *allowed_connect_slaves);
@@ -202,6 +213,8 @@ void erase_key_in_nvs(const char *key);
 void erase_all_in_nvs();
 
 // Function to wifi
+void configure_power_management(void);
+void wait_for_wifi_connection();
 void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 void master_wifi_init(void);
 

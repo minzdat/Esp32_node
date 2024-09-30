@@ -37,18 +37,24 @@
 #endif
 
 /* Use boot button as gpio input */
-#define GPIO_WAKEUP_NUM         BOOT_BUTTON_NUM
+// #define GPIO_WAKEUP_NUM         BOOT_BUTTON_NUM
+#define GPIO_WAKEUP_NUM         4
 /* "Boot" button is active low */
 #define GPIO_WAKEUP_LEVEL       0
 
 extern bool light_sleep_flag;
+extern int count_check_connect_sl;
 extern int64_t start_time_light_sleep;
 extern int64_t sleep_duration;
 extern int64_t timer_wakeup;
 
 esp_err_t register_timer_wakeup(uint64_t timer_wakeup);
+
 void wait_gpio_inactive(void);
 esp_err_t register_gpio_wakeup(void);
+
+void processing_before_lightsleep(void); 
+void processing_after_lightsleep(void);
 void light_sleep_task(void *args);
 void light_sleep_init();
 
