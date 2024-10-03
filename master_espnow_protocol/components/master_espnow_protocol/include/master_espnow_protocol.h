@@ -114,7 +114,6 @@ typedef struct {
     int check_connect_errors;
     bool check_connect_success;
     bool check_keep_connect;
-    // int count_receive;
     int count_retry;
     char message_retry_fail[PACKED_MSG_SIZE];
 } list_slaves_t;
@@ -197,6 +196,7 @@ extern table_device_t table_devices[MAX_SLAVES];
 extern TaskHandle_t master_espnow_handle;
 extern TaskHandle_t retry_connect_lost_handle;
 extern QueueHandle_t slave_disconnect_queue;
+extern EventGroupHandle_t xEventGroupLightSleep;
 extern int devices_online;
 extern int64_t start_time_check_connect;
 
@@ -227,8 +227,9 @@ void parse_payload(espnow_data_t *espnow_data);
 void espnow_data_prepare(master_espnow_send_param_t *send_param, const char *message);
 void espnow_data_parse(uint8_t *data, uint16_t data_len);
 void add_peer(const uint8_t *peer_mac, bool encrypt); 
+void erase_peer(const uint8_t *peer_mac);
 void add_waiting_connect_slaves(const uint8_t *mac_addr);
-esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt);
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message);
 void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
 void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void master_espnow_task(void *pvParameter);

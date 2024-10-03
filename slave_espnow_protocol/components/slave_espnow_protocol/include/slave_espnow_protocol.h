@@ -161,7 +161,7 @@ typedef struct {
 
 extern mac_master_t s_master_unicast_mac;
 extern TaskHandle_t slave_espnow_handle;
-
+extern EventGroupHandle_t xEventGroupLightSleep;
 // Function to NVS
 void log_data_from_nvs();
 void erase_nvs(const char *key);
@@ -183,7 +183,7 @@ void espnow_data_prepare(slave_espnow_send_param_t *send_param, const char *mess
 void espnow_data_parse(uint8_t *data, uint16_t data_len);
 void erase_peer(const uint8_t *peer_mac);
 void add_peer(const uint8_t *peer_mac, bool encrypt); 
-esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt);
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message);
 void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status);
 void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len);
 void slave_espnow_task(void *pvParameter);

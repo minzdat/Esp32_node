@@ -20,7 +20,7 @@ void disconnect_node_task(void *pvParameters)
             {
                 has_online_devices = true; // If there is a device online, keep the task running
                 memcpy(allowed_connect_slaves[i].message_retry_fail, DISCONNECT_NODE_MSG, sizeof(DISCONNECT_NODE_MSG));
-                response_specified_mac(allowed_connect_slaves[i].peer_addr, DISCONNECT_NODE_MSG, false);        
+                response_specified_mac(allowed_connect_slaves[i].peer_addr, DISCONNECT_NODE_MSG);        
             }
         }
 
@@ -61,7 +61,7 @@ void handle_device(device_type_t device_type, bool state)
 
             ESP_LOGI(TAG_MASTER_CONTROLLER, "Processing RELAY");
             
-            response_specified_mac(mac_address, CONTROL_RELAY_MSG, false);
+            response_specified_mac(mac_address, CONTROL_RELAY_MSG);
 
             break;
         

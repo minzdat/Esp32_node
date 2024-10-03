@@ -42,11 +42,9 @@
 /* "Boot" button is active low */
 #define GPIO_WAKEUP_LEVEL       0
 
-extern bool light_sleep_flag;
-extern int count_check_connect_sl;
-extern int64_t start_time_light_sleep;
 extern int64_t sleep_duration;
 extern int64_t timer_wakeup;
+extern uint32_t all_slaves_bits;
 
 esp_err_t register_timer_wakeup(uint64_t timer_wakeup);
 

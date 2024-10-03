@@ -3,13 +3,14 @@
 static int8_t rssi;
 static char message_packed[MAX_PAYLOAD_LEN]; 
 static const uint8_t s_slave_broadcast_mac[ESP_NOW_ETH_ALEN] = SLAVE_BROADCAST_MAC;
-static QueueHandle_t s_slave_espnow_queue;
 static slave_espnow_send_param_t send_param;
 static slave_espnow_send_param_t send_param_specified;
 static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 mac_master_t s_master_unicast_mac;
 TaskHandle_t slave_espnow_handle = NULL;
+EventGroupHandle_t xEventGroupLightSleep;
 
+/* Prepare ESPNOW data payload to be sent. */
 void prepare_payload(espnow_data_t *espnow_data, float temperature_mcu, int rssi, float temperature_rdo, float do_value, float temperature_phg, float ph_value, bool relay_state) 
 {
     // Initialize sensor data directly in the payload field
@@ -132,13 +133,11 @@ void erase_peer(const uint8_t *peer_mac)
         esp_err_t del_err = esp_now_del_peer(peer_mac);
         if (del_err != ESP_OK) 
         {
-            ESP_LOGE(TAG, "Failed to delete peer " MACSTR ": %s",
-                    MAC2STR(peer_mac), esp_err_to_name(del_err));
+            ESP_LOGE(TAG, "Failed to delete peer " MACSTR ": %s", MAC2STR(peer_mac), esp_err_to_name(del_err));
         } 
         else 
         {
-            ESP_LOGI(TAG, "Deleted peer " MACSTR,
-                    MAC2STR(peer_mac));
+            ESP_LOGI(TAG, "Deleted peer " MACSTR, MAC2STR(peer_mac));
         }
     }
 }
@@ -150,7 +149,7 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
     memset(&peer, 0, sizeof(esp_now_peer_info_t));
     peer.channel = CONFIG_ESPNOW_CHANNEL;
     peer.ifidx = ESPNOW_WIFI_IF;
-    peer.encrypt = false;
+    peer.encrypt = encrypt;
     memcpy(peer.lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
     memcpy(peer.peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
 
@@ -166,15 +165,11 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
 }
 
 /* Function to send a unicast response*/
-esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt)
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message)
 {
     send_param_specified.len = MAX_DATA_LEN;
-
     memcpy(send_param_specified.dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
-    
     espnow_data_prepare(&send_param_specified, message);
-
-    add_peer(dest_mac, encrypt);
 
     // Send the unicast response
     if (esp_now_send(send_param_specified.dest_mac, send_param_specified.buffer, send_param_specified.len) != ESP_OK) 
@@ -201,9 +196,7 @@ void slave_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
     evt.id = SLAVE_ESPNOW_SEND_CB;
     memcpy(send_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
     send_cb->status = status;
-    // if (xQueueSend(s_slave_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
-    //     ESP_LOGW(TAG, "Send send queue fail");
-    // }
+
     ESP_LOGI(TAG, "Send callback: MAC Address " MACSTR ", Status: %s",
         MAC2STR(mac_addr), (status == ESP_NOW_SEND_SUCCESS) ? "Success" : "Fail");
 }
@@ -235,11 +228,6 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
     recv_cb->data_len = len;
     memcpy(recv_cb->data, data, recv_cb->data_len);
 
-    // if (xQueueSend(s_slave_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
-    //     ESP_LOGW(TAG, "Send receive queue fail");
-    //     free(recv_cb->data);
-    // }
-
     // Check reception according to unicast 
     if (!IS_BROADCAST_ADDR(des_addr)) 
     {
@@ -255,6 +243,8 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 // Check if the received data is MASTER_AGREE_CONNECT_MSG
                 if (recv_cb->data_len >= strlen(MASTER_AGREE_CONNECT_MSG) && strstr((char *)message_packed, MASTER_AGREE_CONNECT_MSG) != NULL) 
                 {
+                    s_master_unicast_mac.start_time =  esp_timer_get_time();
+
                     memcpy(s_master_unicast_mac.peer_addr, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
                     ESP_LOGI(TAG, "Added MAC Master " MACSTR " SUCCESS", MAC2STR(s_master_unicast_mac.peer_addr));
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " SAVED MAC Master", MAC2STR(s_master_unicast_mac.peer_addr));
@@ -264,11 +254,11 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                     // On LED CONNECT
                     handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
 
-                    s_master_unicast_mac.start_time =  esp_timer_get_time();
-                    response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG, false);
                     add_peer(s_master_unicast_mac.peer_addr, false);
+                    response_specified_mac(s_master_unicast_mac.peer_addr, SLAVE_SAVED_MAC_MSG);
+                    add_peer(s_master_unicast_mac.peer_addr, true);
 
-                    light_sleep_flag = true;
+                    xEventGroupSetBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
                 }
                 break;
 
@@ -276,43 +266,40 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
                 // Check if the received data is CHECK_CONNECTION_MSG
                 if (recv_cb->data_len >= strlen(CHECK_CONNECTION_MSG) && strstr((char *)message_packed, CHECK_CONNECTION_MSG) != NULL) 
                 {
-                    light_sleep_flag = false;
-
                     s_master_unicast_mac.start_time = esp_timer_get_time();
+
+                    xEventGroupClearBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
+
                     ESP_LOGW(TAG, "Response to MAC " MACSTR " %s", MAC2STR(s_master_unicast_mac.peer_addr),STILL_CONNECTED_MSG);
-                    response_specified_mac(s_master_unicast_mac.peer_addr, STILL_CONNECTED_MSG, true);
-
+                    response_specified_mac(s_master_unicast_mac.peer_addr, STILL_CONNECTED_MSG);
                     s_master_unicast_mac.count_keep_connect = 0;
-
                     start_time_light_sleep = esp_timer_get_time();
 
-                    light_sleep_flag = true;
+                    xEventGroupSetBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
                 }
                 // Request control RELAY
                 else if (recv_cb->data_len >= strlen(CONTROL_RELAY_MSG) && strstr((char *)message_packed, CONTROL_RELAY_MSG) != NULL) 
                 {
-                    // light_sleep_flag = false;
+                    // xEventGroupSetBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
 
                     //  Control RELAY
                     handle_device(DEVICE_RELAY, NULL);
-
                     //  Response ON/OFF RELAY
-                    response_specified_mac(s_master_unicast_mac.peer_addr, CONTROL_RELAY_MSG, false);
+                    response_specified_mac(s_master_unicast_mac.peer_addr, CONTROL_RELAY_MSG);
 
-                    // light_sleep_flag = true;
+                    // xEventGroupClearBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
                 }
                 // Request DISCONNECT node
                 else if (recv_cb->data_len >= strlen(DISCONNECT_NODE_MSG) && strstr((char *)message_packed, DISCONNECT_NODE_MSG) != NULL) 
                 {
-                    // light_sleep_flag = false;
+                    // xEventGroupSetBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
 
                     //  Disconnect node
                     handle_device(DISCONNECT_NODE, NULL);
-
                     //  Response disconnected
-                    response_specified_mac(s_master_unicast_mac.peer_addr, DISCONNECT_NODE_MSG, false);
+                    response_specified_mac(s_master_unicast_mac.peer_addr, DISCONNECT_NODE_MSG);
 
-                    // light_sleep_flag = true;
+                    // xEventGroupClearBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
                 }
                 
                 break;
@@ -322,29 +309,22 @@ void slave_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *d
 
 void slave_espnow_task(void *pvParameter)
 {
+    memset(&send_param, 0, sizeof(slave_espnow_send_param_t));
     slave_espnow_send_param_t *send_param = (slave_espnow_send_param_t *)pvParameter;
-        
     send_param->len = MAX_DATA_LEN;
-
     memcpy(send_param->dest_mac, s_slave_broadcast_mac, ESP_NOW_ETH_ALEN);
 
     while (true) 
     {
         ESP_LOGE(TAG, "Task slave_espnow_task");
-
         switch (s_master_unicast_mac.connected) 
         {
             case false:
-            
-                light_sleep_flag = false;
-                erase_peer(s_master_unicast_mac.peer_addr);
-           
                 /* Start sending broadcast ESPNOW data. */
                 ESP_LOGW(TAG, "---------------------------------");
                 ESP_LOGW(TAG, "Start sending broadcast data");
 
                 espnow_data_prepare(send_param, REQUEST_CONNECTION_MSG); 
-
                 if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) 
                 {
                     ESP_LOGE(TAG, "Send error");
@@ -354,42 +334,21 @@ void slave_espnow_task(void *pvParameter)
                 break;
 
             case true:
-
                 s_master_unicast_mac.end_time =  esp_timer_get_time();
                 uint64_t elapsed_time = s_master_unicast_mac.end_time - s_master_unicast_mac.start_time;
-
                 ESP_LOGI(TAG, "Timeout to keep connection: %llu microseconds", elapsed_time);
-
                 if (elapsed_time > DISCONNECTED_TIMEOUT)
                 {
+                    //Disconnect when Time Out
+                    xEventGroupClearBits(xEventGroupLightSleep, LIGHT_SLEEP_BIT);
                     ESP_LOGW(TAG, "Time Out !");
-                    
-                    // s_master_unicast_mac.connected = false;
-
-                    light_sleep_flag = false;
                     s_master_unicast_mac.connected = false;
                     s_master_unicast_mac.count_keep_connect = 0;
                     save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
                     // Off LED CONNECT
                     handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
-
-                    // if (s_master_unicast_mac.count_keep_connect >= COUNT_DISCONNECTED)
-                    // {
-                    //     light_sleep_flag = false;
-                    //     s_master_unicast_mac.connected = false;
-                    //     s_master_unicast_mac.count_keep_connect = 0;
-                    //     save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
-                    //     // Off LED CONNECT
-                    //     handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
-                    // }
-                    // else
-                    // {
-                    //     s_master_unicast_mac.count_keep_connect++;
-
-                    //     save_to_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, s_master_unicast_mac.connected, s_master_unicast_mac.count_keep_connect, s_master_unicast_mac.peer_addr);
-                    // }
+                    erase_peer(s_master_unicast_mac.peer_addr);
                 }
-
                 break;
         }
         vTaskDelay(pdMS_TO_TICKS(100));
@@ -398,13 +357,6 @@ void slave_espnow_task(void *pvParameter)
 
 esp_err_t slave_espnow_init(void)
 {
-    s_slave_espnow_queue = xQueueCreate(ESPNOW_QUEUE_SIZE, sizeof(slave_espnow_event_t));
-    if (s_slave_espnow_queue == NULL) 
-    {
-        ESP_LOGE(TAG, "Create mutex fail");
-        return ESP_FAIL;
-    }
-
     /* Initialize ESPNOW and register sending and receiving callback function. */
     ESP_ERROR_CHECK( esp_now_init() );
     ESP_ERROR_CHECK( esp_now_register_send_cb(slave_espnow_send_cb) );
@@ -424,12 +376,13 @@ esp_err_t slave_espnow_init(void)
 
 void slave_espnow_deinit()
 {
-    vSemaphoreDelete(s_slave_espnow_queue);
     esp_now_deinit();
 }
 
 void slave_espnow_protocol()
 {    
+    xEventGroupLightSleep = xEventGroupCreate();
+
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) 
@@ -446,21 +399,15 @@ void slave_espnow_protocol()
     init_temperature_sensor();
 
     //  ----------Process values ​​from nvs----------
-
     // erase_nvs(NVS_KEY_CONNECTED);
     load_from_nvs(NVS_KEY_CONNECTED, NVS_KEY_KEEP_CONNECT, NVS_KEY_PEER_ADDR, &s_master_unicast_mac);
     log_data_from_nvs();
     handle_device(DEVICE_LED_CONNECT, s_master_unicast_mac.connected);
-
     //  End----------Process values ​​from nvs----------
 
     // Initialize espnow
     slave_espnow_init();
 
-    /* Initialize sending parameters. */
-    memset(&send_param, 0, sizeof(slave_espnow_send_param_t));
-
     xTaskCreate(slave_espnow_task, "slave_espnow_task", 4096, &send_param, 4, &slave_espnow_handle);
-
     xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 3, NULL);
 }

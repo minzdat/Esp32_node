@@ -19,6 +19,7 @@
 #define TAG_LIGHT_SLEEP         "LIGHT_SLEEP"
 #define TIMER_WAKEUP_TIME_US    (900 * 1000)   // 900 mili seconds
 #define TIMER_LIGHT_SLEEP       (300 * 1000)   // 300 mili seconds
+#define LIGHT_SLEEP_BIT         (1 << 0)
 
 /* Most development boards have "boot" button attached to GPIO0.
  * You can also change this to another pin.

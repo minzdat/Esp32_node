@@ -8,8 +8,8 @@ void test_allowed_connect_slaves_to_nvs(list_slaves_t *test_allowed_connect_slav
     
     // MASTER hard-coded MAC addresses and statuses
     uint8_t mac1[ESP_NOW_ETH_ALEN] = {0x48, 0x27, 0xe2, 0xc7, 0x1d, 0x18};
-    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0x48, 0x27, 0xe2, 0xc9, 0x7b, 0x6c};
-    uint8_t mac3[ESP_NOW_ETH_ALEN] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc};
+    uint8_t mac2[ESP_NOW_ETH_ALEN] = {0xf4, 0x12, 0xfa, 0x42, 0xa3, 0xdc};
+    uint8_t mac3[ESP_NOW_ETH_ALEN] = {0x48, 0x27, 0xe2, 0xc9, 0x7b, 0x6c};
     
     // Add MAC addresses and statuses to the list
     memcpy(test_allowed_connect_slaves[0].peer_addr, mac1, ESP_NOW_ETH_ALEN);

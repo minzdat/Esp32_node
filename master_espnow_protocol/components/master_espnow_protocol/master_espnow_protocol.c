@@ -2,17 +2,16 @@
 
 int64_t start_time_send_espnow = 0;
 int devices_online = 0;
-static char saved_message_check_connect[PACKED_MSG_SIZE];
 int64_t start_time_check_connect;
 static int count_retry_send_callback;
+static int current_index = CURRENT_INDEX;
 static int8_t rssi;
 static char message_packed[MAX_PAYLOAD_LEN]; 
-static int current_index = CURRENT_INDEX;
+static char saved_message_check_connect[PACKED_MSG_SIZE];
 static const uint8_t s_master_broadcast_mac[ESP_NOW_ETH_ALEN] = MASTER_BROADCAST_MAC;
-static QueueHandle_t s_master_espnow_queue;
+static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 static master_espnow_send_param_t send_param;
 static master_espnow_send_param_t send_param_specified;
-static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 list_slaves_t test_allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t allowed_connect_slaves[MAX_SLAVES];
 list_slaves_t waiting_connect_slaves[MAX_SLAVES];
@@ -20,9 +19,10 @@ sensor_data_t esp_data_sensor;
 table_device_t table_devices[MAX_SLAVES];
 SemaphoreHandle_t table_devices_mutex;
 EventGroupHandle_t xEventGroup;
+EventGroupHandle_t xEventGroupLightSleep;
+QueueHandle_t slave_disconnect_queue;
 TaskHandle_t master_espnow_handle = NULL;
 TaskHandle_t retry_connect_lost_handle = NULL;
-QueueHandle_t slave_disconnect_queue;
 
 void log_send_espnow_result(esp_err_t result) 
 {
@@ -68,15 +68,11 @@ void erase_table_devices(int i)
 {
     if (xSemaphoreTake(table_devices_mutex, portMAX_DELAY)) 
     {
-
         memset(&table_devices[i], 0, sizeof(table_device_t));
-                    
         ESP_LOGE(TAG, "Erase Table Devices at index %d", i);
-
         log_table_devices();
 
         xSemaphoreGive(table_devices_mutex);
-
     } 
     else 
     {
@@ -116,7 +112,6 @@ void log_table_devices()
     ESP_LOGI(TAG, "------------------------------------------------------------------------------------------------------------------");
 }
 
-// The function stores the value into table_device_t
 void write_table_devices(const uint8_t *peer_addr, const sensor_data_t *esp_data, bool status) 
 {
     if (xSemaphoreTake(table_devices_mutex, portMAX_DELAY)) 
@@ -315,7 +310,7 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
     memset(&peer, 0, sizeof(esp_now_peer_info_t));
     peer.channel = CONFIG_ESPNOW_CHANNEL;
     peer.ifidx = ESPNOW_WIFI_IF;
-    peer.encrypt = false;
+    peer.encrypt = encrypt;
     memcpy(peer.lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
     memcpy(peer.peer_addr, peer_mac, ESP_NOW_ETH_ALEN);
 
@@ -327,6 +322,22 @@ void add_peer(const uint8_t *peer_mac, bool encrypt)
     {
         ESP_LOGI(TAG, "Peer already exists, modifying peer settings.");
         ESP_ERROR_CHECK(esp_now_mod_peer(&peer));
+    }
+}
+
+void erase_peer(const uint8_t *peer_mac) 
+{
+    if (esp_now_is_peer_exist(peer_mac)) 
+    {
+        esp_err_t del_err = esp_now_del_peer(peer_mac);
+        if (del_err != ESP_OK) 
+        {
+            ESP_LOGE(TAG, "Failed to delete peer " MACSTR ": %s", MAC2STR(peer_mac), esp_err_to_name(del_err));
+        } 
+        else 
+        {
+            ESP_LOGI(TAG, "Deleted peer " MACSTR, MAC2STR(peer_mac));
+        }
     }
 }
 
@@ -380,15 +391,12 @@ void add_waiting_connect_slaves(const uint8_t *mac_addr)
 }
 
 /* Function responds with the specified MAC and content*/
-esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message, bool encrypt)
+esp_err_t response_specified_mac(const uint8_t *dest_mac, const char *message)
 {
     send_param_specified.len = MAX_DATA_LEN;
-
     memcpy(send_param_specified.dest_mac, dest_mac, ESP_NOW_ETH_ALEN);
 
     espnow_data_prepare(&send_param_specified, message);
-
-    add_peer(dest_mac, encrypt);
 
     int64_t elapsed_time_us = esp_timer_get_time() - start_time_send_espnow;
     int64_t remaining_time = 100000 - elapsed_time_us;
@@ -431,9 +439,6 @@ void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status
     evt.id = MASTER_ESPNOW_SEND_CB;
     memcpy(send_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
     send_cb->status = status;
-    // if (xQueueSend(s_master_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
-    //     ESP_LOGW(TAG, "Send send queue fail");
-    // }
 
     ESP_LOGI(TAG, "Send callback: MAC Address " MACSTR ", Status: %s",
         MAC2STR(mac_addr), (status == ESP_NOW_SEND_SUCCESS) ? "Success" : "Fail");
@@ -449,29 +454,21 @@ void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status
                 if (allowed_connect_slaves[i].count_retry < SEND_CALLBACK_RETRY)
                 {
                     allowed_connect_slaves[i].count_retry++; 
-
                     count_retry_send_callback = allowed_connect_slaves[i].count_retry;
-        
                     ESP_LOGW(TAG, "Number of retry_send_callback to MAC  " MACSTR " | : %d", MAC2STR(mac_addr), allowed_connect_slaves[i].count_retry);
 
-                    response_specified_mac(allowed_connect_slaves[i].peer_addr, allowed_connect_slaves[i].message_retry_fail, false);  
-
-                    if ((strcmp(allowed_connect_slaves[i].message_retry_fail, CHECK_CONNECTION_MSG) == 0) && allowed_connect_slaves[i].count_retry == SEND_CALLBACK_RETRY)
-                    {
-                        allowed_connect_slaves[i].check_connect_success = true;
-                        allowed_connect_slaves[i].check_connect_errors++;
-                        ESP_LOGW(TAG, "Number of check_connection to MAC  " MACSTR " | : %d", MAC2STR(mac_addr), allowed_connect_slaves[i].check_connect_errors);
-
-                        EventBits_t uxBits = xEventGroupGetBits(xEventGroup);
-                        if (!(uxBits & EVENT_BIT_CONTINUE)) {
-                            ESP_LOGI(TAG, "Continue signal received, resuming task...");
-                            xEventGroupSetBits(xEventGroup, EVENT_BIT_CONTINUE);
-                        }
-                    }     
+                    response_specified_mac(allowed_connect_slaves[i].peer_addr, allowed_connect_slaves[i].message_retry_fail);     
                 }
                 else if ((allowed_connect_slaves[i].count_retry == SEND_CALLBACK_RETRY))
                 {
+                    allowed_connect_slaves[i].check_connect_errors++;
+                    ESP_LOGW(TAG, "Number of check_connection to MAC  " MACSTR " | : %d", MAC2STR(mac_addr), allowed_connect_slaves[i].check_connect_errors);
+
+
+                    ESP_LOGI(TAG, "Continue signal received, resuming task...");
+                    xEventGroupSetBits(xEventGroup, EVENT_BIT_CONTINUE);
                     xQueueSend(slave_disconnect_queue, &i, portMAX_DELAY);
+                    xEventGroupSetBits(xEventGroupLightSleep, (1 << i));
                 }
                 return;
             }
@@ -490,15 +487,12 @@ void master_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status
                     allowed_connect_slaves[i].count_retry = 0;
 
                     count_retry_send_callback = allowed_connect_slaves[i].count_retry;
-                    allowed_connect_slaves[i].check_connect_success = true;
                     allowed_connect_slaves[i].check_connect_errors++;
                     ESP_LOGW(TAG, "Number of check_connection to MAC  " MACSTR "| : %d", MAC2STR(mac_addr), allowed_connect_slaves[i].check_connect_errors);
 
-                    EventBits_t uxBits = xEventGroupGetBits(xEventGroup);
-                    if (!(uxBits & EVENT_BIT_CONTINUE)) {
-                        ESP_LOGI(TAG, "Continue signal received, resuming task...");
-                        xEventGroupSetBits(xEventGroup, EVENT_BIT_CONTINUE);
-                    }
+                    ESP_LOGI(TAG, "Continue signal received, resuming task...");
+                    xEventGroupSetBits(xEventGroup, EVENT_BIT_CONTINUE);
+                    xEventGroupSetBits(xEventGroupLightSleep, (1 << i));
                 }
                 return;
             }
@@ -533,11 +527,6 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
     recv_cb->data_len = len;
     memcpy(recv_cb->data, data, recv_cb->data_len);
 
-    // if (xQueueSend(s_master_espnow_queue, &evt, ESPNOW_MAXDELAY) != pdTRUE) {
-    //     ESP_LOGW(TAG, "Send receive queue fail");
-    //     free(recv_cb->data);
-    // }
-
     if (IS_BROADCAST_ADDR(des_addr)) 
     {   
         ESP_LOGI(TAG, "_________________________________");
@@ -560,7 +549,9 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                         allowed_connect_slaves[i].start_time = esp_timer_get_time();
                         ESP_LOGW(TAG, "---------------------------------");
                         ESP_LOGW(TAG, "Response %s to MAC " MACSTR "",RESPONSE_AGREE_CONNECT,  MAC2STR(recv_cb->mac_addr));
-                        response_specified_mac(recv_cb->mac_addr, RESPONSE_AGREE_CONNECT, false);
+
+                        add_peer(recv_cb->mac_addr, false);
+                        response_specified_mac(recv_cb->mac_addr, RESPONSE_AGREE_CONNECT);
                     }        
                 }
                 found = true;
@@ -595,6 +586,7 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
                     allowed_connect_slaves[i].check_keep_connect = false;
                     if (devices_online <= MAX_SLAVES)
                     {
+                        all_slaves_bits |= (1 << i); 
                         devices_online++;
                     }
 
@@ -605,6 +597,8 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
 
                     save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
                     write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
+
+                    add_peer(recv_cb->mac_addr, true);
 
                     break;
                 }
@@ -621,25 +615,15 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
 
                     count_retry_send_callback = allowed_connect_slaves[i].count_retry;
 
-                    // allowed_connect_slaves[i].count_receive++;
-                    // ESP_LOGW(TAG, "Receive from " MACSTR " - Counting: %d", MAC2STR(allowed_connect_slaves[i].peer_addr), allowed_connect_slaves[i].count_receive);
-                    // vTaskDelay(pdMS_TO_TICKS(2000));
-                    // deep_sleep_mode();
-                    // light_sleep_flag = true;
-                    // start_time_light_sleep = esp_timer_get_time();
-
                     break;
                 }
                 else if (recv_cb->data_len >= strlen(CONTROL_RELAY_MSG) && strstr((char *)message_packed, CONTROL_RELAY_MSG) != NULL)
                 {
 
-                    // light_sleep_flag = true;
-                    // start_time_light_sleep = esp_timer_get_time();
-
                 }
                 else if (recv_cb->data_len >= strlen(DISCONNECT_NODE_MSG) && strstr((char *)message_packed, DISCONNECT_NODE_MSG) != NULL)
                 {
-                    // Clear the `allowed_connect_slaves` arrayWW
+                    // Clear the `allowed_connect_slaves` array
                     memset(&allowed_connect_slaves[i], 0, sizeof(list_slaves_t));
                     erase_table_devices(i);
                 }
@@ -648,19 +632,20 @@ void master_espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *
     }
 }
 
+// Task Check connect to Slaves
 void master_espnow_task(void *pvParameter)
 {
+    memset(&send_param, 0, sizeof(master_espnow_send_param_t));
     master_espnow_send_param_t *send_param = (master_espnow_send_param_t *)pvParameter;
-
     send_param->len = MAX_DATA_LEN;
+
+    start_time_check_connect = esp_timer_get_time();
 
     while (true) 
     {
         ESP_LOGE(TAG, "Task master_espnow_task");
-
         //Send check connect
         int64_t current_time = esp_timer_get_time();
-
         if ((current_time - start_time_check_connect) >= TIME_CHECK_CONNECT) 
         {
             // Browse the allowed_connect_slaves list
@@ -671,7 +656,6 @@ void master_espnow_task(void *pvParameter)
                     if (allowed_connect_slaves[i].check_connect_errors <= NUMBER_RETRY)
                     {   
                         allowed_connect_slaves[i].count_retry = 0;
-    
                         count_retry_send_callback = allowed_connect_slaves[i].count_retry;
 
                         // Copy the full message array safely
@@ -681,14 +665,13 @@ void master_espnow_task(void *pvParameter)
                         memcpy(send_param->dest_mac, allowed_connect_slaves[i].peer_addr, ESP_NOW_ETH_ALEN);
                         ESP_LOGW(TAG, "---------------------------------");
                         ESP_LOGW(TAG, "Send %s to MAC  " MACSTR "",CHECK_CONNECTION_MSG, MAC2STR(allowed_connect_slaves[i].peer_addr));
-                                            
+
+                        //Prepare date before send                    
                         espnow_data_prepare(send_param, CHECK_CONNECTION_MSG); 
-                
-                        add_peer(allowed_connect_slaves[i].peer_addr, false);
-                                
+
+                        // Send check connect to slave vs espnow 
                         esp_err_t ret_val = esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len);
                         log_send_espnow_result(ret_val);
-
                         if (ret_val != ESP_OK) 
                         {
                             allowed_connect_slaves[i].send_errors++;
@@ -696,6 +679,7 @@ void master_espnow_task(void *pvParameter)
                             
                             if (allowed_connect_slaves[i].send_errors >= MAX_SEND_ERRORS)
                             {
+                                all_slaves_bits &= ~(1 << i);
                                 allowed_connect_slaves[i].status = false; // Mark MAC as offline
                                 devices_online--;
 
@@ -703,6 +687,7 @@ void master_espnow_task(void *pvParameter)
 
                                 save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
                                 write_table_devices(allowed_connect_slaves[i].peer_addr, NULL, allowed_connect_slaves[i].status);
+                                erase_peer(allowed_connect_slaves[i].peer_addr);
                             }
                         } 
                         else 
@@ -719,7 +704,7 @@ void master_espnow_task(void *pvParameter)
             }
             start_time_check_connect = esp_timer_get_time();
         }
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
@@ -729,25 +714,22 @@ void retry_connect_lost_task(void *pvParameter)
     while (true) 
     {
         ESP_LOGE(TAG, "Task retry_connect_lost_task");
-
         for (int i = 0; i < MAX_SLAVES; i++) 
         {
             switch (allowed_connect_slaves[i].status) 
             {
                 case false: // Slave Offline
-                
                     if(allowed_connect_slaves[i].start_time > 0)
                     {
                         allowed_connect_slaves[i].end_time =  esp_timer_get_time();
                         uint64_t elapsed_time = allowed_connect_slaves[i].end_time - allowed_connect_slaves[i].start_time;
-
                         if (elapsed_time > RETRY_TIMEOUT) 
                         {
                             if (allowed_connect_slaves[i].number_retry >= NUMBER_RETRY)
                             {
                                 ESP_LOGW(TAG, "---------------------------------");
                                 ESP_LOGW(TAG, "Retry %s with " MACSTR "",RESPONSE_AGREE_CONNECT, MAC2STR(allowed_connect_slaves[i].peer_addr));
-                                response_specified_mac(allowed_connect_slaves[i].peer_addr, RESPONSE_AGREE_CONNECT, false);        
+                                response_specified_mac(allowed_connect_slaves[i].peer_addr, RESPONSE_AGREE_CONNECT);        
                                 allowed_connect_slaves[i].number_retry++;
                             }
                             else
@@ -760,20 +742,19 @@ void retry_connect_lost_task(void *pvParameter)
                     break;
 
                 case true: // Slave Online
-
                     uint32_t slave_index;
                     while (xQueueReceive(slave_disconnect_queue, &slave_index, pdMS_TO_TICKS(100)) == pdTRUE)
                     {
+                        all_slaves_bits &= ~(1 << i);
                         allowed_connect_slaves[slave_index].status = false;
                         devices_online--;
                         allowed_connect_slaves[slave_index].check_connect_success = false;
                         allowed_connect_slaves[slave_index].check_connect_errors = 0;
-                        allowed_connect_slaves[i].check_keep_connect = false;
+                        allowed_connect_slaves[slave_index].check_keep_connect = false;
 
                         allowed_connect_slaves[slave_index].count_retry = 0;
 
                         count_retry_send_callback = allowed_connect_slaves[slave_index].count_retry;
-
                         memcpy(allowed_connect_slaves[slave_index].message_retry_fail, NOT_RETRY_MSG, sizeof(NOT_RETRY_MSG));
 
                         allowed_connect_slaves[slave_index].start_time = 0;
@@ -782,23 +763,17 @@ void retry_connect_lost_task(void *pvParameter)
 
                         save_info_slaves_to_nvs("KEY_SLA_ALLOW", allowed_connect_slaves);
                         write_table_devices(allowed_connect_slaves[slave_index].peer_addr, NULL, allowed_connect_slaves[slave_index].status);
+                        erase_peer(allowed_connect_slaves[slave_index].peer_addr);
                     }
                     break;
             }
         }
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
 esp_err_t master_espnow_init(void)
 {
-    s_master_espnow_queue = xQueueCreate(ESPNOW_QUEUE_SIZE, sizeof(master_espnow_event_t));
-    if (s_master_espnow_queue == NULL) 
-    {
-        ESP_LOGE(TAG, "Create mutex fail");
-        return ESP_FAIL;
-    }
-
     /* Initialize ESPNOW and register sending and receiving callback function. */
     ESP_ERROR_CHECK( esp_now_init() );
     ESP_ERROR_CHECK( esp_now_register_send_cb(master_espnow_send_cb) );
@@ -816,20 +791,16 @@ esp_err_t master_espnow_init(void)
 
 void master_espnow_deinit()
 {
-    vSemaphoreDelete(s_master_espnow_queue);
     esp_now_deinit();
 }
 
 void master_espnow_protocol()
 {
-    // Initialize Semaphore Mutex for Table Devices
+    // Initialize xFreeRTOS
     table_devices_mutex = xSemaphoreCreateMutex();
-
     xEventGroup = xEventGroupCreate();
-
+    xEventGroupLightSleep = xEventGroupCreate();
     slave_disconnect_queue = xQueueCreate(10, sizeof(uint32_t));
-
-    start_time_check_connect = esp_timer_get_time();
 
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
@@ -861,12 +832,7 @@ void master_espnow_protocol()
     // Initialize espnow
     master_espnow_init();
 
-    /* Initialize sending parameters. */
-    memset(&send_param, 0, sizeof(master_espnow_send_param_t));
-
     xTaskCreate(master_espnow_task, "master_espnow_task", 4096, &send_param, 4, &master_espnow_handle);
-
     xTaskCreate(retry_connect_lost_task, "retry_connect_lost_task", 4096, NULL, 4, &retry_connect_lost_handle);
-
     xTaskCreate(light_sleep_task, "light_sleep_task", 4096, NULL, 3, NULL);
 }
