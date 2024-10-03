@@ -1,0 +1,1 @@
+serial_log/files_serial_log/*.csv filter=lfs diff=lfs merge=lfs -text
